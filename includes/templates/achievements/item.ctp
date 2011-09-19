@@ -1,0 +1,1 @@
+<?php echo 'Achievement #' . $this->core->getUrlAction(1).'<br/>'; print_r($item); ?>

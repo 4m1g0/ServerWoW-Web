@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+/* Services Landing Page */
+.main-services-banner .banner-title {font-size:18px; margin:65px 0 0 14px;}
+.main-services-banner .banner-desc {width:257px;}
+
+
+.game-guide-what-is-wow .part1-div  p, .game-guide-what-is-wow .part2-div  p, .game-guide-what-is-wow .part3-div  p, .game-guide-what-is-wow .part4-div  p {line-height:18px;}
+.game-guide-what-is-wow .part3-desc02 .guide-detail-desc p, .game-guide-what-is-wow .part4-desc02  p, .game-guide-what-is-wow .part4-desc03  p {line-height:15px;}
+.game-guide-what-is-wow .part1-div  .part1-detail .role-playing {margin:26px 0 0 50px;}
+.game-guide-what-is-wow .part1-div  .part1-detail .online {margin:40px 50px 0 0;}
+
+
+.game-guide-getting-started .step1-div #interface-list {right:63px;}
+.game-guide-getting-started .step1-div  p, .game-guide-getting-started  .step2-div  p , .game-guide-getting-started  .step4-div  p {line-height:18px;}
+.game-guide-getting-started .sever-type-list {line-height:15px;}
+.game-guide-getting-started .step3-div  p {line-height:17px;}
+.game-guide-getting-started .step3-div  .content-col-right {line-height:13px;}
+.game-guide-getting-started .part1-div  .part1-detail .role-playing {margin:26px 0 0 50px;}
+.game-guide-getting-started .part1-div  .part1-detail .online {margin:0 50px 0 0;}
+.game-guide-getting-started .step1-div .raf-desc {margin-top:30px;}
+
+.game-guide-playing-together .chat-other .dialog, .game-guide-playing-together #friends .friends .box {line-height:15px;}
+.game-guide-playing-together #party .box, .game-guide-playing-together #friends .intro {line-height:19px;}
+
+.guide-page-nav .nav-buttons .prev span span {padding-right:29px }
+.guide-page-nav .nav-buttons .next span span {padding-left:36px }
+.guide-page-nav .nav-buttons .prev span {margin-left:38px }
+.guide-page-nav .nav-buttons .next span {margin-right:48px }
+
+/* character card */
+#header .user-plate .user-meta.meta-login { padding-right:20px; top:61px; }
+
+/* Free WoW for SC2 promo side banner */
+.promo.promo-free-wow .free-trial {  background-image: url("/wow/static/images/sidebar/free-wow-for-sc2/ru-ru.jpg") }
+
+/* Services WoW Remote page */
+.services-pra .content-anchors-div .anchor-box .wrapper {min-height:129px;}
+.services-pra .summary-div .price-div .duration {top:7px;}
+
+/* wiki */
+.bosses .npcs a { width: 110px; padding: 0; }
+.bosses .npcs a .side-icon { right: 16px; }

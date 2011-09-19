@@ -1,0 +1,15 @@
+#dev-fixed {
+	position:fixed;
+	right:0;
+	top:10%;
+	padding:10px;
+	background:#1A0F08;
+	color:#ff0000;
+}
+.dev-right-menu {
+	font-size:15px;
+	width:190px;
+}
+.dev-panel {
+	text-align:center;
+}

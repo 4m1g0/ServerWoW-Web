@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.summary-middle-inner { background: #180E07; }
+.profile-contents { overflow: hidden; }
+
+.summary-inventory-advanced .audit-warning { zoom: 1; vertical-align: middle; background-image: url("../../images/icons/warning-small.gif"); }
+
+.reforging-highlight li { filter: alpha(opacity=33); }
+.summary-reforging li .arrow { background-image: url("../../images/character/summary/reforging-arrow-small.gif"); }
+.summary-reforging li.highlight { filter: alpha(opacity=100); }
+
+.summary-stats-profs-bgs { background: #25140b; }
+.summary-stats-profs-bgs, .summary-bottom .profile-recentactivity { zoom: 1; }
+
+/* hide difficulty and expansion markers in IE 6 and 7 */
+html.ie67 .summary-raid thead { display: none; }
+html.ie67 .summary-raid-wrapper-left { padding-top: 62px; }
+html.ie67 .summary-raid-wrapper a.arrow-left, .summary-raid-wrapper a.arrow-right { top: 0; }
+html.ie67 .summary-raid-wrapper-table { height: 115px; zoom: 1; }

@@ -1,0 +1,1 @@
+<?php if (!$items) return; ?>All characters:<?phpprint_r($items);die;foreach ($items as &$item){	echo $item['name'] . ', ' . $item['class'] . ' ' . $item['race'] . ' ' . $item['level'] . ' ' . $item['gender'] . ' <br />';}?>

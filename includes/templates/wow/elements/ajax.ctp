@@ -1,0 +1,1 @@
+<?php if ($this->issetRegion('wow_ajax')) echo $this->region('wow_ajax'); ?>

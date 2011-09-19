@@ -1,0 +1,2194 @@
+<strong>SQL</strong> [20-08-2011 21:54:53]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [20-08-2011 21:54:53]: [0.0009 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [20-08-2011 21:54:53]: [0.0152 ms]: SHOW TABLES FROM wow_cs<br />
+<strong>SQL</strong> [20-08-2011 21:55:04]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [20-08-2011 21:55:04]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [20-08-2011 21:55:04]: [0.0039 ms]: SHOW COLUMNS FROM wow_cs.wow_skill_line_ability<br />
+<strong>SQL</strong> [21-08-2011 12:24:50]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 12:24:50]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 12:24:50]: [0.013 ms]: SHOW TABLES FROM characters<br />
+<strong>SQL</strong> [21-08-2011 20:21:44]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:21:44]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>ERROR</strong> [21-08-2011 20:21:44]: Database_Component::_prepareQuery : unable to execute sql query, dump:("Array
+(
+    [0] => SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+
+)
+")!<br />
+<strong>DEBUG</strong> [21-08-2011 20:21:44]: Database_Component::_query : unable to execute SQL query (). MySQL error: none<br />
+<strong>SQL</strong> [21-08-2011 20:22:01]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:22:01]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 20:22:01]: [0.2257 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 20:22:43]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:22:43]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>ERROR</strong> [21-08-2011 20:22:43]: Database_Component::_prepareQuery : unable to execute sql query, dump:("Array
+(
+    [0] => SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+
+)
+")!<br />
+<strong>DEBUG</strong> [21-08-2011 20:22:43]: Database_Component::_query : unable to execute SQL query (). MySQL error: none<br />
+<strong>SQL</strong> [21-08-2011 20:24:40]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:24:40]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>ERROR</strong> [21-08-2011 20:24:40]: Database_Component::_prepareQuery : unable to execute sql query, dump:("Array
+(
+    [0] => SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+
+)
+")!<br />
+<strong>DEBUG</strong> [21-08-2011 20:24:40]: Database_Component::_query : unable to execute SQL query (). MySQL error: none<br />
+<strong>SQL</strong> [21-08-2011 20:25:22]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:25:22]: [0.0007 ms]: SELECT VERSION()<br />
+<strong>ERROR</strong> [21-08-2011 20:25:22]: Database_Component::_prepareQuery : unable to execute sql query, dump:("Array
+(
+    [0] => SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+
+)
+")!<br />
+<strong>DEBUG</strong> [21-08-2011 20:25:22]: Database_Component::_query : unable to execute SQL query (). MySQL error: none<br />
+<strong>SQL</strong> [21-08-2011 20:26:37]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:26:37]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>ERROR</strong> [21-08-2011 20:26:37]: Database_Component::_prepareQuery : unable to execute sql query, dump:("Array
+(
+    [0] => SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+
+)
+")!<br />
+<strong>DEBUG</strong> [21-08-2011 20:26:37]: Database_Component::_query : unable to execute SQL query (). MySQL error: none<br />
+<strong>SQL</strong> [21-08-2011 20:26:41]: [0.0007 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:26:41]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>ERROR</strong> [21-08-2011 20:26:41]: Database_Component::_prepareQuery : unable to execute sql query, dump:("Array
+(
+    [0] => SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+
+)
+")!<br />
+<strong>DEBUG</strong> [21-08-2011 20:26:41]: Database_Component::_query : unable to execute SQL query (). MySQL error: none<br />
+<strong>SQL</strong> [21-08-2011 20:26:55]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:26:55]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 20:26:55]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+). MySQL error: "Unknown column 't1.name' in 'where clause'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 20:27:00]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:27:00]: [0.0011 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 20:27:00]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+). MySQL error: "Unknown column 't1.name' in 'where clause'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 20:27:53]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:27:53]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 20:27:53]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+). MySQL error: "Unknown column 't1.name' in 'where clause'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 20:28:07]: [0.0004 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:28:07]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 20:28:07]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+). MySQL error: "Unknown column 't1.name' in 'where clause'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 20:28:22]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:28:22]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 20:28:22]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+). MySQL error: "Unknown column 't1.name' in 'where clause'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 20:28:58]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:28:58]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 20:28:58]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+). MySQL error: "Unknown column 't1.name' in 'where clause'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 20:29:08]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:29:08]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 20:29:08]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+). MySQL error: "Unknown column 't1.name' in 'where clause'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 20:29:43]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:29:43]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 20:29:43]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+). MySQL error: "Unknown column 't1.name' in 'where clause'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 20:29:49]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:29:49]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 20:29:49]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name` LIKE 'Убийств%'
+). MySQL error: "Unknown column 't1.name' in 'where clause'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 20:30:56]: [0.0004 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 20:30:56]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 20:30:56]: [0.0088 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name_ru` LIKE 'Убийств%'
+<br />
+<strong>SQL</strong> [21-08-2011 21:35:53]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:35:53]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:35:53]: [0.0144 ms]: SHOW TABLES FROM wow_cs<br />
+<strong>SQL</strong> [21-08-2011 21:36:26]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:36:26]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:36:26]: [0.0041 ms]: SHOW COLUMNS FROM wow_cs.wow_raid_progress<br />
+<strong>SQL</strong> [21-08-2011 21:36:31]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:36:31]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:36:31]: [0.0092 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`factionFlag` AS `factionFlag`
+,`t1`.`parentAchievement` AS `parentAchievement`
+,`t1`.`categoryId` AS `categoryId`
+,`t1`.`points` AS `points`
+,`t1`.`OrderInCategory` AS `OrderInCategory`
+,`t1`.`flags` AS `flags`
+,`t1`.`iconID` AS `iconID`
+,`t1`.`iconname` AS `iconname`
+,`t1`.`dungeonDifficulty` AS `dungeonDifficulty`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+,`t1`.`titleReward_ru` AS `titleReward`
+FROM `wow_achievement` AS `t1`
+WHERE
+`t1`.`name_ru` LIKE 'Убийств%'
+<br />
+<strong>SQL</strong> [21-08-2011 21:37:08]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:37:08]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:37:08]: [0.0036 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:38:31]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:38:31]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:38:31]: [0.0047 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:38:44]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:38:44]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:38:44]: [0.0037 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:38:48]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:38:48]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:38:48]: [0.0038 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:38:51]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:38:51]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:38:51]: [0.0039 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:38:56]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:38:56]: [0.0016 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:38:56]: [0.0055 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:39:00]: [0.0004 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:39:00]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:39:00]: [0.004 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:39:07]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:39:07]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:39:07]: [0.0034 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:39:18]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:39:18]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:39:18]: [0.0039 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:39:27]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:39:27]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:39:27]: [0.0034 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:39:42]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:39:42]: [0.0007 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:39:42]: [0.0039 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:39:53]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:39:53]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:39:53]: [0.0037 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:40:11]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:40:11]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:40:11]: [0.0041 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:40:22]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:40:22]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:40:22]: [0.0032 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:40:35]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:40:35]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:40:35]: [0.0037 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:41:26]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:41:26]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:41:26]: [0.0041 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:41:41]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:41:41]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:41:41]: [0.0041 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:41:45]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:41:45]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:41:45]: [0.0038 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:41:47]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:41:47]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:41:47]: [0.0036 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:41:57]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:41:57]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:41:57]: [0.0034 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:42:06]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:42:06]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:42:06]: [0.0045 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:42:38]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:42:38]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:42:38]: [0.0038 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:42:47]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:42:47]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:42:47]: [0.004 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:43:12]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:43:12]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:43:12]: [0.0036 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:43:28]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:43:28]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:43:28]: [0.0036 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:43:37]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:43:37]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:43:37]: [0.0036 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:43:42]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:43:42]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:43:42]: [0.004 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:43:47]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:43:47]: [0.0007 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:43:47]: [0.0047 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:47:39]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:47:39]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:47:39]: [0.0176 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+,`t2`.`id` AS `id`
+,`t2`.`referredAchievement` AS `referredAchievement`
+,`t2`.`requiredType` AS `requiredType`
+,`t2`.`data` AS `data`
+,`t2`.`value` AS `value`
+,`t2`.`additional_type_1` AS `additional_type_1`
+,`t2`.`additional_value_1` AS `additional_value_1`
+,`t2`.`additional_type_2` AS `additional_type_2`
+,`t2`.`additional_value_2` AS `additional_value_2`
+,`t2`.`completionFlag` AS `completionFlag`
+,`t2`.`groupFlag` AS `groupFlag`
+,`t2`.`unk1` AS `unk1`
+,`t2`.`timeLimit` AS `timeLimit`
+,`t2`.`showOrder` AS `showOrder`
+,`t2`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+LEFT JOIN `wow_achievement_criteria` AS `t2` ON `t2`.`referredAchievement` = `t1`.`ach_id`
+WHERE
+`t2`.`requiredType` = 0 AND
+`t2`.`data` > 0
+<br />
+<strong>SQL</strong> [21-08-2011 21:48:42]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:48:42]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:48:42]: [0.0179 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+,`t2`.`id` AS `id`
+,`t2`.`referredAchievement` AS `referredAchievement`
+,`t2`.`requiredType` AS `requiredType`
+,`t2`.`data` AS `data`
+,`t2`.`value` AS `value`
+,`t2`.`additional_type_1` AS `additional_type_1`
+,`t2`.`additional_value_1` AS `additional_value_1`
+,`t2`.`additional_type_2` AS `additional_type_2`
+,`t2`.`additional_value_2` AS `additional_value_2`
+,`t2`.`completionFlag` AS `completionFlag`
+,`t2`.`groupFlag` AS `groupFlag`
+,`t2`.`unk1` AS `unk1`
+,`t2`.`timeLimit` AS `timeLimit`
+,`t2`.`showOrder` AS `showOrder`
+,`t2`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+LEFT JOIN `wow_achievement_criteria` AS `t2` ON `t2`.`referredAchievement` = `t1`.`ach_id`
+WHERE
+`t2`.`requiredType` = 0 AND
+`t2`.`data` > 0
+<br />
+<strong>SQL</strong> [21-08-2011 21:50:25]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:50:25]: [0.0007 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:50:25]: [0.005 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:52:02]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:52:02]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:52:02]: [0.0041 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:52:17]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:52:17]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:52:17]: [0.0037 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:53:04]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:53:04]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:53:04]: [0.0048 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:53:11]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:53:11]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:53:11]: [0.0039 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:54:06]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:54:06]: [0.0007 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:54:06]: [0.0046 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:55:32]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:55:32]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:55:32]: [0.0038 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:55:32]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:55:32]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:55:33]: [0.2128 ms]: SELECT
+`t1`.`entry` AS `entry`
+,`t1`.`difficulty_entry_1` AS `difficulty_entry_1`
+,`t1`.`difficulty_entry_2` AS `difficulty_entry_2`
+,`t1`.`difficulty_entry_3` AS `difficulty_entry_3`
+,`t1`.`KillCredit1` AS `KillCredit1`
+,`t1`.`KillCredit2` AS `KillCredit2`
+,`t1`.`modelid_1` AS `modelid_1`
+,`t1`.`modelid_2` AS `modelid_2`
+,`t1`.`modelid_3` AS `modelid_3`
+,`t1`.`modelid_4` AS `modelid_4`
+,`t1`.`name` AS `name`
+,`t1`.`subname` AS `subname`
+,`t1`.`IconName` AS `IconName`
+,`t1`.`gossip_menu_id` AS `gossip_menu_id`
+,`t1`.`minlevel` AS `minlevel`
+,`t1`.`maxlevel` AS `maxlevel`
+,`t1`.`minhealth` AS `minhealth`
+,`t1`.`maxhealth` AS `maxhealth`
+,`t1`.`minmana` AS `minmana`
+,`t1`.`maxmana` AS `maxmana`
+,`t1`.`armor` AS `armor`
+,`t1`.`faction_A` AS `faction_A`
+,`t1`.`faction_H` AS `faction_H`
+,`t1`.`npcflag` AS `npcflag`
+,`t1`.`speed_walk` AS `speed_walk`
+,`t1`.`speed_run` AS `speed_run`
+,`t1`.`scale` AS `scale`
+,`t1`.`rank` AS `rank`
+,`t1`.`mindmg` AS `mindmg`
+,`t1`.`maxdmg` AS `maxdmg`
+,`t1`.`dmgschool` AS `dmgschool`
+,`t1`.`attackpower` AS `attackpower`
+,`t1`.`dmg_multiplier` AS `dmg_multiplier`
+,`t1`.`baseattacktime` AS `baseattacktime`
+,`t1`.`rangeattacktime` AS `rangeattacktime`
+,`t1`.`unit_class` AS `unit_class`
+,`t1`.`unit_flags` AS `unit_flags`
+,`t1`.`dynamicflags` AS `dynamicflags`
+,`t1`.`family` AS `family`
+,`t1`.`trainer_type` AS `trainer_type`
+,`t1`.`trainer_spell` AS `trainer_spell`
+,`t1`.`trainer_class` AS `trainer_class`
+,`t1`.`trainer_race` AS `trainer_race`
+,`t1`.`minrangedmg` AS `minrangedmg`
+,`t1`.`maxrangedmg` AS `maxrangedmg`
+,`t1`.`rangedattackpower` AS `rangedattackpower`
+,`t1`.`type` AS `type`
+,`t1`.`type_flags` AS `type_flags`
+,`t1`.`lootid` AS `lootid`
+,`t1`.`pickpocketloot` AS `pickpocketloot`
+,`t1`.`skinloot` AS `skinloot`
+,`t1`.`resistance1` AS `resistance1`
+,`t1`.`resistance2` AS `resistance2`
+,`t1`.`resistance3` AS `resistance3`
+,`t1`.`resistance4` AS `resistance4`
+,`t1`.`resistance5` AS `resistance5`
+,`t1`.`resistance6` AS `resistance6`
+,`t1`.`spell1` AS `spell1`
+,`t1`.`spell2` AS `spell2`
+,`t1`.`spell3` AS `spell3`
+,`t1`.`spell4` AS `spell4`
+,`t1`.`PetSpellDataId` AS `PetSpellDataId`
+,`t1`.`mingold` AS `mingold`
+,`t1`.`maxgold` AS `maxgold`
+,`t1`.`AIName` AS `AIName`
+,`t1`.`MovementType` AS `MovementType`
+,`t1`.`InhabitType` AS `InhabitType`
+,`t1`.`unk16` AS `unk16`
+,`t1`.`unk17` AS `unk17`
+,`t1`.`RacialLeader` AS `RacialLeader`
+,`t1`.`questItem1` AS `questItem1`
+,`t1`.`questItem2` AS `questItem2`
+,`t1`.`questItem3` AS `questItem3`
+,`t1`.`questItem4` AS `questItem4`
+,`t1`.`questItem5` AS `questItem5`
+,`t1`.`questItem6` AS `questItem6`
+,`t1`.`movementId` AS `movementId`
+,`t1`.`RegenHealth` AS `RegenHealth`
+,`t1`.`vehicle_id` AS `vehicle_id`
+,`t1`.`equipment_id` AS `equipment_id`
+,`t1`.`trainer_id` AS `trainer_id`
+,`t1`.`vendor_id` AS `vendor_id`
+,`t1`.`mechanic_immune_mask` AS `mechanic_immune_mask`
+,`t1`.`flags_extra` AS `flags_extra`
+,`t1`.`ScriptName` AS `ScriptName`
+,`t2`.`entry` AS `entry`
+,`t2`.`name_loc8` AS `name`
+,`t2`.`subname_loc8` AS `subname`
+FROM `creature_template` AS `t1`
+LEFT JOIN `locales_creature` AS `t2` ON `t2`.`entry` = `t1`.`entry`
+WHERE
+`t1`.`entry` IN(11502,11583,15727,15690,19044,17257,21212,19622,22917,25315,15956,15932,16060,15953,15931,15936,16062,16061,16011,15952,15954,16028,15928,15989,15990,28860,28859,31125,33113,33186,33118,33293,0,32930,33515,33432,33271,33288,33993,34797,34780,34496,34564,35013,36612,36855,36626,36627,37970,36678,37955,36853,36597,38433)
+<br />
+<strong>SQL</strong> [21-08-2011 21:57:33]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:57:33]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:57:33]: [0.0039 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:57:33]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:57:33]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:57:33]: [0.0078 ms]: SELECT
+`t1`.`entry` AS `entry`
+,`t1`.`difficulty_entry_1` AS `difficulty_entry_1`
+,`t1`.`difficulty_entry_2` AS `difficulty_entry_2`
+,`t1`.`difficulty_entry_3` AS `difficulty_entry_3`
+,`t1`.`KillCredit1` AS `KillCredit1`
+,`t1`.`KillCredit2` AS `KillCredit2`
+,`t1`.`modelid_1` AS `modelid_1`
+,`t1`.`modelid_2` AS `modelid_2`
+,`t1`.`modelid_3` AS `modelid_3`
+,`t1`.`modelid_4` AS `modelid_4`
+,`t1`.`name` AS `name`
+,`t1`.`subname` AS `subname`
+,`t1`.`IconName` AS `IconName`
+,`t1`.`gossip_menu_id` AS `gossip_menu_id`
+,`t1`.`minlevel` AS `minlevel`
+,`t1`.`maxlevel` AS `maxlevel`
+,`t1`.`minhealth` AS `minhealth`
+,`t1`.`maxhealth` AS `maxhealth`
+,`t1`.`minmana` AS `minmana`
+,`t1`.`maxmana` AS `maxmana`
+,`t1`.`armor` AS `armor`
+,`t1`.`faction_A` AS `faction_A`
+,`t1`.`faction_H` AS `faction_H`
+,`t1`.`npcflag` AS `npcflag`
+,`t1`.`speed_walk` AS `speed_walk`
+,`t1`.`speed_run` AS `speed_run`
+,`t1`.`scale` AS `scale`
+,`t1`.`rank` AS `rank`
+,`t1`.`mindmg` AS `mindmg`
+,`t1`.`maxdmg` AS `maxdmg`
+,`t1`.`dmgschool` AS `dmgschool`
+,`t1`.`attackpower` AS `attackpower`
+,`t1`.`dmg_multiplier` AS `dmg_multiplier`
+,`t1`.`baseattacktime` AS `baseattacktime`
+,`t1`.`rangeattacktime` AS `rangeattacktime`
+,`t1`.`unit_class` AS `unit_class`
+,`t1`.`unit_flags` AS `unit_flags`
+,`t1`.`dynamicflags` AS `dynamicflags`
+,`t1`.`family` AS `family`
+,`t1`.`trainer_type` AS `trainer_type`
+,`t1`.`trainer_spell` AS `trainer_spell`
+,`t1`.`trainer_class` AS `trainer_class`
+,`t1`.`trainer_race` AS `trainer_race`
+,`t1`.`minrangedmg` AS `minrangedmg`
+,`t1`.`maxrangedmg` AS `maxrangedmg`
+,`t1`.`rangedattackpower` AS `rangedattackpower`
+,`t1`.`type` AS `type`
+,`t1`.`type_flags` AS `type_flags`
+,`t1`.`lootid` AS `lootid`
+,`t1`.`pickpocketloot` AS `pickpocketloot`
+,`t1`.`skinloot` AS `skinloot`
+,`t1`.`resistance1` AS `resistance1`
+,`t1`.`resistance2` AS `resistance2`
+,`t1`.`resistance3` AS `resistance3`
+,`t1`.`resistance4` AS `resistance4`
+,`t1`.`resistance5` AS `resistance5`
+,`t1`.`resistance6` AS `resistance6`
+,`t1`.`spell1` AS `spell1`
+,`t1`.`spell2` AS `spell2`
+,`t1`.`spell3` AS `spell3`
+,`t1`.`spell4` AS `spell4`
+,`t1`.`PetSpellDataId` AS `PetSpellDataId`
+,`t1`.`mingold` AS `mingold`
+,`t1`.`maxgold` AS `maxgold`
+,`t1`.`AIName` AS `AIName`
+,`t1`.`MovementType` AS `MovementType`
+,`t1`.`InhabitType` AS `InhabitType`
+,`t1`.`unk16` AS `unk16`
+,`t1`.`unk17` AS `unk17`
+,`t1`.`RacialLeader` AS `RacialLeader`
+,`t1`.`questItem1` AS `questItem1`
+,`t1`.`questItem2` AS `questItem2`
+,`t1`.`questItem3` AS `questItem3`
+,`t1`.`questItem4` AS `questItem4`
+,`t1`.`questItem5` AS `questItem5`
+,`t1`.`questItem6` AS `questItem6`
+,`t1`.`movementId` AS `movementId`
+,`t1`.`RegenHealth` AS `RegenHealth`
+,`t1`.`vehicle_id` AS `vehicle_id`
+,`t1`.`equipment_id` AS `equipment_id`
+,`t1`.`trainer_id` AS `trainer_id`
+,`t1`.`vendor_id` AS `vendor_id`
+,`t1`.`mechanic_immune_mask` AS `mechanic_immune_mask`
+,`t1`.`flags_extra` AS `flags_extra`
+,`t1`.`ScriptName` AS `ScriptName`
+,`t2`.`entry` AS `entry`
+,`t2`.`name_loc8` AS `name`
+,`t2`.`subname_loc8` AS `subname`
+FROM `creature_template` AS `t1`
+LEFT JOIN `locales_creature` AS `t2` ON `t2`.`entry` = `t1`.`entry`
+WHERE
+`t1`.`entry` IN(11502,11583,15727,15690,19044,17257,21212,19622,22917,25315,15956,15932,16060,15953,15931,15936,16062,16061,16011,15952,15954,16028,15928,15989,15990,28860,28859,31125,33113,33186,33118,33293,0,32930,33515,33432,33271,33288,33993,34797,34780,34496,34564,35013,36612,36855,36626,36627,37970,36678,37955,36853,36597,38433)
+<br />
+<strong>SQL</strong> [21-08-2011 21:57:37]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:57:37]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:57:37]: [0.0037 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:57:37]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:57:37]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:57:37]: [0.0082 ms]: SELECT
+`t1`.`entry` AS `entry`
+,`t1`.`difficulty_entry_1` AS `difficulty_entry_1`
+,`t1`.`difficulty_entry_2` AS `difficulty_entry_2`
+,`t1`.`difficulty_entry_3` AS `difficulty_entry_3`
+,`t1`.`KillCredit1` AS `KillCredit1`
+,`t1`.`KillCredit2` AS `KillCredit2`
+,`t1`.`modelid_1` AS `modelid_1`
+,`t1`.`modelid_2` AS `modelid_2`
+,`t1`.`modelid_3` AS `modelid_3`
+,`t1`.`modelid_4` AS `modelid_4`
+,`t1`.`name` AS `name`
+,`t1`.`subname` AS `subname`
+,`t1`.`IconName` AS `IconName`
+,`t1`.`gossip_menu_id` AS `gossip_menu_id`
+,`t1`.`minlevel` AS `minlevel`
+,`t1`.`maxlevel` AS `maxlevel`
+,`t1`.`minhealth` AS `minhealth`
+,`t1`.`maxhealth` AS `maxhealth`
+,`t1`.`minmana` AS `minmana`
+,`t1`.`maxmana` AS `maxmana`
+,`t1`.`armor` AS `armor`
+,`t1`.`faction_A` AS `faction_A`
+,`t1`.`faction_H` AS `faction_H`
+,`t1`.`npcflag` AS `npcflag`
+,`t1`.`speed_walk` AS `speed_walk`
+,`t1`.`speed_run` AS `speed_run`
+,`t1`.`scale` AS `scale`
+,`t1`.`rank` AS `rank`
+,`t1`.`mindmg` AS `mindmg`
+,`t1`.`maxdmg` AS `maxdmg`
+,`t1`.`dmgschool` AS `dmgschool`
+,`t1`.`attackpower` AS `attackpower`
+,`t1`.`dmg_multiplier` AS `dmg_multiplier`
+,`t1`.`baseattacktime` AS `baseattacktime`
+,`t1`.`rangeattacktime` AS `rangeattacktime`
+,`t1`.`unit_class` AS `unit_class`
+,`t1`.`unit_flags` AS `unit_flags`
+,`t1`.`dynamicflags` AS `dynamicflags`
+,`t1`.`family` AS `family`
+,`t1`.`trainer_type` AS `trainer_type`
+,`t1`.`trainer_spell` AS `trainer_spell`
+,`t1`.`trainer_class` AS `trainer_class`
+,`t1`.`trainer_race` AS `trainer_race`
+,`t1`.`minrangedmg` AS `minrangedmg`
+,`t1`.`maxrangedmg` AS `maxrangedmg`
+,`t1`.`rangedattackpower` AS `rangedattackpower`
+,`t1`.`type` AS `type`
+,`t1`.`type_flags` AS `type_flags`
+,`t1`.`lootid` AS `lootid`
+,`t1`.`pickpocketloot` AS `pickpocketloot`
+,`t1`.`skinloot` AS `skinloot`
+,`t1`.`resistance1` AS `resistance1`
+,`t1`.`resistance2` AS `resistance2`
+,`t1`.`resistance3` AS `resistance3`
+,`t1`.`resistance4` AS `resistance4`
+,`t1`.`resistance5` AS `resistance5`
+,`t1`.`resistance6` AS `resistance6`
+,`t1`.`spell1` AS `spell1`
+,`t1`.`spell2` AS `spell2`
+,`t1`.`spell3` AS `spell3`
+,`t1`.`spell4` AS `spell4`
+,`t1`.`PetSpellDataId` AS `PetSpellDataId`
+,`t1`.`mingold` AS `mingold`
+,`t1`.`maxgold` AS `maxgold`
+,`t1`.`AIName` AS `AIName`
+,`t1`.`MovementType` AS `MovementType`
+,`t1`.`InhabitType` AS `InhabitType`
+,`t1`.`unk16` AS `unk16`
+,`t1`.`unk17` AS `unk17`
+,`t1`.`RacialLeader` AS `RacialLeader`
+,`t1`.`questItem1` AS `questItem1`
+,`t1`.`questItem2` AS `questItem2`
+,`t1`.`questItem3` AS `questItem3`
+,`t1`.`questItem4` AS `questItem4`
+,`t1`.`questItem5` AS `questItem5`
+,`t1`.`questItem6` AS `questItem6`
+,`t1`.`movementId` AS `movementId`
+,`t1`.`RegenHealth` AS `RegenHealth`
+,`t1`.`vehicle_id` AS `vehicle_id`
+,`t1`.`equipment_id` AS `equipment_id`
+,`t1`.`trainer_id` AS `trainer_id`
+,`t1`.`vendor_id` AS `vendor_id`
+,`t1`.`mechanic_immune_mask` AS `mechanic_immune_mask`
+,`t1`.`flags_extra` AS `flags_extra`
+,`t1`.`ScriptName` AS `ScriptName`
+,`t2`.`entry` AS `entry`
+,`t2`.`name_loc8` AS `name`
+,`t2`.`subname_loc8` AS `subname`
+FROM `creature_template` AS `t1`
+LEFT JOIN `locales_creature` AS `t2` ON `t2`.`entry` = `t1`.`entry`
+WHERE
+`t1`.`entry` IN(11502,11583,15727,15690,19044,17257,21212,19622,22917,25315,15956,15932,16060,15953,15931,15936,16062,16061,16011,15952,15954,16028,15928,15989,15990,28860,28859,31125,33113,33186,33118,33293,0,32930,33515,33432,33271,33288,33993,34797,34780,34496,34564,35013,36612,36855,36626,36627,37970,36678,37955,36853,36597,38433)
+<br />
+<strong>SQL</strong> [21-08-2011 21:57:59]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:57:59]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:57:59]: [0.0034 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_ru` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:57:59]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:57:59]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:57:59]: [0.0078 ms]: SELECT
+`t1`.`entry` AS `entry`
+,`t1`.`difficulty_entry_1` AS `difficulty_entry_1`
+,`t1`.`difficulty_entry_2` AS `difficulty_entry_2`
+,`t1`.`difficulty_entry_3` AS `difficulty_entry_3`
+,`t1`.`KillCredit1` AS `KillCredit1`
+,`t1`.`KillCredit2` AS `KillCredit2`
+,`t1`.`modelid_1` AS `modelid_1`
+,`t1`.`modelid_2` AS `modelid_2`
+,`t1`.`modelid_3` AS `modelid_3`
+,`t1`.`modelid_4` AS `modelid_4`
+,`t1`.`name` AS `name`
+,`t1`.`subname` AS `subname`
+,`t1`.`IconName` AS `IconName`
+,`t1`.`gossip_menu_id` AS `gossip_menu_id`
+,`t1`.`minlevel` AS `minlevel`
+,`t1`.`maxlevel` AS `maxlevel`
+,`t1`.`minhealth` AS `minhealth`
+,`t1`.`maxhealth` AS `maxhealth`
+,`t1`.`minmana` AS `minmana`
+,`t1`.`maxmana` AS `maxmana`
+,`t1`.`armor` AS `armor`
+,`t1`.`faction_A` AS `faction_A`
+,`t1`.`faction_H` AS `faction_H`
+,`t1`.`npcflag` AS `npcflag`
+,`t1`.`speed_walk` AS `speed_walk`
+,`t1`.`speed_run` AS `speed_run`
+,`t1`.`scale` AS `scale`
+,`t1`.`rank` AS `rank`
+,`t1`.`mindmg` AS `mindmg`
+,`t1`.`maxdmg` AS `maxdmg`
+,`t1`.`dmgschool` AS `dmgschool`
+,`t1`.`attackpower` AS `attackpower`
+,`t1`.`dmg_multiplier` AS `dmg_multiplier`
+,`t1`.`baseattacktime` AS `baseattacktime`
+,`t1`.`rangeattacktime` AS `rangeattacktime`
+,`t1`.`unit_class` AS `unit_class`
+,`t1`.`unit_flags` AS `unit_flags`
+,`t1`.`dynamicflags` AS `dynamicflags`
+,`t1`.`family` AS `family`
+,`t1`.`trainer_type` AS `trainer_type`
+,`t1`.`trainer_spell` AS `trainer_spell`
+,`t1`.`trainer_class` AS `trainer_class`
+,`t1`.`trainer_race` AS `trainer_race`
+,`t1`.`minrangedmg` AS `minrangedmg`
+,`t1`.`maxrangedmg` AS `maxrangedmg`
+,`t1`.`rangedattackpower` AS `rangedattackpower`
+,`t1`.`type` AS `type`
+,`t1`.`type_flags` AS `type_flags`
+,`t1`.`lootid` AS `lootid`
+,`t1`.`pickpocketloot` AS `pickpocketloot`
+,`t1`.`skinloot` AS `skinloot`
+,`t1`.`resistance1` AS `resistance1`
+,`t1`.`resistance2` AS `resistance2`
+,`t1`.`resistance3` AS `resistance3`
+,`t1`.`resistance4` AS `resistance4`
+,`t1`.`resistance5` AS `resistance5`
+,`t1`.`resistance6` AS `resistance6`
+,`t1`.`spell1` AS `spell1`
+,`t1`.`spell2` AS `spell2`
+,`t1`.`spell3` AS `spell3`
+,`t1`.`spell4` AS `spell4`
+,`t1`.`PetSpellDataId` AS `PetSpellDataId`
+,`t1`.`mingold` AS `mingold`
+,`t1`.`maxgold` AS `maxgold`
+,`t1`.`AIName` AS `AIName`
+,`t1`.`MovementType` AS `MovementType`
+,`t1`.`InhabitType` AS `InhabitType`
+,`t1`.`unk16` AS `unk16`
+,`t1`.`unk17` AS `unk17`
+,`t1`.`RacialLeader` AS `RacialLeader`
+,`t1`.`questItem1` AS `questItem1`
+,`t1`.`questItem2` AS `questItem2`
+,`t1`.`questItem3` AS `questItem3`
+,`t1`.`questItem4` AS `questItem4`
+,`t1`.`questItem5` AS `questItem5`
+,`t1`.`questItem6` AS `questItem6`
+,`t1`.`movementId` AS `movementId`
+,`t1`.`RegenHealth` AS `RegenHealth`
+,`t1`.`vehicle_id` AS `vehicle_id`
+,`t1`.`equipment_id` AS `equipment_id`
+,`t1`.`trainer_id` AS `trainer_id`
+,`t1`.`vendor_id` AS `vendor_id`
+,`t1`.`mechanic_immune_mask` AS `mechanic_immune_mask`
+,`t1`.`flags_extra` AS `flags_extra`
+,`t1`.`ScriptName` AS `ScriptName`
+,`t2`.`entry` AS `entry`
+,`t2`.`name_loc8` AS `name`
+,`t2`.`subname_loc8` AS `subname`
+FROM `creature_template` AS `t1`
+LEFT JOIN `locales_creature` AS `t2` ON `t2`.`entry` = `t1`.`entry`
+WHERE
+`t1`.`entry` IN(11502,11583,15727,15690,19044,17257,21212,19622,22917,25315,15956,15932,16060,15953,15931,15936,16062,16061,16011,15952,15954,16028,15928,15989,15990,28860,28859,31125,33113,33186,33118,33293,0,32930,33515,33432,33271,33288,33993,34797,34780,34496,34564,35013,36612,36855,36626,36627,37970,36678,37955,36853,36597,38433)
+<br />
+<strong>SQL</strong> [21-08-2011 21:59:28]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:59:28]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:59:28]: [0.0045 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_en` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:59:28]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:59:28]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>DEBUG</strong> [21-08-2011 21:59:28]: Database_Component::_query : unable to execute SQL query (SELECT
+`t1`.`entry` AS `entry`
+,`t1`.`difficulty_entry_1` AS `difficulty_entry_1`
+,`t1`.`difficulty_entry_2` AS `difficulty_entry_2`
+,`t1`.`difficulty_entry_3` AS `difficulty_entry_3`
+,`t1`.`KillCredit1` AS `KillCredit1`
+,`t1`.`KillCredit2` AS `KillCredit2`
+,`t1`.`modelid_1` AS `modelid_1`
+,`t1`.`modelid_2` AS `modelid_2`
+,`t1`.`modelid_3` AS `modelid_3`
+,`t1`.`modelid_4` AS `modelid_4`
+,`t1`.`name` AS `name`
+,`t1`.`subname` AS `subname`
+,`t1`.`IconName` AS `IconName`
+,`t1`.`gossip_menu_id` AS `gossip_menu_id`
+,`t1`.`minlevel` AS `minlevel`
+,`t1`.`maxlevel` AS `maxlevel`
+,`t1`.`minhealth` AS `minhealth`
+,`t1`.`maxhealth` AS `maxhealth`
+,`t1`.`minmana` AS `minmana`
+,`t1`.`maxmana` AS `maxmana`
+,`t1`.`armor` AS `armor`
+,`t1`.`faction_A` AS `faction_A`
+,`t1`.`faction_H` AS `faction_H`
+,`t1`.`npcflag` AS `npcflag`
+,`t1`.`speed_walk` AS `speed_walk`
+,`t1`.`speed_run` AS `speed_run`
+,`t1`.`scale` AS `scale`
+,`t1`.`rank` AS `rank`
+,`t1`.`mindmg` AS `mindmg`
+,`t1`.`maxdmg` AS `maxdmg`
+,`t1`.`dmgschool` AS `dmgschool`
+,`t1`.`attackpower` AS `attackpower`
+,`t1`.`dmg_multiplier` AS `dmg_multiplier`
+,`t1`.`baseattacktime` AS `baseattacktime`
+,`t1`.`rangeattacktime` AS `rangeattacktime`
+,`t1`.`unit_class` AS `unit_class`
+,`t1`.`unit_flags` AS `unit_flags`
+,`t1`.`dynamicflags` AS `dynamicflags`
+,`t1`.`family` AS `family`
+,`t1`.`trainer_type` AS `trainer_type`
+,`t1`.`trainer_spell` AS `trainer_spell`
+,`t1`.`trainer_class` AS `trainer_class`
+,`t1`.`trainer_race` AS `trainer_race`
+,`t1`.`minrangedmg` AS `minrangedmg`
+,`t1`.`maxrangedmg` AS `maxrangedmg`
+,`t1`.`rangedattackpower` AS `rangedattackpower`
+,`t1`.`type` AS `type`
+,`t1`.`type_flags` AS `type_flags`
+,`t1`.`lootid` AS `lootid`
+,`t1`.`pickpocketloot` AS `pickpocketloot`
+,`t1`.`skinloot` AS `skinloot`
+,`t1`.`resistance1` AS `resistance1`
+,`t1`.`resistance2` AS `resistance2`
+,`t1`.`resistance3` AS `resistance3`
+,`t1`.`resistance4` AS `resistance4`
+,`t1`.`resistance5` AS `resistance5`
+,`t1`.`resistance6` AS `resistance6`
+,`t1`.`spell1` AS `spell1`
+,`t1`.`spell2` AS `spell2`
+,`t1`.`spell3` AS `spell3`
+,`t1`.`spell4` AS `spell4`
+,`t1`.`PetSpellDataId` AS `PetSpellDataId`
+,`t1`.`mingold` AS `mingold`
+,`t1`.`maxgold` AS `maxgold`
+,`t1`.`AIName` AS `AIName`
+,`t1`.`MovementType` AS `MovementType`
+,`t1`.`InhabitType` AS `InhabitType`
+,`t1`.`unk16` AS `unk16`
+,`t1`.`unk17` AS `unk17`
+,`t1`.`RacialLeader` AS `RacialLeader`
+,`t1`.`questItem1` AS `questItem1`
+,`t1`.`questItem2` AS `questItem2`
+,`t1`.`questItem3` AS `questItem3`
+,`t1`.`questItem4` AS `questItem4`
+,`t1`.`questItem5` AS `questItem5`
+,`t1`.`questItem6` AS `questItem6`
+,`t1`.`movementId` AS `movementId`
+,`t1`.`RegenHealth` AS `RegenHealth`
+,`t1`.`vehicle_id` AS `vehicle_id`
+,`t1`.`equipment_id` AS `equipment_id`
+,`t1`.`trainer_id` AS `trainer_id`
+,`t1`.`vendor_id` AS `vendor_id`
+,`t1`.`mechanic_immune_mask` AS `mechanic_immune_mask`
+,`t1`.`flags_extra` AS `flags_extra`
+,`t1`.`ScriptName` AS `ScriptName`
+,`t2`.`entry` AS `entry`
+,`t2`.`name_loc0` AS `name`
+,`t2`.`subname_loc0` AS `subname`
+FROM `creature_template` AS `t1`
+LEFT JOIN `locales_creature` AS `t2` ON `t2`.`entry` = `t1`.`entry`
+WHERE
+`t1`.`entry` IN(11502,11583,15727,15690,19044,17257,21212,19622,22917,25315,15956,15932,16060,15953,15931,15936,16062,16061,16011,15952,15954,16028,15928,15989,15990,28860,28859,31125,33113,33186,33118,33293,0,32930,33515,33432,33271,33288,33993,34797,34780,34496,34564,35013,36612,36855,36626,36627,37970,36678,37955,36853,36597,38433)
+). MySQL error: "Unknown column 't2.name_loc0' in 'field list'" (Error #1054)<br />
+<strong>SQL</strong> [21-08-2011 21:59:53]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:59:53]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:59:53]: [0.0042 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_en` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 21:59:53]: [0.0004 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 21:59:53]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 21:59:53]: [0.0081 ms]: SELECT
+`t1`.`entry` AS `entry`
+,`t1`.`difficulty_entry_1` AS `difficulty_entry_1`
+,`t1`.`difficulty_entry_2` AS `difficulty_entry_2`
+,`t1`.`difficulty_entry_3` AS `difficulty_entry_3`
+,`t1`.`KillCredit1` AS `KillCredit1`
+,`t1`.`KillCredit2` AS `KillCredit2`
+,`t1`.`modelid_1` AS `modelid_1`
+,`t1`.`modelid_2` AS `modelid_2`
+,`t1`.`modelid_3` AS `modelid_3`
+,`t1`.`modelid_4` AS `modelid_4`
+,`t1`.`name` AS `name`
+,`t1`.`subname` AS `subname`
+,`t1`.`IconName` AS `IconName`
+,`t1`.`gossip_menu_id` AS `gossip_menu_id`
+,`t1`.`minlevel` AS `minlevel`
+,`t1`.`maxlevel` AS `maxlevel`
+,`t1`.`minhealth` AS `minhealth`
+,`t1`.`maxhealth` AS `maxhealth`
+,`t1`.`minmana` AS `minmana`
+,`t1`.`maxmana` AS `maxmana`
+,`t1`.`armor` AS `armor`
+,`t1`.`faction_A` AS `faction_A`
+,`t1`.`faction_H` AS `faction_H`
+,`t1`.`npcflag` AS `npcflag`
+,`t1`.`speed_walk` AS `speed_walk`
+,`t1`.`speed_run` AS `speed_run`
+,`t1`.`scale` AS `scale`
+,`t1`.`rank` AS `rank`
+,`t1`.`mindmg` AS `mindmg`
+,`t1`.`maxdmg` AS `maxdmg`
+,`t1`.`dmgschool` AS `dmgschool`
+,`t1`.`attackpower` AS `attackpower`
+,`t1`.`dmg_multiplier` AS `dmg_multiplier`
+,`t1`.`baseattacktime` AS `baseattacktime`
+,`t1`.`rangeattacktime` AS `rangeattacktime`
+,`t1`.`unit_class` AS `unit_class`
+,`t1`.`unit_flags` AS `unit_flags`
+,`t1`.`dynamicflags` AS `dynamicflags`
+,`t1`.`family` AS `family`
+,`t1`.`trainer_type` AS `trainer_type`
+,`t1`.`trainer_spell` AS `trainer_spell`
+,`t1`.`trainer_class` AS `trainer_class`
+,`t1`.`trainer_race` AS `trainer_race`
+,`t1`.`minrangedmg` AS `minrangedmg`
+,`t1`.`maxrangedmg` AS `maxrangedmg`
+,`t1`.`rangedattackpower` AS `rangedattackpower`
+,`t1`.`type` AS `type`
+,`t1`.`type_flags` AS `type_flags`
+,`t1`.`lootid` AS `lootid`
+,`t1`.`pickpocketloot` AS `pickpocketloot`
+,`t1`.`skinloot` AS `skinloot`
+,`t1`.`resistance1` AS `resistance1`
+,`t1`.`resistance2` AS `resistance2`
+,`t1`.`resistance3` AS `resistance3`
+,`t1`.`resistance4` AS `resistance4`
+,`t1`.`resistance5` AS `resistance5`
+,`t1`.`resistance6` AS `resistance6`
+,`t1`.`spell1` AS `spell1`
+,`t1`.`spell2` AS `spell2`
+,`t1`.`spell3` AS `spell3`
+,`t1`.`spell4` AS `spell4`
+,`t1`.`PetSpellDataId` AS `PetSpellDataId`
+,`t1`.`mingold` AS `mingold`
+,`t1`.`maxgold` AS `maxgold`
+,`t1`.`AIName` AS `AIName`
+,`t1`.`MovementType` AS `MovementType`
+,`t1`.`InhabitType` AS `InhabitType`
+,`t1`.`unk16` AS `unk16`
+,`t1`.`unk17` AS `unk17`
+,`t1`.`RacialLeader` AS `RacialLeader`
+,`t1`.`questItem1` AS `questItem1`
+,`t1`.`questItem2` AS `questItem2`
+,`t1`.`questItem3` AS `questItem3`
+,`t1`.`questItem4` AS `questItem4`
+,`t1`.`questItem5` AS `questItem5`
+,`t1`.`questItem6` AS `questItem6`
+,`t1`.`movementId` AS `movementId`
+,`t1`.`RegenHealth` AS `RegenHealth`
+,`t1`.`vehicle_id` AS `vehicle_id`
+,`t1`.`equipment_id` AS `equipment_id`
+,`t1`.`trainer_id` AS `trainer_id`
+,`t1`.`vendor_id` AS `vendor_id`
+,`t1`.`mechanic_immune_mask` AS `mechanic_immune_mask`
+,`t1`.`flags_extra` AS `flags_extra`
+,`t1`.`ScriptName` AS `ScriptName`
+FROM `creature_template` AS `t1`
+WHERE
+`t1`.`entry` IN(11502,11583,15727,15690,19044,17257,21212,19622,22917,25315,15956,15932,16060,15953,15931,15936,16062,16061,16011,15952,15954,16028,15928,15989,15990,28860,28859,31125,33113,33186,33118,33293,0,32930,33515,33432,33271,33288,33993,34797,34780,34496,34564,35013,36612,36855,36626,36627,37970,36678,37955,36853,36597,38433)
+<br />
+<strong>SQL</strong> [21-08-2011 22:00:01]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 22:00:01]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 22:00:01]: [0.0036 ms]: SELECT
+`t1`.`ach_id` AS `ach_id`
+,`t1`.`entry1` AS `entry1`
+,`t1`.`entry2` AS `entry2`
+,`t1`.`entry3` AS `entry3`
+,`t1`.`entry4` AS `entry4`
+,`t1`.`difficulty` AS `difficulty`
+,`t1`.`is_heroic` AS `is_heroic`
+,`t1`.`dungeon_key` AS `dungeon_key`
+,`t1`.`name_en` AS `name`
+FROM `wow_raid_progress` AS `t1`
+<br />
+<strong>SQL</strong> [21-08-2011 22:00:01]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [21-08-2011 22:00:01]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [21-08-2011 22:00:01]: [0.0064 ms]: SELECT
+`t1`.`entry` AS `entry`
+,`t1`.`difficulty_entry_1` AS `difficulty_entry_1`
+,`t1`.`difficulty_entry_2` AS `difficulty_entry_2`
+,`t1`.`difficulty_entry_3` AS `difficulty_entry_3`
+,`t1`.`KillCredit1` AS `KillCredit1`
+,`t1`.`KillCredit2` AS `KillCredit2`
+,`t1`.`modelid_1` AS `modelid_1`
+,`t1`.`modelid_2` AS `modelid_2`
+,`t1`.`modelid_3` AS `modelid_3`
+,`t1`.`modelid_4` AS `modelid_4`
+,`t1`.`name` AS `name`
+,`t1`.`subname` AS `subname`
+,`t1`.`IconName` AS `IconName`
+,`t1`.`gossip_menu_id` AS `gossip_menu_id`
+,`t1`.`minlevel` AS `minlevel`
+,`t1`.`maxlevel` AS `maxlevel`
+,`t1`.`minhealth` AS `minhealth`
+,`t1`.`maxhealth` AS `maxhealth`
+,`t1`.`minmana` AS `minmana`
+,`t1`.`maxmana` AS `maxmana`
+,`t1`.`armor` AS `armor`
+,`t1`.`faction_A` AS `faction_A`
+,`t1`.`faction_H` AS `faction_H`
+,`t1`.`npcflag` AS `npcflag`
+,`t1`.`speed_walk` AS `speed_walk`
+,`t1`.`speed_run` AS `speed_run`
+,`t1`.`scale` AS `scale`
+,`t1`.`rank` AS `rank`
+,`t1`.`mindmg` AS `mindmg`
+,`t1`.`maxdmg` AS `maxdmg`
+,`t1`.`dmgschool` AS `dmgschool`
+,`t1`.`attackpower` AS `attackpower`
+,`t1`.`dmg_multiplier` AS `dmg_multiplier`
+,`t1`.`baseattacktime` AS `baseattacktime`
+,`t1`.`rangeattacktime` AS `rangeattacktime`
+,`t1`.`unit_class` AS `unit_class`
+,`t1`.`unit_flags` AS `unit_flags`
+,`t1`.`dynamicflags` AS `dynamicflags`
+,`t1`.`family` AS `family`
+,`t1`.`trainer_type` AS `trainer_type`
+,`t1`.`trainer_spell` AS `trainer_spell`
+,`t1`.`trainer_class` AS `trainer_class`
+,`t1`.`trainer_race` AS `trainer_race`
+,`t1`.`minrangedmg` AS `minrangedmg`
+,`t1`.`maxrangedmg` AS `maxrangedmg`
+,`t1`.`rangedattackpower` AS `rangedattackpower`
+,`t1`.`type` AS `type`
+,`t1`.`type_flags` AS `type_flags`
+,`t1`.`lootid` AS `lootid`
+,`t1`.`pickpocketloot` AS `pickpocketloot`
+,`t1`.`skinloot` AS `skinloot`
+,`t1`.`resistance1` AS `resistance1`
+,`t1`.`resistance2` AS `resistance2`
+,`t1`.`resistance3` AS `resistance3`
+,`t1`.`resistance4` AS `resistance4`
+,`t1`.`resistance5` AS `resistance5`
+,`t1`.`resistance6` AS `resistance6`
+,`t1`.`spell1` AS `spell1`
+,`t1`.`spell2` AS `spell2`
+,`t1`.`spell3` AS `spell3`
+,`t1`.`spell4` AS `spell4`
+,`t1`.`PetSpellDataId` AS `PetSpellDataId`
+,`t1`.`mingold` AS `mingold`
+,`t1`.`maxgold` AS `maxgold`
+,`t1`.`AIName` AS `AIName`
+,`t1`.`MovementType` AS `MovementType`
+,`t1`.`InhabitType` AS `InhabitType`
+,`t1`.`unk16` AS `unk16`
+,`t1`.`unk17` AS `unk17`
+,`t1`.`RacialLeader` AS `RacialLeader`
+,`t1`.`questItem1` AS `questItem1`
+,`t1`.`questItem2` AS `questItem2`
+,`t1`.`questItem3` AS `questItem3`
+,`t1`.`questItem4` AS `questItem4`
+,`t1`.`questItem5` AS `questItem5`
+,`t1`.`questItem6` AS `questItem6`
+,`t1`.`movementId` AS `movementId`
+,`t1`.`RegenHealth` AS `RegenHealth`
+,`t1`.`vehicle_id` AS `vehicle_id`
+,`t1`.`equipment_id` AS `equipment_id`
+,`t1`.`trainer_id` AS `trainer_id`
+,`t1`.`vendor_id` AS `vendor_id`
+,`t1`.`mechanic_immune_mask` AS `mechanic_immune_mask`
+,`t1`.`flags_extra` AS `flags_extra`
+,`t1`.`ScriptName` AS `ScriptName`
+FROM `creature_template` AS `t1`
+WHERE
+`t1`.`entry` IN(11502,11583,15727,15690,19044,17257,21212,19622,22917,25315,15956,15932,16060,15953,15931,15936,16062,16061,16011,15952,15954,16028,15928,15989,15990,28860,28859,31125,33113,33186,33118,33293,0,32930,33515,33432,33271,33288,33993,34797,34780,34496,34564,35013,36612,36855,36626,36627,37970,36678,37955,36853,36597,38433)
+<br />
+<strong>SQL</strong> [23-08-2011 15:37:28]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [23-08-2011 15:37:28]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [23-08-2011 15:37:29]: [0.9574 ms]: SHOW TABLES FROM wow_cs<br />
+<strong>SQL</strong> [23-08-2011 15:37:36]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [23-08-2011 15:37:36]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [23-08-2011 15:37:36]: [0.0485 ms]: SHOW COLUMNS FROM wow_cs.wow_item_sources<br />
+<strong>SQL</strong> [23-08-2011 15:58:21]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [23-08-2011 15:58:21]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [23-08-2011 15:58:21]: [0.0126 ms]: SHOW TABLES FROM wow_cs<br />
+<strong>SQL</strong> [23-08-2011 15:58:25]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [23-08-2011 15:58:25]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [23-08-2011 15:58:25]: [0.0042 ms]: SHOW COLUMNS FROM wow_cs.wow_instance_bosses<br />
+<strong>SQL</strong> [26-08-2011 22:39:01]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [26-08-2011 22:39:01]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [26-08-2011 22:39:01]: [0.0135 ms]: SHOW TABLES FROM wow_cs<br />
+<strong>SQL</strong> [26-08-2011 22:39:05]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [26-08-2011 22:39:05]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [26-08-2011 22:39:05]: [0.0242 ms]: SHOW COLUMNS FROM wow_cs.wow_spell<br />
+<strong>SQL</strong> [27-08-2011 08:02:10]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [27-08-2011 08:02:10]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [27-08-2011 08:02:11]: [1.1592 ms]: SHOW TABLES FROM trinity_characters<br />
+<strong>SQL</strong> [27-08-2011 08:02:12]: [0.0004 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [27-08-2011 08:02:12]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [27-08-2011 08:02:12]: [0.0159 ms]: SHOW TABLES FROM trinity_characters<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0321 ms]: SHOW COLUMNS FROM trinity_characters.account_data<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0054 ms]: SHOW COLUMNS FROM trinity_characters.account_instance_times<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.006 ms]: SHOW COLUMNS FROM trinity_characters.account_tutorial<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0053 ms]: SHOW COLUMNS FROM trinity_characters.addons<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0072 ms]: SHOW COLUMNS FROM trinity_characters.arena_team<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0048 ms]: SHOW COLUMNS FROM trinity_characters.arena_team_member<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0064 ms]: SHOW COLUMNS FROM trinity_characters.armory_character_stats<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0054 ms]: SHOW COLUMNS FROM trinity_characters.auctionhouse<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.006 ms]: SHOW COLUMNS FROM trinity_characters.bugreport<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0052 ms]: SHOW COLUMNS FROM trinity_characters.channels<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0062 ms]: SHOW COLUMNS FROM trinity_characters.character_account_data<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0043 ms]: SHOW COLUMNS FROM trinity_characters.character_achievement<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0063 ms]: SHOW COLUMNS FROM trinity_characters.character_achievement_progress<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0065 ms]: SHOW COLUMNS FROM trinity_characters.character_action<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0049 ms]: SHOW COLUMNS FROM trinity_characters.character_arena_stats<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0064 ms]: SHOW COLUMNS FROM trinity_characters.character_aura<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0076 ms]: SHOW COLUMNS FROM trinity_characters.character_banned<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0056 ms]: SHOW COLUMNS FROM trinity_characters.character_battleground_data<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0057 ms]: SHOW COLUMNS FROM trinity_characters.character_battleground_random<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0053 ms]: SHOW COLUMNS FROM trinity_characters.character_declinedname<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0077 ms]: SHOW COLUMNS FROM trinity_characters.character_equipmentsets<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0219 ms]: SHOW COLUMNS FROM trinity_characters.character_feed_log<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0053 ms]: SHOW COLUMNS FROM trinity_characters.character_gifts<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0048 ms]: SHOW COLUMNS FROM trinity_characters.character_glyphs<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0054 ms]: SHOW COLUMNS FROM trinity_characters.character_homebind<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0046 ms]: SHOW COLUMNS FROM trinity_characters.character_instance<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0052 ms]: SHOW COLUMNS FROM trinity_characters.character_inventory<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0058 ms]: SHOW COLUMNS FROM trinity_characters.character_pet<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0055 ms]: SHOW COLUMNS FROM trinity_characters.character_pet_declinedname<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0055 ms]: SHOW COLUMNS FROM trinity_characters.character_queststatus<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0043 ms]: SHOW COLUMNS FROM trinity_characters.character_queststatus_daily<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0057 ms]: SHOW COLUMNS FROM trinity_characters.character_queststatus_rewarded<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0065 ms]: SHOW COLUMNS FROM trinity_characters.character_queststatus_weekly<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0065 ms]: SHOW COLUMNS FROM trinity_characters.character_reputation<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0052 ms]: SHOW COLUMNS FROM trinity_characters.character_skills<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0053 ms]: SHOW COLUMNS FROM trinity_characters.character_social<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0049 ms]: SHOW COLUMNS FROM trinity_characters.character_spell<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0051 ms]: SHOW COLUMNS FROM trinity_characters.character_spell_cooldown<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.006 ms]: SHOW COLUMNS FROM trinity_characters.character_stats<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0059 ms]: SHOW COLUMNS FROM trinity_characters.character_talent<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0114 ms]: SHOW COLUMNS FROM trinity_characters.characters<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0223 ms]: SHOW COLUMNS FROM trinity_characters.corpse<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0051 ms]: SHOW COLUMNS FROM trinity_characters.creature_respawn<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0105 ms]: SHOW COLUMNS FROM trinity_characters.game_event_condition_save<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0077 ms]: SHOW COLUMNS FROM trinity_characters.game_event_save<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0136 ms]: SHOW COLUMNS FROM trinity_characters.gameobject_respawn<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0111 ms]: SHOW COLUMNS FROM trinity_characters.gm_subsurveys<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0097 ms]: SHOW COLUMNS FROM trinity_characters.gm_surveys<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0061 ms]: SHOW COLUMNS FROM trinity_characters.gm_tickets<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0053 ms]: SHOW COLUMNS FROM trinity_characters.group_instance<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0055 ms]: SHOW COLUMNS FROM trinity_characters.group_member<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0056 ms]: SHOW COLUMNS FROM trinity_characters.groups<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0062 ms]: SHOW COLUMNS FROM trinity_characters.guild<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0056 ms]: SHOW COLUMNS FROM trinity_characters.guild_bank_eventlog<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0046 ms]: SHOW COLUMNS FROM trinity_characters.guild_bank_item<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0053 ms]: SHOW COLUMNS FROM trinity_characters.guild_bank_right<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0055 ms]: SHOW COLUMNS FROM trinity_characters.guild_bank_tab<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0052 ms]: SHOW COLUMNS FROM trinity_characters.guild_eventlog<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0061 ms]: SHOW COLUMNS FROM trinity_characters.guild_member<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.005 ms]: SHOW COLUMNS FROM trinity_characters.guild_rank<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0059 ms]: SHOW COLUMNS FROM trinity_characters.instance<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0054 ms]: SHOW COLUMNS FROM trinity_characters.instance_reset<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0064 ms]: SHOW COLUMNS FROM trinity_characters.item_instance<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0064 ms]: SHOW COLUMNS FROM trinity_characters.item_refund_instance<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0044 ms]: SHOW COLUMNS FROM trinity_characters.item_soulbound_trade_data<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.005 ms]: SHOW COLUMNS FROM trinity_characters.lag_reports<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0076 ms]: SHOW COLUMNS FROM trinity_characters.mail<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0049 ms]: SHOW COLUMNS FROM trinity_characters.mail_items<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.006 ms]: SHOW COLUMNS FROM trinity_characters.pet_aura<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0049 ms]: SHOW COLUMNS FROM trinity_characters.pet_spell<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0053 ms]: SHOW COLUMNS FROM trinity_characters.pet_spell_cooldown<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0045 ms]: SHOW COLUMNS FROM trinity_characters.petition<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0053 ms]: SHOW COLUMNS FROM trinity_characters.petition_sign<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0052 ms]: SHOW COLUMNS FROM trinity_characters.pool_quest_save<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0039 ms]: SHOW COLUMNS FROM trinity_characters.reserved_name<br />
+<strong>SQL</strong> [27-08-2011 08:02:13]: [0.0047 ms]: SHOW COLUMNS FROM trinity_characters.worldstates<br />
+<strong>SQL</strong> [27-08-2011 08:02:21]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [27-08-2011 08:02:21]: [0.0017 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.6496 ms]: SHOW TABLES FROM wow_cs<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0135 ms]: SHOW TABLES FROM wow_cs<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0321 ms]: SHOW COLUMNS FROM wow_cs.wow_achievement<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0179 ms]: SHOW COLUMNS FROM wow_cs.wow_achievement_category<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0063 ms]: SHOW COLUMNS FROM wow_cs.wow_achievement_criteria<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0133 ms]: SHOW COLUMNS FROM wow_cs.wow_areas<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0362 ms]: SHOW COLUMNS FROM wow_cs.wow_blog_comments<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0342 ms]: SHOW COLUMNS FROM wow_cs.wow_bosses_abilities<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.007 ms]: SHOW COLUMNS FROM wow_cs.wow_carousel<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0275 ms]: SHOW COLUMNS FROM wow_cs.wow_class_abilities<br />
+<strong>SQL</strong> [27-08-2011 08:02:22]: [0.0248 ms]: SHOW COLUMNS FROM wow_cs.wow_classes<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0304 ms]: SHOW COLUMNS FROM wow_cs.wow_db_version<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0254 ms]: SHOW COLUMNS FROM wow_cs.wow_enchantment<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0646 ms]: SHOW COLUMNS FROM wow_cs.wow_extended_cost<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0479 ms]: SHOW COLUMNS FROM wow_cs.wow_faction<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0405 ms]: SHOW COLUMNS FROM wow_cs.wow_forum_category<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0507 ms]: SHOW COLUMNS FROM wow_cs.wow_forum_posts<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0253 ms]: SHOW COLUMNS FROM wow_cs.wow_forum_threads<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0059 ms]: SHOW COLUMNS FROM wow_cs.wow_forum_threads_reads<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0206 ms]: SHOW COLUMNS FROM wow_cs.wow_gemproperties<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0205 ms]: SHOW COLUMNS FROM wow_cs.wow_glyphproperties<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0128 ms]: SHOW COLUMNS FROM wow_cs.wow_guild_perks<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0161 ms]: SHOW COLUMNS FROM wow_cs.wow_icons<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0165 ms]: SHOW COLUMNS FROM wow_cs.wow_instance_bosses<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0178 ms]: SHOW COLUMNS FROM wow_cs.wow_instance_data<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0301 ms]: SHOW COLUMNS FROM wow_cs.wow_instances<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0156 ms]: SHOW COLUMNS FROM wow_cs.wow_instances_groups<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0059 ms]: SHOW COLUMNS FROM wow_cs.wow_item_equivalents<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0156 ms]: SHOW COLUMNS FROM wow_cs.wow_item_sources<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.016 ms]: SHOW COLUMNS FROM wow_cs.wow_item_sources_old<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0193 ms]: SHOW COLUMNS FROM wow_cs.wow_item_subclass<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0427 ms]: SHOW COLUMNS FROM wow_cs.wow_item_tab_contained_in<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0068 ms]: SHOW COLUMNS FROM wow_cs.wow_item_tab_created_by<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.008 ms]: SHOW COLUMNS FROM wow_cs.wow_item_tab_disenchants_into<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0136 ms]: SHOW COLUMNS FROM wow_cs.wow_item_tab_dropped_from<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0119 ms]: SHOW COLUMNS FROM wow_cs.wow_item_tab_reagent_for<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0057 ms]: SHOW COLUMNS FROM wow_cs.wow_item_tab_sold_by<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0143 ms]: SHOW COLUMNS FROM wow_cs.wow_itemdisplayinfo<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0143 ms]: SHOW COLUMNS FROM wow_cs.wow_itemsetdata<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0148 ms]: SHOW COLUMNS FROM wow_cs.wow_itemsetinfo<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0139 ms]: SHOW COLUMNS FROM wow_cs.wow_itemsubclass<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0066 ms]: SHOW COLUMNS FROM wow_cs.wow_main_menu<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0105 ms]: SHOW COLUMNS FROM wow_cs.wow_maps<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0199 ms]: SHOW COLUMNS FROM wow_cs.wow_mounts<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0062 ms]: SHOW COLUMNS FROM wow_cs.wow_news<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0157 ms]: SHOW COLUMNS FROM wow_cs.wow_petcalc<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0205 ms]: SHOW COLUMNS FROM wow_cs.wow_professions<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0193 ms]: SHOW COLUMNS FROM wow_cs.wow_race_abilities<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0061 ms]: SHOW COLUMNS FROM wow_cs.wow_races<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0232 ms]: SHOW COLUMNS FROM wow_cs.wow_raid_progress<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0085 ms]: SHOW COLUMNS FROM wow_cs.wow_randomproperties<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0071 ms]: SHOW COLUMNS FROM wow_cs.wow_randompropertypoints<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0059 ms]: SHOW COLUMNS FROM wow_cs.wow_randomsuffix<br />
+<strong>SQL</strong> [27-08-2011 08:02:23]: [0.0254 ms]: SHOW COLUMNS FROM wow_cs.wow_rating<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0197 ms]: SHOW COLUMNS FROM wow_cs.wow_skill_line_ability<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0298 ms]: SHOW COLUMNS FROM wow_cs.wow_skills<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0507 ms]: SHOW COLUMNS FROM wow_cs.wow_spell<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0178 ms]: SHOW COLUMNS FROM wow_cs.wow_spell_duration<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.034 ms]: SHOW COLUMNS FROM wow_cs.wow_spell_icon<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0124 ms]: SHOW COLUMNS FROM wow_cs.wow_spellenchantment<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0736 ms]: SHOW COLUMNS FROM wow_cs.wow_ssd<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0064 ms]: SHOW COLUMNS FROM wow_cs.wow_ssv<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0094 ms]: SHOW COLUMNS FROM wow_cs.wow_talent_icons<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0128 ms]: SHOW COLUMNS FROM wow_cs.wow_talents<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0106 ms]: SHOW COLUMNS FROM wow_cs.wow_titles<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0225 ms]: SHOW COLUMNS FROM wow_cs.wow_user_characters<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0141 ms]: SHOW COLUMNS FROM wow_cs.wow_users<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0065 ms]: SHOW COLUMNS FROM wow_cs.wow_users_accounts<br />
+<strong>SQL</strong> [27-08-2011 08:02:24]: [0.0231 ms]: SHOW COLUMNS FROM wow_cs.wow_zones<br />
+<strong>SQL</strong> [27-08-2011 08:02:29]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [27-08-2011 08:02:29]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [27-08-2011 08:02:32]: [3.0791 ms]: SHOW TABLES FROM trinity_world<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0313 ms]: SHOW TABLES FROM trinity_world<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0114 ms]: SHOW COLUMNS FROM trinity_world.access_requirement<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0126 ms]: SHOW COLUMNS FROM trinity_world.achievement_criteria_data<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0275 ms]: SHOW COLUMNS FROM trinity_world.achievement_dbc<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0143 ms]: SHOW COLUMNS FROM trinity_world.achievement_reward<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0161 ms]: SHOW COLUMNS FROM trinity_world.areatrigger_involvedrelation<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0075 ms]: SHOW COLUMNS FROM trinity_world.areatrigger_scripts<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0123 ms]: SHOW COLUMNS FROM trinity_world.areatrigger_tavern<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0092 ms]: SHOW COLUMNS FROM trinity_world.areatrigger_teleport<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.0191 ms]: SHOW COLUMNS FROM trinity_world.autobroadcast<br />
+<strong>SQL</strong> [27-08-2011 08:02:33]: [0.006 ms]: SHOW COLUMNS FROM trinity_world.battleground_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0444 ms]: SHOW COLUMNS FROM trinity_world.battlemaster_entry<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0275 ms]: SHOW COLUMNS FROM trinity_world.command<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0093 ms]: SHOW COLUMNS FROM trinity_world.conditions<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.046 ms]: SHOW COLUMNS FROM trinity_world.creature<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0564 ms]: SHOW COLUMNS FROM trinity_world.creature_addon<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0274 ms]: SHOW COLUMNS FROM trinity_world.creature_ai_scripts<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0251 ms]: SHOW COLUMNS FROM trinity_world.creature_ai_summons<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0138 ms]: SHOW COLUMNS FROM trinity_world.creature_ai_texts<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.013 ms]: SHOW COLUMNS FROM trinity_world.creature_classlevelstats<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0097 ms]: SHOW COLUMNS FROM trinity_world.creature_equip_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0335 ms]: SHOW COLUMNS FROM trinity_world.creature_formations<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0101 ms]: SHOW COLUMNS FROM trinity_world.creature_involvedrelation<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0085 ms]: SHOW COLUMNS FROM trinity_world.creature_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0407 ms]: SHOW COLUMNS FROM trinity_world.creature_model_info<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0472 ms]: SHOW COLUMNS FROM trinity_world.creature_onkill_reputation<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0274 ms]: SHOW COLUMNS FROM trinity_world.creature_questrelation<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0287 ms]: SHOW COLUMNS FROM trinity_world.creature_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.027 ms]: SHOW COLUMNS FROM trinity_world.creature_template_addon<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0381 ms]: SHOW COLUMNS FROM trinity_world.creature_text<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0193 ms]: SHOW COLUMNS FROM trinity_world.creature_transport<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0332 ms]: SHOW COLUMNS FROM trinity_world.custom_texts<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0366 ms]: SHOW COLUMNS FROM trinity_world.db_script_string<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0261 ms]: SHOW COLUMNS FROM trinity_world.db_version_ytdb<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0142 ms]: SHOW COLUMNS FROM trinity_world.disables<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0121 ms]: SHOW COLUMNS FROM trinity_world.disenchant_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0158 ms]: SHOW COLUMNS FROM trinity_world.event_scripts<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0137 ms]: SHOW COLUMNS FROM trinity_world.exploration_basexp<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0131 ms]: SHOW COLUMNS FROM trinity_world.fishing_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0353 ms]: SHOW COLUMNS FROM trinity_world.game_event<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0061 ms]: SHOW COLUMNS FROM trinity_world.game_event_arena_seasons<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.03 ms]: SHOW COLUMNS FROM trinity_world.game_event_battleground_holiday<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.0234 ms]: SHOW COLUMNS FROM trinity_world.game_event_condition<br />
+<strong>SQL</strong> [27-08-2011 08:02:34]: [0.025 ms]: SHOW COLUMNS FROM trinity_world.game_event_creature<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0434 ms]: SHOW COLUMNS FROM trinity_world.game_event_creature_quest<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0277 ms]: SHOW COLUMNS FROM trinity_world.game_event_gameobject<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0289 ms]: SHOW COLUMNS FROM trinity_world.game_event_gameobject_quest<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0092 ms]: SHOW COLUMNS FROM trinity_world.game_event_model_equip<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0183 ms]: SHOW COLUMNS FROM trinity_world.game_event_npc_vendor<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0079 ms]: SHOW COLUMNS FROM trinity_world.game_event_npcflag<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0225 ms]: SHOW COLUMNS FROM trinity_world.game_event_pool<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0348 ms]: SHOW COLUMNS FROM trinity_world.game_event_prerequisite<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0063 ms]: SHOW COLUMNS FROM trinity_world.game_event_quest_condition<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0061 ms]: SHOW COLUMNS FROM trinity_world.game_graveyard_zone<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0162 ms]: SHOW COLUMNS FROM trinity_world.game_tele<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0142 ms]: SHOW COLUMNS FROM trinity_world.game_weather<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0124 ms]: SHOW COLUMNS FROM trinity_world.gameobject<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0215 ms]: SHOW COLUMNS FROM trinity_world.gameobject_involvedrelation<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0361 ms]: SHOW COLUMNS FROM trinity_world.gameobject_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0114 ms]: SHOW COLUMNS FROM trinity_world.gameobject_questrelation<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0344 ms]: SHOW COLUMNS FROM trinity_world.gameobject_scripts<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0149 ms]: SHOW COLUMNS FROM trinity_world.gameobject_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0443 ms]: SHOW COLUMNS FROM trinity_world.gossip_menu<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0168 ms]: SHOW COLUMNS FROM trinity_world.gossip_menu_option<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0306 ms]: SHOW COLUMNS FROM trinity_world.instance_encounters<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0129 ms]: SHOW COLUMNS FROM trinity_world.instance_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0349 ms]: SHOW COLUMNS FROM trinity_world.item_enchantment_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.042 ms]: SHOW COLUMNS FROM trinity_world.item_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0226 ms]: SHOW COLUMNS FROM trinity_world.item_set_names<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0879 ms]: SHOW COLUMNS FROM trinity_world.item_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.016 ms]: SHOW COLUMNS FROM trinity_world.lfg_dungeon_rewards<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0571 ms]: SHOW COLUMNS FROM trinity_world.linked_respawn<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0153 ms]: SHOW COLUMNS FROM trinity_world.locales_achievement_reward<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0086 ms]: SHOW COLUMNS FROM trinity_world.locales_creature<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0421 ms]: SHOW COLUMNS FROM trinity_world.locales_gameobject<br />
+<strong>SQL</strong> [27-08-2011 08:02:35]: [0.0465 ms]: SHOW COLUMNS FROM trinity_world.locales_gossip_menu_option<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0333 ms]: SHOW COLUMNS FROM trinity_world.locales_item<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0712 ms]: SHOW COLUMNS FROM trinity_world.locales_item_set_names<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0709 ms]: SHOW COLUMNS FROM trinity_world.locales_npc_text<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0203 ms]: SHOW COLUMNS FROM trinity_world.locales_page_text<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0181 ms]: SHOW COLUMNS FROM trinity_world.locales_points_of_interest<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0172 ms]: SHOW COLUMNS FROM trinity_world.locales_quest<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0387 ms]: SHOW COLUMNS FROM trinity_world.mail_level_reward<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0126 ms]: SHOW COLUMNS FROM trinity_world.mail_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0163 ms]: SHOW COLUMNS FROM trinity_world.milling_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0153 ms]: SHOW COLUMNS FROM trinity_world.npc_spellclick_spells<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0138 ms]: SHOW COLUMNS FROM trinity_world.npc_text<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0182 ms]: SHOW COLUMNS FROM trinity_world.npc_trainer<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0505 ms]: SHOW COLUMNS FROM trinity_world.npc_vendor<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0137 ms]: SHOW COLUMNS FROM trinity_world.outdoorpvp_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0241 ms]: SHOW COLUMNS FROM trinity_world.page_text<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0197 ms]: SHOW COLUMNS FROM trinity_world.pet_levelstats<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0295 ms]: SHOW COLUMNS FROM trinity_world.pet_name_generation<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0259 ms]: SHOW COLUMNS FROM trinity_world.pickpocketing_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0121 ms]: SHOW COLUMNS FROM trinity_world.player_classlevelstats<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.023 ms]: SHOW COLUMNS FROM trinity_world.player_factionchange_achievement<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0239 ms]: SHOW COLUMNS FROM trinity_world.player_factionchange_items<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.028 ms]: SHOW COLUMNS FROM trinity_world.player_factionchange_reputations<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0295 ms]: SHOW COLUMNS FROM trinity_world.player_factionchange_spells<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0165 ms]: SHOW COLUMNS FROM trinity_world.player_levelstats<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0123 ms]: SHOW COLUMNS FROM trinity_world.player_xp_for_level<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.023 ms]: SHOW COLUMNS FROM trinity_world.playercreateinfo<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0203 ms]: SHOW COLUMNS FROM trinity_world.playercreateinfo_action<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.017 ms]: SHOW COLUMNS FROM trinity_world.playercreateinfo_item<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0083 ms]: SHOW COLUMNS FROM trinity_world.playercreateinfo_spell<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.022 ms]: SHOW COLUMNS FROM trinity_world.playercreateinfo_spell_custom<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0479 ms]: SHOW COLUMNS FROM trinity_world.points_of_interest<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0431 ms]: SHOW COLUMNS FROM trinity_world.pool_creature<br />
+<strong>SQL</strong> [27-08-2011 08:02:36]: [0.0219 ms]: SHOW COLUMNS FROM trinity_world.pool_gameobject<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0424 ms]: SHOW COLUMNS FROM trinity_world.pool_pool<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0267 ms]: SHOW COLUMNS FROM trinity_world.pool_quest<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0387 ms]: SHOW COLUMNS FROM trinity_world.pool_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0598 ms]: SHOW COLUMNS FROM trinity_world.prospecting_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0335 ms]: SHOW COLUMNS FROM trinity_world.quest_end_scripts<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0168 ms]: SHOW COLUMNS FROM trinity_world.quest_poi<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0458 ms]: SHOW COLUMNS FROM trinity_world.quest_poi_points<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0323 ms]: SHOW COLUMNS FROM trinity_world.quest_start_scripts<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.1046 ms]: SHOW COLUMNS FROM trinity_world.quest_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0099 ms]: SHOW COLUMNS FROM trinity_world.reference_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0067 ms]: SHOW COLUMNS FROM trinity_world.reputation_reward_rate<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0263 ms]: SHOW COLUMNS FROM trinity_world.reputation_spillover_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0187 ms]: SHOW COLUMNS FROM trinity_world.script_texts<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0367 ms]: SHOW COLUMNS FROM trinity_world.script_waypoint<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0359 ms]: SHOW COLUMNS FROM trinity_world.skill_discovery_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0339 ms]: SHOW COLUMNS FROM trinity_world.skill_extra_item_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0226 ms]: SHOW COLUMNS FROM trinity_world.skill_fishing_base_level<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0145 ms]: SHOW COLUMNS FROM trinity_world.skinning_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0266 ms]: SHOW COLUMNS FROM trinity_world.smart_scripts<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0305 ms]: SHOW COLUMNS FROM trinity_world.spell_area<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0168 ms]: SHOW COLUMNS FROM trinity_world.spell_bonus_data<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0244 ms]: SHOW COLUMNS FROM trinity_world.spell_dbc<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0152 ms]: SHOW COLUMNS FROM trinity_world.spell_enchant_proc_data<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0085 ms]: SHOW COLUMNS FROM trinity_world.spell_group<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0116 ms]: SHOW COLUMNS FROM trinity_world.spell_group_stack_rules<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0084 ms]: SHOW COLUMNS FROM trinity_world.spell_learn_spell<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.013 ms]: SHOW COLUMNS FROM trinity_world.spell_linked_spell<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0134 ms]: SHOW COLUMNS FROM trinity_world.spell_loot_template<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0117 ms]: SHOW COLUMNS FROM trinity_world.spell_pet_auras<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0138 ms]: SHOW COLUMNS FROM trinity_world.spell_proc<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0174 ms]: SHOW COLUMNS FROM trinity_world.spell_proc_event<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0112 ms]: SHOW COLUMNS FROM trinity_world.spell_ranks<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0107 ms]: SHOW COLUMNS FROM trinity_world.spell_required<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0074 ms]: SHOW COLUMNS FROM trinity_world.spell_script_names<br />
+<strong>SQL</strong> [27-08-2011 08:02:37]: [0.0152 ms]: SHOW COLUMNS FROM trinity_world.spell_scripts<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.0249 ms]: SHOW COLUMNS FROM trinity_world.spell_target_position<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.016 ms]: SHOW COLUMNS FROM trinity_world.spell_threat<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.0241 ms]: SHOW COLUMNS FROM trinity_world.spelldifficulty_dbc<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.012 ms]: SHOW COLUMNS FROM trinity_world.transports<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.0173 ms]: SHOW COLUMNS FROM trinity_world.trinity_string<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.0199 ms]: SHOW COLUMNS FROM trinity_world.vehicle_accessory<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.0089 ms]: SHOW COLUMNS FROM trinity_world.vehicle_template_accessory<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.0104 ms]: SHOW COLUMNS FROM trinity_world.version<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.0187 ms]: SHOW COLUMNS FROM trinity_world.waypoint_data<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.0066 ms]: SHOW COLUMNS FROM trinity_world.waypoint_scripts<br />
+<strong>SQL</strong> [27-08-2011 08:02:38]: [0.0221 ms]: SHOW COLUMNS FROM trinity_world.waypoints<br />
+<strong>SQL</strong> [27-08-2011 08:02:42]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [27-08-2011 08:02:42]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [27-08-2011 08:02:42]: [0.3108 ms]: SHOW TABLES FROM realmd<br />
+<strong>SQL</strong> [27-08-2011 08:03:03]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [27-08-2011 08:03:03]: [0.0009 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [27-08-2011 08:03:04]: [0.0893 ms]: SHOW TABLES FROM trinity_auth<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0004 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0034 ms]: SHOW TABLES FROM trinity_auth<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0254 ms]: SHOW COLUMNS FROM trinity_auth.account<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0061 ms]: SHOW COLUMNS FROM trinity_auth.account_access<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0087 ms]: SHOW COLUMNS FROM trinity_auth.account_banned<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0174 ms]: SHOW COLUMNS FROM trinity_auth.ip_banned<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0056 ms]: SHOW COLUMNS FROM trinity_auth.logs<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.006 ms]: SHOW COLUMNS FROM trinity_auth.realmcharacters<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0157 ms]: SHOW COLUMNS FROM trinity_auth.realmlist<br />
+<strong>SQL</strong> [27-08-2011 08:03:06]: [0.0073 ms]: SHOW COLUMNS FROM trinity_auth.uptime<br />
+<strong>SQL</strong> [28-08-2011 23:54:42]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [28-08-2011 23:54:42]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [28-08-2011 23:54:42]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [28-08-2011 23:54:42]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [28-08-2011 23:54:44]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [28-08-2011 23:54:44]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [28-08-2011 23:54:44]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [28-08-2011 23:54:44]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [28-08-2011 23:54:44]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [28-08-2011 23:54:44]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [28-08-2011 23:54:44]: [0.0125 ms]: SHOW TABLES FROM wow_cs<br />
+<strong>SQL</strong> [28-08-2011 23:54:48]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [28-08-2011 23:54:48]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [28-08-2011 23:54:48]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [28-08-2011 23:54:48]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [28-08-2011 23:54:48]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [28-08-2011 23:54:48]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [28-08-2011 23:54:48]: [0.0037 ms]: SHOW COLUMNS FROM wow_cs.wow_users<br />
+<strong>SQL</strong> [31-08-2011 22:57:09]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:57:09]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:57:09]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:57:09]: [0.0007 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:57:09]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:57:09]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:57:09]: [0.0071 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`category` AS `category`
+,`t1`.`friendlyTo` AS `friendlyTo`
+,`t1`.`hasRewards` AS `hasRewards`
+,`t1`.`key` AS `key`
+,`t1`.`expansion` AS `expansion`
+,`t1`.`name_ru` AS `name`
+,`t1`.`description_ru` AS `description`
+FROM `wow_faction` AS `t1`
+<br />
+<strong>SQL</strong> [31-08-2011 22:57:26]: [0.0004 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:57:26]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:57:26]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:57:26]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:57:26]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:57:26]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:57:26]: [0.0084 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`category` AS `category`
+,`t1`.`friendlyTo` AS `friendlyTo`
+,`t1`.`hasRewards` AS `hasRewards`
+,`t1`.`key` AS `key`
+,`t1`.`expansion` AS `expansion`
+,`t1`.`name_en` AS `name`
+,`t1`.`description_en` AS `description`
+FROM `wow_faction` AS `t1`
+<br />
+<strong>SQL</strong> [31-08-2011 22:58:49]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:58:49]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:58:49]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:58:49]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:58:49]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:58:49]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:58:49]: [0.0069 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`category` AS `category`
+,`t1`.`friendlyTo` AS `friendlyTo`
+,`t1`.`hasRewards` AS `hasRewards`
+,`t1`.`key` AS `key`
+,`t1`.`expansion` AS `expansion`
+,`t1`.`name_en` AS `name`
+,`t1`.`description_en` AS `description`
+FROM `wow_faction` AS `t1`
+<br />
+<strong>SQL</strong> [31-08-2011 22:59:04]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:59:04]: [0.0006 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:59:04]: [0.0004 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:59:04]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:59:04]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 22:59:04]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 22:59:04]: [0.008 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`category` AS `category`
+,`t1`.`friendlyTo` AS `friendlyTo`
+,`t1`.`hasRewards` AS `hasRewards`
+,`t1`.`key` AS `key`
+,`t1`.`expansion` AS `expansion`
+,`t1`.`name_en` AS `name`
+,`t1`.`description_en` AS `description`
+FROM `wow_faction` AS `t1`
+<br />
+<strong>SQL</strong> [31-08-2011 23:00:16]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 23:00:16]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 23:00:16]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 23:00:16]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 23:00:16]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 23:00:16]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 23:00:16]: [0.007 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`category` AS `category`
+,`t1`.`friendlyTo` AS `friendlyTo`
+,`t1`.`hasRewards` AS `hasRewards`
+,`t1`.`key` AS `key`
+,`t1`.`expansion` AS `expansion`
+,`t1`.`name_en` AS `name`
+,`t1`.`description_en` AS `description`
+FROM `wow_faction` AS `t1`
+<br />
+<strong>SQL</strong> [31-08-2011 23:00:45]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 23:00:45]: [0.001 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 23:00:45]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 23:00:45]: [0.0009 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 23:00:45]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 23:00:45]: [0.0004 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 23:00:45]: [0.0072 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`category` AS `category`
+,`t1`.`friendlyTo` AS `friendlyTo`
+,`t1`.`hasRewards` AS `hasRewards`
+,`t1`.`key` AS `key`
+,`t1`.`expansion` AS `expansion`
+,`t1`.`name_en` AS `name`
+,`t1`.`description_en` AS `description`
+FROM `wow_faction` AS `t1`
+<br />
+<strong>SQL</strong> [31-08-2011 23:01:16]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 23:01:16]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 23:01:16]: [0.0002 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 23:01:16]: [0.0005 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 23:01:16]: [0.0003 ms]: SET NAMES UTF8<br />
+<strong>SQL</strong> [31-08-2011 23:01:16]: [0.0007 ms]: SELECT VERSION()<br />
+<strong>SQL</strong> [31-08-2011 23:01:16]: [0.0076 ms]: SELECT
+`t1`.`id` AS `id`
+,`t1`.`category` AS `category`
+,`t1`.`friendlyTo` AS `friendlyTo`
+,`t1`.`hasRewards` AS `hasRewards`
+,`t1`.`key` AS `key`
+,`t1`.`expansion` AS `expansion`
+,`t1`.`name_en` AS `name`
+,`t1`.`description_en` AS `description`
+FROM `wow_faction` AS `t1`
+<br />

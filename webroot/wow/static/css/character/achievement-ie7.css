@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+/* Summary */
+.achievements-recent .float-right { width:110px; }
+.achievements-recent .icon { margin-top:4px }
+.achievements-recent .info { padding-top:4px }
+.achievements-recent li { margin-bottom: 8px; padding-bottom: 4px; }
+.achievements-recent a { padding: 0; height: 30px; line-height: 30px; }
+.sub-achievements li { display:block; float:left; height:60px; margin-bottom:5px; width:60px; padding-left: 0; position:relative;}
+
+.achievements-recent .icon-frame { left: 0; top: 4px; }
+.profile-progress .bar { float: left;}

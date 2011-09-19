@@ -1,0 +1,5 @@
+@charset "utf-8";
+
+/* Community landing page */
+.community-home .top-banner .ui-slideshow .caption {cursor:text;}
+.community-home .top-banner .ui-slideshow .caption h3 {cursor:text;}

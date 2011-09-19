@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+/* eSports page */
+.esports-link-box.over {background:none;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/community/bg-esports-link-over.png', sizingMethod='crop');}
+.esports-link-box:hover {background:none; background-color:#3b1206;}
+
+/* Community landing page */
+.community-home .top-banner .ui-slideshow .paging {background:none; background-color:#130b06;}
+.community-home .top-banner .ui-slideshow .paging a {cursor:pointer !important; background:none; border-bottom:1px solid #231d19;}
+.community-home .top-banner .ui-slideshow .paging a.last-slide {border-bottom:0;}
+.community-home .top-banner .ui-slideshow .mask {background: none; filter:none;}
+.inside-section  .panel {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../images/community/bg-panel.png', sizingMethod='scale');}
+.community-content-body  .content-wrapper .inside-col {margin-left:15px;}
+.community-content-body  .content-wrapper .outside-col {margin-right:9px;}
+.inside-section .view-all {margin-left:7px;}
+.inside-section .tosubmit {bottom:19px;}
+.inside-section .tosubmit, .inside-section .view-all, .outside-section .content-block ul li a {background-image:url("../../images/community/community-index-sprite.gif") !important;}
+
+/*
+.outside-section.social-media .content-block a.facebook:hover {background-position:13px -1336px;}
+.outside-section.social-media .content-block a.twitter:hover {background-position:13px -1268px;}
+.outside-section.social-media .content-block a.youtube:hover {background-position:13px -1358px;}
+.outside-section.social-media .content-block a.metoday:hover {background-position:13px -1915px;}
+
+.outside-section.blizzard-community .content-block a.blizzard-insider:hover {background-position:1px -1515px;}
+.outside-section.blizzard-community .content-block a.blizzcast:hover {background-position:1px -1605px;}
+
+*/
+.outside-section .content-block a {height:54px;}
+.inside-section.contests, .inside-section.forum {margin-bottom:19px;}
