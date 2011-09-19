@@ -116,5 +116,14 @@ class Config_Component extends Component
 
 		return $this;
 	}
+
+	/**
+	 * Returns configuration holder
+	 * @return array
+	 */
+	public function getConfigHolder()
+	{
+		return $this->m_holder;
+	}
 }
 ?>
