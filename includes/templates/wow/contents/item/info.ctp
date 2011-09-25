@@ -72,36 +72,33 @@
 			<div class="related">
 				<div class="tabs ">
 					<ul id="related-tabs">
-								<li>
-									<a href="#dropCreatures" data-key="dropCreatures" id="tab-dropCreatures">
-										<span><span>
-												Dropped From
-												(<em>1</em>)
-										</span></span>
-									</a>
-								</li>
-								<li>
-									<a href="#disenchantItems" data-key="disenchantItems" id="tab-disenchantItems">
-										<span><span>
-												Disenchants Into
-												(<em>1</em>)
-										</span></span>
-									</a>
-								</li>
-								<li>
-									<a href="#comments" data-key="comments" id="tab-comments">
-										<span><span>
-												Comments
-												(<em>0</em>)
-										</span></span>
-									</a>
-								</li>
+					<?php
+					$relatedTabs = array(
+						'dropCreatures', 'dropGameObjects', 'vendors',
+						'currencyForItems', 'rewardFromQuests', 'skinnedFromCreatures',
+						'pickPocketCreatures', 'minedFromCreatures', 'createdBySpells',
+						'reagentForSpells', 'disenchantItems', 'comments'
+					);
+					$tabs = $item->getItemTabsCounters();
+					if ($tabs) :
+						foreach ($relatedTabs as $tab) :
+							if (!isset ($tabs[$tab])) continue;
+					?>
+						<li>
+							<a href="#<?php echo $tab; ?>" data-key="<?php echo $tab; ?>" id="tab-<?php echo $tab; ?>">
+								<span><span>
+										<?php echo $l->format('template_item_tab_' . $tab, $tabs[$tab]); ?>
+								</span></span>
+							</a>
+						</li>
+					<?php endforeach; endif; ?>
+
 					</ul>
 
 	<span class="clear"><!-- --></span>
 				</div>
 
-				<div id="relateds-content" class="loading">
+				<div id="related-content" class="loading"> <!-- CHANGEME: related-content -->
 				</div>
 			</div>
 

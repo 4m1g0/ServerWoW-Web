@@ -24,31 +24,53 @@ class Item_WoW_Controller_Component extends Groupwow_Controller_Component
 	protected $m_browseOptions = array();
 	protected $m_isTooltip = false;
 	protected $m_menuIndex = 'game';
+	protected $m_itemError = false;
+	protected $m_itemTab = '';
+	protected $m_itemTabContents = array();
 
 	public function build($core)
 	{
 		$this->checkInfo();
 
-		if ($this->m_entry > 0)
-			$this->m_pageTitle = $this->c('Item')->initItem($this->m_entry, $this->m_isTooltip)->item('name');
-		else
-			$this->m_pageTitle = $this->c('Item')->initItems($this->m_browseOptions)->itemPageTitle();
-
-		$this->buildBreadcrumb();
-
-		if ($this->m_entry > 0)
+		if ($this->m_itemError)
 		{
-			$this->buildBlock('tooltip');
+			$this->setErrorPage()
+				->c('Error_Wow', 'Controller');
 
-			if ($this->m_isTooltip)
-				$this->m_isAjax = true;
-			else
-				$this->buildBlock('info');
+			return $this;
+		}
+
+		if ($this->m_entry > 0)
+			$pageTitle = $this->c('Item')->initItem($this->m_entry, $this->m_isTooltip, $this->m_itemTab)->item('name');
+		else
+			$pageTitle = $this->c('Item')->initItems($this->m_browseOptions)->itemPageTitle();
+
+		if ($this->m_itemTab != null)
+		{
+			$this->m_itemTabContents = $this->c('Item')->getItemTab(strtolower($this->m_itemTab));
+			$this->m_isAjax = true;
+			define('AJAX_PAGE', true);
+			$this->buildBlock('item_tab');
 		}
 		else
 		{
-			$core->setVar('body_class', 'item-index');
-			$this->buildBlocks(array('pager', 'list'));
+			$this->buildBreadcrumb();
+	
+			if ($this->m_entry > 0)
+			{
+				$this->m_pageTitle = $pageTitle;
+				$this->buildBlock('tooltip');
+	
+				if ($this->m_isTooltip)
+					$this->m_isAjax = true;
+				else
+					$this->buildBlock('info');
+			}
+			else
+			{
+				$core->setVar('body_class', 'item-index');
+				$this->buildBlocks(array('pager', 'list'));
+			}
 		}
 
 		return $this;
@@ -158,6 +180,32 @@ class Item_WoW_Controller_Component extends Groupwow_Controller_Component
 
 		$this->m_isTooltip = (strtolower($this->core->getUrlAction(3)) == 'tooltip');
 
+		if (!$this->m_isTooltip && $this->core->getUrlAction(3) != null)
+		{
+			$action = $this->core->getUrlAction(3);
+
+			switch ($action)
+			{
+				case 'dropCreatures':
+				case 'dropGameObjects':
+				case 'vendors':
+				case 'currencyForItems':
+				case 'rewardFromQuests':
+				case 'skinnedFromCreatures':
+				case 'pickpocketCreatures':
+				case 'minedFromCreatures':
+				case 'createdBySpells':
+				case 'reagentForSpells':
+				case 'disenchantItems':
+				case 'comments':
+					$this->m_itemTab = $action;
+					break;
+				default:
+					$this->m_itemError = true;
+					break;
+			}
+		}
+
 		$get_params = array(
 			'classId', 'subClassId', 'invType', 'page'
 		);
@@ -183,6 +231,14 @@ class Item_WoW_Controller_Component extends Groupwow_Controller_Component
 			->setVar('tooltip', $this->c('Item')->getTooltip())
 			->setRegion('wow_ajax')
 			->setTemplate('tooltip', 'wow' . DS . 'contents' . DS . 'item');
+	}
+
+	protected function block_item_tab()
+	{
+		return $this->block()
+			->setVar('tab', $this->m_itemTabContents)
+			->setRegion('wow_ajax')
+			->setTemplate($this->m_itemTab, 'wow' . DS . 'contents' . DS . 'item' . DS . 'tabs');
 	}
 }
 ?>

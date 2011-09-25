@@ -34,11 +34,13 @@ class Item_Component extends Component
 	protected $m_items = array();
 	protected $m_itemsCount = array();
 	protected $m_itemsClassInfo = array();
+	protected $m_itemTab = '';
 
-	public function initItem($entry, $isTooltip)
+	public function initItem($entry, $isTooltip, $tab)
 	{
 		$this->m_entry = (int) $entry;
 		$this->m_isTooltip = $isTooltip;
+		$this->m_itemTab = $tab;
 
 		$tooltip_keys = array(
 			'i', 'e', 'g0', 'g1', 'g2', 'set', 'pl', 'r', 'slot', 'cd'
@@ -124,11 +126,11 @@ class Item_Component extends Component
 				->loadItem();
 		}
 
+		if ($this->m_item['socketBonus'] > 0)
+			$this->m_gems[] = $this->m_item['socketBonus'];
+
 		if ($this->m_gems)
 		{
-			if ($this->m_item['socketBonus'] > 0)
-				$this->m_gems[] = $this->m_item['socketBonus'];
-
 			$this->m_gems = $this->c('QueryResult')
 				->model('WowEnchantment')
 				->fieldCondition('id', $this->m_gems)
@@ -156,8 +158,11 @@ class Item_Component extends Component
 		if (!$this->m_item)
 			return $this;
 
-		if (!$this->m_isTooltip)
+		if (!$this->m_isTooltip && !$this->m_itemTab)
 			$this->getExtendedCostInfo();
+
+		if ($this->m_itemTab)
+			return $this;
 
 		return $this->createTooltip();
 	}
@@ -350,8 +355,13 @@ class Item_Component extends Component
 		if ($this->item('socketBonus') > 0 && isset($this->m_gems[$this->item('socketBonus')]))
 		{
 			$bEnabled = true;
-			foreach ($socketBonusEnabled as $sb)
-				if (!$sb) $bEnabled = false;
+			if ($socketBonusEnabled)
+			{
+				foreach ($socketBonusEnabled as $sb)
+					if (!$sb) $bEnabled = false;
+			}
+			else
+				$bEnabled = false;
 
 			$t .= '<li class="' . (!$bEnabled ? 'color-d4' : '') . '">' . $l->format('template_item_socket_match', $this->m_gems[$this->item('socketBonus')]['text']) . '</li>';
 		}
@@ -1334,6 +1344,368 @@ class Item_Component extends Component
 	public function getItemsClassInfo($type)
 	{
 		return isset($this->m_itemsClassInfo[$type]) ? $this->m_itemsClassInfo[$type] : '';
+	}
+
+	public function getItemTabsCounters($item_id = 0)
+	{
+		$item_id = $item_id ? $item_id : $this->item('entry');
+
+		if (!$item_id)
+			return false;
+
+		$tabs_info = array();
+
+		$query_info = array(
+			'dropCreatures' => array(
+				'model' => 'CreatureLootTemplate',
+			),
+			'dropGameObjects' => array(
+				'model' => 'GameobjectLootTemplate',
+			),
+			'vendors' => array(
+				'model' => 'NpcVendor',
+			),
+			'skinnedFromCreatures' => array(
+				'model' => 'SkinningLootTemplate',
+			),
+			'pickPocketCreatures' => array(
+				'model' => 'PickpocketingLootTemplate',
+			),
+			'disenchantItems' => array(
+				'model' => 'DisenchantLootTemplate',
+				'itemId' => $this->item('DisenchantID'),
+				'condField' => 'entry'
+			),
+		);
+
+		foreach ($query_info as $t => $q)
+		{
+			$data = $this->c('QueryResult', 'Db')
+				->model($q['model'])
+				->fields(array($q['model'] => array('entry')))
+				->runFunction('COUNT', 'entry')
+				->fieldCondition((!isset($q['condField']) ? 'item' : $q['condField']), ' = ' . (!isset($q['itemId']) ? $item_id : $q['itemId']))
+				->loadItem();
+
+			if ($data && isset($data['entry']) && $data['entry'] > 0)
+				$tabs_info[$t] = $data['entry'];
+
+			unset($data);
+		}
+
+		// Quest reward
+		$quest_data = $this->c('QueryResult', 'Db')
+			->model('QuestTemplate')
+			->fields(array('QuestTemplate' => array('entry')))
+			->runFunction('COUNT', 'entry')
+			->fieldCondition('RewChoiceItemId1', ' = ' . $item_id, 'OR')
+			->fieldCondition('RewChoiceItemId2', ' = ' . $item_id, 'OR')
+			->fieldCondition('RewChoiceItemId3', ' = ' . $item_id, 'OR')
+			->fieldCondition('RewChoiceItemId4', ' = ' . $item_id, 'OR')
+			->fieldCondition('RewChoiceItemId5', ' = ' . $item_id, 'OR')
+			->fieldCondition('RewChoiceItemId6', ' = ' . $item_id, 'OR')
+			->fieldCondition('RewItemId1', ' = ' . $item_id, 'OR')
+			->fieldCondition('RewItemId2', ' = ' . $item_id, 'OR')
+			->fieldCondition('RewItemId3', ' = ' . $item_id, 'OR')
+			->fieldCondition('RewItemId4', ' = ' . $item_id, 'OR')
+			->loadItem();
+
+		if ($quest_data && isset($quest_data['entry']) && $quest_data['entry'] > 0)
+			$tabs_info['rewardFromQuests'] = $quest_data['entry'];
+
+		// Created by spell
+		$crafted_data = $this->c('QueryResult', 'Db')
+			->model('WowSpell')
+			->fields(array('WowSpell' => array('id')))
+			->runFunction('COUNT', 'id')
+			->fieldCondition('EffectItemType_1', ' = ' . $item_id, 'OR')
+			->fieldCondition('EffectItemType_2', ' = ' . $item_id, 'OR')
+			->fieldCondition('EffectItemType_3', ' = ' . $item_id, 'OR')
+			->loadItem();
+
+		if ($crafted_data && isset($crafted_data['id']) && $crafted_data['id'] > 0)
+			$tabs_info['createdBySpells'] = $crafted_data['id'];
+
+		// Reagent for spells
+		$reagent_data = $this->c('QueryResult', 'Db')
+			->model('WowSpell')
+			->fields(array('WowSpell' => array('id')))
+			->runFunction('COUNT', 'id')
+			->fieldCondition('Reagent_1', ' = ' . $item_id, 'OR')
+			->fieldCondition('Reagent_2', ' = ' . $item_id, 'OR')
+			->fieldCondition('Reagent_3', ' = ' . $item_id, 'OR')
+			->fieldCondition('Reagent_4', ' = ' . $item_id, 'OR')
+			->fieldCondition('Reagent_5', ' = ' . $item_id, 'OR')
+			->fieldCondition('Reagent_6', ' = ' . $item_id, 'OR')
+			->fieldCondition('Reagent_7', ' = ' . $item_id, 'OR')
+			->fieldCondition('Reagent_8', ' = ' . $item_id, 'OR')
+			->loadItem();
+
+		if ($reagent_data && isset($reagent_data['id']) && $reagent_data['id'] > 0)
+			$tabs_info['reagentForSpells'] = $reagent_data['id'];
+
+		return $tabs_info;
+	}
+
+	public function getItemTab($tab)
+	{
+		switch (strtolower($tab))
+		{
+			case 'dropcreatures':
+			case 'dropgameobjects':
+			case 'vendors':
+			case 'currencyforitems':
+			case 'rewardfromquests':
+			case 'skinnedfromcreatures':
+			case 'pickpocketcreatures':
+			case 'minedfromcreatures':
+			case 'createdbyspells':
+			case 'reagentforspells':
+			case 'disenchantitems':
+				return $this->{'getItemTab' . ucfirst(strtolower($tab))}();
+			case 'comments':
+				return false;
+				break;
+			default:
+				return false;
+		}
+	}
+
+	protected function getItemTabDropcreatures()
+	{
+		if (!$this->m_item)
+			return false;
+
+		$lId = $this->c('Locale')->GetLocaleID();
+		$lName = $this->c('Locale')->GetLocale();
+
+		$q = $this->c('QueryResult', 'Db')
+			->model('CreatureLootTemplate')
+			->addModel('CreatureTemplate')
+			->addModel('Creature')
+			->join('left', 'CreatureTemplate', 'CreatureLootTemplate', 'entry', 'entry')
+			->join('left', 'Creature', 'CreatureLootTemplate', 'entry', 'id');
+
+		$fields = $this->c('Creature')->getCreatureFields();
+
+		if ($lId != LOCALE_EN)
+			$q->addModel('LocalesCreature')
+				->join('left', 'LocalesCreature', 'CreatureLootTemplate', 'entry', 'entry');
+
+		$q->fields($fields);
+
+		$creatures = $q->fieldCondition('creature_loot_template.item', ' = ' . $this->item('entry'))
+			->keyIndex('entry')
+			->loadItems();
+
+		$loot_data = $this->c('QueryResult', 'Db')
+			->model('CreatureLootTemplate')
+			->fields(array('CreatureLootTemplate' => array('entry', 'ChanceOrQuestChance', 'groupid', 'mincountOrRef', 'item')))
+			->fieldCondition('entry', array_keys($creatures))
+			->loadItems();
+
+		$this->c('Creature')->getOriginalCreaturesInfo($creatures);
+
+		$this->calculateDropRate($creatures, $loot_data);
+
+		$tab_info = array(
+			'type' => 'dropCreatures',
+			'fields' => array(
+				'name' => array('content_data' => 'data-npc'),
+				'type' => array(),
+				'level' => array('content_data' => 'data-raw', 'sort' => 'numeric'),
+				'zone' => array('content_data' => 'data-zone'),
+				'droprate' => array('content_data' => 'data-raw', 'sort' => 'numeric'),
+			),
+			'contents' => $creatures
+		);
+
+		unset($creatures);
+
+		return $tab_info;
+	}
+
+	protected function getItemTabDropgameobjects()
+	{
+		if (!$this->m_item)
+			return false;
+
+		$fields = array(
+			'GameobjectLootTemplate' => array('entry', 'item', 'ChanceOrQuestChance', 'groupid', 'mincountOrRef', 'maxcount'),
+			'GameobjectTemplate' => array('entry', 'name'),
+			'Gameobject' => array('id', 'map', 'position_x', 'position_y')
+		);
+
+		$q = $this->c('QueryResult', 'Db')
+			->model('GameobjectLootTemplate')
+			->addModel('GameobjectTemplate')
+			->addModel('Gameobject')
+			->join('left', 'GameobjectTemplate', 'GameobjectLootTemplate', 'entry', 'entry')
+			->join('left', 'Gameobject', 'GameobjectLootTemplate', 'entry', 'id');
+		if ($this->c('Locale')->GetLocaleID() != LOCALE_EN)
+			$q->addModel('LocalesGameobject')
+				->join('left', 'LocalesGameobject', 'GameobjectLootTemplate', 'entry', 'entry')
+				->fields(array_merge($fields, array('LocalesGameobject' => array('name_loc' . $this->c('Locale')->GetLocaleID()))));
+		else
+			$q->fields($fields);
+
+		$gobjects = $q->fieldCondition('gameobject_loot_template.item', ' = ' . $this->item('entry'))
+			->keyIndex('entry')
+			->loadItems();
+
+		$loot_data = $this->c('QueryResult', 'Db')
+			->model('GameobjectLootTemplate')
+			->fields(array('GameobjectLootTemplate' => array('entry', 'ChanceOrQuestChance', 'groupid', 'mincountOrRef', 'item')))
+			->fieldCondition('entry', array_keys($gobjects))
+			->loadItems();
+
+		$this->calculateDropRate($gobjects, $loot_data);
+
+		foreach ($gobjects as &$go)
+			$go['zone_info'] = $this->c('Creature')->getZoneInfo($go, false);
+
+		unset($loot_data, $q, $fields);
+
+		return array(
+			'contents' => $gobjects
+		);
+	}
+
+	protected function getItemTabVendors()
+	{
+		
+	}
+
+	protected function getItemTabCurrencyforitems()
+	{
+		
+	}
+
+	protected function getItemTabRewardFromQuests()
+	{
+		
+	}
+
+	protected function getItemTabSkinnedFromCreatures()
+	{
+		
+	}
+
+	protected function getItemTabCreatedbyspells()
+	{
+		
+	}
+
+	protected function getItemTabReagentforspells()
+	{
+		
+	}
+
+	protected function getItemTabDisenchantitems()
+	{
+		if (!$this->m_item)
+			return false;
+
+		$disID = $this->item('DisenchantID');
+
+		if (!$disID)
+			return false;
+
+		$disData = $this->c('QueryResult', 'Db')
+			->model('DisenchantLootTemplate')
+			->fieldCondition('entry', ' = ' . $disID)
+			->keyIndex('item')
+			->loadItems();
+
+		if (!$disData)
+			return false;
+
+		$item_ids = array_keys($disData);
+		$items = $this->getItemsInfo($item_ids, true);
+
+		foreach ($items as &$item)
+		{
+			if (isset($disData[$item['entry']]))
+			{
+				$item['dismaxcount'] = $disData[$item['entry']]['maxcount'];
+				$item['dropInfo'] = array(
+					'percent' => $disData[$item['entry']]['ChanceOrQuestChance'],
+					'rate' => $this->getDropRate($disData[$item['entry']]['ChanceOrQuestChance'])
+				);
+			}
+			else
+				$item['dismaxcount'] = 0;
+		}
+
+		return array(
+			'contents' => $items
+		);
+	}
+
+	protected function calculateDropRate(&$creatures, &$loot_data)
+	{
+		if (!$loot_data || !$creatures)
+			return;
+
+		$percent = 0;
+		foreach ($loot_data as &$loot)
+		{
+			$entry = 0;
+			$percent = 0;
+			if ($loot['ChanceOrQuestChance'] > 0 && $loot['item'] == $this->item('entry'))
+			{
+				$entry = $loot['entry'];
+				$percent = $loot['ChanceOrQuestChance'];
+			}
+			elseif ($loot['ChanceOrQuestChance'] == 0 && $loot['item'] == $this->item('entry'))
+			{
+				$group = $loot['groupid'];
+				$entry = $loot['entry'];
+				$percent = 0;
+				$i = 0;
+				foreach ($loot_data as $l)
+				{
+					if ($l['groupid'] == $group)
+					{
+						if ($l['ChanceOrQuestChance'] > 0)
+							$percent += $l['ChanceOrQuestChance'];
+						else
+							++$i;
+					}
+				}
+				$percent = round((100 - $percent) / $i, 3);
+			}
+
+			foreach ($creatures as &$cr)
+				if ((isset($cr['loot_entry']) && $cr['loot_entry'] == $entry) || ($cr['entry'] == $entry))
+					$cr['dropInfo'] = array('percentage' => $percent, 'rate' => $this->getDropRate($percent));
+		}
+	}
+
+	protected function getDropRate($percent) {
+		if ($percent == 100) {
+			return 6;
+		}
+		elseif ($percent > 51) {
+			return 5;
+		}
+		elseif ($percent > 25) {
+			return 4;
+		}
+		elseif ($percent > 15) {
+			return 3;
+		}
+		elseif ($percent > 3) {
+			return 2;
+		}
+		elseif ($percent > 0 && $percent <= 2) {
+			return 1;
+		}
+		elseif ($percent < 0 || $percent == 0) {
+			return 0;
+		}
+
+		return 0;
 	}
 }
 ?>
