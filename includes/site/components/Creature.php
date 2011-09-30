@@ -43,6 +43,7 @@ class Creature_Component extends Component
 				->fieldCondition('wow_zones.y_max', ' < ' . $creature['position_y'])
 				->fieldCondition('wow_zones.x_min', ' > ' . $creature['position_x'])
 				->fieldCondition('wow_zones.x_max', ' < ' . $creature['position_x'])
+				->order(array('WowZones' => array('y_min', 'x_min')))
 				->loadItem();
 
 			if (!$zone && $tryOthers)
@@ -101,22 +102,32 @@ class Creature_Component extends Component
 		}
 	}
 
-	public function getCreatureFields()
+	public function getCreatureFields($add = false)
 	{
 		$type = $this->c('Config')->getValue('realms.1.type');
 
 		if ($type == SERVER_MANGOS || $type == 'SERVER_MANGOS')
 			$fields = array(
-				'CreatureLootTemplate' => array('entry', 'item', 'ChanceOrQuestChance', 'groupid', 'mincountOrRef', 'maxcount', 'lootcondition', 'condition_value1', 'condition_value2'),
 				'CreatureTemplate' => array('entry', 'name', 'subname', 'difficulty_entry_1', 'difficulty_entry_2', 'difficulty_entry_3', 'KillCredit1', 'KillCredit2', 'minlevel', 'maxlevel', 'type', 'rank'),
 				'Creature' => array('guid', 'id', 'map', 'position_x', 'position_y', 'position_z')
 			);
 		else
 			$fields = array(
-				'CreatureLootTemplate' => array('entry', 'item', 'ChanceOrQuestChance', 'groupid', 'mincountOrRef', 'maxcount', 'lootmode'),
 				'CreatureTemplate' => array('entry', 'name', 'subname', 'difficulty_entry_1', 'difficulty_entry_2', 'difficulty_entry_3', 'KillCredit1', 'KillCredit2', 'minlevel', 'maxlevel', 'type', 'rank'),
 				'Creature' => array('guid', 'id', 'map', 'position_x', 'position_y', 'position_z')
 			);
+
+		if ($add == 'NpcVendor')
+			$fields['NpcVendor'] = array(
+				'entry', 'item', 'maxcount', 'ExtendedCost'
+			);
+		elseif ($add == 'CreatureLootTemplate')
+		{
+			if ($type == SERVER_MANGOS || $type == 'SERVER_MANGOS')
+				$fields['CreatureLootTemplate'] = array('entry', 'item', 'ChanceOrQuestChance', 'groupid', 'mincountOrRef', 'maxcount', 'lootcondition', 'condition_value1', 'condition_value2');
+			else
+				$fields['CreatureLootTemplate'] = array('entry', 'item', 'ChanceOrQuestChance', 'groupid', 'mincountOrRef', 'maxcount', 'lootmode');
+		}
 
 		if ($this->c('Locale')->GetLocaleID() != LOCALE_EN)
 			$fields['LocalesCreature'] = array('name_loc' . $this->c('Locale')->GetLocaleID(), 'subname_loc' . $this->c('Locale')->GetLocaleID());

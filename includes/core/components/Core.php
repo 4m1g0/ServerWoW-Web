@@ -185,6 +185,7 @@ class Core_Component extends Component
 	{
 		$controller_name = str_replace(' ', '', $this->getUrlAction(0));
 		$controller_name = preg_replace('/[^ \/_A-Za-z-]/', '', $controller_name);
+
 		if (!$controller_name)
 			return $this->c('Home', 'Controller');
 
@@ -244,6 +245,7 @@ class Core_Component extends Component
 	public function terminate($errorMessage = '')
 	{
 		$this->m_terminated = true;
+
 		echo '<h1>Unable to load site</h1>' . NL . '<p>Script work was terminated ';
 		if ($errorMessage)
 			echo 'with message <strong>"' . $errorMessage . '"</strong>!';

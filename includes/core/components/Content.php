@@ -18,36 +18,11 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class Default_Controller_Component extends Controller_Component
+class Content_Component extends Component
 {
-	protected $m_isDefaultController = true;
-
 	public function initialize()
 	{
-		// Check contents
-		if (!$this->c('Content')->contentLoaded())
-			parent::initialize();
-		else
-		{
-			$this->c('Content', 'Controller');
-			return $this;
-		}
-
-		return $this;
-	}
-
-	public function build($core)
-	{
-		$this->buildBlock('404');
-		return $this;
-	}
-
-	public function block_404()
-	{
-		return $this->block()
-			->setRegion('pagecontent')
-			->setVar('urlAddress', $this->core->getRawUrl())
-			->setTemplate('404', 'default');
+		return $this->c('Item', 'Content')->loadContentByUrl();
 	}
 }
 ?>

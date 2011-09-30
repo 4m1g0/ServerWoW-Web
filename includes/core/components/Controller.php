@@ -23,6 +23,7 @@ class Controller_Component extends Component
 	private $m_postBuild = array();
 	private $m_blocks = array();
 	private $m_units = array();
+	protected $m_isDefaultController = false;
 	protected $m_isAjax = false;
 	protected $m_skipBuild = false;
 	protected $m_dummy_page = false;
@@ -275,6 +276,11 @@ class Controller_Component extends Component
 		header('HTTP/1.0 404 Not Found');
 
 		return $this;
+	}
+
+	public function isDefaultController()
+	{
+		return $this->m_isDefaultController;
 	}
 }
 ?>

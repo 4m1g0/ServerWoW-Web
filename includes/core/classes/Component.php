@@ -33,21 +33,21 @@ abstract class Component
 	 * @static
 	 **/
 	protected static $m_components = array();
-	
+
 	/**
 	 * Core component instance
 	 * @access public
 	 * @var    Core_Component
 	 **/
 	public $core = null;
-	
+
 	/**
 	 * Current component name
 	 * @access protected
 	 * @var    string
 	 **/
 	protected $m_component = null;
-	
+
 	/**
 	 * Is component loaded? Yes (true) / No (false)
 	 * @access protected
@@ -164,18 +164,21 @@ abstract class Component
 		if ($type == '')
 			$c_type = 'default';
 		else
-			$c_type = strtolower($type);	
+			$c_type = strtolower($type);
 
 		if (!isset(self::$m_components[$c_type]))
 			self::$m_components[$c_type] = array();
 
 		if (isset(self::$m_components[$c_type][$name]))
 			return self::$m_components[$c_type][$name];
-		
-		$component = new $c_name($c_name, $this->core);
-		
+
+		//TODO: Try to check class file existence before create instance of class.
+		//If this will be implemented, we'll can safely handle controller errors (404).
+
+		$component = new $c_name($c_name, $this->core); // 
+
 		$this->addComponent($name, $c_type, $component);
-		
+
 		return $component->initialize()->setInitialized(true);
 	}
 
@@ -234,6 +237,7 @@ abstract class Component
 	{
 		foreach ($this as &$field)
 			unset($field);
+
 		return $this;
 	}
 

@@ -29,6 +29,8 @@ class Locale_Component extends Component
 		$locale = null;
 		if (!$this->c('Cookie')->read('locale'))
 		{
+			//BUG: site.dat missing key site.locale.default
+			//TODO: add site.locale.default in site.dat
 			$locale = $this->c('Config')->getValue('site.locale.default');
 			$this->c('Cookie')->write('locale', $locale);
 		}

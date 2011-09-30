@@ -1486,7 +1486,7 @@ class Item_Component extends Component
 			->join('left', 'CreatureTemplate', 'CreatureLootTemplate', 'entry', 'entry')
 			->join('left', 'Creature', 'CreatureLootTemplate', 'entry', 'id');
 
-		$fields = $this->c('Creature')->getCreatureFields();
+		$fields = $this->c('Creature')->getCreatureFields('CreatureLootTemplate');
 
 		if ($lId != LOCALE_EN)
 			$q->addModel('LocalesCreature')
@@ -1573,7 +1573,60 @@ class Item_Component extends Component
 
 	protected function getItemTabVendors()
 	{
-		
+		if (!$this->m_item)
+			return false;
+
+		$lId = $this->c('Locale')->GetLocaleID();
+		$lName = $this->c('Locale')->GetLocale();
+
+		$fields = $this->c('Creature')->getCreatureFields('NpcVendor');
+
+		$q = $this->c('QueryResult', 'Db')
+			->model('NpcVendor')
+			->addModel('CreatureTemplate')
+			->addModel('Creature')
+			->join('left', 'CreatureTemplate', 'NpcVendor', 'entry', 'entry')
+			->join('left', 'Creature', 'NpcVendor', 'entry', 'id');
+		if ($lId != LOCALE_EN)
+			$q->addModel('LocalesCreature')
+				->join('left', 'LocalesCreature', 'NpcVendor', 'entry', 'entry');
+
+		$vendors = $q->fields($fields)
+			->fieldCondition('npc_vendor.item', ' = ' . $this->item('entry'))
+			->keyIndex('entry')
+			->loadItems();
+
+		if (!$vendors)
+			return false;
+
+		$ex_cost = array();
+
+		foreach ($vendors as &$v)
+		{
+			$v['zone_info'] = $this->c('Creature')->getZoneInfo($v, false);
+			if ($v['ExtendedCost'] > 0)
+				$ex_cost[$v['entry']] = $v['ExtendedCost'];
+		}
+
+		unset($q);
+
+		if ($ex_cost)
+		{
+			$extended = $this->c('QueryResult', 'Db')
+				->model('WowExtendedCost')
+				->fieldCondition('id', array_values($ex_cost))
+				->keyIndex('id')
+				->loadItems();
+
+			if ($extended)
+			{
+				foreach ($ex_cost as $entry => $x)
+					if (isset($extended[$x], $vendors[$entry]))
+						$vendors[$entry]['extended'] = $extended[$x];
+			}
+		}
+
+		return array('contents' => $vendors);
 	}
 
 	protected function getItemTabCurrencyforitems()

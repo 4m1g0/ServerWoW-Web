@@ -287,9 +287,12 @@ class AccountManager_Component extends Component
 		if (strtolower($checker['sha_pass_hash']) != strtolower($user->sha_pass_hash))
 			return $this;
 
+		if (!isset($checker['gmlevel']))
+			$checker['gmlevel'] = -1;
+
 		$user = (object) $checker;
 
-		if (!isset($user->gmlevel))
+		if ($user->gmlevel == -1)
 		{
 			$gmlevel = $this->c('QueryResult', 'Db')
 				->model('AccountAccess')
@@ -312,7 +315,7 @@ class AccountManager_Component extends Component
 		return $this->saveUser($user)->loadCharacters();
 	}
 
-	private function saveUser(&$user)
+	private function saveUser($user)
 	{
 		if (!$user)
 			return $this;
@@ -392,7 +395,30 @@ class AccountManager_Component extends Component
 			return false;
 		}
 
+		if (!isset($user['gmlevel']))
+			$user['gmlevel'] = -1;
+
 		$user = (object) $user;
+
+		if ($user->gmlevel == -1)
+		{
+			$gmlevel = $this->c('QueryResult', 'Db')
+				->model('AccountAccess')
+				->fieldCondition('id', ' = ' . $user->id)
+				->loadItems();
+
+			if (!$gmlevel)
+				$user->gmlevel = 0;
+			else
+			{
+				$max = 0;
+				foreach ($gmlevel as &$level)
+					if ($level['gmlevel'] > $max)
+						$max = $level['gmlevel'];
+
+				$user->gmlevel = $max;
+			}
+		}
 
 		$this->saveUser($user)->m_loginError = ERROR_NONE;
 
