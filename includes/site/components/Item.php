@@ -71,7 +71,7 @@ class Item_Component extends Component
 
 	protected function loadItem()
 	{
-		if (!$this->m_entry)
+		if (!$this->m_entry || $this->m_item)
 			return $this;
 
 		$query = $this->c('QueryResult', 'Db')
@@ -90,6 +90,10 @@ class Item_Component extends Component
 			$this->c('Error_WoW', 'Controller');
 			return $this;
 		}
+
+		$this->c('Log')->writeDebug('%s : item loaded', __METHOD__);
+	
+		unset($query);
 
 		$icon = $this->c('QueryResult', 'Db')
 			->model('WowIcons')
@@ -137,6 +141,8 @@ class Item_Component extends Component
 				->keyIndex('id')
 				->loadItems();
 		}
+
+		$this->m_item['Flags2'] = $this->m_item['FlagsExtra'];
 
 		$this->m_isCorrect = true;
 
@@ -720,7 +726,59 @@ class Item_Component extends Component
 			}
 		}
 
-		$t .= '</ul><span class="clear"><!-- --></span>' . (!$this->m_isTooltip ? '</div>' : '') . '</div>';
+		$t .= '</ul>';
+
+		if (!$this->m_isTooltip)
+		{
+			// Try to find faction equivalent item
+			if ($this->item('Flags2') & ITEM_FLAGS2_ALLIANCE_ONLY)
+				$iFaction = 'alliance';
+			elseif ($this->item('Flags2') & ITEM_FLAGS2_HORDE_ONLY)
+				$iFaction = 'horde';
+			else
+				$iFaction = 'none';
+
+			if ($iFaction != 'none')
+			{
+				$equivalent = $this->c('QueryResult', 'Db')
+					->model('WowItemEquivalents')
+					->fields(array('WowItemEquivalents' => array('item_' . ($iFaction == 'alliance' ? 'horde' : 'alliance'))))
+					->fieldCondition('item_' . $iFaction, ' = ' . $this->item('entry'))
+					->loadItem();
+
+				if ($equivalent)
+				{
+					$q = $this->c('QueryResult', 'Db')
+						->model('ItemTemplate');
+					if ($l->GetLocaleID() != LOCALE_EN)
+						$q->addModel('LocalesItem')
+							->join('left', 'LocalesItem', 'ItemTemplate', 'entry', 'entry')
+							->fields(array('ItemTemplate' => array('entry', 'displayid', 'Quality', 'name'), 'LocalesItem' => array('name_loc' . $l->GetLocaleID())));
+					else
+						$q->fields(array('ItemTemplate' => array('entry', 'displayid', 'Quality', 'name')));
+
+					$item_data = $q->fieldCondition('item_template.entry', ' = ' . $equivalent['item_' . ($iFaction == 'alliance' ? 'horde' : 'alliance')])
+						->loadItem();
+
+					if ($item_data)
+					{
+						$icon = $this->c('QueryResult', 'Db')
+							->model('WowIcons')
+							->fieldCondition('displayid', ' = ' . $item_data['displayid'])
+							->loadItem();
+
+						$t .= '<div class="faction-related">';
+						$t .= '<a href="' . $this->getWowUrl('item/' . $item_data['entry']) . '" rel="np" data-tooltip="#faction-tooltip">';
+						$t .= '<span class="icon-frame frame-14 "><img src="' . $icons_server . '/18/faction_' . ($iFaction == 'alliance' ? '1' : '0') . '.jpg" alt="" width="14" height="14" /></span> ';
+						$t .= '<span class="icon-frame frame-14 "><img src="' . $icons_server . '/18/' . (isset($icon['icon']) ? $icon['icon'] : 'inv_questionmark') .'.jpg" alt="" width="14" height="14" /></span>';
+						$t .= '</a>';
+						$t .= '<div id="faction-tooltip" style="display: none">' . $l->format('template_item_convert_from_alliance', $item_data['Quality'], $item_data['name']) . '</div></div>';
+					}
+				}
+			}
+		}
+
+		$t .= '<span class="clear"><!-- --></span>' . (!$this->m_isTooltip ? '</div>' : '') . '</div>';
 
 		$this->m_tooltip = $t;
 		unset($t);
@@ -1412,7 +1470,8 @@ class Item_Component extends Component
 
 		if ($quest_data && isset($quest_data['entry']) && $quest_data['entry'] > 0)
 			$tabs_info['rewardFromQuests'] = $quest_data['entry'];
-
+/*
+// TODO: need to review this part (slow queries)
 		// Created by spell
 		$crafted_data = $this->c('QueryResult', 'Db')
 			->model('WowSpell')
@@ -1443,6 +1502,7 @@ class Item_Component extends Component
 
 		if ($reagent_data && isset($reagent_data['id']) && $reagent_data['id'] > 0)
 			$tabs_info['reagentForSpells'] = $reagent_data['id'];
+*/
 
 		return $tabs_info;
 	}

@@ -528,6 +528,24 @@ $Site_Locale = array(
     'template_item_tab_header_buy_back_price' => 'Buy Back Price',
     'template_item_tab_header_sell_price' => 'Sell Price',
     
+    'template_item_drop_rate_0' => 'None',
+    'template_item_drop_rate_1' => 'Extremely Low',
+    'template_item_drop_rate_2' => 'Very Low',
+    'template_item_drop_rate_3' => 'Low',
+    'template_item_drop_rate_4' => 'Medium',
+    'template_item_drop_rate_5' => 'High',
+    'template_item_drop_rate_6' => 'Guaranteed',
+
+	'template_item_source_raid' => 'Raid:',
+	'template_item_source_dungeon' => 'Dungeon:',
+	'template_item_source_boss' => 'Boss:',
+
+	'template_item_source_quest' => 'Quest:',
+	'template_item_source_category' => 'Category:',
+
+	'template_item_convert_from_alliance' => 'This item will be converted to <span class="color-q%d">%s</span> if you transfer to the Horde.',
+	'template_item_convert_from_horde' => 'This item will be converted to <span class="color-q%d">%s</span> if you transfer to the Alliance.',
+    
     'template_profile_summary' => 'Summary',
     'template_profile_talent' => 'Talents & Glyphs',
     'template_profile_lots' => 'Auctions',

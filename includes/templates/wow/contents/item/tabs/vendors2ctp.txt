@@ -1,0 +1,122 @@
+<div class="related-content" id="related-vendors">
+	<div class="filters inline">
+		<div class="keyword">
+			<span class="view"></span>
+			<span class="reset" style="display: none"></span>
+			<input id="filter-name-vendors" type="text" class="input filter-name" data-filter="row" maxlength="25" title="Фильтр" value="Фильтр" />
+		</div>
+
+		
+
+		
+	<span class="clear"><!-- --></span>
+	</div>
+		
+		<div class="data-options-top">
+
+
+
+
+
+	<div class="table-options data-options ">
+
+
+			Результаты <strong class="results-start">1</strong>–<strong class="results-end">2</strong> из <strong class="results-total">2</strong>
+
+	<span class="clear"><!-- --></span>
+	</div>
+		</div>
+
+
+	<div class="table full-width">
+		<table>
+				<thead>
+					<tr>
+							<th>
+										<a href="javascript:;" class="sort-link">
+		<span class="arrow">Название</span>
+	</a>
+
+							</th>
+							<th class="align-center">
+										<a href="javascript:;" class="sort-link numeric">
+		<span class="arrow">Уровень</span>
+	</a>
+
+							</th>
+							<th>
+										<a href="javascript:;" class="sort-link">
+		<span class="arrow">Зона</span>
+	</a>
+
+							</th>
+					</tr>
+				</thead>
+			<tbody>
+				<tr class="row1">
+					<td>
+	<a href="javascript:;" data-fansite="npc|44245|Фалдрен Тиллсдейл" class="fansite-link float-right"> </a>
+		<strong>Фалдрен Тиллсдейл</strong>
+
+		<em>&#60;Награды за очки доблести&#62;</em>
+					</td>
+					<td data-raw="55" class="align-center">
+						55
+
+					</td>
+					<td>
+		Штормград
+					</td>
+				</tr>
+				<tr class="row2">
+					<td>
+	<a href="javascript:;" data-fansite="npc|46556|Джамуз&#39;Ваз" class="fansite-link float-right"> </a>
+		<strong>Джамуз&#39;Ваз</strong>
+
+		<em>&#60;Награды за очки доблести&#62;</em>
+					</td>
+					<td data-raw="55" class="align-center">
+						55
+
+					</td>
+					<td>
+		Оргриммар
+					</td>
+				</tr>
+
+		<tr class="no-results">
+			<td colspan="3" class="align-center">
+				Результатов не найдено.
+			</td>
+		</tr>
+			</tbody>
+		</table>
+	</div>
+
+		<div class="data-options-bottom">
+
+
+
+
+
+	<div class="table-options data-options ">
+
+
+			Результаты <strong class="results-start">1</strong>–<strong class="results-end">2</strong> из <strong class="results-total">2</strong>
+
+	<span class="clear"><!-- --></span>
+	</div>
+		</div>
+
+        <script type="text/javascript">
+        //<![CDATA[
+		Wiki.related['vendors'] = new WikiRelated('vendors', {
+			paging: true,
+			totalResults: 2,
+			results: 50,
+			column: 0
+		});
+        //]]>
+        </script>
+</div>
+

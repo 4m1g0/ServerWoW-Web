@@ -545,6 +545,9 @@ $Site_Locale = array(
 
 	'template_item_source_quest' => 'Задание:',
 	'template_item_source_category' => 'Категория:',
+
+	'template_item_convert_from_alliance' => 'Этот предмет будет конвертирован в <span class="color-q%d">%s</span> при смене фракции на Орду.',
+	'template_item_convert_from_horde' => 'Этот предмет будет конвертирован в <span class="color-q%d">%s</span> при смене фракции на Альянс.',
     
     'template_profile_summary' => 'Сводка',
     'template_profile_talent' => 'Таланты и символы',
