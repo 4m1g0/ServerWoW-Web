@@ -1,6 +1,6 @@
 <div id="wiki" class="wiki directory wiki-item">
 	<div class="title">
-		<h2>Предметы</h2>
+		<h2><?php echo $l->getString('template_menu_items'); ?></h2>
 	</div>
 	<div class="item-results" id="item-results">
 	<?php echo $this->region('pager'); ?>
@@ -8,16 +8,11 @@
 				<table>
 					<thead>
 						<tr>
-							<th>	<span class="sort-tab">Название</span>
-</th>
-							<th>	<span class="sort-tab">Уровень</span>
-</th>
-							<th>	<span class="sort-tab">Требуется</span>
-</th>
-							<th>	<span class="sort-tab">Источник</span>
-</th>
-							<th>	<span class="sort-tab">Тип</span>
-</th>
+							<th><span class="sort-tab"><?php echo $l->getString('template_item_table_name'); ?></span></th>
+							<th><span class="sort-tab"><?php echo $l->getString('template_item_table_level'); ?></span></th>
+							<th><span class="sort-tab"><?php echo $l->getString('template_item_table_required_level'); ?></span></th>
+							<th><span class="sort-tab"><?php echo $l->getString('template_item_table_source'); ?></span></th>
+							<th><span class="sort-tab"><?php echo $l->getString('template_item_table_type'); ?></span></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,7 +41,7 @@
 								<?php echo $item['RequiredLevel']; ?>
 							</td>
 							<td> </td>
-							<td>Расходуемые</td>
+							<td><!-- TODO: type here --></td>
 						</tr>
 
 					<?php ++$row; endforeach; endif; ?>

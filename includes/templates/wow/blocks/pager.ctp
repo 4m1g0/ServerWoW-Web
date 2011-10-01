@@ -1,5 +1,5 @@
 <?php
-if (!$pager) return;
+if (!$pager || $pager['pagesCount'] == 0) return;
 $current = false;
 $skipLast = false;
 $url_str = '';
@@ -11,16 +11,28 @@ if ($pagerOptions)
 			$url_str .= '&amp;' . $opt . '=' . $val;
 	}
 }
+if (!isset($onlyPaging))
+	$onlyPaging = false;
+
+if (!$onlyPaging) :
 ?>
 <div class="table-options data-options ">
 	<div class="option">
+
+<?php endif; ?>
 		<ul class="ui-pagination">
 		<?php if ($pager['allowPrev']) : ?>
 		<li class="cap-item">
-			<a href="?page=<?php echo $pager['prev'] . $url_str; ?>">Пред.</a>
+			<a href="?page=<?php echo $pager['prev'] . $url_str; ?>"><?php echo $l->getString('template_item_table_prev'); ?></a>
 		</li>
 		<?php endif; ?>
-		<li<?php if ($pager['current'] == 1) { echo ' class="current"'; $current = true; } ?>>
+		<li<?php
+		if ($pager['current'] == 1)
+		{
+			echo ' class="current"';
+			$current = true;
+		}
+		?>>
 			<a href="?page=1<?php echo $url_str; ?>">1</a>
 		</li>
 		<?php if ($pager['break_left']) : ?>
@@ -28,7 +40,7 @@ if ($pagerOptions)
 		<?php endif; ?>
 		<?php
 		if (isset($pager['pages']['left']) && $pager['pages']['left']) :
-			foreach ($pager['pages']['left'] as $page) : if ($page == 1) continue;
+			foreach ($pager['pages']['left'] as $page) : if ($page == 1) continue; if ($page == $pager['pagesCount']) $skipLast = true;
 		?>
 		<li<?php if ($page == $pager['current']) {echo ' class="current"'; $current = true;} ?>>
 			<a href="?page=<?php echo $page . $url_str; ?>"><?php echo $page; ?></a>
@@ -42,7 +54,7 @@ if ($pagerOptions)
 		<?php endif; ?>
 		<?php
 		if (isset($pager['pages']['right']) && $pager['pages']['right']) :
-		foreach ($pager['pages']['right'] as $page) : if ($page == $pager['pagesCount']) continue;
+		foreach ($pager['pages']['right'] as $page) : if ($page == $pager['pagesCount']) : $skipLast = true; continue; endif;
 		?>
 		<li<?php if ($page == $pager['current']) {echo ' class="current"'; $current = true;} ?>>
 			<a href="?page=<?php echo $page . $url_str; ?>"><?php echo $page; ?></a>
@@ -56,11 +68,13 @@ if ($pagerOptions)
 			</li>
 		<?php endif; if ($pager['allowNext']) : ?>
 			<li class="cap-item">
-				<a href="?page=<?php echo $pager['next'] . $url_str; ?>">Далее</a>
+				<a href="?page=<?php echo $pager['next'] . $url_str; ?>"><?php echo $l->getString('template_item_table_next'); ?></a>
 			</li>
 		<?php endif; ?>
 		</ul>
+<?php if (!$onlyPaging) : ?>
 	</div>
-	Результаты <strong class="results-start"><?php echo $pager['result_start']; ?></strong>–<strong class="results-end"><?php echo $pager['result_end']; ?></strong> из <strong class="results-total"><?php echo $pager['result_total']; ?></strong>
+	<?php echo $l->format('template_guild_roster_results_count', $pager['result_start'], $pager['result_end'], $pager['result_total']); ?>
 	<span class="clear"><!-- --></span>
 </div>
+<?php endif; ?>

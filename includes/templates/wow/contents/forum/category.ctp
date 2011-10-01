@@ -37,30 +37,7 @@
 			<span class="clear"><!-- --></span>
         </div>
 
-        <div class="pageNav">
-
-            	<span class="active">1</span>
-
-
-						<a href="/wow/en/forum/975485/?page=2">2</a>
-
-						<div class="page-sep"></div>
-						<a href="/wow/en/forum/975485/?page=3">3</a>
-
-						<div class="page-sep"></div>
-						<a href="/wow/en/forum/975485/?page=4">4</a>
-
-						<div class="page-sep"></div>
-
-            	<div class="page-sep">
-            		…
-        		</div>
-
-	            <a href="/wow/en/forum/975485/?page=361">361</a>
-		            	<a href="/wow/en/forum/975485/?page=2">Next &gt;</a>
-        </div>
-
-
+        <?php echo $this->region('pager'); ?>
 
 	<span class="clear"><!-- --></span>
     </div>
@@ -168,55 +145,13 @@
     <div class="forum-actions topic-bottom">
 		<div class="actions-panel">
 
+			<?php echo $this->region('pager'); ?>
 
 
 
-
-
-
-
-        <div class="pageNav">
-
-            	<span class="active">1</span>
-
-
-						<a href="/wow/en/forum/975485/?page=2">2</a>
-
-						<div class="page-sep"></div>
-						<a href="/wow/en/forum/975485/?page=3">3</a>
-
-						<div class="page-sep"></div>
-						<a href="/wow/en/forum/975485/?page=4">4</a>
-
-						<div class="page-sep"></div>
-
-            	<div class="page-sep">
-            		…
-        		</div>
-
-	            <a href="/wow/en/forum/975485/?page=361">361</a>
-		            	<a href="/wow/en/forum/975485/?page=2">Next &gt;</a>
-        </div>
-
-
-
-
-
-
-	<a
-		class="ui-button button1 "
-			href="topic"
-		
-		
-		
-		onclick="return Login.open('https://eu.battle.net/login/login.frag');"
-		
-		
-		>
+	<a class="ui-button button1 " href="topic" onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');" >
 		<span>
-			<span>
-                	Create Thread
-</span>
+			<span>Create Thread</span>
 		</span>
 	</a>
 

@@ -20,6 +20,9 @@
 
 class Forum_Component extends Component
 {
+	const TOPICS_PER_PAGE = 50;
+	const POSTS_PER_PAGE = 20;
+
 	protected $m_topicId = 0;
 	protected $m_categoryId = 0;
 	protected $m_pager = array();
@@ -30,6 +33,7 @@ class Forum_Component extends Component
 	protected $m_postData = array();
 	protected $m_blizztrackerData = array();
 	protected $m_indexCategories = array();
+	protected $m_forumCounters = array();
 
 	public function initForums($categoryId, $topicId)
 	{
@@ -166,6 +170,19 @@ class Forum_Component extends Component
 			->fieldCondition('cat_id', ' = ' . $this->m_categoryId)
 			->loadItem();
 
+		if (!$this->m_categoryData)
+			return $this;
+
+		// Count
+		$this->m_forumCounters['topics'] = $this->c('QueryResult', 'Db')
+			->model('WowForumThreads')
+			->fields(array('WowForumThreads' => array('thread_id')))
+			->runFunction('COUNT', 'thread_id')
+			->fieldCondition('cat_id', ' = ' . $this->m_categoryId)
+			->loadItem();
+
+		$this->m_forumCounters['topics'] = $this->m_forumCounters['topics']['thread_id'];
+		
 		$this->m_categoryTopics = $this->c('QueryResult', 'Db')
 			->model('WowForumThreads')
 			->addModel('WowForumPosts')
@@ -175,6 +192,7 @@ class Forum_Component extends Component
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
 			->fieldCondition('wow_forum_threads.cat_id', ' = ' . $this->m_categoryId)
 			->fieldCondition('wow_forum_posts.post_num', ' = 1')
+			->limit(($this->getDisplayLimit('topics') * $this->getPage()), $this->getPage(true))
 			->loadItems();
 
 		return $this;
@@ -322,15 +340,36 @@ class Forum_Component extends Component
 				->loadItem();
 		}
 
+		// Count
+		$count = $this->c('QueryResult', 'Db')
+			->model('WowForumPosts', 'Db')
+			->fields(array('WowForumPosts' => array('post_id')))
+			->runFunction('COUNT', 'post_id')
+			->loadItem();
+
+		$this->m_forumCounters['posts'] = $count['post_id'];
+
 		$this->m_topicPosts = $this->c('QueryResult', 'Db')
 			->model('WowForumPosts')
 			->addModel('WowUserCharacters')
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
 			->fieldCondition('wow_forum_posts.thread_id', ' = ' . $this->m_topicId)
+			->limit(($this->getDisplayLimit('posts') * $this->getPage()), $this->getPage(true))
 			->loadItems();
 
 		return $this;
+	}
+
+	protected function getPage($asOffset = false)
+	{
+		if (!isset($_GET['page']))
+			return $asOffset ? 0 : 1;
+
+		$page = (int) $_GET['page'];
+		$page = $page >= 1 ? $page : 1;
+
+		return $asOffset ? $page - 1 : $page;
 	}
 
 	protected function handleTopic()
@@ -423,6 +462,26 @@ class Forum_Component extends Component
 	public function getIndexCategories()
 	{
 		return $this->m_indexCategories;
+	}
+
+	public function getDisplayLimit($type)
+	{
+		if ($type == 'topics')
+			return self::TOPICS_PER_PAGE;
+		elseif ($type == 'posts')
+			return self::POSTS_PER_PAGE;
+		else
+			return 0;
+	}
+
+	public function getTopicsInCategoryCount()
+	{
+		return isset($this->m_forumCounters['topics']) ? $this->m_forumCounters['topics'] : 0;
+	}
+
+	public function getPostsInTopicCount()
+	{
+		return isset($this->m_forumCounters['posts']) ? $this->m_forumCounters['posts'] : 0;
 	}
 }
 ?>

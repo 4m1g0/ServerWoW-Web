@@ -62,7 +62,8 @@ class Pager_Component extends Component
 		if ($page < 5)
 		{
 			for ($i = 1; $i < 8; ++$i)
-				$pager['pages']['left'][] = $i;
+				if ($i <= $pages_count)
+					$pager['pages']['left'][] = $i;
 		}
 		else
 		{
@@ -89,7 +90,7 @@ class Pager_Component extends Component
 		if (isset($pager['pages']['left']) && isset($pager['pages']['left'][0]) && $pager['pages']['left'][0] <= 2)
 			$pager['break_left'] = false;
 
-		if ($pager['current'] == $pager['pagesCount'] || (isset($pager['pages']['right']) && $pager['pages']['right'] && min($pager['pages']['right']) + 4 >= $pages_count))
+		if ($pager['current'] == $pager['pagesCount'] || (isset($pager['pages']['right']) && $pager['pages']['right'] && min($pager['pages']['right']) + 4 >= $pages_count) || $pages_count <= 7)
 			$pager['break_right'] = false;
 
 		return $pager;

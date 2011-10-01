@@ -38,15 +38,16 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 	public function build()
 	{
 		$this->checkInfo()
-			->c('Forum')->initForums($this->m_categoryId, $this->m_topicId);
+			->c('Forum')
+			->initForums($this->m_categoryId, $this->m_topicId);
 
 		switch ($this->c('Forum')->getType())
 		{
 			case FORUM_TYPE_CATEGORY:
-				$this->buildBlock('category');
+				$this->buildBlocks(array('pager', 'category'));
 				break;
 			case FORUM_TYPE_TOPIC:
-				$this->buildBlock('topic');
+				$this->buildBlocks(array('pager', 'topic'));
 				break;
 			case FORUM_TYPE_INDEX:
 			default:
@@ -79,6 +80,16 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 			->setVar('forum', $this->c('Forum'))
 			->setTemplate('topic', 'wow' . DS . 'contents' . DS . 'forum')
 			->setRegion('pagecontent');
+	}
+
+	protected function block_pager()
+	{
+		return $this->block()
+			->setVar('pager', $this->c('Pager')->getPager(array('totalCount' => $this->c('Forum')->getTopicsInCategoryCount(), 'limit' => $this->c('Forum')->getDisplayLimit('topics'))))
+			->setVar('onlyPaging', true)
+			->setVar('pagerOptions', false)
+			->setRegion('pager')
+			->setTemplate('pager', 'wow' . DS . 'blocks');
 	}
 }
 ?>

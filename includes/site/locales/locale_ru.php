@@ -508,13 +508,13 @@ $Site_Locale = array(
     
     'template_item_table_next' => 'Далее',
     'template_item_table_prev' => 'Пред.',
-    'template_item_table_name' => 'Имя',
+    'template_item_table_name' => 'Название',
     'template_item_table_level' => 'Уровень',
     'template_item_table_required_level' => 'Требуется',
     'template_item_table_source' => 'Источник',
     'template_item_table_type' => 'Тип',
     
-    'template_item_tab_header_name' => 'Имя',
+    'template_item_tab_header_name' => 'Название',
     'template_item_tab_header_type' => 'Тип',
     'template_item_tab_header_level' => 'Уровень',
     'template_item_tab_header_zone' => 'Зона',

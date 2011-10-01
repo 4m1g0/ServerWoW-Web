@@ -23,6 +23,7 @@
 
 		<div class="forum-actions top">
 			<div class="actions-panel">
+				<?php echo $this->region('pager'); ?>
 				<a class="ui-button button1 " href="#new-post" onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');">
 					<span>
 						<span><?php echo $l->getString('template_blog_add_post'); ?></span>
@@ -166,6 +167,7 @@ if ($posts) :
 		</div>
 		<div class="forum-actions bottom">
 			<div class="actions-panel">
+				<?php echo $this->region('pager'); ?>
 				<ol class="ui-breadcrumb">
 					<li>
 						<a href="<?php echo $this->getWowUrl(); ?>" rel="np">
