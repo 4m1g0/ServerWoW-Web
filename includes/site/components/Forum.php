@@ -90,9 +90,24 @@ class Forum_Component extends Component
 		return $this->m_topicId;
 	}
 
+	public function getTopicRootCategoryId()
+	{
+		return isset($this->m_topicData['root']['cat_id']) ? $this->m_topicData['root']['cat_id'] : 0;
+	}
+
+	public function getTopicRootCategoryTitle()
+	{
+		return isset($this->m_topicData['root']['title']) ? $this->m_topicData['root']['title'] : '';
+	}
+
 	public function getTopicCategoryId()
 	{
 		return isset($this->m_topicData['cat_id']) ? $this->m_topicData['cat_id'] : 0;
+	}
+
+	public function getTopicCategoryTitle()
+	{
+		return isset($this->m_topicData['categoryTitle']) ? $this->m_topicData['categoryTitle'] : '';
 	}
 
 	public function getTopicTitle()
@@ -288,8 +303,24 @@ class Forum_Component extends Component
 
 		$this->m_topicData = $this->c('QueryResult', 'Db')
 			->model('WowForumThreads')
-			->fieldCondition('thread_id', ' = ' . $this->m_topicId)
+			->addModel('WowForumCategory')
+			->join('left', 'WowForumCategory', 'WowForumThreads', 'cat_id', 'cat_id')
+			->setAlias('WowForumCategory', 'title_' . $this->c('Locale')->GetLocale(), 'categoryTitle')
+			->setAlias('WowForumCategory', 'desc_' . $this->c('Locale')->GetLocale(), 'categoryDesc')
+			->setAlias('WowForumCategory', 'cat_id', 'categoryId')
+			->fieldCondition('wow_forum_threads.thread_id', ' = ' . $this->m_topicId)
 			->loadItem();
+
+		if (!$this->m_topicData)
+			return $this;
+
+		if ($this->m_topicData['parent_cat'] > 0)
+		{
+			$this->m_topicData['root'] = $this->c('QueryResult', 'Db')
+				->model('WowForumCategory')
+				->fieldCondition('cat_id', ' = ' . $this->m_topicData['parent_cat'])
+				->loadItem();
+		}
 
 		$this->m_topicPosts = $this->c('QueryResult', 'Db')
 			->model('WowForumPosts')

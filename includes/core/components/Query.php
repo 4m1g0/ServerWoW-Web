@@ -27,15 +27,18 @@ class Query_Component extends Component
 	protected $m_sql = array();
 	protected $m_fieldsCount = 0;
 	protected $m_functions = array();
+	protected $m_changedAliases = array();
 
 	public function clear()
 	{
+		$this->clearAliases();
 		$this->m_model = null;
 		$this->m_fields = array();
 		$this->m_childModels = array();
 		$this->m_rawSql = '';
 		$this->m_sql = array();
 		$this->m_fieldsCount = 0;
+		$this->m_functions = array();
 
 		return 0;
 	}
@@ -72,7 +75,25 @@ class Query_Component extends Component
 		if (!$this->getModelByName($model_name))
 			return $this;
 
+		if (!isset($this->m_changedAliases[$model_name]))
+			$this->m_changedAliases[$model_name] = array();
+
+		$this->m_changedAliases[$model_name][$field_name] = array($field_name => $alias);
+
 		$this->getModelByName($model_name)->m_aliases[$field_name] = $alias;
+
+		return $this;
+	}
+
+	private function clearAliases()
+	{
+		if (!$this->m_changedAliases)
+			return $this;
+
+		foreach ($this->m_changedAliases as $model => $aliases)
+			$this->getModelByName($model)->restoreFields()->restoreAliases();
+
+		$this->m_changedAliases = array();
 
 		return $this;
 	}

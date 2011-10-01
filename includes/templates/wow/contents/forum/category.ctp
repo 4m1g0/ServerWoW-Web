@@ -37,14 +37,6 @@
 			<span class="clear"><!-- --></span>
         </div>
 
-
-
-
-
-
-
-
-
         <div class="pageNav">
 
             	<span class="active">1</span>
@@ -147,7 +139,7 @@
 								<?php echo $topic['blizz_name'] ? $topic['blizz_name'] : $topic['name']; ?>
 								<img src="<?php echo CLIENT_FILES_PATH; ?>/wow/static/images/layout/cms/icon_blizzard.gif" alt="" />
 							</span>
-							<?php else : echo $topic['blizz_name'] ? $topic['blizz_name'] : $topic['name']; endif; ?>
+							<?php else : echo $topic['name']; endif; ?>
 					</td>
 					<td class="post-replies">
 						2

@@ -40,10 +40,15 @@ class Model_Db_Component extends Component
 	private $m_isJoining = false;
 	private $m_joinCondition = array();
 	private $m_joinModels = array();
+	private $m_defaultFields = array();
+	private $m_defaultAliases = array();
 
 	public function initialize()
 	{
 		$this->m_types['default'] = array_values($this->m_fields);
+
+		$this->m_defaultFields = $this->m_fields;
+		$this->m_defaultAliases = $this->m_aliases;
 
 		return $this;
 	}
@@ -475,6 +480,50 @@ class Model_Db_Component extends Component
 		}
 
 		return $this->m_fields;
+	}
+
+	public function removeAliasByFieldName($fieldName)
+	{
+		if (isset($this->m_aliases[$fieldName]))
+			unset($this->m_aliases[$fieldName]);
+
+		return $this;
+	}
+
+	public function removeAliasByAliasName($aliasName)
+	{
+		if (!$this->m_aliases)
+			return $this;
+
+		$fieldToRemove = false;
+
+		foreach ($this->m_aliases as $field => $alias)
+		{
+			if ($aliasName == $alias)
+			{
+				$fieldToRemove = $field;
+				break;
+			}
+		}
+
+		if ($fieldToRemove && isset($this->m_aliases[$fieldToRemove]))
+			unset($this->m_aliases[$fieldToRemove]);
+
+		return $this;
+	}
+
+	public function restoreFields()
+	{
+		$this->m_fields = $this->m_defaultFields;
+
+		return $this;
+	}
+
+	public function restoreAliases()
+	{
+		$this->m_aliases = $this->m_defaultAliases;
+
+		return $this;
 	}
 }
 ?>

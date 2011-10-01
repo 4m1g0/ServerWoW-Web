@@ -1775,6 +1775,7 @@ The Battle.net Account Team<br />
     'template_blizztracker_posted_before_hours' => '%s hours, %s minutes ago',
     'template_blizztracker_posted_before_minutes' => '%s minutes ago',
     
+	'template_forum_message' => 'Messages',
     'template_forum_thread_featured' => 'Featured',
     'template_forum_thread_sticky' => 'Sticky',
     'template_forum_thread_closed' => 'Locked',

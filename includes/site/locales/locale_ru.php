@@ -1716,6 +1716,7 @@ $Site_Locale = array(
     'template_blizztracker_posted_before_hours' => '%s ч, %s м ago',
     'template_blizztracker_posted_before_minutes' => '%s м ago',
     
+	'template_forum_message' => 'Сообщения',
     'template_forum_thread_featured' => 'Прикрепленное сообщение',
     'template_forum_thread_sticky' => 'Прикрепленное сообщение',
     'template_forum_thread_closed' => 'Закрыто',
