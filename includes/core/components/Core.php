@@ -183,6 +183,9 @@ class Core_Component extends Component
 	 **/
 	private function initController()
 	{
+		if (defined('SKIP_CONTROLLER'))
+			return $this;
+
 		$controller_name = str_replace(' ', '', $this->getUrlAction(0));
 		$controller_name = preg_replace('/[^ \/_A-Za-z-]/', '', $controller_name);
 

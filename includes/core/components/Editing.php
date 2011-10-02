@@ -29,6 +29,7 @@ class Editing_Component extends Component
 	protected $m_id = 0;
 	protected $m_limit = 0;
 	protected $m_data = array();
+	protected $m_insertId = 0;
 
 	public function __set($name, $value)
 	{
@@ -168,6 +169,7 @@ class Editing_Component extends Component
 		$this->m_model = null;
 		$this->m_primaryField = '';
 		$this->m_rawSql = '';
+		$this->m_insertId = 0;
 
 		return $this;
 	}
@@ -258,7 +260,16 @@ class Editing_Component extends Component
 		$this->parseSql();
 
 		$this->c('Db')->{$this->m_model->m_dbType}()->query($this->m_rawSql);
+
+		if ($this->m_insertType == 'insert')
+			$this->m_insertId = $this->c('Db')->{$this->m_model->m_dbType}()->GetInsertID();
+
 		return $this;
+	}
+
+	public function getInsertId()
+	{
+		return $this->m_insertId;
 	}
 
 	public function load()

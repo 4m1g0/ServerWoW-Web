@@ -23,6 +23,7 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 	protected $m_menuIndex = 'forums';
 	protected $m_categoryId = 0;
 	protected $m_topicId = 0;
+	protected $m_pagerLimits = 0;
 
 	protected function checkInfo()
 	{
@@ -44,9 +45,11 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 		switch ($this->c('Forum')->getType())
 		{
 			case FORUM_TYPE_CATEGORY:
+				$this->m_pagerLimits = $this->c('Forum')->getTopicsInCategoryCount();
 				$this->buildBlocks(array('pager', 'category'));
 				break;
 			case FORUM_TYPE_TOPIC:
+				$this->m_pagerLimits = $this->c('Forum')->getPostsInTopicCount();
 				$this->buildBlocks(array('pager', 'topic'));
 				break;
 			case FORUM_TYPE_INDEX:
@@ -85,7 +88,7 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 	protected function block_pager()
 	{
 		return $this->block()
-			->setVar('pager', $this->c('Pager')->getPager(array('totalCount' => $this->c('Forum')->getTopicsInCategoryCount(), 'limit' => $this->c('Forum')->getDisplayLimit('topics'))))
+			->setVar('pager', $this->c('Pager')->getPager(array('totalCount' => $this->m_pagerLimits, 'limit' => $this->c('Forum')->getDisplayLimit(($this->c('Forum')->getType() == FORUM_TYPE_CATEGORY ? 'topics' : 'posts')))))
 			->setVar('onlyPaging', true)
 			->setVar('pagerOptions', false)
 			->setRegion('pager')

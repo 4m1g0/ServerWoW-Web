@@ -397,7 +397,6 @@ class Forum_Component extends Component
 
 		if (strpos($inpStr, '[') !== false && strpos($inpStr, ']') !== false)
 			$inpStr = str_replace($bbcodes, $htmltags, $inpStr);
-
 		elseif (strpos($inpStr, '<') !== false && strpos($inpStr, '>') !== false)
 			$inpStr = str_replace($htmltags, $bbcodes, $inpStr);
 

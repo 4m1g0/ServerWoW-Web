@@ -1,4 +1,5 @@
 <?php if ($this->core->isCached()) echo '<!-- Restored from cache: ' . $this->core->getCacheEntry() . ' -->' . NL; ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb">
 <head>
 <title><?php echo $this->c('Layout')->getPageTitle(); ?></title>
