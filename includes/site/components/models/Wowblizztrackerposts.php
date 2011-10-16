@@ -18,26 +18,13 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class CharacterQueststatus_Model_Component extends Model_Db_Component
+class WowBlizztrackerPosts_Model_Component extends Model_Db_Component
 {
-	public $m_model = 'CharacterQueststatus';
-	public $m_table = 'character_queststatus';
-	public $m_dbType = 'characters';
+	public $m_model = 'WowBlizztrackerPosts';
+	public $m_table = 'wow_blizztracker_posts';
+	public $m_dbType = 'wow';
 	public $m_fields = array(
-		'guid' => 'Id',
-		'quest' => array('type' => 'integer'),
-		'status' => array('type' => 'integer'),
-		'explored' => array('type' => 'integer'),
-		'timer' => array('type' => 'integer'),
-		'mobcount1' => array('type' => 'integer'),
-		'mobcount2' => array('type' => 'integer'),
-		'mobcount3' => array('type' => 'integer'),
-		'mobcount4' => array('type' => 'integer'),
-		'itemcount1' => array('type' => 'integer'),
-		'itemcount2' => array('type' => 'integer'),
-		'itemcount3' => array('type' => 'integer'),
-		'itemcount4' => array('type' => 'integer'),
-		'playercount' => array('type' => 'integer'),
+		'tracker_post_id' => 'Id',
 	);
 }
 ?>

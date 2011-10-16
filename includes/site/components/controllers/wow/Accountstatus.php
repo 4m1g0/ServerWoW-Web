@@ -18,29 +18,36 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class Wow_Controller_Component extends Controller_Component
+class Accountstatus_Wow_Controller_Component extends Groupwow_Controller_Component
 {
-	protected $m_skipBuild = true;
-	protected $m_allowedControllers = array(
-		'home', 'character', 'guild', 'game', 'item', 'sidebar', 'community', 'media', 'forum', 'services',
-		'blog', 'data', 'spell', 'achievement', 'zone', 'faction', 'account-status'
-	);
-
+	protected $m_customErrorMsg = '';
+	protected function setBreadcrumb()
+	{
+		$this->m_breadcrumb = array(
+			array(
+				'link' => '',
+				'caption' => 'World of Warcraft'
+			)
+		);
+		
+		return $this;
+	}
 	public function build($core)
 	{
-		if (!$core->getUrlAction(1))
-			$action = 'Home';
-		else
-			$action = ucfirst(strtolower($core->getUrlAction(1)));
+		if (!$this->c('AccountManager')->isHaveAnyCharacters())
+			$this->m_customErrorMsg = 'template_account_error_no_characters';
 
-		if (!in_array(strtolower($action), $this->m_allowedControllers))
-			$com = 'Error_WoW';
-		else
-			$com = $action . '_WoW';
-
-		$this->c($com, 'Controller');
-
+		$this->buildBlock('status');
+		$this->buildBreadcrumb();
 		return $this;
+	}
+
+	protected function block_status()
+	{
+		return $this->block()
+			->setVar('errorMsg', $this->m_customErrorMsg)
+			->setTemplate('status', 'wow' . DS . 'contents' . DS . 'account-status')
+			->setRegion('pagecontent');
 	}
 }
 ?>

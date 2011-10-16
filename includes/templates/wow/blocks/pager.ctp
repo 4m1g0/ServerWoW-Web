@@ -1,5 +1,7 @@
 <?php
-if (!$pager || $pager['pagesCount'] == 0) return;
+//dump($pager);
+if (!$pager || $pager['pagesCount'] == 0 || $pager['source']['totalCount'] < $pager['source']['limit']) return;
+//if ($pager['current'] == 1 && ((sizeof($pager['pages']['left']) == 1 && $pager['pages']['left'][0] == 1) || (sizeof($pager['pages']['right']) == 1 && $pager['pages']['right'][0] == 1))) return;
 $current = false;
 $skipLast = false;
 $url_str = '';

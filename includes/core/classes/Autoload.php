@@ -33,6 +33,7 @@ abstract class Autoload
 		$classType = '';
 		$path = '';
 		$folders = array(SITE_COMPONENTS_DIR, CORE_COMPONENTS_DIR);
+		$name = str_replace('-', '', $name);
 
 		$pieces = explode('_', $name);
 		if ($pieces)

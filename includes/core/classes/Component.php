@@ -175,6 +175,7 @@ abstract class Component
 		//TODO: Try to check class file existence before create instance of class.
 		//If this will be implemented, we'll can safely handle controller errors (404).
 
+		$c_name = str_replace('-', '', $c_name);
 		$component = new $c_name($c_name, $this->core); // 
 
 		$this->addComponent($name, $c_type, $component);

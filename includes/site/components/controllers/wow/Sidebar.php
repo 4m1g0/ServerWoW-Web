@@ -18,29 +18,41 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class Wow_Controller_Component extends Controller_Component
+class Sidebar_Wow_Controller_Component extends Groupwow_Controller_Component
 {
-	protected $m_skipBuild = true;
-	protected $m_allowedControllers = array(
-		'home', 'character', 'guild', 'game', 'item', 'sidebar', 'community', 'media', 'forum', 'services',
-		'blog', 'data', 'spell', 'achievement', 'zone', 'faction', 'account-status'
-	);
+	protected $m_sidebarData = array();
 
 	public function build($core)
 	{
-		if (!$core->getUrlAction(1))
-			$action = 'Home';
-		else
-			$action = ucfirst(strtolower($core->getUrlAction(1)));
+		$action = $core->getUrlAction(2);
+		$error = false;
+		switch ($action)
+		{
+			case 'forums':
+				$this->m_sidebarData = $this->c('Forum')->getSidebarData();
+				$this->buildBlock('forums');
+				break;
+			default:
+				$this->setErrorPage()->c('Error_Wow', 'Controller');
+				$error = true;
+				break;
+		}
 
-		if (!in_array(strtolower($action), $this->m_allowedControllers))
-			$com = 'Error_WoW';
-		else
-			$com = $action . '_WoW';
-
-		$this->c($com, 'Controller');
+		if (!$error)
+		{
+			$this->ajaxPage();
+			define('AJAX_PAGE', true);
+		}
 
 		return $this;
+	}
+
+	protected function block_forums()
+	{
+		return $this->block()
+			->setVar('sidebar', $this->m_sidebarData)
+			->setTemplate('forums', 'wow' . DS . 'contents' . DS . 'sidebar')
+			->setRegion('wow_ajax');
 	}
 }
 ?>

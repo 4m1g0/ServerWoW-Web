@@ -43,7 +43,7 @@ class Query_Component extends Component
 		return 0;
 	}
 
-	public function runFunction($function_name, $field)
+	public function runFunction($function_name, $field, $field_alias = '')
 	{
 		if (is_array($field))
 		{
@@ -53,7 +53,7 @@ class Query_Component extends Component
 		else
 			$table = $this->getModel()->m_table;
 
-		$this->appendSql('function', array($table, $field, $function_name));
+		$this->appendSql('function', array($table, $field, $function_name, $field_alias));
 
 		return $this;
 	}
@@ -306,10 +306,10 @@ class Query_Component extends Component
 		return $this->appendSql('limit', array($limit, $offset));
 	}
 
-	public function group($fields)
+	/*public function group($fields)
 	{
 		return $this->appendSql('group', $fields);
-	}
+	}*/
 
 	public function keyIndex($field)
 	{
@@ -346,6 +346,18 @@ class Query_Component extends Component
 		foreach ($this->m_sql['function'] as $func)
 			if ($func[0] == $table && $func[1] == $field)
 				return $func[2];	
+
+		return '';
+	}
+
+	private function getAliasForFieldFunction($table, $field)
+	{
+		if (!isset($this->m_sql['function']))
+			return false;
+
+		foreach ($this->m_sql['function'] as $func)
+			if ($func[0] == $table && $func[1] == $field && isset($func[3]) && $func[3])
+				return ' AS `' . $func[3] . '`';
 
 		return '';
 	}
@@ -391,18 +403,27 @@ class Query_Component extends Component
 				if (!isset($table[$i]) || !$table[$i])
 					continue;
 
+				$skipAs = false;
+
 				if (isset($this->m_sql['function']))
 				{
 					$function = $this->getFunctionForField($this->getModel()->m_table, $table[$i]);
 					if ($function)
-						$this->m_rawSql .= strtoupper($function) . '(' . '`' . $alias . '`.`' . $table[$i] . '`' . ')';
+					{
+						$alias_f_func = $this->getAliasForFieldFunction($this->getModel()->m_table, $table[$i]);
+						if ($alias_f_func)
+							$skipAs = true;
+
+						$this->m_rawSql .= strtoupper($function) . '(' . '`' . $alias . '`.`' . $table[$i] . '`' . ')' . $alias_f_func;
+					}
 					else
 						$this->m_rawSql .= '`' . $alias . '`.`' . $table[$i] . '`';
 				}
 				else
 					$this->m_rawSql .= '`' . $alias . '`.`' . $table[$i] . '`';
 
-				$this->m_rawSql .= ' AS `' . (isset($model->m_aliases[$table[$i]]) ? $model->m_aliases[$table[$i]] : $table[$i]) . '`';
+				if (!$skipAs)
+					$this->m_rawSql .= ' AS `' . (isset($model->m_aliases[$table[$i]]) ? $model->m_aliases[$table[$i]] : $table[$i]) . '`';
 
 				$this->m_rawSql .= NL;
 
@@ -526,6 +547,13 @@ class Query_Component extends Component
 				$this->m_rawSql .= ' 1' . NL;
 		}
 
+		if (isset($this->m_sql['group']))
+		{
+			$g = $this->m_sql['group'][0];
+			if ($g)
+				$this->m_rawSql .= 'GROUP BY `' . $table_aliases[$this->getModelByName($g['model'])->m_table] . '`.`' . $g['field'] . '`' . NL;
+		}
+
 		if (isset($this->m_sql['order']))
 		{
 			$this->m_rawSql .= 'ORDER BY ' . NL;
@@ -594,6 +622,13 @@ class Query_Component extends Component
 	public function getIndexKey()
 	{
 		return isset($this->m_sql['key_index']) ? $this->m_sql['key_index'][0] : false;
+	}
+
+	public function group($model_name, $field_name)
+	{
+		$this->appendSql('group', array('model' => $model_name, 'field' => $field_name));
+
+		return $this;
 	}
 }
 ?>

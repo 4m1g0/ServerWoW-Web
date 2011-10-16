@@ -37,6 +37,7 @@ class WowForumPosts_Model_Component extends Model_Db_Component
 		'author_ip' => array('type' => 'string'),
 		'post_num' => array('type' => 'integer'),
 		'edit_date' => array('type' => 'integer'),
+		'post_editor' => array('type' => 'string'),
 		'deleted' => array('type' => 'integer'),
 	);
 }

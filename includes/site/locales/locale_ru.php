@@ -313,11 +313,11 @@ $Site_Locale = array(
 	'template_sotd_sidebar_all' => 'Смотреть все скриншоты',
     'template_forums_sidebar_title' => 'Форумы',
     'template_profile_caption' => 'Профиль',
-    'template_my_forum_posts_caption' => 'Мои сообщения на форуме',
+    'template_my_forum_posts_caption' => 'Мои сообщения',
     'template_browse_auction_caption' => 'Просмотреть аукцион',
     'template_browse_events_caption' => 'Просмотреть события',
     'template_manage_characters_caption' => 'Управление персонажами<br /><span>Настройте выпадающее меню персонажа.</span>',
-    'template_characters_not_found' => 'Персонажи не найдены',
+    'template_characters_not_found' => 'Персонажей не найдено',
     'template_filter_caption' => 'Фильтр',
     'template_back_to_characters_list' => 'К списку персонажей',
     'template_change_character' => 'Сменить персонажа',
@@ -628,6 +628,7 @@ $Site_Locale = array(
     'template_guild' => 'Гильдия',
     'template_guild_members_count' => 'Членов гильдии: %d',
     'template_guild_under_name' => 'Гильдия <span class="level"><strong>%d</strong></span>-го ур. (<span class="faction">%s</span>)',
+    'template_guild_info_fmt' => 'Гильдия <span class="level"><strong>{level}</strong></span>-го ур. (<span class="faction">{faction}</span>)<span class="comma">,</span> <span class="realm tip" id="profile-info-realm" data-battlegroup="{bg}">{realm}</span>.',
     
     'template_guild_menu_summary' => 'Сводка',
     'template_guild_menu_roster' => 'Состав',
@@ -1725,7 +1726,7 @@ $Site_Locale = array(
     'template_forum_jump_first_blizz' => 'Первое сообщение Blizzard',
     'template_forum_jump_next_blizz' => 'Следующее сообщение Blizzard',
     'template_forum_add_reply' => 'Разместить ответ',
-    'template_forum_topic_closed' => 'Тема закрытаю',
+    'template_forum_topic_closed' => 'Тема закрыта',
     'template_forum_blizz_title' => 'Customer Service',
     'template_forum_post_edited' => 'Отредактировано %s %s',
     'template_forum_post_quote' => 'Размещено',
@@ -1735,13 +1736,17 @@ $Site_Locale = array(
     'template_forum_submit' => 'Отправить',
     'template_forum_create_thread' => 'Создать тему',
     'template_forum_need_char_to_post' => 'Для размещения сообщений, вам необходимо создать персонажа.', // NRT
-    'template_forum_post_delete_tooltip' => 'Сообщения могут быть удалены в течение 15 минут после размещения.', // NRT
-    'template_forum_post_edit' => 'Редактировать', // NRT
-    'template_forum_post_delete_confirm' => 'Вы уверены, что хотите удалить сообщение?', // NRT
-    'template_forum_post_delete' => 'Удалить', // NRT
+    'template_forum_post_delete_tooltip' => 'Сообщения можно удалить в течение 15 мин после его размещения на форуме.',
+    'template_forum_post_edit' => 'Редактировать',
+    'template_forum_post_delete_confirm' => 'Вы действительно хотите удалить свое сообщение?',
+    'template_forum_post_delete' => 'Удалить',
     'template_forum_post_deleted_by' => 'Удалено %s', // NRT
     'template_forum_post_deleted' => 'Удалено', // NRT
     'template_forum_post_edit_title' => 'Изменить сообщение', // NRT
+	'template_forum_conduct' => '<h4 class="code-header">Просим вас сообщать о нарушениях правил форума, в особенности о следующих:</h4><p>Угрозы насилия. <strong>Мы относимся к таким нарушениям крайне серьезно и немедленно предупреждаем о них соответствующие инстанции.</strong></p><p>Размещение личной информации, касающейся других игроков: <strong>почтовый и электронный адрес, телефон, неподобающие фотографии и видеозаписи.</strong></p><p>Оскорбления и словесная дискриминация. <strong>Это совершенно недопустимо.</strong></p><p><a href="http://battle.net/community/conduct">Правила форумов</a>.</p>',
+	'template_forum_subtitle_closed_thread' => 'Закрыто',
+	'template_forum_subtitle_pinned_thread' => 'Прикрепленное сообщение',
+	
 
     'template_boss_level' => 'Уровень',
     'template_boss_boss_rank' => 'Босс',

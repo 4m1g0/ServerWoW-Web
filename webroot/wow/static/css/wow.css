@@ -60,8 +60,8 @@ tr:hover .fansite-link,
 .ui-breadcrumb { font-size: 12px; }
 .ui-breadcrumb li { padding-right: 25px; background: url("../images/icons/flyout-arrows.gif") 98% -118px no-repeat }
 .ui-breadcrumb li a { border-bottom: 1px dotted #8c6407; }
-.ui-breadcrumb li a.opened { color: #eee !important; }
-.ui-breadcrumb li a:hover { color: white; border-bottom: none !important; padding-bottom: 1px; }
+.ui-breadcrumb li a.opened { color: #eee !important; border-color: #eee !important }
+.ui-breadcrumb li a:hover { color: white; border-color: white }
 .ui-breadcrumb li.last { background: none }
 .ui-breadcrumb li.last a { color:#FFF; font-weight:bold; border-bottom: none; }
 .ui-breadcrumb li.children a { border-bottom: 1px dotted #888;}
@@ -79,7 +79,7 @@ tr:hover .fansite-link,
 .ui-dropdown .dropdown-wrapper ul li a:hover { text-decoration: none; color: #fff; background: #6e3b0d; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px }
 
 /* pagination */
-.ui-pagination { background: url("../images/icons/pagination.gif") 0 50% no-repeat; padding-left: 25px }
+.ui-pagination { background-image: url("../images/icons/pagination.gif"); padding-left: 25px }
 .ui-pagination li a { background: #2b1507; color: #d3ac6b; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px }
 .ui-pagination li a:hover { background-color: #4e2f1b; color: white; }
 .ui-pagination li.current a { background-color: #ffae00; color: #000; font-weight: bold; }
@@ -193,6 +193,19 @@ tr:hover .fansite-link,
 .ui-overlay { width: 750px; background: #391b0d; color: #e9bd7f; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; -moz-box-shadow: 0 0 10px #000; -webkit-box-shadow: 0 0 10px #000; box-shadow: 0 0 10px #000; }
 .ui-overlay .overlay-middle { padding: 25px; }
 .ui-overlay .overlay-middle h2 { color: #7e3406; font-size: 24px; line-height: 100%; font-weight: normal; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 2px solid #50260f; }
+
+/* trending topics */
+.trending-topics li { border-bottom: 1px solid #271B15; color: #71401F; }
+.trending-topics .topic { font-weight: bold; }
+.trending-topics .forum { color: #855B47 !important; }
+.trending-topics .forum:hover { color: #fff !important; }
+
+/* articles list */
+.articles-list li { border-bottom: 1px solid #271B15; }
+.articles-list a .title { font-weight: bold; }
+.articles-list a .date { color: #71401F; }
+.articles-list a .image { border: 1px solid #372511; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; -moz-box-shadow: 0 0 15px #000; -webkit-box-shadow: 0 0 15px #000; box-shadow: 0 0 15px #000; }
+.articles-list a:hover .image { border-color: #CD9000; }
 
 /* layout */
 #wrapper { width: 1006px; margin: 0 auto; position: relative } /* use even width value so the centering is identical in IE and other browsers */
@@ -311,14 +324,14 @@ tr:hover .fansite-link,
 #content .content-box-w434 .inner-wrapper {margin:0 45px 0 19px;}
 #content .content-box-w434 .box-title {font-size:12px; color:#efe3d2; display:block; padding-bottom:21px; text-transform:uppercase;}
 #content .content-box-w434 .wrapper p {font-size:12px; line-height:20px; color:#967648; margin-bottom:15px;}
-#slideshow .mask { background: url("../images/layout/slideshow-mask.png") 0 0 no-repeat; }
-#slideshow .caption h3 { color: #fff8d6; font-size: 22px; font-weight:bold; letter-spacing: -0.05em; line-height:1em; }
-#slideshow .paging a { -moz-border-radius:2px; border-radius:2px }
-#slideshow .caption h3 a { color: #fff8d6; }
-#slideshow .caption h3 a:hover { color: #fff }
+.ui-slideshow .mask { background: url("../images/layout/slideshow-mask.png") 0 0 no-repeat; }
+.ui-slideshow .caption h3 { color: #fff8d6; font-size: 22px; font-weight:bold; letter-spacing: -0.05em; line-height:1em; }
+.ui-slideshow .paging a { -moz-border-radius:2px; border-radius:2px }
+.ui-slideshow .caption h3 a { color: #fff8d6; }
+.ui-slideshow .caption h3 a:hover { color: #fff }
 
 /* footer */
-#footer { background: #000; margin: 0 10px; -moz-user-select: none; -webkit-user-select: none; user-select: none }
+#footer { background: #000; margin:0 5px; -moz-user-select: none; -webkit-user-select: none; user-select: none }
 #footer a { color: #552c09 }
 #footer a:hover { color: #f5ebd1 }
 #footer h3 { color: #70523d }
@@ -327,13 +340,13 @@ tr:hover .fansite-link,
 #copyright { border-color: #20140d; color: #433A2E }
 #copyright a { color: #70523D }
 #international { border-color: #20140d; background: url("../images/layout/world-map.gif") 50% 50% no-repeat }
-#change-language { background-image: url("../images/layout/footer-language-arrows.gif") }
+#change-language { background-image: url("../images/icons/arrows.gif") }
 #change-language span { background-image:url("../images/icons/map-small.gif") }
 #footer-promotions { font-size: 12px; font-weight:bold; font-family: Arial, Helvetica, sans-serif; }
 #footer-promotions a { color: #BD8100 }
 #footer-promotions .desc { padding: 5px 0; }
 #footer-promotions .subtitle { color: #71401F; font-weight: normal; padding-top: 5px }
-.bnet-offer-bg { border: 1px solid #372511; overflow: hidden; margin-bottom: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;  -moz-box-shadow:0 0 6px #000000; -webkit-box-shadow:0 0 6px #000000; box-shadow:0 0 6px #000000; }
+.bnet-offer-bg { border: 1px solid #372511; overflow: hidden; margin-bottom: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;  -moz-box-shadow:0 0 6px #000000; -webkit-box-shadow:0 0 6px #000000; box-shadow:0 0 6px #000000; width:302px;}
 .bnet-offer-bg:hover { border-color: #CD9000; }
 .bnet-offer-image { display: block; border: 1px solid #000; overflow: hidden; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
 .bnet-offer-image img { display: block; }
@@ -662,6 +675,7 @@ tr:hover .fansite-link,
 .icon-socket.socket-32 .frame { background-position:  -45px   0; } /* Cogwheel */
 
 /* tooltips */
+.character-tooltip { min-width: 150px; }
 .wiki-tooltip { min-width: 250px; }
 .wiki-tooltip .wiki-list { margin-top: 10px; }
 .wiki-tooltip .wiki-list li { margin: 2px 0; }
@@ -817,6 +831,7 @@ tr:hover .fansite-link,
 	-moz-box-shadow: 0 0 10px #241209; -webkit-box-shadow: 0 0 10px #241209; box-shadow: 0 0 10px #241209; }
 .modal-brown .close:hover { background-position: -22px -208px; }
 
+
 /* model viewer */
 .model-viewer .model,
 .model-viewer .model .bg,
@@ -828,9 +843,9 @@ tr:hover .fansite-link,
 .model-viewer .model .zoom:hover { background-position: -23px 0; }
 
 	/* model - draggable */
-	.model-viewer .can-drag { cursor: url("../images/cursors/grab.cur"), e-resize; }
+	.model-viewer .can-drag { cursor: url("/wow/static/images/cursors/grab.cur"), e-resize; }
 	.model-viewer .can-drag .zoom { display: block; }
-	.model-viewer .dragging { cursor: url("../images/cursors/grabbing.cur"), e-resize !important; }
+	.model-viewer .dragging { cursor: url("/wow/static/images/cursors/grabbing.cur"), e-resize !important; }
 	.model-viewer .can-drag:hover,
 	.model-viewer .dragging { border: 1px solid #542818; }
 

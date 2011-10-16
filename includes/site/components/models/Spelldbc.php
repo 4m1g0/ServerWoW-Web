@@ -33,6 +33,8 @@ class SpellDbc_Model_Component extends Model_Db_Component
 		'AttributesEx3' => array('type' => 'integer'),
 		'AttributesEx4' => array('type' => 'integer'),
 		'AttributesEx5' => array('type' => 'integer'),
+		'AttributesEx6' => array('type' => 'integer'),
+		'AttributesEx7' => array('type' => 'integer'),
 		'Stances' => array('type' => 'integer'),
 		'StancesNot' => array('type' => 'integer'),
 		'Targets' => array('type' => 'integer'),

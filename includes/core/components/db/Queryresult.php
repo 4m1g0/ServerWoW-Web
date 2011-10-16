@@ -174,9 +174,9 @@ class QueryResult_Db_Component extends Component
 		return $this;
 	}
 
-	public function runFunction($function, $field)
+	public function runFunction($function, $field, $fieldAlias = '')
 	{
-		$this->m_sqlBuilder->runFunction($function, $field);
+		$this->m_sqlBuilder->runFunction($function, $field, $fieldAlias);
 
 		return $this;
 	}
@@ -185,6 +185,12 @@ class QueryResult_Db_Component extends Component
 	{
 		$this->m_sqlBuilder->setAlias($model_name, $field_name, $alias);
 
+		return $this;
+	}
+
+	public function group($model_name, $field_name)
+	{
+		$this->m_sqlBuilder->group($model_name, $field_name);
 
 		return $this;
 	}

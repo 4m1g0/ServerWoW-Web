@@ -23,13 +23,13 @@
 
 			<script type="text/javascript">
 			//<![CDATA[
-						$(function() { Input.bind('#forum-search-field'); });
+				$(function() { Input.bind('#forum-search-field'); });
 			//]]>
 			</script>
 
-			<a class="ui-button button1 " href="topic" onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');">
+			<a class="ui-button button1 " href="<?php echo $this->getWowUrl('forum/' . $forum->getCategoryId() . '/topic'); ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
 				<span>
-					<span>Create Thread</span>
+					<span><?php echo $l->getString('template_forums_create_thread'); ?></span>
 				</span>
 			</a>
 
@@ -41,9 +41,6 @@
 
 	<span class="clear"><!-- --></span>
     </div>
-
-
-				
 
 
     <div id="posts-container">
@@ -63,7 +60,7 @@
 				$topics = $forum->getCategoryTopics();
 				$topic_types = array(
 					'featured' => array('class' => 'featured', 'prefix' => '[' . $l->getString('template_forum_thread_featured') . ']'),
-					'sticky' => array('class' => 'stickied', 'prefix' => '[' . $l->getString('template_forum_thread_sticky') . ']'),
+					'pinned' => array('class' => 'stickied', 'prefix' => '[' . $l->getString('template_forum_thread_sticky') . ']'),
 					'regular' => array('class' => '', 'prefix' => '')
 				);
 				if ($topics) :
@@ -80,7 +77,7 @@
 						<div class="forum-post-icon">
 							<?php if ($topic['flags'] & THREAD_FLAG_BLIZZ_ANSWERED) : ?>
 								<div class="blizzard_icon">
-									<a href="../topic/<?php echo $topic['thread_id']; ?>#1" data-tooltip="<?php echo $jumpToBlizzPost; ?>"></a>
+									<a href="<?php echo $this->getWowUrl('forum/topic/' . $topic['thread_id'] . '#1'); ?>" data-tooltip="<?php echo $jumpToBlizzPost; ?>"></a>
 								</div>
 							<?php endif; ?>
 						</div>
@@ -98,11 +95,11 @@
 
 								<div class="tt_time"><?php echo date('d/m/Y', $topic['post_date']); ?></div>
 								<div class="tt_info">
-									<?php echo $topic['views']; ?> Views / 2 Replies<br />
-										Last Post by Thuiljos (19/11/2010)
+									<?php echo $topic['views']; ?> Views / <?php echo $topic['posts']; ?> Replies<br />
+										Last Post by <?php echo $topic['last_poster'] . ' (' . date('d/m/Y', $topic['last_update']) . ')'; ?>
 								</div>
 							</div>
-							<a href="../topic/<?php echo $topic['thread_id']; ?>" data-tooltip="#thread_tt_<?php echo $topic['thread_id']; ?>" data-tooltip-options='{"location": "mouse"}'>
+							<a href="<?php echo $this->getWowUrl('forum/topic/' . $topic['thread_id']); ?>" data-tooltip="#thread_tt_<?php echo $topic['thread_id']; ?>" data-tooltip-options='{"location": "mouse"}'>
 								<?php echo $topic['title']; ?>
 								<?php if ($topic['flags'] & THREAD_FLAG_CLOSED) echo '<img src="' . CLIENT_FILES_PATH . '/wow/static/images/layout/cms/post_locked.gif" alt="" />'; ?>
 							</a>
@@ -119,18 +116,22 @@
 							<?php else : echo $topic['name']; endif; ?>
 					</td>
 					<td class="post-replies">
-						2
+						<?php echo $topic['posts']; ?>
 					</td>
 					<td class="post-views">
 						<?php echo $topic['views']; ?>
 					</td>
 					<td class="post-lastPost">
-						<a href="../topic/<?php echo $topic['thread_id']; ?>#3" data-tooltip="(19/11/2010)">
-								<span class="type-blizzard">
-										Thuiljos
-								</span>
+						<?php
+						$lastAnch = $topic['last_poster_anchor'];
+						$lPage = 0;
+						if ($lastAnch > 20)
+							$lPage = ceil($lastAnch / 20);
+						?>
+						<a href="<?php echo $this->getWowUrl('forum/topic/' . $topic['thread_id']); ?><?php echo $lPage > 0 ? '?page=' . $lPage : '';  ?>#<?php echo $lastAnch; ?>" data-tooltip="(<?php echo date('d/m/Y', $topic['last_update']); ?>)">
+							<?php if ($topic['last_poster_type'] == 1) echo '<span class="type-blizzard">'; echo $topic['last_poster']; if ($topic['last_poster_type'] == 1) echo '</span>'; ?>
 						</a>
-								<img src="/wow/static/images/layout/cms/icon_blizzard.gif" alt="" />
+						<?php if ($topic['last_poster_type'] == 1) : ?><img src="<?php echo CLIENT_FILES_PATH; ?>/wow/static/images/layout/cms/icon_blizzard.gif" alt="" /><?php endif; ?>
 					</td>
 				</tr>
 				<?php endforeach; ?>
@@ -144,17 +145,13 @@
 
     <div class="forum-actions topic-bottom">
 		<div class="actions-panel">
-
 			<?php echo $this->region('pager'); ?>
 
-
-
-	<a class="ui-button button1 " href="topic" onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');" >
+	<a class="ui-button button1 " href="<?php echo $this->getWowUrl('forum/' . $forum->getCategoryId() . '/topic'); ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
 		<span>
-			<span>Create Thread</span>
+			<span><?php echo $l->getString('template_forums_create_thread'); ?></span>
 		</span>
 	</a>
-
 
 	<span class="clear"><!-- --></span>
         </div>

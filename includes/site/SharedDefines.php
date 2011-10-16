@@ -882,6 +882,8 @@ define('GUILD_BANK_RIGHT_UPDATE_TEXT', 0x04);
 define('GUILD_BANK_RIGHT_DEPOSIT_ITEM', GUILD_BANK_RIGHT_VIEW_TAB | GUILD_BANK_RIGHT_PUT_ITEM);
 define('GUILD_BANK_RIGHT_FULL', 0xFF);
 
+define('GUILD_RANK_GMASTER', 0);
+
 define('MAX_TALENT_POINTS', 71); // Wrath
 
 /** Bookmarks and selected characters **/

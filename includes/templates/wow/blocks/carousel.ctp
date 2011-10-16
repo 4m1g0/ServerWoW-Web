@@ -1,22 +1,17 @@
-    <div id="slideshow" class="slideshow">
-	<div class="container">
+    <div id="slideshow" class="ui-slideshow">
+	<div class="slideshow">
 		<?php
-		if ($items)
-		{
+		if ($items) :
 			$size = sizeof($items);
 			for ($i = 0; $i < $size; ++$i) :
 		?>
 				<div class="slide" id="slide-<?php echo $i; ?>"	style="background-image: url('<?php echo CLIENT_FILES_PATH; ?>/cms/carousel_header/<?php echo $items[$i]['image']; ?>') <?php echo $i > 0 ? '; display:none;' : ''; ?>"> </div>
-		<?php
-			endfor;
-		}
-		?>
+		<?php endfor; endif; ?>
 		</div>
 		
 		<div class="paging">
 		<?php
-		if ($items)
-		{
+		if ($items) :
 			for ($i = 0; $i < $size; ++$i) :
 		?>
 					<a href="javascript:;" id="paging-<?php echo $i; ?>"
@@ -24,10 +19,7 @@
 						onmouseover="Slideshow.preview(<?php echo $i; ?>);"
 						<?php echo $i == 0 ? 'class="current"' : ''; ?>>
 					</a>
-		<?php
-			endfor;
-		}
-		?>
+		<?php endfor; endif; ?>
 		</div>
 
 		<div class="caption">
@@ -44,8 +36,7 @@
         $(function() {
             Slideshow.initialize('#slideshow', [
 			<?php
-			if ($items)
-			{
+			if ($items) :
 				for ($i = 0; $i < $size; ++$i):
 			?>
 			{
@@ -58,8 +49,7 @@
 			<?php
 				if ($i < $size-1) echo ',';
 				echo NL;
-				endfor;
-			}
+				endfor; endif;
 			?>
             ]);
 

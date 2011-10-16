@@ -299,7 +299,7 @@ class Editing_Component extends Component
 		foreach ($this->m_fields as $field => $value)
 		{
 			if ($value)
-				$sql .= '`' . $field . '` = \'' . $value . '\',';
+				$sql .= '`' . $field . '` = \'' . addslashes($value) . '\',';
 		}
 
 		return substr($sql, 0, (strlen($sql) - 1));
@@ -324,7 +324,7 @@ class Editing_Component extends Component
 
 		$sql = '';
 		foreach ($this->m_fields as $val)
-			$sql .= '\'' . $val . '\',';
+			$sql .= '\'' . addslashes($val) . '\',';
 
 		return substr($sql, 0, (strlen($sql) - 1));
 	}
@@ -344,7 +344,7 @@ class Editing_Component extends Component
 		elseif ($this->m_insertType == 'insert')
 		{
 			if ($this->m_deleteBeforeInsert)
-				$this->c('Db')->{$this->m_model->m_dbType}()->query("DELETE FROM `%s` WHERE `%s` = '%s'", $this->m_model->m_table, $this->getPrimaryField(), $this->m_id);
+				$this->c('Db')->{$this->m_model->m_dbType}()->query("DELETE FROM `%s` WHERE `%s` = '%s'", $this->m_model->m_table, $this->getPrimaryField(), addslashes($this->m_id));
 
 			$this->m_rawSql .= 'INSERT INTO `' . $this->m_model->m_table . '` (' . $this->getFields() . ') VALUES (' . $this->getFieldsValues() . ')';
 		}

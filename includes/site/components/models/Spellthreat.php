@@ -25,7 +25,9 @@ class SpellThreat_Model_Component extends Model_Db_Component
 	public $m_dbType = 'world';
 	public $m_fields = array(
 		'entry' => 'Id',
-		'Threat' => array('type' => 'integer'),
+		'flatMod' => array('type' => 'integer'),
+		'pctMod' => array('type' => 'integer'),
+		'apPctMod' => array('type' => 'integer'),
 	);
 }
 ?>

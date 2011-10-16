@@ -21,6 +21,7 @@
 class Breadcrumb_Component extends Component
 {
 	protected $m_breadcrumbs = array();
+	protected $m_generatedBreadcrumb = '';
 
 	public function setBreadcrumbData(&$data)
 	{
@@ -30,12 +31,18 @@ class Breadcrumb_Component extends Component
 		return $this;
 	}
 
+	public function getCrumb()
+	{
+		return $this->m_generatedBreadcrumb;
+	}
+
 	public function buildBreadcrumb($type = 'li', $attrActive = 'class="last"', $attrPassive = '', $linkRel = 'np', $rawOutput = false)
 	{
 		if (!$this->m_breadcrumbs)
 			return !$rawOutput ? '' : $this;
 
 		$crumb = '';
+		$this->m_generatedBreadcrumb = '';
 
 		$levels = sizeof($this->m_breadcrumbs);
 		if (!$levels)
@@ -64,6 +71,8 @@ class Breadcrumb_Component extends Component
 			$crumb .= NL . '</a>' . NL;
 			$crumb .= '</' . $type . '>' . NL;
 		}
+
+		$this->m_generatedBreadcrumb = $crumb;
 
 		if ($rawOutput)
 		{

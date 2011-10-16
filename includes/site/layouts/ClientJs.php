@@ -208,6 +208,18 @@ $ClientJS = array(
 				'version' => 29
 			)
 		)
+	),
+	'guild' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/js/profile.js',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/js/character/guild-tabard.js',
+				'version' => 17
+			)
+		)
 	)
 );
 ?>

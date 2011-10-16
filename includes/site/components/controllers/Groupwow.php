@@ -139,5 +139,12 @@ class Groupwow_Controller_Component extends Wowcstemplate_Controller_Component
 			->setRegion('user_characters')
 			->setTemplate('user_characters', 'wow' . DS . 'blocks');
 	}
+
+	protected function block_charactersList()
+	{
+		return $this->block()
+			->setRegion('characters_list')
+			->setTemplate('characters_list', 'wow' . DS . 'blocks');
+	}
 }
 ?>

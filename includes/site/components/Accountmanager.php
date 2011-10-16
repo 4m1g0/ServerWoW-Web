@@ -481,5 +481,42 @@ class AccountManager_Component extends Component
 
 		return false;
 	}
+
+	public function isHaveAnyCharacters()
+	{
+		if (!$this->isLoggedIn())
+			return false;
+
+		if ($this->m_characters || $this->m_activeChar)
+			return true;
+
+		return false;
+	}
+
+	public function isBanned()
+	{
+		return false;
+	}
+
+	public function isAllowedToForums()
+	{
+		if (!$this->isLoggedIn() || !$this->isHaveAnyCharacters() || $this->isBanned())
+			return false;
+
+		return true;
+	}
+
+	public function isAllowedToModerate()
+	{
+		if ($this->user('gmlevel') <= 0 && $this->isAllowedToForums())
+			return false;
+
+		return true;
+	}
+
+	public function getForumsName()
+	{
+		return $this->user('username');
+	}
 }
 ?>

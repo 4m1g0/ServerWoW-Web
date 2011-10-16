@@ -18,7 +18,7 @@ onclick="BnetAds.trackImpression('Battle.net Login', 'Character Card', 'New'); r
 </a>
 <div class="card-overlay"></div>
 </div>
-<?php elseif ($this->c('AccountManager')->user('characters')) : ?>
+<?php elseif (!$this->c('AccountManager')->isHaveAnyCharacters()) : ?>
 <div class="card-nochars">
 <div class="player-name"><?php echo $this->c('AccountManager')->user('username'); ?></div>
 <?php echo $l->getString('template_characters_not_found'); ?>

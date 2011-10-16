@@ -371,6 +371,49 @@ $ClientCSS = array(
 				'version' => 15
 			)
 		)
+	),
+	'accountstatus' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/local-common/css/cms/forums.css',
+				'version' => 32,
+			),
+			array(
+				'file' => '/wow/static/local-common/css/cms/cms-common.css',
+				'version' => 32,
+			),
+		)
+	),
+	'guild' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/profile.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/profile-ie.css',
+				'version' => 17,
+				'browser' => 'IE'
+			),
+			array(
+				'file' => '/wow/static/css/profile-ie6.css',
+				'version' => 17,
+				'browser' => 'IE 6'
+			),
+			array(
+				'file' => '/wow/static/css/guild/guild.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/guild/summary.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/guild/summary-ie6.css',
+				'version' => 17,
+				'browser' => 'IE 6'
+			)
+		)
 	)
 );
 ?>

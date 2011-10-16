@@ -31,8 +31,13 @@ class WowForumThreads_Model_Component extends Model_Db_Component
 		'character_realm' => array('type' => 'integer'),
 		'title' => array('type' => 'string'),
 		'views' => array('type' => 'integer'),
+		'posts' => array('type' => 'integer'),
 		'flags' => array('type' => 'integer'),
 		'last_update' => array('type' => 'integer'),
+		'last_poster' => array('type' => 'string'),
+		'last_poster_anchor' => array('type' => 'integer'),
+		'last_poster_type' => array('type' => 'integer'),
+		'blizz_posts' => array('type' => 'string'),
 	);
 }
 ?>

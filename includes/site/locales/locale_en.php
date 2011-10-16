@@ -1801,6 +1801,9 @@ The Battle.net Account Team<br />
     'template_forum_post_deleted_by' => 'Deleted by %s',
     'template_forum_post_deleted' => 'Deleted',
     'template_forum_post_edit_title' => 'Edit Post',
+	'template_forum_conduct' => '<h4 class="code-header">Please report any Code of Conduct violations, including:</h4><p>Threats of violence. <strong>We take these seriously and will alert the proper authorities.</strong></p><p>Posts containing personal information about other players. <strong>This includes physical addresses, e-mail addresses, phone numbers, and inappropriate photos and/or videos.</strong></p><p>Harassing or discriminatory language. <strong>This will not be tolerated.</strong></p><p>Click <a href="http://battle.net/community/conduct">here</a> to view the Forums Code of Conduct.</p>',
+	'template_forum_subtitle_closed_thread' => 'Sticky',
+	'template_forum_subtitle_pinned_thread' => 'Locked',
     
     'template_boss_level' => 'Level',
     'template_boss_boss_rank' => 'Boss',

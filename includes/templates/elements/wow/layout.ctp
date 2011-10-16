@@ -23,6 +23,9 @@
 <!--[if IE 7]> <link rel="stylesheet" type="text/css" media="all" href="<?php echo CLIENT_FILES_PATH; ?>/wow/static/css/wow-ie7.css?v14" />
 <![endif]-->
 <?php echo $this->c('Document')->releaseCss('header'); ?>
+<?php if ($l->GetLocaleID() != LOCALE_EN) : ?><link rel="stylesheet" type="text/css" media="all" href="<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common/css/locale/<?php echo $l->getLocale(LOCALE_DOUBLE); ?>.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo CLIENT_FILES_PATH; ?>/wow/static/css/locale/<?php echo $l->getLocale(LOCALE_DOUBLE); ?>.css" /><?php endif; ?>
+
 <?php if ($isAdmin) : ?>
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo CLIENT_FILES_PATH; ?>/admin/admin.css?v=1" />
 <?php endif; ?>
