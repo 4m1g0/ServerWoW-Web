@@ -1228,8 +1228,11 @@ class Item_Component extends Component
 		unset($exCost, $cost);
 	}
 
-	public function getItemsInfo($entries, $values = false)
+	public function getItemsInfo($entries, $values = false, $fields = null, $limit = 0, $offset = -1)
 	{
+		if (!$entries)
+			return false;
+
 		$query = $this->c('QueryResult', 'Db')
 			->model('ItemTemplate');
 
@@ -1246,7 +1249,14 @@ class Item_Component extends Component
 		else
 			$query->fieldCondition('item_template.entry', ' = ' . $entries);
 
+		if ($fields)
+			$query->fields($fields);
+
+		if ($limit > 0 && $offset >= 0)
+			$query->limit($limit, $offset);
+
 	 	$items_info = $query->keyIndex('entry')
+			->order(array('ItemTemplate' => array('Quality')), 'DESC')
 			->loadItems();
 
 		if ($items_info)

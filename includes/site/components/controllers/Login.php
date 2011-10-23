@@ -23,7 +23,7 @@ class Login_Controller_Component extends Controller_Component
 	public function beforeActions()
 	{
 		if (!$this->core->getUrlAction(1))
-			$com = 'Login_Login';
+			$com = 'Home_Login';
 		elseif (strtolower($this->core->getUrlAction(1)) == 'login.frag')
 			$com = 'Loginfrag_Login';
 		else

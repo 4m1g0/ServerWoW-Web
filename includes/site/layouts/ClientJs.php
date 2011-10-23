@@ -171,6 +171,34 @@ $ClientJS = array(
 			)
 		)
 	),
+	'pvp' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/js/profile.js',
+				'version' => 15
+			),
+			array(
+				'file' => '/wow/static/local-common/js/table.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/local-common/js/dropdown.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/js/character/pvp.js',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/js/character/arena-flag.js',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/js/pvp/arena.js',
+				'version' => 17
+			)
+		)
+	),
 	'community' => array(
 		'footer' => array(
 			array(
@@ -218,6 +246,98 @@ $ClientJS = array(
 			array(
 				'file' => '/wow/static/js/character/guild-tabard.js',
 				'version' => 17
+			)
+		)
+	),
+	'roster' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/local-common/js/table.js',
+				'version' => 33,
+			),
+			array(
+				'file' => '/wow/static/local-common/js/filter.js',
+				'version' => 33,
+			),
+			array(
+				'file' => '/wow/static/local-common/js/dropdown.js',
+				'version' => 33,
+			),
+			array(
+				'file' => '/wow/static/js/profile.js',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/js/character/guild-tabard.js',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/js/guild/guild.js',
+				'version' => 17
+			)
+		)
+	),
+	'news' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/js/profile.js',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/js/character/guild-tabard.js',
+				'version' => 17
+			)
+		)
+	),
+	'search' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/local-common/js/utility/dynamic-menu.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/js/character/guild-tabard.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/js/character/arena-flag.js',
+				'version' => 35
+			)
+		)
+	),
+	'pvpladder' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/local-common/js/utility/dynamic-menu.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/js/pvp/pvp.js',
+				'version' => 35
+			)
+		)
+	),
+	'arenateam' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/js/profile.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/local-common/js/table.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/js/character/arena-flag.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/local-common/js/dropdown.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/js/pvp/arena.js',
+				'version' => 35
 			)
 		)
 	)

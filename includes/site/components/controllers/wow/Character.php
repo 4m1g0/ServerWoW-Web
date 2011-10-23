@@ -133,6 +133,7 @@ class Character_WoW_Controller_Component extends Groupwow_Controller_Component
 			case 'mount':
 			case 'reputation':
 			case 'feed':
+			case 'pvp':
 				$this->c('CharacterProfile')->buildCharacterAction($this->m_realm, $this->m_name, $this->m_action);
 				break;
 		}
@@ -169,6 +170,7 @@ class Character_WoW_Controller_Component extends Groupwow_Controller_Component
 					break;
 				case 'reputation':
 				case 'feed':
+				case 'pvp':
 					$this->buildBlocks(array('profileMenu', $this->m_action));
 				default:
 					$this->buildBlock('profileMenu');
@@ -347,6 +349,14 @@ class Character_WoW_Controller_Component extends Groupwow_Controller_Component
 		return $this->block()
 			->setVar('character', $this->c('CharacterProfile'))
 			->setTemplate('feed', 'wow' . DS . 'contents' . DS . 'character')
+			->setRegion('profileContents');
+	}
+
+	protected function block_pvp()
+	{
+		return $this->block()
+			->setVar('character', $this->c('CharacterProfile'))
+			->setTemplate('pvp', 'wow' . DS . 'contents' . DS . 'character')
 			->setRegion('profileContents');
 	}
 }

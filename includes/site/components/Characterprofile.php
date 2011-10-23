@@ -46,6 +46,8 @@ class CharacterProfile_Component extends Component
 	protected $m_mountsCount = array();
 	protected $m_reputation = array();
 	protected $m_factions = array();
+	protected $m_arenaTeams = array();
+	protected $m_pvpInfo = array();
 
 	public function isCorrect()
 	{
@@ -88,7 +90,7 @@ class CharacterProfile_Component extends Component
 				'link' => '',
 				'index' => 'template_profile_summary',
 				'page' => 'profile_home',
-			),
+			),/*
 			array(
 				'link' => 'talent',
 				'index' => 'template_profile_talent',
@@ -109,7 +111,7 @@ class CharacterProfile_Component extends Component
 				'locked' => !$this->c('AccountManager')->isAccountCharacter($this->getRealmId(), $this->getGuid()),
 				'page' => 'profile_events',
 				'extraClass' => 'vault',
-			),
+			),*/
 			array(
 				'link' => 'achievement',
 				'index' => 'template_profile_achievement',
@@ -120,13 +122,13 @@ class CharacterProfile_Component extends Component
 				'link' => 'companion',
 				'index' => 'template_profile_companions_mounts',
 				'page' => 'profile_mounts',
-			),
+			),/*
 			array(
 				'link' => 'profession',
 				'index' => 'template_profile_profession',
 				'page' => 'profile_profession',
 				'extraClass' => 'has-submenu',
-			),
+			),*/
 			array(
 				'link' => 'reputation',
 				'index' => 'template_profile_reputation',
@@ -141,7 +143,7 @@ class CharacterProfile_Component extends Component
 				'link' => 'feed',
 				'index' => 'template_profile_feed',
 				'page' => 'profile_feed',
-			),
+			),/*
 			array(
 				'link' => $this->getWowUrl('vault/character/friend'),
 				'index' => 'template_profile_friends',
@@ -149,7 +151,7 @@ class CharacterProfile_Component extends Component
 				'page' => 'profile_friends',
 				'external' => true,
 				'extraClass' => 'vault',
-			),
+			),*/
 			array(
 				'link' => $this->getGuildInfo('guildid') > 0 ? $this->getWowUrl('guild/' . $this->getRealmName() . '/' . $this->getGuildName() . '?character=' . urldecode($this->getName())) : '',
 				'external' => true,
@@ -485,6 +487,9 @@ class CharacterProfile_Component extends Component
 				break;
 			case 'reputation':
 				$this->loadReputation();
+				break;
+			case 'pvp':
+				$this->loadPvp();
 				break;
 		}
 
@@ -3415,6 +3420,69 @@ class CharacterProfile_Component extends Component
 	public function getReputationFactionName($id)
 	{
 		return isset($this->m_factions[$id]) ? $this->m_factions[$id]['name'] : '';
+	}
+
+	protected function loadPvp()
+	{
+		$this->m_pvpInfo = $this->c('QueryResult', 'Db')
+			->model('ArenaTeamMember')
+			->addModel('ArenaTeam')
+			->join('left', 'ArenaTeam', 'ArenaTeamMember', 'arenaTeamId', 'arenaTeamId')
+			->fieldCondition('arena_team_member.guid', ' = ' . $this->getGuid())
+			->keyIndex('arenaTeamId')
+			->setAlias('ArenaTeamMember', 'weekGames', 'charWeekGames')
+			->setAlias('ArenaTeamMember', 'weekWins', 'charWeekWins')
+			->setAlias('ArenaTeamMember', 'seasonGames', 'charSeasonGames')
+			->setAlias('ArenaTeamMember', 'seasonWins', 'charSeasonWins')
+			->loadItems();
+
+		if (!$this->m_pvpInfo)
+			return $this;
+
+		$teamIds = array_keys($this->m_pvpInfo);
+
+		// Load members
+		$members = $this->c('QueryResult', 'Db')
+			->model('ArenaTeamMember')
+			->addModel('Characters')
+			->join('left', 'Characters', 'ArenaTeamMember', 'guid', 'guid')
+			->fieldCondition('arena_team_member.arenaTeamId', $teamIds)
+			->fields(array(
+				'ArenaTeamMember' => array('arenaTeamId', 'weekGames', 'weekWins', 'seasonGames', 'seasonWins', 'personalRating'),
+				'Characters' => array('guid', 'name', 'class', 'race', 'level', 'gender')
+			))
+			->loadItems();
+
+		if (!$members)
+			return $this; // No members - no profits
+
+		$maxRating = array('rating' => 0, 'type' => 0);
+		foreach ($this->m_pvpInfo as $team)
+		{
+			$team['members'] = array();
+			foreach ($members as &$m)
+				if ($m['arenaTeamId'] == $team['arenaTeamId'])
+					$team['members'][] = $m;
+
+			$this->m_arenaTeams[$team['type']] = $team;
+
+			if ($team['personalRating'] > $maxRating['rating'])
+				$maxRating = array('rating' => $team['personalRating'], 'type' => $team['type']);
+		}
+
+		$this->m_arenaTeams = array(
+			'maxRating' => $maxRating,
+			'teams' => $this->m_arenaTeams
+		);
+
+		unset($teamIds, $members, $maxRating);
+
+		return $this;
+	}
+
+	public function getTeams()
+	{
+		return $this->m_arenaTeams;
 	}
 }
 ?>

@@ -20,16 +20,49 @@
 
 class Admin_Controller_Component extends Controller_Component
 {
-	public function build($core)
+	protected $m_action = '';
+
+	protected function checkInfo()
 	{
 		if (!$this->c('AccountManager')->isLoggedIn())
+			return false;
+		elseif (!$this->c('AccountManager')->isAdmin())
+			return false;
+
+		$this->m_action = strtolower($this->core->getUrlAction(1));
+
+		return true;
+	}
+
+	public function build($core)
+	{
+		if (!$this->checkInfo())
 		{
 			$this->setErrorPage();
 			$this->c('Default', 'Controller');
 			return $this;
 		}
 
+		if (!$this->m_action)
+			$this->buildBlock('main');
+		else
+			$this->buildBlock($this->m_action);
+
 		return $this;
+	}
+
+	protected function block_main()
+	{
+		return $this->block()
+			->setTemplate('main', 'admin' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_news()
+	{
+		return $this->block()
+			->setTemplate('news', 'admin' . DS . 'contents')
+			->setRegion('pagecontent');
 	}
 }
 ?>

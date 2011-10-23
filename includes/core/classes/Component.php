@@ -299,6 +299,19 @@ abstract class Component
 		return CLIENT_FILES_PATH . '/' . $url;
 	}
 
+	public function getAppUrl($url = '')
+	{
+		return $this->getCoreUrl($url);
+	}
+
+	public function getPage($asOffset = false)
+	{
+		if (!isset($_GET['page']))
+			return $asOffset ? 0 : 1;
+
+		return $asOffset ? (intval($_GET['page']) - 1) : intval($_GET['page']);
+	}
+
 	/*** Some Events ***/
 
 	public function onDataRequest(&$query)	{ return $this; }

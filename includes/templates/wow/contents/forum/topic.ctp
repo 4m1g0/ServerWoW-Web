@@ -205,7 +205,6 @@ if ($posts) :
 												<a href="<?php echo $this->getWowUrl('guild/' . $post['realmName'] . '/' . $post['guildName'] . '/'); ?>"><?php echo $post['guildName']; ?></a>
 											</div>
 	<?php endif; ?>
-											<div class="achievements">7465</div>
 										</div>
 <?php else : ?>
 										<div class="blizzard-title">Customer Service</div>

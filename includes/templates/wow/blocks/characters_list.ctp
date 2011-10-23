@@ -112,6 +112,5 @@ $characters = $this->c('AccountManager')->getCharacters();
 			<a href="<?php echo $character['guildUrl']; ?>"><?php echo $character['guildName']; ?></a>
 		</div>
 		<?php endif; ?>
-		<div class="achievements">4365</div>
 	</div>
 </div>

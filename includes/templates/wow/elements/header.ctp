@@ -35,3 +35,12 @@ onclick="BnetAds.trackImpression('Battle.net Login', 'Character Card', 'New'); r
 </div>
 <?php endif; ?>
 </div>
+<?php if (!isset($_COOKIE['featureclosed'])) : ?>
+<div class="new-feature-tip" id="feature-tip" style="">
+<span class="clickable">
+<strong>Tip title here</strong>
+<span>Tip text here</span>
+</span>
+<a href="javascript:;" class="close" rel="close" data-label="Close"></a>
+</div>
+<?php endif; ?>

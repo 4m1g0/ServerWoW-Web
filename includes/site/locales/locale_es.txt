@@ -1,0 +1,13 @@
+//Se ha producido un error.
+
+	'template_account_change_pass_error_pass' => 'La contraseña que has introducido no es correcta.',
+	'template_account_change_pass_error_mismatch' => 'Ambas contraseñas deben coincidir.',
+	'template_account_change_pass_success_title' => '¡Perfecto!',
+	'template_account_change_pass_success_t1' => 'Tus preferencias han sido cambiadas correctamente.',
+	'template_account_change_pass_success_t2' => 'Volver a Gestión de cuentas',
+	'template_account_change_pass_s1t1' => 'Obligatorio',
+	'template_account_change_pass_s1t2' => 'Cambia tu contraseña',
+	'template_account_change_pass_s1t3' => 'Utiliza este formulario para cambiar tu contraseña.',
+	'template_account_change_pass_s1t4' => 'Antigua contraseña:',
+	'template_account_change_pass_s1t5' => 'Nueva contraseña:',
+	'template_account_change_pass_s1t6' => 'Confirmar nueva contraseña:',

@@ -15,12 +15,18 @@
 .footer a{color:#055A76}
 .footer a:hover,
 .footer a:focus{text-decoration:underline}
-.footer .needHelp{border-right:1px solid #1c3651;line-height:20px;float:left;padding:0 20px 0 0;margin:0 20px 0 0}
+.footer .needHelp{border-right:1px solid #1c3651;line-height:20px;float:left;padding:0 20px 0 0;margin:0 20px 50px 0}
 .footer .legal{line-height:20px}
+.footer .legal .asterisks{padding:5px 0; color:#fff; line-height:1.5em;width:500px}
+.footer .legal .asterisks span {display:block; position:relative; margin-bottom:10px;float:left}
 .footer a.blizzard{float:right;display:block;width:86px;height:46px;background:url(../../images/logos/blizzard.gif) no-repeat}
 .footer a.bnet{float:right;display:block;width:225px;margin:0 20px 0 0;height:50px;background:url(../../images/logos/bnet.gif) no-repeat}
 .footer .divider{padding:0 5px;color:#055A76}
 
 .footer .esrbLinks{margin:25px auto 15px;width:330px}
+.pt-br .footer .esrbLinks { width: 450px; }
+.es-mx .footer .esrbLinks { width: 360px; }
 .footer a.esrb{float:right;display:block;width:144px;height:53px;background:url(../../images/logos/esrb.jpg) no-repeat;}
-.footer a.esrb-rating{float:right;display:block;width:170px;height:104px;background:url(../../images/lightweight-account-creation/esrb-rating.gif) no-repeat;margin:0 0 0 10px}
+.footer a.esrb-rating{float:right;display:block;width:170px;height:104px;background:url(../../images/lightweight-account-creation/esrb-rating.gif) no-repeat;margin:0;}
+.pt-br .footer a.esrb-rating{ width:290px;height:52px;background:url(../../images/lightweight-account-creation/esrb-rating-pt-br.png) no-repeat; }
+.es-mx .footer a.esrb-rating{ width:200px;height:147px;background:url(../../images/lightweight-account-creation/esrb-rating-es-mx.png) no-repeat; }

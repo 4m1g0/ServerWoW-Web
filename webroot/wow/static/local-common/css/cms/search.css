@@ -10,12 +10,12 @@
 /* helpers */
 .search .helpers { margin: 30px 20px 20px 20px; }
 .search .helpers p { margin: 0 0 10px 0; }
-.search .helpers .category span { color: #fff; }
+.search .helpers .subheader span { color: #fff; }
 .search .helpers .sort-active { color: #fff; font-weight: bold; }
 
 /* no results */
 .search .no-results { margin: 20px; }
-.search .no-results .subcategory { margin-top: 20px; }
+.search .no-results .category { margin-top: 20px; }
 .search .no-results ul { list-style: square; margin: 10px 0 0 20px; }
 .search .no-results li { margin: 5px 0; }
 
@@ -23,7 +23,7 @@
 .search .results { padding: 20px 0; }
 .search .results:first-child { padding-top: 0; border: 0; }
 .search .results .view-all { text-align: right; margin-top: 10px; }
-.search .results-grid .subcategory { margin-bottom: 15px; }
+.search .results-grid .category { margin-bottom: 15px; }
 .search .results-grid .grid { float: left; width: 30%; padding-right: 3%; }
 .search .results-grid .grid .thumbnail { float: left; margin-right: 10px; }
 .search .results-grid .grid .thumbnail img { vertical-align: top; display: inline-block; }
@@ -44,7 +44,9 @@
 .search .view-list { margin: 20px; }
 
 /* styles */
+.search .category a,
 .search .subcategory a { text-decoration: underline; }
+.search .category a:hover,
 .search .subcategory a:hover { text-decoration: none; }
 .search .table td:first-child a { display: block; }
 .search .table .highlight,

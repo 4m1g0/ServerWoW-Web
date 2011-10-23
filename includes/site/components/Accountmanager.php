@@ -26,6 +26,8 @@ class AccountManager_Component extends Component
 	protected $m_sessionInfo = '';
 	protected $m_characters = array();
 	protected $m_activeChar = array();
+	protected $m_lastErrorIdx = '';
+	protected $m_success = false;
 
 	public function initialize()
 	{
@@ -75,6 +77,7 @@ class AccountManager_Component extends Component
 		$characters = $this->c('QueryResult', 'Db')
 			->model('WowUserCharacters')
 			->fieldCondition('account', ' = ' . $this->user('id'))
+			->order(array('WowUserCharacters' => array('index')), 'ASC')
 			->loadItems();
 
 		$count_realm_characters = $this->c('QueryResult', 'Db')
@@ -179,12 +182,25 @@ class AccountManager_Component extends Component
 
 		$this->m_characters = $new_chars;
 
-		unset($new_chars, $characters, $count_realm_characters);
 
 		// Save to DB
 
 		$this->c('Db')->wow()->query('DELETE FROM wow_user_characters WHERE account = %d', $acc_id);
-		$sql_query = 'INSERT INTO wow_user_characters VALUES ';
+
+		$fields = '';
+		$keys = array_keys($new_chars[$idx-1]);
+		$size = sizeof($keys);
+		$cur = 1;
+		foreach ($keys as $k)
+		{
+			$fields .= '`' . $k . '`';
+			if ($cur < $size)
+				$fields .= ', ';
+			++$cur;
+		}
+		unset($new_chars, $characters, $count_realm_characters);
+
+		$sql_query = 'INSERT INTO wow_user_characters (' . $fields . ') VALUES ';
 		$count = count($this->m_characters);
 
 		$fields_count = count($this->m_characters[0]);
@@ -517,6 +533,90 @@ class AccountManager_Component extends Component
 	public function getForumsName()
 	{
 		return $this->user('username');
+	}
+
+	public function isAdmin()
+	{
+		return $this->user('gmlevel') == 3;
+	}
+
+	public function createAccount($user, $pass, $confirm, $email)
+	{
+		if ((!$user || !$pass || !$confirm || !$email) || $pass != $confirm || strlen($user) < 2 | strlen($pass) < 6)
+			return false;
+
+		$sha = sha1(strtoupper($user). ':' . strtoupper($pass));
+
+		$check = $this->c('QueryResult', 'Db')
+			->model('Account')
+			->fieldCondition('username', ' = \'' . $user . '\'')
+			->loadItem();
+
+		if ($check)
+			return false;
+
+		$this->c('Db')->realm()->query("INSERT INTO account (username,sha_pass_hash,expansion,email) VALUES ('%s', '%s', 2, '%s')", $user, $sha, $email);
+
+		return true;
+	}
+
+	public function showNotify()
+	{
+		return $this->m_lastErrorIdx != null;
+	}
+
+	public function lastMessageIndex()
+	{
+		return $this->m_lastErrorIdx;//'template_account_change_pass_error_pass';
+	}
+
+	public function getNotifyType()
+	{
+		return 0;
+	}
+
+	public function success()
+	{
+		return $this->m_success;
+	}
+
+	public function changePassword()
+	{
+		if (!$this->isLoggedIn())
+			return $this->core->redirectApp();
+
+		$p = $_POST;
+
+		if (!isset($p['oldPassword']) || !isset($p['newPassword']) || !isset($p['newPasswordVerify']))
+			return false;
+
+		$sha = sha1(strtoupper($this->user('username')) . ':' . strtoupper($p['oldPassword']));
+		if ($this->user('sha_pass_hash') != $sha)
+		{
+			$this->m_lastErrorIdx = 'template_account_change_pass_error_pass';
+			$this->m_success = false;
+		}
+		elseif ($p['newPassword'] != $p['newPasswordVerify'])
+		{
+			$this->m_lastErrorIdx = 'template_account_change_pass_error_mismatch';
+			$this->m_success = false;
+		}
+		else
+		{
+			$edt = $this->c('Editing')
+				->clearValues()
+				->setModel('Account')
+				->setId($this->user('id'))
+				->setType('update');
+
+			$edt->sha_pass_hash = sha1(strtoupper($this->user('username')) . ':' . strtoupper($p['newPassword']));
+			$edt->v = '';
+			$edt->s = '';
+			$edt->save()->clearValues();
+			$this->m_user->sha_pass_hash = sha1(strtoupper($this->user('username')) . ':' . strtoupper($p['newPassword']));
+			$this->saveUser($this->m_user);
+			$this->m_success = true;
+		}
 	}
 }
 ?>

@@ -43,9 +43,12 @@ class Config_Component extends Component
 		if ($this->m_holder)
 			return $this;
 
-		$file = SITE_CONFIGS_DIR . 'Site.dat';
+		$file = SITE_CONFIGS_DIR . 'Site.php';
 		if (file_exists($file))
-			$this->m_holder = unserialize(file_get_contents($file));
+		{
+			include($file);
+			$this->m_holder = $SiteConfigs;
+		}
 
 		if (!$this->m_holder)
 			throw new Config_Exception_Component('Unable to find configuration file!');

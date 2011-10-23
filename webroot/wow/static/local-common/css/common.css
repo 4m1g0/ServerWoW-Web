@@ -532,3 +532,35 @@ a.ui-button.imgbutton span span span { padding: 0 5px; }
 .d3-color-red, .d3-color-red a { color: #ff0000 !important; }
 .d3-color-white, .d3-color-white a { color: white !important; }
 .d3-color-yellow, .d3-color-yellow a { color: #ffff00 !important; }
+
+/*----------------------------------------------
+	Notify Bar
+----------------------------------------------*/
+
+.notify-bar { width: 100%; height: 40px; margin-bottom: 1px; background: #002540 url("../images/layout/notify/bar-bg.jpg") 50% 100% no-repeat; border-bottom: 1px solid #05517e; font-size: 13px; font-family: Arial, sans-serif;
+	-moz-box-shadow: 0 0 1px 1px #000; -webkit-box-shadow: 0 0 1px 1px #000; box-shadow: 0 0 1px 1px #000; }
+.notify-bar-inner { width: 995px; margin: 0 auto; border-right: 3px solid #042e45; height: 40px; }
+.notify-bar .cell { float: right; display: block; height: 40px; border-right: 1px solid #011323; border-left: 1px solid #011323; margin-right: -1px; }
+.notify-bar .cell:hover { /*background-color: rgba(255, 255, 255, 0.05); */}
+.notify-bar .cell span { display: block; float: left; height: 40px; line-height: 40px; padding: 0 15px; border-left: 2px solid #042e45; }
+.notify-bar .cell.close { border-right: 0; }
+.notify-bar .cell.close span { background: url("../images/layout/notify/sprite.png") 8px -120px no-repeat; padding: 0 20px; }
+.notify-bar .cell.close:hover span { background-position: 8px -280px; }
+.notify-bar .cell.news { float: left; border-right: 0; }
+.notify-bar .cell.news strong { padding-right: 10px; }
+.notify-bar .cell.news span { padding-left: 80px; }
+.notify-bar .cell.news:hover span {/* background-position: 15px -159px;*/}
+.notify-bar .cell.buy span { background: url("../images/layout/notify/sprite.png") 8px -39px no-repeat; padding-left: 60px; }
+.notify-bar .cell.buy:hover span { background-position: 8px -199px; }
+.notify-bar .cell.watch span { background: url("../images/layout/notify/sprite.png") 7px -80px no-repeat; padding-left: 45px; }
+.notify-bar .cell.watch:hover span { background-position: 7px -240px; }
+.notify-bar a { color: #7dfc20; }
+.notify-bar a:hover { color: #fff; }
+.notify-bar strong { color: #fff; }
+
+body.has-notify-bar { background-position: 50% 42px !important; }
+
+.ie6 .notify-bar .cell.close span,
+.ie6 .notify-bar .cell.news span,
+.ie6 .notify-bar .cell.buy span,
+.ie6 .notify-bar .cell.watch span { background-image: url("../images/layout/notify/sprite-ie6.png"); }

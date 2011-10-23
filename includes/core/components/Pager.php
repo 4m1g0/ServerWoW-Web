@@ -105,7 +105,7 @@ class Pager_Component extends Component
 		if ($url_opt == '')
 			$base_url = $base_url . '?page=';
 		else
-			$base_url = $base_url . '?' . $url_opt . '&amp;page=';
+			$base_url = $base_url . '?' . $url_opt . 'page=';
 
 		$begin_end = 3;
 		$from_middle = 1;
@@ -123,7 +123,7 @@ class Pager_Component extends Component
 			$init_page_max = ( $total_pages > $begin_end ) ? $begin_end : $total_pages;
 			for ($i = 1; $i < $init_page_max + 1; $i++)
 			{
-				$page_string .= ( $i == $on_page -1) ? '<li class="current"><a href="' . ($base_url . $i ) . '">' . $i . '</a></li>' : '<a href="' . ($base_url . $i . '">' . $i . '</a>');
+				$page_string .= ( $i == $on_page -1) ? '<li class="current"><a href="' . ($base_url . $i ) . '">' . $i . '</a></li>' : '<li><a href="' . ($base_url . $i . '">' . $i . '</a></li>');
 				/*if ($i <  $init_page_max)
 					$page_string .= ", ";*/
 			}

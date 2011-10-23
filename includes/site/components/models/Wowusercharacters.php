@@ -24,6 +24,7 @@ class WowUserCharacters_Model_Component extends Model_Db_Component
 	public $m_table = 'wow_user_characters';
 	public $m_dbType = 'wow';
 	public $m_fields = array(
+		'id' => 'Id',
 		'bn_id' => array('type' => 'integer'),
 		'account' => array('type' => 'integer'),
 		'index' => array('type' => 'integer'),

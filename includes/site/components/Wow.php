@@ -444,5 +444,24 @@ class Wow_Component extends Component
 				return ITEM_SUBCLASS_ARMOR_CLOTH;
 		}
 	}
+
+	public function getRacesInFaction($faction)
+	{
+		if (!in_array($faction, array(FACTION_ALLIANCE, FACTION_HORDE)))
+			return false;
+
+		$races = array();
+		$ids = array();
+
+		if ($faction == FACTION_ALLIANCE)
+			$ids = array(RACE_HUMAN, RACE_DWARF, RACE_NIGHTELF, RACE_GNOME, RACE_DRAENEI);
+		else
+			$ids = array(RACE_ORC, RACE_UNDEAD, RACE_TAUREN, RACE_TROLL, RACE_BLOODELF);
+
+		foreach ($ids as $id)
+			$races[$id] = array('id' => $id, 'name' => $this->c('Locale')->getString('character_race_' . $id));
+
+		return $races;
+	}
 }
 ?>

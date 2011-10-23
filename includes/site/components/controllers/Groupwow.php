@@ -73,10 +73,26 @@ class Groupwow_Controller_Component extends Wowcstemplate_Controller_Component
 
 			exit(0);
 		}
-		if ($this->core->getUrlAction(1) == 'character' && !in_array($this->core->getUrlAction(4), array('advanced', 'simple')))
-			$this->m_clientFilesController = strtolower($this->core->getUrlAction(4));
-		elseif ($this->core->getUrlAction(1) == 'game')
-			$this->m_clientFilesController = strtolower($this->core->getUrlAction(2));
+
+		switch (strtolower($this->core->getUrlAction(1)))
+		{
+			case 'character':
+				if (!in_array($this->core->getUrlAction(4), array('advanced', 'simple')))
+					$this->m_clientFilesController = strtolower($this->core->getUrlAction(4));
+				break;
+			case 'game':
+				$this->m_clientFilesController = strtolower($this->core->getUrlAction(2));
+				break;
+			case 'guild':
+				$this->m_clientFilesController = strtolower($this->core->getUrlAction(4));
+				break;
+			case 'pvp':
+				$this->m_clientFilesController = 'pvpladder';
+				break;
+			case 'arena':
+				$this->m_clientFilesController = 'arenateam';
+				break;
+		}
 
 		$this->wowTemplater();
 		return $this;

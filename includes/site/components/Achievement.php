@@ -633,5 +633,26 @@ class Achievement_Component extends Component
 		unset($this->m_achCriterias, $this->m_achProgress);
 		return $achievements;
 	}
+
+	public function getAchievementsInfo($entries, $values = false)
+	{
+		if (!$entries)
+			return false;
+
+		$q = $this->c('QueryResult')
+			->model('WowAchievement')
+			->keyIndex('id');
+
+		$achievements = array();
+
+		if (is_array($entries))
+			$achievements = $q->fieldCondition('id', $entries)->loadItems();
+		else
+			$achievements = $q->fieldCondition('id', ' = ' . intval($entries))->loadItem();
+
+		unset($q);
+
+		return $achievements;
+	}
 }
 ?>

@@ -257,6 +257,27 @@ $ClientCSS = array(
 			)
 		)
 	),
+	'pvp' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/profile.css',
+				'version' => 14
+			),
+			array(
+				'file' => '/wow/static/css/profile-ie.css',
+				'version' => 14,
+				'browser' => 'IE'
+			),
+			array(
+				'file' => '/wow/static/css/character/pvp.css',
+				'version' => 15
+			),
+			array(
+				'file' => '/wow/static/css/arena/arena.css',
+				'version' => 17
+			)
+		)
+	),
 	'community' => array(
 		'header' => array(
 			array(
@@ -412,6 +433,136 @@ $ClientCSS = array(
 				'file' => '/wow/static/css/guild/summary-ie6.css',
 				'version' => 17,
 				'browser' => 'IE 6'
+			)
+		)
+	),
+	'roster' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/profile.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/profile-ie.css',
+				'version' => 17,
+				'browser' => 'IE'
+			),
+			array(
+				'file' => '/wow/static/css/profile-ie6.css',
+				'version' => 17,
+				'browser' => 'IE 6'
+			),
+			array(
+				'file' => '/wow/static/css/guild/guild.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/guild/roster.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/guild/roster-ie.css',
+				'version' => 17,
+				'browser' => 'IE'
+			),
+			array(
+				'file' => '/wow/static/css/guild/roster-ie6.css',
+				'version' => 17,
+				'browser' => 'IE 6'
+			)
+		)
+	),
+	'news' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/profile.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/profile-ie.css',
+				'version' => 17,
+				'browser' => 'IE'
+			),
+			array(
+				'file' => '/wow/static/css/profile-ie6.css',
+				'version' => 17,
+				'browser' => 'IE 6'
+			),
+			array(
+				'file' => '/wow/static/css/guild/guild.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/guild/news.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/guild/news-ie6.css',
+				'version' => 17,
+				'browser' => 'IE 6'
+			)
+		)
+	),
+	'search' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/local-common/css/cms/search.css',
+				'version' => 35,
+			),
+			array(
+				'file' => '/wow/static/css/search.css',
+				'version' => 17,
+			)
+		)
+	),
+	'pvpladder' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/pvp/pvp.css',
+				'version' => 17,
+			),
+			array(
+				'file' => '/wow/static/css/pvp/pvp-ie6.css',
+				'version' => 17,
+				'browser' => 'IE 6'
+			)
+		)
+	),
+	'arenateam' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/profile.css',
+				'version' => 17
+			),
+			array(
+				'file' => '/wow/static/css/profile-ie.css',
+				'version' => 17,
+				'browser' => 'IE'
+			),
+			array(
+				'file' => '/wow/static/css/profile-ie6.css',
+				'version' => 17,
+				'browser' => 'IE 6'
+			),
+			array(
+				'file' => '/wow/static/css/arena/arena.css',
+				'version' => 17,
+			),
+			array(
+				'file' => '/wow/static/css/arena/summary.css',
+				'version' => 17,
+			),
+			array(
+				'file' => '/wow/static/css/arena/summary-ie6.css',
+				'version' => 17,
+				'browser' => 'IE 6'
+			)
+		)
+	),
+	'acount-management' => array(
+		'header' => array(
+			array(
+				
 			)
 		)
 	)

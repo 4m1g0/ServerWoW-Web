@@ -58,6 +58,16 @@ Flash.ratingImage = 'http://eu.media.blizzard.com/global-video-player/ratings/wo
 Flash.expressInstall= 'http://eu.media.blizzard.com/global-video-player/expressInstall.swf';
 //]]>
 </script>
+<?php if (!isset($_COOKIE['featureclosed'])) : ?>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('div#feature-tip a.close').click(function() {
+		$('#feature-tip').hide();
+		Cookie.create('featureclosed', 1, {expires: 8760});
+	});
+});
+</script>
+<?php endif; ?>
 <meta name="title" content="World of Warcraft" />
 <link rel="image_src" href="<?php echo CLIENT_FILES_PATH; ?>/wow/static/images/icons/facebook/game.jpg" />
 
@@ -71,8 +81,20 @@ if (isset($character) && $character && $character->getProfilePage() == 'profile_
 <?php endif; ?>
 
 </head>
-<body class="<?php echo $l->getLocale(LOCALE_DOUBLE) . ' ' . (isset($body_class) ? $body_class : 'homepage'); ?>">
+<body class="<?php echo $l->getLocale(LOCALE_DOUBLE) . ' ' . (isset($body_class) ? $body_class : 'homepage'); if (!isset($notify)) echo ' has-notify-bar'; ?>">
 <?php echo $this->region('adminBox'); ?>
+<?php if (!isset($notify)) : ?>
+<div class="notify-bar" id="notify-bar">
+<div class="notify-bar-inner">
+<span class="cell news" data-ad="">
+<span>
+<strong>Notify Title<?php //echo $notify['title']; ?></strong>
+Notify Text<?php //echo $notify['text']; ?>
+</span>
+</span>
+</div>
+</div>
+<?php endif; ?>
 <div id="wrapper">
 <div id="header">
 <?php if ($this->issetRegion('header')) echo $this->region('header'); ?>
