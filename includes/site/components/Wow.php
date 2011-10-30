@@ -463,5 +463,61 @@ class Wow_Component extends Component
 
 		return $races;
 	}
+
+	public function getRealmsStatus()
+	{
+		$realms = $this->c('QueryResult', 'Db')
+			->model('Realmlist')
+			->loadItems();
+
+		if (!$realms)
+			return false;
+
+		$errNo = 0;
+		$errStr = '';
+		foreach ($realms as &$r)
+		{
+			$r['status'] = @fsockopen($r['address'], $r['port'], $errNo, $errStr, 1) ? 'up' : 'down';
+			switch ($r['icon'])
+			{
+                case 1:
+                    $r['type'] = 'PvP';
+                    break;
+                case 6:
+                    $r['type'] = $this->c('Locale')->getString('template_realm_status_type_roleplay');
+                    break;
+                case 8:
+                    $r['type'] =$this->c('Locale')->getString('template_realm_status_type_rppvp');
+                    break;
+                case 0:
+                case 4:
+				default:
+                    $r['type'] = 'PvE';
+                    break;
+			}
+			switch ($r['timezone'])
+			{
+				default:
+                    $r['language'] = 'Development Realm';
+                    break;
+                case 8:
+                    $r['language'] = $this->c('Locale')->getString('template_locale_en');
+                    break;
+                case 9:
+                    $r['language'] = $this->c('Locale')->getString('template_locale_de');
+                    break;
+                case 10:
+                    $r['language'] = $this->c('Locale')->getString('template_locale_fr');
+                    break;
+                case 11:
+                    $r['language'] = $this->c('Locale')->getString('template_locale_es');
+                    break;
+                case 12:
+                    $r['language'] = $this->c('Locale')->getString('template_locale_ru');
+                    break;
+			}
+		}
+		return $realms;
+	}
 }
 ?>

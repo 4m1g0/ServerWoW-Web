@@ -10,11 +10,9 @@ foreach ($items as $item) :
 	                <a href="<?php echo $this->getWowUrl('blog/' . $item['id']); ?>#blog"><?php echo $item['title']; ?></a>
 	            </h3>
 	            <div class="by-line">
-	                by <a href="<?php echo $this->getWowUrl('search?f=article&amp;a=' . $item['author']); ?>"><?php echo $item['author']; ?></a>
+	                by <a href="javascript:;"><?php echo $item['author']; ?></a>
                 <span class="spacer"></span> <?php echo date('d/m/Y', $item['postdate']); ?>
-	                    <a href="<?php echo $this->getWowUrl('blog/' . $item['id']); ?>#comments" class="comments-link">
-	                        4
-	                    </a>
+	              
 	            </div>
 
 	        <div class="article-left" style="background-image: url('<?php echo CLIENT_FILES_PATH; ?>/cms/blog_thumbnail/<?php echo $item['image']; ?>');">

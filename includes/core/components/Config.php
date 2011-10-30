@@ -43,11 +43,11 @@ class Config_Component extends Component
 		if ($this->m_holder)
 			return $this;
 
-		$file = SITE_CONFIGS_DIR . 'Site.php';
+		$file = SITE_CONFIGS_DIR . 'Site.dat';
 		if (file_exists($file))
 		{
-			include($file);
-			$this->m_holder = $SiteConfigs;
+			//include($file);
+			$this->m_holder = unserialize(file_get_contents($file));
 		}
 
 		if (!$this->m_holder)
@@ -104,7 +104,7 @@ class Config_Component extends Component
 	 **/
 	public function setValue($path, $value)
 	{
-		if (!$path || !$value)
+		if (!$path)
 		{
 			$this->c('Log')->writeError('%s : unable to set value: path or value is not defined (path: %s, value: %s)!', __METHOD__, $path, $value);
 			return $this;
@@ -127,6 +127,11 @@ class Config_Component extends Component
 	public function getConfigHolder()
 	{
 		return $this->m_holder;
+	}
+
+	public function updateConfigFile()
+	{
+		file_put_contents(SITE_CONFIGS_DIR . 'Site.dat', serialize($this->m_holder));
 	}
 }
 ?>

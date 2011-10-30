@@ -340,6 +340,64 @@ $ClientJS = array(
 				'version' => 35
 			)
 		)
+	),
+	'store' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/js/store/store.js',
+				'version' => 1
+			)
+		),
+		'footer' => array(
+			array(
+				'file' => '/wow/static/local-common/js/utility/dynamic-menu.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/js/pvp/pvp.js',
+				'version' => 18
+			)
+		)
+	),
+	'media' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/local-common/js/third-party/swfobject.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/local-common/js/media/gallery-viewer.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/local-common/js/dropdown.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/local-common/js/third-party/jquery-ui-1.8.6.custom.min.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/local-common/js/third-party/jquery.mousewheel.min.js',
+				'version' => 35
+			)
+		)
+	),
+	'status' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/local-common/js/table.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/local-common/js/filter.js',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/js/services/realm-status.js',
+				'version' => 18
+			)
+		)
 	)
 );
 ?>

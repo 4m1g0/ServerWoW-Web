@@ -58,6 +58,7 @@ Flash.ratingImage = 'http://eu.media.blizzard.com/global-video-player/ratings/wo
 Flash.expressInstall= 'http://eu.media.blizzard.com/global-video-player/expressInstall.swf';
 //]]>
 </script>
+<?php echo $this->c('Document')->releaseJs('header'); ?>
 <?php if (!isset($_COOKIE['featureclosed'])) : ?>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -81,9 +82,9 @@ if (isset($character) && $character && $character->getProfilePage() == 'profile_
 <?php endif; ?>
 
 </head>
-<body class="<?php echo $l->getLocale(LOCALE_DOUBLE) . ' ' . (isset($body_class) ? $body_class : 'homepage'); if (!isset($notify)) echo ' has-notify-bar'; ?>">
+<body class="<?php echo $l->getLocale(LOCALE_DOUBLE) . ' ' . (isset($body_class) ? $body_class : 'homepage'); if (isset($notify)) echo ' has-notify-bar'; ?>">
 <?php echo $this->region('adminBox'); ?>
-<?php if (!isset($notify)) : ?>
+<?php if (isset($notify)) : ?>
 <div class="notify-bar" id="notify-bar">
 <div class="notify-bar-inner">
 <span class="cell news" data-ad="">

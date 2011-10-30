@@ -1,11 +1,11 @@
 So:
 
 - Unic Copy - Full rights®
-- Original site design
-- Multi Realms support
-- Multi Lang Support (without /wow/$lang/)
+- Original site design //done
+- Multi Realms support //done
+- Multi Lang Support (without /wow/$lang/) //done
 
-- News system (with Moderation//Admin Panel) // done, panels are not ready yet
+- News system (with Moderation//Admin Panel) // done
 - Forums (with Moderation//Admin Panel) // done
 - Account management // done
 - Simple features (Create account, Change Password, etc..) // done
@@ -21,19 +21,15 @@ So:
 
 - WoWhead included (Item pages, etc..) (in /game/) (with Moderation Panel//Admin Panel) // done
 
-- Realms status
-- Web auction
-- Web support for character services (race/faction change, customization, etc.) (in /services/)
-  linked to => "Credits Store"
-- Media system (screenshots, videos, texts) (in /community/) (with Moderation Panel//Admin Panel)
+- Realms status // done
+- Media system (screenshots, videos, texts) (in /community/) (with Moderation Panel//Admin Panel) //done
 
 - BugTracker (in /media/) (with Moderation Panel//Admin Panel)
-- Cache system
 - Search Engine // done
 
-- Credits Store "Paypal/SMS" (in /services/) (with Admin Panel)
+- Credits Store "Paypal/SMS" (in /services/) (with Admin Panel) // current PHP scripts required to finish it
 
-- Admin Panel (General)
+- Admin Panel (General) // done
 - Moderation Panel (General) // done (forums)
 
 Have in Count

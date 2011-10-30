@@ -28,6 +28,7 @@ class AccountManager_Component extends Component
 	protected $m_activeChar = array();
 	protected $m_lastErrorIdx = '';
 	protected $m_success = false;
+	protected $m_adminData = array();
 
 	public function initialize()
 	{
@@ -306,6 +307,10 @@ class AccountManager_Component extends Component
 		if (!isset($checker['gmlevel']))
 			$checker['gmlevel'] = -1;
 
+		$checker['banned'] = $this->loadBanInfo($checker['id']);
+		/// WOW STORE
+		$checker['amount'] = 0;
+
 		$user = (object) $checker;
 
 		if ($user->gmlevel == -1)
@@ -331,6 +336,22 @@ class AccountManager_Component extends Component
 		return $this->saveUser($user)->loadCharacters();
 	}
 
+	private function loadBanInfo($id)
+	{
+		// Check if user is banned (account bans only, do not check IP bans)
+		$ban = $this->c('QueryResult')
+			->model('AccountBanned')
+			->fieldCondition('id', ' = ' . $id, 'AND')
+			->fieldCondition('unbandate', ' > ' . time(), 'AND')
+			->fieldCondition('active', ' = 1')
+			->loadItem();
+
+		if ($ban)
+			return true;
+
+		return false;
+	}
+
 	private function saveUser($user)
 	{
 		if (!$user)
@@ -344,21 +365,55 @@ class AccountManager_Component extends Component
 
 		$this->m_cookieData = base64_encode(json_encode($cookie_data));
 		$this->c('Cookie')->write('wowuser', $this->m_cookieData);
+
 		$this->m_user = $user;
 		$this->m_sessionInfo = 'EU-' . $user->id . '-' . sha1($user->sha_pass_hash); // Ticket ID
 
 		$this->c('Session')->setSession('isLoggedIn', true);
 
 		if ($user->gmlevel >= 1)
-			$this->c('Session')->setSession('isAdmin', true);
+		{
+			// Check user in admins table
+			$admin = $this->c('QueryResult')
+				->model('WowAccounts')
+				->fieldCondition('game_id', ' = ' . $this->m_user->id, 'AND')
+				->fieldCondition('active', ' = 1')
+				->loadItem();
+
+			$this->c('Session')->setSession('isAdmin', ($admin ? true : false));
+			$this->m_adminData = $admin;
+		}
+
+		// Set XSTOKEN if empty
+		if (!$this->c('Cookie')->read('xstoken'))
+			$this->c('Cookie')->write('xstoken', $this->generateXsToken());
 
 		return $this;
+	}
+
+	protected function generateXsToken()
+	{
+		if (!$this->isLoggedIn())
+			return '';
+
+		return mt_rand();
 	}
 
 	public function user($field)
 	{
 		if (isset($this->m_user->{$field}))
 			return $this->m_user->{$field};
+
+		return false;
+	}
+
+	public function admin($field)
+	{
+		if (!$this->isAdmin())
+			return false;
+
+		if (isset($this->m_adminData[$field]))
+			return $this->m_adminData[$field];
 
 		return false;
 	}
@@ -413,6 +468,11 @@ class AccountManager_Component extends Component
 
 		if (!isset($user['gmlevel']))
 			$user['gmlevel'] = -1;
+
+		$user['banned'] = $this->loadBanInfo($user['id']);
+
+		/// WOW STORE
+		$user['amount'] = 0;
 
 		$user = (object) $user;
 
@@ -511,7 +571,7 @@ class AccountManager_Component extends Component
 
 	public function isBanned()
 	{
-		return false;
+		return $this->m_user->banned;
 	}
 
 	public function isAllowedToForums()
@@ -524,7 +584,7 @@ class AccountManager_Component extends Component
 
 	public function isAllowedToModerate()
 	{
-		if ($this->user('gmlevel') <= 0 && $this->isAllowedToForums())
+		if (!$this->isAdmin() || !$this->isAllowedToForums())
 			return false;
 
 		return true;
@@ -532,12 +592,20 @@ class AccountManager_Component extends Component
 
 	public function getForumsName()
 	{
+		if (!$this->isAdmin())
+			return false;
+
+		$name = $this->admin('forums_name');
+
+		if ($name)
+			return $name;
+
 		return $this->user('username');
 	}
 
 	public function isAdmin()
 	{
-		return $this->user('gmlevel') == 3;
+		return is_array($this->m_adminData);
 	}
 
 	public function createAccount($user, $pass, $confirm, $email)
@@ -567,12 +635,12 @@ class AccountManager_Component extends Component
 
 	public function lastMessageIndex()
 	{
-		return $this->m_lastErrorIdx;//'template_account_change_pass_error_pass';
+		return $this->m_lastErrorIdx;
 	}
 
 	public function getNotifyType()
 	{
-		return 0;
+		return 0; // dead code?
 	}
 
 	public function success()
@@ -583,7 +651,7 @@ class AccountManager_Component extends Component
 	public function changePassword()
 	{
 		if (!$this->isLoggedIn())
-			return $this->core->redirectApp();
+			return $this->core->redirectApp(); // to root
 
 		$p = $_POST;
 
@@ -610,13 +678,35 @@ class AccountManager_Component extends Component
 				->setType('update');
 
 			$edt->sha_pass_hash = sha1(strtoupper($this->user('username')) . ':' . strtoupper($p['newPassword']));
+			 // set session fields to null
 			$edt->v = '';
 			$edt->s = '';
 			$edt->save()->clearValues();
+			// Update user object to prevent login autoreject (auto-logout)
 			$this->m_user->sha_pass_hash = sha1(strtoupper($this->user('username')) . ':' . strtoupper($p['newPassword']));
 			$this->saveUser($this->m_user);
 			$this->m_success = true;
 		}
+	}
+
+	public function changeBonus($amount, $type = -1)
+	{
+		if ($amount < 0)
+			return false;
+
+		if ($type == 1)
+			$this->m_user->amount += $amount;
+		elseif ($type == -1)
+		{
+			if ($this->m_user->amount < $amount)
+				return false;
+
+			$this->m_user->amount -= $amount;
+		}
+		elseif ($type == 0)
+			$this->m_user->amount = $type;
+
+		return true;
 	}
 }
 ?>

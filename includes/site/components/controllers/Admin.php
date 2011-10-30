@@ -20,7 +20,8 @@
 
 class Admin_Controller_Component extends Controller_Component
 {
-	protected $m_action = '';
+	protected $m_action = 'default';
+	protected $m_subaction = array();
 
 	protected function checkInfo()
 	{
@@ -29,7 +30,12 @@ class Admin_Controller_Component extends Controller_Component
 		elseif (!$this->c('AccountManager')->isAdmin())
 			return false;
 
-		$this->m_action = strtolower($this->core->getUrlAction(1));
+		if ($this->core->getUrlAction(1) != null)
+			$this->m_action = strtolower($this->core->getUrlAction(1));
+
+		for ($i = 2; $i < 5; ++$i)
+			if ($this->core->getUrlAction($i) != null)
+				$this->m_subaction[$i - 2] = $this->core->getUrlAction($i);
 
 		return true;
 	}
@@ -43,18 +49,228 @@ class Admin_Controller_Component extends Controller_Component
 			return $this;
 		}
 
-		if (!$this->m_action)
-			$this->buildBlock('main');
-		else
-			$this->buildBlock($this->m_action);
+		switch ($this->m_action)
+		{
+			case 'news':
+				if (isset($this->m_subaction[0]) && $this->m_subaction[0])
+				{
+					switch ($this->m_subaction[0])
+					{
+						case 'edit':
+							if (isset($this->m_subaction[1]) && $this->m_subaction[1])
+							{
+								if (isset($_POST['news']))
+									$this->c('Admin')->editNews($this->m_subaction[1]);
+
+								$this->buildBlock('newsEdit');
+							}
+							break;
+						case 'delete':
+							if ($this->m_subaction[1])
+								$this->c('Admin')->deleteNewsItem($this->m_subaction[1]);
+							break;
+						case 'deleteAll':
+							$this->c('Admin')->deleteAllNews();
+							break;
+						case 'add':
+							if (isset($_POST['news']))
+								$this->c('Admin')->addNews();
+							$this->buildBlock('newsAdd');
+							break;
+					}
+				}
+				else
+					$this->buildBlock($this->m_action);
+				break;
+			case 'configs':
+				if (isset($this->m_subaction[0]) && $this->m_subaction[0])
+				{
+					switch ($this->m_subaction[0])
+					{
+						case 'site':
+							if (isset($_POST['site']))
+								$this->c('Admin')->saveSiteConfigs();
+							$this->buildBlock('siteconfigs');
+							break;
+						case 'realms':
+							if (isset($_POST['realm']))
+								$this->c('Admin')->saveRealmsConfigs();
+							if (isset($this->m_subaction[1]) && $this->m_subaction[1] == 'edit' && isset($this->m_subaction[2]) && $this->m_subaction[2] > 0)
+								$this->buildBlock('editrealm');
+							elseif (isset($this->m_subaction[1]) && $this->m_subaction[1] == 'add')
+								$this->buildBlock('addrealm');
+							elseif (isset($this->m_subaction[1]) && $this->m_subaction[1] == 'delete' && isset($this->m_subaction[2]) && $this->m_subaction[2] > 0)
+								$this->c('Admin')->deleteRealm($this->m_subaction[2]);
+							else
+								$this->buildBlock('realmsconfigs');
+							break;
+						case 'mysql':
+							if (isset($_POST['mysql']))
+								$this->c('Admin')->saveMySQLConfigs();
+							$this->buildBlock('mysqlconfigs');
+							break;
+					}
+				}
+				else
+					$this->buildBlock($this->m_action);
+				break;
+			case 'forums':
+				if (isset($this->m_subaction[0]) && $this->m_subaction[0])
+				{
+					switch ($this->m_subaction[0])
+					{
+						case 'add':
+							if (isset ($_POST['cat']))
+								$this->c('Admin')->addForumCat();
+							$this->buildBlock('addforumcategory');
+							break;
+						case 'edit':
+							if (isset ($_POST['cat']))
+								$this->c('Admin')->editForumCat();
+							$this->buildBlock('editforumcategory');
+							break;
+						case 'delete':
+							$this->c('Admin')->deleteForumCat();
+							break;
+					}
+				}
+				else
+					$this->buildBlock($this->m_action);
+				break;
+			case 'users':
+				if (isset($this->m_subaction[0]) && $this->m_subaction[0])
+				{
+					switch ($this->m_subaction[0])
+					{
+						case 'add':
+							if (isset ($_POST['user']))
+								$this->c('Admin')->addUser();
+							$this->buildBlock('adduser');
+							break;
+						case 'edit':
+							if (isset ($_POST['user']))
+								$this->c('Admin')->editUser();
+							$this->buildBlock('edituser');
+							break;
+						case 'delete':
+							$this->c('Admin')->deleteUser();
+							break;
+					}
+				}
+				else
+					$this->buildBlock($this->m_action);
+				break;
+			case 'default':
+				$this->buildBlock($this->m_action);
+				break;
+		}
+
+		$this->buildBlock('main');
 
 		return $this;
+	}
+
+	protected function block_forums()
+	{
+		return $this->block()
+			->setTemplate('forums', 'admin' . DS . 'contents' . DS)
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_editforumcategory()
+	{
+		return $this->block()
+			->setTemplate('editforumcategory', 'admin' . DS . 'contents' . DS)
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_addforumcategory()
+	{
+		return $this->block()
+			->setTemplate('addforumcategory', 'admin' . DS . 'contents' . DS)
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_siteconfigs()
+	{
+		return $this->block()
+			->setTemplate('siteconfigs', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_users()
+	{
+		return $this->block()
+			->setTemplate('users', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_edituser()
+	{
+		return $this->block()
+			->setTemplate('edituser', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_adduser()
+	{
+		return $this->block()
+			->setTemplate('adduser', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_realmsconfigs()
+	{
+		return $this->block()
+			->setTemplate('realmsconfigs', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_editrealm()
+	{
+		return $this->block()
+			->setTemplate('editrealm', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_addrealm()
+	{
+		return $this->block()
+			->setTemplate('addrealm', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_mysqlconfigs()
+	{
+		return $this->block()
+			->setTemplate('mysqlconfigs', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_newsAdd()
+	{
+		return $this->block()
+			->setTemplate('addnews', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
 	}
 
 	protected function block_main()
 	{
 		return $this->block()
 			->setTemplate('main', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
 			->setRegion('pagecontent');
 	}
 
@@ -62,7 +278,32 @@ class Admin_Controller_Component extends Controller_Component
 	{
 		return $this->block()
 			->setTemplate('news', 'admin' . DS . 'contents')
-			->setRegion('pagecontent');
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_newsEdit()
+	{
+		return $this->block()
+			->setTemplate('editnews', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_default()
+	{
+		return $this->block()
+			->setTemplate('default', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_configs()
+	{
+		return $this->block()
+			->setTemplate('configs', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
 	}
 }
 ?>

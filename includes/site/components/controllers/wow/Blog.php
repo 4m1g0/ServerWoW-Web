@@ -43,9 +43,25 @@ class Blog_WoW_Controller_Component extends Groupwow_Controller_Component
 
 	public function build($core)
 	{
-		$this->buildBreadcrumb()->buildBlock('item');
+		$this->buildBreadcrumb()->buildBlocks(array('featured', 'item'));
 
 		return $this;
+	}
+
+	protected function block_featured()
+	{
+		return $this->block('List')
+			->setMainUnit('news')
+			->setRegion('featured')
+			->setTemplate('featured', 'wow' . DS . 'blocks');
+	}
+
+	protected function unit_news()
+	{
+		return $this->unit('List')
+			->setModel('WowNews')
+			->order(array('WowNews' => array('postdate')), 'DESC')
+			->limit(10);
 	}
 
 	protected function unit_item()

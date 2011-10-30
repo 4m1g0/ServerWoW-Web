@@ -565,6 +565,31 @@ $ClientCSS = array(
 				
 			)
 		)
+	),
+	'store' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/local-common/css/media-gallery.css',
+				'version' => 35
+			),
+			array(
+				'file' => '/wow/static/css/media/media.css',
+				'version' => 18
+			),
+			array(
+				'file' => '/wow/static/css/media/media-ie6.css',
+				'version' => 18,
+				'browser' => 'IE 6'
+			)
+		)
+	),
+	'status' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/game/realmstatus.css',
+				'version' => 18
+			)
+		)
 	)
 );
 ?>

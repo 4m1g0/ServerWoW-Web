@@ -21,6 +21,7 @@
 class Search_Wow_Controller_Component extends Groupwow_Controller_Component
 {
 	protected $m_query = '';
+	protected $m_authorQuery = '';
 	protected $m_searchType = array('type' => 'summary', 'block' => 'summary');
 
 	protected function checkInfo()
@@ -40,6 +41,9 @@ class Search_Wow_Controller_Component extends Groupwow_Controller_Component
 
 		if (isset($_GET['f']) && isset($types[$_GET['f']]))
 			$this->m_searchType = array('type' => $_GET['f'], 'block' => $types[$_GET['f']]);
+
+		if (isset($_GET['a']) && $this->m_searchType['type'] == 'post')
+			$this->m_authorQuery = $_GET['a'];
 
 		return true;
 	}
@@ -64,18 +68,21 @@ class Search_Wow_Controller_Component extends Groupwow_Controller_Component
 	{
 		$this->checkInfo();
 
-		if (!$this->m_query || mb_strlen($this->m_query) < 2)
+		if ((!$this->m_query || mb_strlen($this->m_query) < 2) && (!$this->m_authorQuery || mb_strlen($this->m_authorQuery) < 2))
 			$this->buildBlock('empty');
 		else
 		{
-			if ($this->c('Search')
-			->setSearchType((isset($this->m_searchType['type']) ? $this->m_searchType['type'] : 'summary'))
-			->setQuery($this->m_query)
-			->performSearch()
-			->isAnyResults())
-			{
+			$this->c('Search')->setSearchType((isset($this->m_searchType['type']) ? $this->m_searchType['type'] : 'summary'));
+
+			if ($this->m_authorQuery && $this->m_searchType['type'] == 'post')
+				$this->c('Search')->setAuthorQuery($this->m_authorQuery);
+			else
+				$this->c('Search')->setQuery($this->m_query);
+
+			$this->c('Search')->performSearch();
+
+			if ($this->c('Search')->isAnyResults())
 				$this->buildBlocks(array('pagination', 'results_' . $this->c('Search')->getSearchType(), 'summary'));
-			}
 			else
 				$this->buildBlock('empty');
 		}

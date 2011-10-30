@@ -35,6 +35,7 @@ class Item_Component extends Component
 	protected $m_itemsCount = array();
 	protected $m_itemsClassInfo = array();
 	protected $m_itemTab = '';
+	protected $m_storeInfo = array();
 
 	public function initItem($entry, $isTooltip, $tab)
 	{
@@ -64,7 +65,8 @@ class Item_Component extends Component
 			$this->m_tooltipData['set'] = array();
 
 		$this->loadItem()
-			->handleItem();
+			->handleItem()
+			->loadStoreInfo();
 
 		return $this;
 	}
@@ -627,7 +629,8 @@ class Item_Component extends Component
 					$t .= '<li class="indent-top"> </li>';
 					if ($bonus_info)
 						foreach ($bonus_info as &$bonus)
-							$t .= '<li class="color-' . (count($this->m_tooltipData['set']) >= $bonus['threshold'] ? 'tooltip-green' : 'd4') .'">(' . $bonus['threshold'] . ') ' . $l->format('template_item_set_bonus', $bonus['desc']) . '</li>';
+							if ($bonus['desc'])
+								$t .= '<li class="color-' . (count($this->m_tooltipData['set']) >= $bonus['threshold'] ? 'tooltip-green' : 'd4') .'">(' . $bonus['threshold'] . ') ' . $l->format('template_item_set_bonus', $bonus['desc']) . '</li>';
 	
 					$t .= '</ul></li>';
 				}
@@ -653,7 +656,12 @@ class Item_Component extends Component
 			if ($item_spells)
 			{
 				foreach($item_spells as &$spell)
-					$t .= '<li class="color-q2"><span class="tip" data-spell="' . $spell['id'] . '">' . $l->format('template_item_spell_trigger_' . $spells[$spell['id']], $this->c('Spell')->getSpellDescription($spell)) . '</span></li>';
+				{
+					$this->c('Spell')->getSpellDescription($spell);
+					if (!$sdesc)
+						continue;
+					$t .= '<li class="color-q2"><span class="tip" data-spell="' . $spell['id'] . '">' . $l->format('template_item_spell_trigger_' . $spells[$spell['id']], $sdesc) . '</span></li>';
+				}
 			}
 			unset($item_spells, $spell);
 		}
@@ -674,6 +682,7 @@ class Item_Component extends Component
 			$t .= '</li>';
 		}
 
+		/*
 		if ($this->m_isTooltip)
 		{
 			$source_info = array();
@@ -724,7 +733,7 @@ class Item_Component extends Component
 
 				$t .= '</ul>';
 			}
-		}
+		}*/
 
 		$t .= '</ul>';
 
@@ -1295,7 +1304,7 @@ class Item_Component extends Component
 		if ($this->c('Locale')->GetLocaleID() != LOCALE_EN)
 			$query->addModel('LocalesItem')
 				->join('left', 'LocalesItem', 'ItemTemplate', 'entry', 'entry')
-				->fields(array('ItemTemplate' => array('entry', 'Quality', 'Flags', 'FlagsExtra', 'displayid', 'class', 'subclass', 'InventoryType', 'ItemLevel', 'RequiredLevel'), 'LocalesItem' => array('name_loc' . $this->c('Locale')->GetLocaleID())));
+				->fields(array('ItemTemplate' => array('entry', 'name', 'Quality', 'Flags', 'FlagsExtra', 'displayid', 'class', 'subclass', 'InventoryType', 'ItemLevel', 'RequiredLevel'), 'LocalesItem' => array('name_loc' . $this->c('Locale')->GetLocaleID())));
 		else
 			$query->fields(array('ItemTemplate' => array('entry', 'name', 'Quality', 'Flags', 'FlagsExtra', 'displayid', 'class', 'subclass', 'InventoryType', 'ItemLevel', 'RequiredLevel')));
 
@@ -1829,6 +1838,35 @@ class Item_Component extends Component
 		}
 
 		return 0;
+	}
+
+	protected function loadStoreInfo()
+	{
+		if (!$this->m_item)
+			return $this;
+
+		$this->m_storeInfo = $this->c('QueryResult', 'Db')
+			->model('WowStoreItems')
+			->fieldCondition('item_id', ' = ' . $this->item('entry'))
+			->loadItem();
+
+		return $this;
+	}
+
+	public function isAvailableInStore()
+	{
+		if ($this->m_storeInfo && isset($this->m_storeInfo['item_id']) && $this->m_storeInfo['item_id'] == $this->item('entry') && $this->m_storeInfo['in_store'] == 1)
+			return true;
+
+		return false;
+	}
+
+	public function getStoreCatId()
+	{
+		if (!$this->isAvailableInStore())
+			return 0;
+
+		return $this->m_storeInfo['cat_id'];
 	}
 }
 ?>

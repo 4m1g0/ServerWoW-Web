@@ -28,6 +28,7 @@ class Query_Component extends Component
 	protected $m_fieldsCount = 0;
 	protected $m_functions = array();
 	protected $m_changedAliases = array();
+	protected $m_localeFields = array();
 
 	public function clear()
 	{
@@ -39,6 +40,7 @@ class Query_Component extends Component
 		$this->m_sql = array();
 		$this->m_fieldsCount = 0;
 		$this->m_functions = array();
+		$this->m_localeFields = array();
 
 		return 0;
 	}
@@ -383,6 +385,8 @@ class Query_Component extends Component
 		$this->m_rawSql = 'SELECT' . NL;
 		$field_num = 0;
 
+		$this->m_localeFields = array();
+
 		foreach ($this->m_fields as $tName => $table)
 		{
 			if (!$tName || !$table)
@@ -399,7 +403,6 @@ class Query_Component extends Component
 			$size_fields = sizeof($table);
 			for ($i = 0; $i < $size_fields; ++$i)
 			{
-
 				if (!isset($table[$i]) || !$table[$i])
 					continue;
 
@@ -423,7 +426,34 @@ class Query_Component extends Component
 					$this->m_rawSql .= '`' . $alias . '`.`' . $table[$i] . '`';
 
 				if (!$skipAs)
-					$this->m_rawSql .= ' AS `' . (isset($model->m_aliases[$table[$i]]) ? $model->m_aliases[$table[$i]] : $table[$i]) . '`';
+				{
+					$tempAlias = null;
+					// Check if this field is DbLocale field
+					// If it is, set it to temporary name (for cases when localization is missing in DB0)
+					if (isset($model->m_fields[$table[$i]]) && $model->m_fields[$table[$i]] == 'DbLocale')
+					{
+						if (!isset($this->m_localeFields[$model->m_table]))
+							$this->m_localeFields[$model->m_table] = array();
+
+						$this->m_localeFields[$model->m_table][$table[$i] . '_temporary'] = array(
+							'field' => $table[$i],
+							'temp'  => $table[$i] . '_temporary',
+							'alias' => (isset($model->m_aliases[$table[$i]]) ? $model->m_aliases[$table[$i]] : $table[$i])
+						);
+						$tempAlias = $table[$i] . '_temporary';
+					}
+
+					$this->m_rawSql .= ' AS `';
+
+					if ($tempAlias != null)
+						$this->m_rawSql .= $tempAlias;
+					elseif (isset($model->m_aliases[$table[$i]]))
+						$this->m_rawSql .= $model->m_aliases[$table[$i]];
+					else
+						$this->m_rawSql .= $table[$i];
+
+					$this->m_rawSql .= '`';
+				}
 
 				$this->m_rawSql .= NL;
 
@@ -434,7 +464,7 @@ class Query_Component extends Component
 			}
 		}
 		$this->m_rawSql .= 'FROM `' . $this->getModel()->m_table . '` AS `' . $table_aliases[$this->getModel()->m_table] . '`' . NL;
-		
+
 		if (isset($this->m_sql['join']))
 		{
 			$join_sql = array();
@@ -607,8 +637,14 @@ class Query_Component extends Component
 				$this->m_rawSql .= NL;
 			}
 		}
+		//echo($this->m_rawSql);
 
 		return $this;
+	}
+
+	public function getLocaleFields()
+	{
+		return $this->m_localeFields;
 	}
 
 	public function getSql()

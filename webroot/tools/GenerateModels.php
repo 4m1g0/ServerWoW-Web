@@ -223,6 +223,8 @@ function parseFields(&$fields, $table, $type)
 		else
 			if (preg_match('/text/', $field['Type']) || preg_match('/varchar/', $field['Type']))
 				$text .= TAB . '\'' . $field['Field'] . '\' => array(\'type\' => \'string\'),' . NLTAB;
+			elseif (preg_match('/float/', $field['Type']) || preg_match('/double/', $field['Type']))
+				$text .= TAB . '\'' . $field['Field'] . '\' => array(\'type\' => \'float\'),' . NLTAB;
 			else
 				$text .= TAB . '\'' . $field['Field'] . '\' => array(\'type\' => \'integer\'),' . NLTAB;
 	}

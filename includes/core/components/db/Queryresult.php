@@ -118,12 +118,67 @@ class QueryResult_Db_Component extends Component
 
 	public function loadItem()
 	{
-		return $this->c('SqlQuery', 'Db')->selectItem($this->m_sqlBuilder->getSql(), $this->m_model->m_dbType, $this->m_sqlBuilder->getIndexKey())->getData();
+		$item = $this->c('SqlQuery', 'Db')->selectItem($this->m_sqlBuilder->getSql(), $this->m_model->m_dbType, $this->m_sqlBuilder->getIndexKey())->getData();
+
+		$fields = $this->m_sqlBuilder->getLocaleFields();
+
+		if (!$item)
+			return false;
+
+		if (!$fields)
+			return $item; // Nothing to do
+
+		// Parse fields
+		$this->parseResults($item, $fields);
+
+		return $item;
+	}
+
+	protected function parseResults(&$item, &$fields)
+	{
+		if (!$item || !$fields)
+			return $this;
+
+		foreach ($fields as $table )
+		{
+			foreach ($table as $field)
+			{
+				if (isset($item[$field['temp']]))
+				{
+					// Is it filled with any data?
+					if ($item[$field['temp']] != null)
+					{
+						$item[$field['alias']] = $item[$field['temp']];
+						unset($item[$field['temp']]);
+						continue;
+					}
+					// Is default field not empty?
+					if (isset($item[$field['alias']]) && $item[$field['alias']] != null)
+						unset($item[$field['temp']]);
+				}
+			}
+		}
+
+		return $this;
 	}
 
 	public function loadItems()
 	{
-		return $this->c('SqlQuery', 'Db')->selectItems($this->m_sqlBuilder->getSql(), $this->m_model->m_dbType, $this->m_sqlBuilder->getIndexKey())->getData();
+		$items = $this->c('SqlQuery', 'Db')->selectItems($this->m_sqlBuilder->getSql(), $this->m_model->m_dbType, $this->m_sqlBuilder->getIndexKey())->getData();
+
+		$fields = $this->m_sqlBuilder->getLocaleFields();
+
+		if (!$items)
+			return false;
+
+		if (!$fields)
+			return $items; // Nothing to do
+
+		// Parse fields
+		foreach ($items as &$item)
+			$this->parseResults($item, $fields);
+
+		return $items;
 	}
 
 	public function addModel($model_name)

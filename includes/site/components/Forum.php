@@ -20,6 +20,7 @@
 
 class Forum_Component extends Component
 {
+	// Limits
 	const TOPICS_PER_PAGE = 50;
 	const POSTS_PER_PAGE = 20;
 
@@ -466,6 +467,9 @@ class Forum_Component extends Component
 
 	public function handleBbCodes(&$inpStr)
 	{
+		if (!$inpStr || !is_string($inpStr))
+			return $this;
+
 		$bbcodes = array(
 			'[b]', '[/b]', '[u]', '[/u]', '[i]', '[/i]', "\n", "\r",
 			'[ul]', '[/ul]', '[li]', '[/li]', '[code]', '[/code]', /*'<', '>',*/ '[quote]', '[/quote]'
@@ -571,6 +575,12 @@ class Forum_Component extends Component
 
 	public function createTopic($categoryId, $topicData)
 	{
+		if (!$this->c('AccountManager')->isLoggedIn())
+		{
+			$this->c('Log')->writeDebug('%s : anonymous user tried to create thread in category #%d', __METHOD__, $categoryId);
+			return $this->core->redirectUrl('account-status');
+		}
+
 		if (!$categoryId || !$topicData)
 			return $this;
 
@@ -586,7 +596,7 @@ class Forum_Component extends Component
 		$flag_fields = array('blizzard' => THREAD_FLAG_BLIZZARD, 'pinned' => THREAD_FLAG_PINNED, 'closed' => THREAD_FLAG_CLOSED, 'featured' => THREAD_FLAG_FEATURED);
 		$flags = 0;
 		$isGm = $this->c('AccountManager')->isAllowedToModerate();
-		$blizzName = $this->c('AccountManager')->user('username');
+		$blizzName = $this->c('AccountManager')->getForumsName();
 		if ($isGm)
 		{
 			$flags = THREAD_FLAG_BLIZZ_ANSWERED;
@@ -615,7 +625,7 @@ class Forum_Component extends Component
 		$edt->posts = 0;
 		$edt->flags = $flags;
 		$edt->last_update = $create_time;
-		$edt->last_poster = $isGm ? $this->c('AccountManager')->user('username') : $this->c('AccountManager')->charInfo('name');
+		$edt->last_poster = $isGm ? $this->c('AccountManager')->getForumsName() : $this->c('AccountManager')->charInfo('name');
 		$edt->last_poster_type = $isGm ? 1 : 0;
 		$edt->last_poster_anchor = 1;
 		if ($isGm)
@@ -653,11 +663,23 @@ class Forum_Component extends Component
 
 	public function createPost($topicId, $postData)
 	{
+		if (!$this->c('AccountManager')->isLoggedIn())
+		{
+			$this->c('Log')->writeDebug('%s : anonymous user tried to create post in thread #%d', __METHOD__, $topicId);
+			return $this->core->redirectUrl('account-status');
+		}
+
 		if (!$topicId || !$postData)
+		{
+			$this->c('Log')->writeDebug('%s : user %d (%s) tried to write in topic #%d but there\'s no topicId or postData provided', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'), $topicId);
 			return $this;
+		}
 
 		if (!$this->c('AccountManager')->isAllowedToForums())
+		{
+			$this->c('Log')->writeDebug('%s : user %d (%s) tried to write in topic #%d without permission to perform this action', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'), $topicId);
 			return $this->core->redirectUrl('account-status');
+		}
 
 		$rq_fields = array('xstoken' => 'notNull', 'sessionPersist' => 'forum.topic.post', 'detail' => 'notNull');
 
@@ -677,7 +699,10 @@ class Forum_Component extends Component
 		$char = $this->c('AccountManager')->getActiveCharacter();
 
 		if (!$char)
+		{
+			$this->c('Log')->writeDebug('%s : user %d (%s) tried to write in topic #%d without any character on account', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'), $topicId);
 			return $this;
+		}
 
 		$topic_data = $this->c('QueryResult', 'Db')
 			->model('WowForumThreads')
@@ -685,15 +710,18 @@ class Forum_Component extends Component
 			->setItemId($topicId)
 			->loadItem();
 
-		if ($topic_data['flags'] & THREAD_FLAG_CLOSED && $this->c('AccountManager')->isAllowedToModerate())
+		if ($topic_data['flags'] & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate())
+		{
+			$this->c('Log')->writeDebug('%s : user %d (%s) tried to write into closed theme (%d) without moderate rights', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'), $topicId);
 			return $this;
+		}
 
 		$edt = $this->c('Editing')
 			->clearValues()
 			->setModel('WowForumPosts')
 			->setType('insert');
 
-		$isGm = $this->c('AccountManager')->isAllowedToModerate() > 0;
+		$isGm = $this->c('AccountManager')->isAllowedToModerate();
 
 		$isBluePost = false;
 
@@ -706,7 +734,7 @@ class Forum_Component extends Component
 		$edt->character_guid = $char['guid'];
 		$edt->character_realm = $char['realmId'];
 		$edt->blizzpost = $isBluePost ? 1 : 0;
-		$edt->blizz_name = $isBluePost ? $this->c('AccountManager')->user('username') : '';
+		$edt->blizz_name = $isBluePost ? $this->c('AccountManager')->getForumsName() : '';
 		$edt->message = $postData['detail'];
 		$edt->post_date = time();
 		$edt->author_ip = $_SERVER['REMOTE_ADDR'];
@@ -724,7 +752,7 @@ class Forum_Component extends Component
 			->load();
 		$edt->posts = $edt->posts + 1;
 		$edt->last_update = time();
-		$edt->last_poster = $isGm ? $this->c('AccountManager')->user('username') : $this->c('AccountManager')->charInfo('name');
+		$edt->last_poster = $isGm ? $this->c('AccountManager')->getForumsName() : $this->c('AccountManager')->charInfo('name');
 		$edt->last_poster_type = $isGm ? 1 : 0;
 		$edt->last_poster_anchor = $lastPost['post_num'] + 1;
 
@@ -761,7 +789,7 @@ class Forum_Component extends Component
 
 		$flag_fields = array('blizzard' => THREAD_FLAG_BLIZZARD, 'pinned' => THREAD_FLAG_PINNED, 'closed' => THREAD_FLAG_CLOSED, 'featured' => THREAD_FLAG_FEATURED);
 		$flags = 0;
-		$blizzName = $this->c('AccountManager')->user('username');
+		$blizzName = $this->c('AccountManager')->getForumsName();
 		$flags = THREAD_FLAG_BLIZZ_ANSWERED;
 
 		foreach ($flag_fields as $flag => $value)
@@ -810,7 +838,7 @@ class Forum_Component extends Component
 
 		$edt->message = $postData['detail'];
 		if ($this->c('AccountManager')->isAllowedToModerate())
-			$edt->post_editor = $this->c('AccountManager')->user('username');
+			$edt->post_editor = $this->c('AccountManager')->getForumsName();
 		else
 			$edt->post_editor = $this->c('AccountManager')->charInfo('name');
 
@@ -1056,6 +1084,9 @@ class Forum_Component extends Component
 			->limit(15, $offset)
 			->setAlias('WowForumCategory', 'title_' . $this->c('Locale')->GetLocale(), 'catTitle')
 			->loadItems();
+
+		if (!$posts)
+			return false;
 
 		if ($full)
 		{

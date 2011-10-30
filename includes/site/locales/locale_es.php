@@ -1830,5 +1830,8 @@ El equipo de cuentas de Battle.net <br />
 	'template_boss_type_10' => '[t] Uncategorized',
 	'template_boss_abilities' => '[t] Sample Abilities',
 	'template_boss_no_abilities' => '[t] This NPC has no known abilities.',
+
+	'template_search_post_answers' => '[t] Answers: %d',
+	'template_search_post_author' => '[t] Message from ',
 );
 ?>

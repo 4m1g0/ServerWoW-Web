@@ -34,21 +34,31 @@
 		<h3><?php echo $l->getString('template_item_quick_facts'); ?></h3>
 		<ul class="fact-list">
 			<?php if ($item->item('RequiredDisenchantSkill') > 0) : ?>
-				<li>
-					<?php echo $l->format('template_item_disenchant_fact', $item->item('RequiredDisenchantSkill')); ?>
-				</li>
+			<li>
+				<?php echo $l->format('template_item_disenchant_fact', $item->item('RequiredDisenchantSkill')); ?>
+			</li>
 			<?php endif; ?>
 			<?php if ($exCost = $item->item('extended_cost')) : ?>
-				<li>
-					<?php if ($exCost['items']) : foreach ($exCost['items'] as &$cost_item) : ?>
-					<a href="<?php echo $this->getWowUrl('item/' . $cost_item['entry']); ?>" class="item-link-small-right color-q<?php echo $cost_item['Quality']; ?>">
-						<span class="count"><?php echo $cost_item['count']; ?></span>
-						<span class="icon-frame frame-14 ">
-							<img src="<?php echo $this->c('Config')->getValue('site.icons_server'); ?>/18/<?php echo $cost_item['icon']; ?>.jpg" alt="" width="14" height="14" />
-						</span>
-					</a>
-					<?php endforeach; endif; ?>
-				</li>
+			<li>
+				<?php if ($exCost['items']) : foreach ($exCost['items'] as &$cost_item) : ?>
+				<a href="<?php echo $this->getWowUrl('item/' . $cost_item['entry']); ?>" class="item-link-small-right color-q<?php echo $cost_item['Quality']; ?>">
+					<span class="count"><?php echo $cost_item['count']; ?></span>
+					<span class="icon-frame frame-14 ">
+						<img src="<?php echo $this->c('Config')->getValue('site.icons_server'); ?>/18/<?php echo $cost_item['icon']; ?>.jpg" alt="" width="14" height="14" />
+					</span>
+				</a>
+				<?php endforeach; endif; ?>
+			</li>
+			<?php endif; ?>
+			<?php if ($item->isAvailableInStore()) : ?>
+			<li>
+				<a href="<?php echo $this->getWowUrl('store/' . $item->getStoreCatId() . '/' . $item->item('entry')); ?>" class="item-link-small-right color-q<?php echo $item->item('Quality'); ?>">
+					<span class="icon-frame frame-14 ">
+						<img src="<?php echo $this->c('Config')->getValue('site.icons_server'); ?>/18/<?php echo $item->item('icon'); ?>.jpg" alt="" width="14" height="14" />
+					</span>
+				</a>
+				<a href="<?php echo $this->getWowUrl('store/' . $item->getStoreCatId() . '/' . $item->item('entry')); ?>">This item is available in Online Store!</span></span></a>
+			</li>
 			<?php endif; ?>
 		</ul>
 	</div>

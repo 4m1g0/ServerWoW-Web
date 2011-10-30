@@ -19,7 +19,7 @@
 .media-content .currently-viewing { color:#F0E29A }
 .media-content .currently-viewing .float-left { color:#7F7231 }
 .media-content .filter-dropdown .filter-title { display:none }
-.media-content .filter-dropdown .apply-filters { background-color:#2C0B01 }
+.media-content .filter-dropdown .apply-filters { background-color:#2C0B01; }
 .media-content .filter-dropdown .apply-filters .button3 span { color:#FFB100; background-image:none; text-transform:none }
 
 /* film-strip container */
@@ -55,6 +55,7 @@
 #media-index .media-index-section .gallery-title.artwork .gallery-icon { background-position:-230px -550px }
 #media-index .media-index-section .gallery-title.comics .gallery-icon { background-position:-160px -550px }
 #media-index .media-index-section .gallery-title.wallpapers .gallery-icon { background-position:-195px -550px }
+#media-index .media-index-section .gallery-title.fanart .gallery-icon { background-position:-230px -550px }
 #media-index .media-index-section .gallery-title.audio .gallery-icon { background-position:-265px -550px }
 #media-index .media-index-section .gallery-title.downloads .gallery-icon { background-position:-300px -550px }
 #media-index .media-index-section .gallery-title .total { color:#A67100 }
@@ -90,3 +91,12 @@
 .media-content  .sub-gallery-list .thumb-wrapper:hover .thumb-title { color:#FFF }
 .media-content  .sub-gallery-list .thumb-wrapper:hover .thumb-frame { background-position:-388px -236px }
 .media-content  .sub-gallery-list .sub-gallery-frame:hover .thumb-frame { background-position:-388px -118px }
+
+p#return{clear:left;margin-left:50px;margin-top:30px}
+#scroll-pane { float:left;overflow: auto; width: 175px; height:320px; position:relative; display:inline;}
+#scroll-content {position:absolute;top:0;left:0}
+#slider-wrap{float:right;background-color:#491909; width:14px; padding:1px 0 2px 0 }
+#slider-vertical{position:relative;height:100%}
+.scroll-content-item {background-color:#fcfcfc;color:#003366;width:100px;height:100px;float:left;font-size:3em;line-height:96px;text-align:center; display:inline;}
+.ui-slider-handle{width:13px;height:10px;margin:0 auto;background-color:#fff; background:url('/wow/static/images/media/scroll.gif') repeat-y; display:block;position:absolute; -moz-border-radius: 4px 4px 4px 4px; -webkit-border-radius: 4px; border-radius: 4px; box-shadow: 0 2px 2px 0 #3a1407; }
+input{font-size:12px}

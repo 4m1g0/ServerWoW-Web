@@ -1,0 +1,23 @@
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, form, label, ul, ol, dl, address, body, html { margin:0; padding:0; }
+li, dd, blockquote {margin:0; padding:0;}
+fieldset {border:none;}
+ul {list-style:none;}
+body {font-family: tahoma; font-size:13px; line-height:1.4;}
+
+
+
+a {color:#039; display:inline-block;}
+a:hover {color:#c30;}
+
+h3 {font:bold 15px tahoma; margin:0 0 10px 0;}
+
+.contents {padding:10px;}
+.contents ul {margin:0 0 15px 0;}
+.contents ul li {margin:0 0 4px 0;}
+
+#gp-map {position:relative; overflow:hidden; background:#f4f4f4; margin:0px auto;}
+#gp-map .admin-bar {padding:6px 10px 10px 10px; background:#000; color:#fff;}
+#gp-map .admin-bar a {display:inline-block; margin:0 15px 0 0; color:#bbb;}
+#gp-map .admin-bar a:hover {color:#fff;}
+
+#markerInfoData .dashed {border-bottom:1px dashed; cursor:pointer;}

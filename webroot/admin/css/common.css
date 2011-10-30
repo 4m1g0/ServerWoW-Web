@@ -1,0 +1,72 @@
+
+a {outline:0;}
+img {border:0; outline:0;vertical-align:top;}
+p, li, dd, a, span, h1, h2, h3, h4, h5, h6 {line-height:1.4;}
+td, th {vertical-align:top; text-align:left;}
+table {width:100%;}
+
+.cl {clear:both;}
+
+.oh {overflow:hidden;}
+
+
+
+.p20 {padding:20px;}
+
+/* ---------- BORDER RADIUS ----------- */
+.r5 {
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+}
+.r10 {
+border-radius: 10px;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+}
+.r20 {
+border-radius: 20px;
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+}
+
+/* ---------- BORDER RADIUS ----------- */
+
+.message {border:1px solid #F00; font:bold 16px arial; padding:5px 10px; color:#F00; margin:20px 0;}
+.message p {margin:0;}
+.input .hint{font:normal 11px arial; color:#999; margin-top:5px}
+.validate input, .validate textarea {border:1px solid #F00;}
+
+
+fieldset {margin:0 0 50px 0; display:block; padding:0;}
+fieldset label {margin:0 0 3px 0; display:inline-block;}
+fieldset em {margin:0 0 4px 0; color:#777; display:block; font:normal 11px arial; line-height:1.4;}
+fieldset i {margin:0 0 4px 0; color:#777; display:block; font:normal 13px arial; line-height:1.4;}
+fieldset h3 {font:normal 18px arial; color:#444; margin:0 0 10px 0;}
+fieldset p {margin:0 0 10px 0;}
+fieldset span {font:normal 13px arial;}
+fieldset  .input {margin:0 0 10px 0; vertical-align:top;}
+.input.text input {padding:4px; border-top:solid 1px #666; margin:0 0 5px 0; border-left:solid 1px #666; border-right:solid 1px #bbb; border-bottom:solid 1px #bbb; font:normal 16px arial; display:block;}
+
+
+fieldset .date input {width:100px;}
+
+.textarea {margin:0 0 20px 0;}
+
+.textarea textarea {padding:2px; border-top:solid 1px #666; margin:0 0 5px 0; border-left:solid 1px #666; border-right:solid 1px #bbb; border-bottom:solid 1px #bbb; font:normal 15px arial;}
+
+.select select {border-top:solid 1px #666; border-left:solid 1px #666; border-right:solid 1px #bbb; margin:0 0 5px 0; border-bottom:solid 1px #bbb; font:normal 13px tahoma; display:block;}
+.select option {padding:0 6px;}
+
+.checkbox input {vertical-align:middle; margin:0 10px 0 0;}
+.checkbox label {padding:4px 0 0 0; display:inline;}
+.checkbox span {display:inline-block; padding:0 30px 0 0;}
+.radio {margin:0 0 10px 0;}
+.radio label { display:inline;}
+
+.radio span {display:inline-block; padding:0 30px 0 0;}
+.radio input {vertical-align:middle; margin:0 5px 0 0;}
+
+
+.submit input {padding:2px; font:normal 14px arial; margin:0 20px 0 0; }
+

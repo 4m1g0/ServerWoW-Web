@@ -21,6 +21,7 @@
 class Search_Component extends Component
 {
 	protected $m_query = '';
+	protected $m_authorQuery = '';
 	protected $m_searchType = '';
 	protected $m_searchResults = array();
 	protected $m_counters = array();
@@ -36,6 +37,16 @@ class Search_Component extends Component
 			return $this;
 
 		$this->m_query = $query;
+
+		return $this;
+	}
+
+	public function setAuthorQuery($query)
+	{
+		if (mb_strlen($query) < 2)
+			return $this;
+
+		$this->m_authorQuery = $query;
 
 		return $this;
 	}
@@ -76,6 +87,11 @@ class Search_Component extends Component
 		return !$escaped ? $this->m_query : addslashes($this->m_query);
 	}
 
+	public function getAuthorQuery($escaped = false)
+	{
+		return !$escaped ? $this->m_authorQuery : addslashes($this->m_authorQuery);
+	}
+
 	public function getSearchType()
 	{
 		return $this->m_searchType;
@@ -99,7 +115,7 @@ class Search_Component extends Component
 
 	public function performSearch()
 	{
-		if (!$this->getQuery())
+		if (!$this->getQuery() && !$this->getAuthorQuery())
 			return $this->resetSearch();
 
 
@@ -135,7 +151,12 @@ class Search_Component extends Component
 					$this->findArticles(false, -1, 0);
 					break;
 				case 'post':
-					$this->findForumPosts(false, -1, 0);
+					$mode = 0;
+
+					if ($this->getAuthorQuery() != null)
+						$mode = 2;
+
+					$this->findForumPosts(false, -1, $mode);
 					break;
 				case 'static':
 					$this->findContents(false, -1, 0);
@@ -438,6 +459,9 @@ class Search_Component extends Component
 			->fieldCondition('title_' . $this->c('Locale')->getLocale(), ' LIKE \'%%' . $this->getQuery(true) . '%%\'')
 			->loadItems();
 
+		if (!$results)
+			return $this;
+
 		foreach ($results as &$b)
 		{
 			$b['url'] = $this->getWowUrl('blog/' . $b['id']);
@@ -472,7 +496,46 @@ class Search_Component extends Component
 
 		$size = 0;
 
-		$results = $this->c('QueryResult', 'Db')
+		$account_id = 0;
+		$char_guid = 0;
+		$realm_id = 0;
+		$blizz_name = '';
+
+		if ($mode == 2)
+		{
+			$exp = explode('@', $this->getAuthorQuery(true));
+
+			if (isset($exp[1]))
+			{
+				$name = trim($exp[0]);
+				$realm = trim($exp[1]);
+
+				if (!$name || !$realm)
+					return $this;
+
+				$realm_id = $this->c('Wow')->getRealmIDByName($realm);
+	
+				if (!$realm_id)
+					return $this;
+
+				$guid = $this->c('QueryResult')
+					->model('WowUserCharacters')
+					->fields(array('WowUserCharacters' => array('guid', 'account')))
+					->fieldCondition('name', ' = \'' . $name . '\'', 'AND') // No SQL Injection - already escaped
+					->fieldCondition('realmId', ' = ' . intval($realm_id))
+					->loadItem();
+
+				if (!$guid)
+					return $this;
+
+				$char_guid = $guid['guid'];
+				$account_id = $guid['account'];
+			}
+			else
+				$blizz_name = $exp[0]; // Maybe it's blizzard's posts search
+		}
+
+		$q = $this->c('QueryResult', 'Db')
 			->model('WowForumPosts')
 			->addModel('WowForumThreads')
 			->addModel('WowForumCategory')
@@ -482,13 +545,24 @@ class Search_Component extends Component
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'account_id', 'account')
 			->fields(array(
-				'WowForumPosts' => array('message', 'post_date'),
+				'WowForumPosts' => array('message', 'post_date', 'blizzpost', 'blizz_name'),
 				'WowForumThreads' => array('thread_id', 'title'),
 				'WowForumCategory' => array('cat_id', 'title_' . $this->c('Locale')->getLocale()),
 				'WowUserCharacters' => array('name', 'realmName')
-			))
-			->fieldCondition('wow_forum_posts.message', ' LIKE \'%%' . $this->getQuery(true) . '%%\'')
-			->setAlias('WowForumCategory', 'title_' . $this->c('Locale')->getLocale(), 'cat_title')
+			));
+
+		if ($mode == 2 && $account_id && $char_guid && $realm_id)
+			$q->fieldCondition('wow_forum_posts.account_id', ' = ' . $account_id, 'AND')
+				->fieldCondition('wow_forum_posts.character_guid', ' = ' . $char_guid, 'AND')
+				->fieldCondition('wow_forum_posts.character_realm', ' = ' . $realm_id, 'AND')
+				->fieldCondition('wow_forum_posts.blizzpost', ' = 0');
+		elseif ($mode == 2 && $blizz_name)
+			$q->fieldCondition('wow_forum_posts.blizzpost', ' = 1', 'AND')
+				->fieldCondition('wow_forum_posts.blizz_name', ' = \'' . $blizz_name . '\''); // No SQL Injection - already escaped
+		else
+			$q->fieldCondition('wow_forum_posts.message', ' LIKE \'%%' . $this->getQuery(true) . '%%\'');
+
+		$results = $q->setAlias('WowForumCategory', 'title_' . $this->c('Locale')->getLocale(), 'cat_title')
 			->setAlias('WowUserCharacters', 'name', 'author_name')
 			->setAlias('WowUserCharacters', 'realmName', 'author_realm')
 			->setAlias('WowForumPosts', 'message', 'post_preview')
@@ -555,16 +629,13 @@ class Search_Component extends Component
 	 **/
 	protected function findUserPosts($counters = false, $limit = 5, $mode = 1)
 	{
-		if (!isset($_GET['a']))
-			return $this;
-
 		$type = 'post';
 
 		$results = array();
 
 		$size = 0;
 
-		$char = explode('@', $this->getQuery());
+		$char = explode('@', $this->getAuthorQuery());
 		if (!$char || !isset($char[1]))
 			return $this;
 
@@ -631,7 +702,7 @@ class Search_Component extends Component
 
 	public function isAnyResults()
 	{
-		return $this->m_searchResults && $this->m_query && $this->m_counters;
+		return $this->m_searchResults && ($this->m_query || $this->m_authorQuery) && $this->m_counters;
 	}
 
 	public function issetResultsFor($type)

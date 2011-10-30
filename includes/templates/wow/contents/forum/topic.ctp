@@ -76,6 +76,9 @@ $posts = $forum->getTopicPosts();
 if ($posts) :
 	$currentPostNum = 1;
 	foreach ($posts as &$post) :
+		if ((!$post['realmName'] || !$post['name']) && !$post['blizzpost'])
+			continue;
+
 		if ($post['blizzpost'])
 		{
 			if ($post['blizz_name'])

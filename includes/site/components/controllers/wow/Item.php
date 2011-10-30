@@ -28,71 +28,6 @@ class Item_WoW_Controller_Component extends Groupwow_Controller_Component
 	protected $m_itemTab = '';
 	protected $m_itemTabContents = array();
 
-	public function build($core)
-	{
-		$this->checkInfo();
-
-		if ($this->m_itemError)
-		{
-			$this->setErrorPage()
-				->c('Error_Wow', 'Controller');
-
-			return $this;
-		}
-
-		if ($this->m_entry > 0)
-			$pageTitle = $this->c('Item')->initItem($this->m_entry, $this->m_isTooltip, $this->m_itemTab)->item('name');
-		else
-			$pageTitle = $this->c('Item')->initItems($this->m_browseOptions)->itemPageTitle();
-
-		if ($this->m_itemTab != null)
-		{
-			$this->m_itemTabContents = $this->c('Item')->getItemTab(strtolower($this->m_itemTab));
-			$this->m_isAjax = true;
-			define('AJAX_PAGE', true);
-			$this->buildBlock('item_tab');
-		}
-		else
-		{
-			$this->buildBreadcrumb();
-	
-			if ($this->m_entry > 0)
-			{
-				$this->m_pageTitle = $pageTitle;
-				$this->buildBlock('tooltip');
-	
-				if ($this->m_isTooltip)
-					$this->m_isAjax = true;
-				else
-					$this->buildBlock('info');
-			}
-			else
-			{
-				$core->setVar('body_class', 'item-index');
-				$this->buildBlocks(array('pager', 'list'));
-			}
-		}
-
-		return $this;
-	}
-
-	protected function block_pager()
-	{
-		return $this->block()
-			->setVar('pager', $this->c('Pager')->getPager(array('totalCount' => $this->c('Item')->getItemsCount(), 'limit' => $this->c('Item')->getDisplayLimit())))
-			->setVar('pagerOptions', $this->m_browseOptions)
-			->setRegion('pager')
-			->setTemplate('pager', 'wow' . DS . 'blocks');
-	}
-
-	protected function block_list()
-	{
-		return $this->block()
-			->setRegion('pagecontent')
-			->setVar('items', $this->c('Item')->getItems())
-			->setTemplate('list', 'wow' . DS . 'contents' . DS . 'item');
-	}
-
 	protected function setBreadcrumb()
 	{
 		$this->m_breadcrumb = array(
@@ -215,6 +150,71 @@ class Item_WoW_Controller_Component extends Groupwow_Controller_Component
 				$this->m_browseOptions[$p] = $_GET[$p];
 
 		return true;
+	}
+
+	public function build($core)
+	{
+		$this->checkInfo();
+
+		if ($this->m_itemError)
+		{
+			$this->setErrorPage()
+				->c('Error_Wow', 'Controller');
+
+			return $this;
+		}
+
+		if ($this->m_entry > 0)
+			$pageTitle = $this->c('Item')->initItem($this->m_entry, $this->m_isTooltip, $this->m_itemTab)->item('name');
+		else
+			$pageTitle = $this->c('Item')->initItems($this->m_browseOptions)->itemPageTitle();
+
+		if ($this->m_itemTab != null)
+		{
+			$this->m_itemTabContents = $this->c('Item')->getItemTab(strtolower($this->m_itemTab));
+			$this->m_isAjax = true;
+			define('AJAX_PAGE', true);
+			$this->buildBlock('item_tab');
+		}
+		else
+		{
+			$this->buildBreadcrumb();
+	
+			if ($this->m_entry > 0)
+			{
+				$this->m_pageTitle = $pageTitle;
+				$this->buildBlock('tooltip');
+	
+				if ($this->m_isTooltip)
+					$this->m_isAjax = true;
+				else
+					$this->buildBlock('info');
+			}
+			else
+			{
+				$core->setVar('body_class', 'item-index');
+				$this->buildBlocks(array('pager', 'list'));
+			}
+		}
+
+		return $this;
+	}
+
+	protected function block_pager()
+	{
+		return $this->block()
+			->setVar('pager', $this->c('Pager')->getPager(array('totalCount' => $this->c('Item')->getItemsCount(), 'limit' => $this->c('Item')->getDisplayLimit())))
+			->setVar('pagerOptions', $this->m_browseOptions)
+			->setRegion('pager')
+			->setTemplate('pager', 'wow' . DS . 'blocks');
+	}
+
+	protected function block_list()
+	{
+		return $this->block()
+			->setRegion('pagecontent')
+			->setVar('items', $this->c('Item')->getItems())
+			->setTemplate('list', 'wow' . DS . 'contents' . DS . 'item');
 	}
 
 	protected function block_info()

@@ -718,6 +718,9 @@ $Site_Locale = array(
     'template_search_table_guild' => 'Guild',
     'template_search_table_realm' => 'Realm',
     'template_search_table_battlegroup' => 'Battlegroup',
+
+	'template_search_post_answers' => 'Answers: %d',
+	'template_search_post_author' => 'Message from ',
     
     'template_realm_status' => 'Realm Status',
     'template_realm_status_all_realms' => 'All Realms',

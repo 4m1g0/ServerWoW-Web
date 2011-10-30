@@ -32,7 +32,8 @@ $SiteConfigs = array(
 			'localeId' => 0,
 		),
 		'title' => 'World of Warcraft',
-		'battlegroup' => 'Massive Online'
+		'battlegroup' => 'Massive Online',
+		'icons_server' => 'http://eu.battle.net/wow-assets/static/images/icons',
 	),
 	'misc' => array(
 		'admin_email' => 'admin@' . $_SERVER['SERVER_NAME'],
@@ -50,7 +51,7 @@ $SiteConfigs = array(
 		1 => array(
 			'id' => 1,
 			'name' => 'Armory Realm',
-			'type' => SERVER_MANGOS
+			'type' => SERVER_TRINITY
 		),
 		2 => array(
 			'id' => 2,

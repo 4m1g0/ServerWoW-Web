@@ -3,7 +3,7 @@
 			<div class="search-header">
 				<form action="<?php echo $this->getWowUrl('search'); ?>" method="get" class="search-form">
 					<div>
-						<input id="search-page-field" type="text" name="q" maxlength="200" tabindex="2" value="<?php echo $search->getQuery(); ?>" />
+						<input id="search-page-field" type="text" name="q" maxlength="200" tabindex="2" value="<?php echo $search->getAuthorQuery() != null ? $search->getAuthorQuery() : $search->getQuery(); ?>" />
 
 	<button class="ui-button button1 " type="submit" >
 		<span>
