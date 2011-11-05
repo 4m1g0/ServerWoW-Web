@@ -30,6 +30,7 @@ class Editing_Component extends Component
 	protected $m_limit = 0;
 	protected $m_data = array();
 	protected $m_insertId = 0;
+	protected $m_changedValues = array();
 
 	public function __set($name, $value)
 	{
@@ -49,6 +50,7 @@ class Editing_Component extends Component
 		}
 
 		$this->m_fields[$use] = $value;
+		$this->m_changedValues[$use] = $value;
 
 		return true;
 	}
@@ -298,7 +300,7 @@ class Editing_Component extends Component
 
 		foreach ($this->m_fields as $field => $value)
 		{
-			if ($value)
+			if ($value || isset($this->m_changedValues[$field]))
 				$sql .= '`' . $field . '` = \'' . addslashes($value) . '\',';
 		}
 

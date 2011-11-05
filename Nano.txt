@@ -24,7 +24,7 @@ So:
 - Realms status // done
 - Media system (screenshots, videos, texts) (in /community/) (with Moderation Panel//Admin Panel) //done
 
-- BugTracker (in /media/) (with Moderation Panel//Admin Panel)
+- BugTracker (in /media/) (with Moderation Panel//Admin Panel) // Done
 - Search Engine // done
 
 - Credits Store "Paypal/SMS" (in /services/) (with Admin Panel) // current PHP scripts required to finish it

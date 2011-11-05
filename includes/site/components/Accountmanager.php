@@ -424,7 +424,24 @@ class AccountManager_Component extends Component
 
 		$this->c('Cookie')->write('wowuser');
 
+		$this->destroyUser();
+
 		$this->core->redirectUrl('');
+
+		return $this;
+	}
+
+	protected function destroyUser()
+	{
+		$this->m_cookieData = '';
+		$this->m_user = null;
+		$this->m_loginError = 0;
+		$this->m_sessionInfo = '';
+		$this->m_characters = array();
+		$this->m_activeChar = array();
+		$this->m_lastErrorIdx = '';
+		$this->m_success = false;
+		$this->m_adminData = array();
 
 		return $this;
 	}
@@ -605,7 +622,7 @@ class AccountManager_Component extends Component
 
 	public function isAdmin()
 	{
-		return is_array($this->m_adminData);
+		return $this->isLoggedIn() && is_array($this->m_adminData);
 	}
 
 	public function createAccount($user, $pass, $confirm, $email)

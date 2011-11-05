@@ -519,5 +519,44 @@ class Wow_Component extends Component
 		}
 		return $realms;
 	}
+
+	public function getWowInfo($model, $item)
+	{
+		$isDbLocale = true;
+		$localeModel = '';
+
+		switch ($model)
+		{
+			case 'QuestTemplate':
+				$localeModel = 'LocalesQuest';
+				break;
+			case 'ItemTemplate':
+				$localeModel = 'LocalesItem';
+				break;
+			case 'GameobjectTemplate':
+				$localeModel = 'LocalesGameobject';
+				break;
+			case 'CreatureTemplate':
+				$localeModel = 'LocalesCreature';
+				break;
+			case 'WowSpell':
+			case 'WowAreas':
+				$isDbLocale = false;
+				break;
+			default:
+				return false;
+		}
+
+		$useLocale = $this->c('Locale')->getLocaleID() != LOCALE_EN;
+
+		$q = $this->c('QueryResult')
+			->model($model)
+			->setItemId($item);
+
+		if ($isDbLocale && $useLocale && $localeModel)
+			$q->addModel($localeModel)->join('left', $localeModel, $model, 'entry', 'entry');
+
+		return $q->loadItem();
+	}
 }
 ?>

@@ -27,6 +27,13 @@ Parent Category
 <div class="input checkbox">
 <br/><input type="checkbox" name="cat[short]" id="short" value="1"<?php if ($cat['short']) echo ' checked="checked"'; ?> /> <label for="short">Small box</label><br/><br/>
 </div>
+<div class="input checkbox">
+<input type="checkbox" name="cat[realm_cat]" id="realm_cat" value="1"<?php if ($cat['realm_cat']) echo ' checked="checked"'; ?> /> <label for="realm_cat">Realm Category</label><br/><br/>
+</div>
+<div class="input text long">
+GM Level Access:
+<input type="text" name="cat[gmlevel]" value="<?php echo $cat['gmlevel']; ?>" size=50 />
+</div>
 <div class="input text long">
 Description
 <input type="text" name="cat[desc]" value="<?php echo $cat['desc']; ?>" size=50 />

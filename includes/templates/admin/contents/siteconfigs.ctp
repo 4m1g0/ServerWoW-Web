@@ -35,6 +35,16 @@ Log Level
 <option value="3"<?php if ($site['log']['level'] == 3) echo ' selected="selected"'; ?>>Errors, Debug and SQL</option>
 </select>
 </div>
+<div class="input select">
+Default Site Locale
+<select name="site[locale][default]">
+<option value="de"<?php if ($site['locale']['default'] == 'de') echo ' selected="selected"'; ?>>Deutch</option>
+<option value="en"<?php if ($site['locale']['default'] == 'en') echo ' selected="selected"'; ?>>English</option>
+<option value="es"<?php if ($site['locale']['default'] == 'es') echo ' selected="selected"'; ?>>Spanish</option>
+<option value="fr"<?php if ($site['locale']['default'] == 'fr') echo ' selected="selected"'; ?>>French</option>
+<option value="ru"<?php if ($site['locale']['default'] == 'ru') echo ' selected="selected"'; ?>>Russian</option>
+</select>
+</div>
 <div class="input text long">
 Admin Email
 <input type="text" name="misc[admin_email]" size=50 value="<?php echo $misc['admin_email']; ?>" />

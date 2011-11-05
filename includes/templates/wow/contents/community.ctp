@@ -102,9 +102,9 @@
 						</div>
 						<div class="content-block">
 							<ul>
-								<li><a href="http://www.facebook.com/WarcraftES" class="facebook" target="_blank"><span class="content-title">World of Warcraft en Facebook</span><span class="content-desc">Hazte amigo de World of Warcraft en Facebook para consultar todas las noticias y vídeos.</span></a></li>
-								<li><a href="http://twitter.com/warcraft_Es" class="twitter" target="_blank"><span class="content-title">World of Warcraft en Twitter</span><span class="content-desc">No te pierdas ninguna novedad de World of Warcraft en Twitter.</span></a></li>
-								<li><a href="http://www.youtube.com/user/WorldofWarcraftES" class="youtube" target="_blank"><span class="content-title">World of Warcraft en Youtube</span><span class="content-desc">Disfruta con nuestros vídeos, tráilers, cinemáticas y mucho más en nuestro canal oficial.</span></a></li>
+								<li><a href="http://www.facebook.com/ServerWoW" class="facebook" target="_blank"><span class="content-title">World of Warcraft en Facebook</span><span class="content-desc">Hazte amigo de World of Warcraft en Facebook para consultar todas las noticias y vídeos.</span></a></li>
+								<li><a href="https://twitter.com/ServerWoW" class="twitter" target="_blank"><span class="content-title">World of Warcraft en Twitter</span><span class="content-desc">No te pierdas ninguna novedad de World of Warcraft en Twitter.</span></a></li>
+								<!--<li><a href="http://www.youtube.com/user/WorldofWarcraftES" class="youtube" target="_blank"><span class="content-title">World of Warcraft en Youtube</span><span class="content-desc">Disfruta con nuestros vídeos, tráilers, cinemáticas y mucho más en nuestro canal oficial.</span></a></li>-->
 							</ul>
 						</div>
 					</div>

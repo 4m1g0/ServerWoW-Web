@@ -398,6 +398,18 @@ $ClientJS = array(
 				'version' => 18
 			)
 		)
+	),
+	'bugtracker' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/js/bugtracker/bugtracker.js',
+				'version' => 1
+			),
+			array(
+				'file' => 'http://static.wowhead.com/widgets/power.js',
+				'internal' => true
+			)
+		)
 	)
 );
 ?>

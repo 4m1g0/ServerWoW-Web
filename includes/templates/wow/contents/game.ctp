@@ -16,7 +16,7 @@
 
 	<div class="column" style="width: 295px;">
 		<div class="box first-child">
-				<h2 class="header "><a href="/wow/es/game/race/">Razas</a></h2>
+				<h2 class="header "><a href="<?php echo $this->getWowUrl('game/race/'); ?>">Razas</a></h2>
 
 
 				<h4 class="subcategory ">Alianza</h4>
@@ -190,7 +190,7 @@
 		</div>
 
 		<div class="box">
-				<h2 class="header "><a href="/wow/es/game/class/">Clases</a></h2>
+				<h2 class="header "><a href="<?php echo $this->getWowUrl('game/class/'); ?>">Clases</a></h2>
 
 
 
@@ -326,26 +326,26 @@
 
 	<div class="column" style="margin: 0 19px; width: 235px;">
 			<div class="box first-child">
-					<h2 class="header "><a href="/wow/es/zone/">Mazmorras y bandas</a></h2>
+					<h2 class="header "><a href="<?php echo $this->getWowUrl('game/zone/'); ?>">Mazmorras y bandas</a></h2>
 
 
 				<ul>
-						<li><a href="/wow/es/zone/#expansion=3">Cataclysm</a></li>
-						<li><a href="/wow/es/zone/#expansion=2">Wrath of the Lich King</a></li>
-						<li><a href="/wow/es/zone/#expansion=1">The Burning Crusade</a></li>
-						<li><a href="/wow/es/zone/#expansion=0">Clásico</a></li>
+						<li><a href="<?php echo $this->getWowUrl('game/zone/'); ?>#expansion=3">Cataclysm</a></li>
+						<li><a href="<?php echo $this->getWowUrl('game/zone/'); ?>#expansion=2">Wrath of the Lich King</a></li>
+						<li><a href="<?php echo $this->getWowUrl('game/zone/'); ?>#expansion=1">The Burning Crusade</a></li>
+						<li><a href="<?php echo $this->getWowUrl('game/zone/'); ?>#expansion=0">Clásico</a></li>
 				</ul>
 			</div>
 
 			<div class="box">
-					<h2 class="header "><a href="/wow/es/faction/">Facciones</a></h2>
+					<h2 class="header "><a href="<?php echo $this->getWowUrl('game/faction/'); ?>">Facciones</a></h2>
 
 
 				<ul>
-						<li><a href="/wow/es/faction/#expansion=3">Cataclysm</a></li>
-						<li><a href="/wow/es/faction/#expansion=2">Wrath of the Lich King</a></li>
-						<li><a href="/wow/es/faction/#expansion=1">The Burning Crusade</a></li>
-						<li><a href="/wow/es/faction/#expansion=0">Clásico</a></li>
+						<li><a href="<?php echo $this->getWowUrl('game/faction/'); ?>#expansion=3">Cataclysm</a></li>
+						<li><a href="<?php echo $this->getWowUrl('game/faction/'); ?>#expansion=2">Wrath of the Lich King</a></li>
+						<li><a href="<?php echo $this->getWowUrl('game/faction/'); ?>#expansion=1">The Burning Crusade</a></li>
+						<li><a href="<?php echo $this->getWowUrl('game/faction/'); ?>#expansion=0">Clásico</a></li>
 				</ul>
 				</div>
 
@@ -366,7 +366,7 @@
 
 	<div class="column" style="width: 315px;">
 			<div class="box first-child">
-					<h2 class="header "><a href="/wow/es/profession/">Profesiones</a></h2>
+					<h2 class="header "><a href="<?php echo $this->getWowUrl('game/profession/'); ?>">Profesiones</a></h2>
 
 
 					<h4 class="subcategory ">Primaria</h4>
@@ -374,7 +374,7 @@
 
 		<ul class="double">
 								<li>
-					<a href="/wow/es/profession/alchemy">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>alchemy">
 
 
 
@@ -386,7 +386,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/skinning">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>skinning">
 
 
 
@@ -398,7 +398,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/enchanting">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>enchanting">
 
 
 
@@ -410,7 +410,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/herbalism">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>herbalism">
 
 
 
@@ -422,7 +422,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/blacksmithing">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>blacksmithing">
 
 
 
@@ -434,7 +434,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/engineering">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>engineering">
 
 
 
@@ -448,7 +448,7 @@
 		</ul>
 		<ul class="double">
 								<li>
-					<a href="/wow/es/profession/inscription">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>inscription">
 
 
 
@@ -460,7 +460,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/jewelcrafting">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>jewelcrafting">
 
 
 
@@ -472,7 +472,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/mining">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>mining">
 
 
 
@@ -484,7 +484,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/leatherworking">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>leatherworking">
 
 
 
@@ -496,7 +496,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/tailoring">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>tailoring">
 
 
 
@@ -517,7 +517,7 @@
 
 		<ul class="double">
 								<li>
-					<a href="/wow/es/profession/archaeology">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>archaeology">
 
 
 
@@ -529,7 +529,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/cooking">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>cooking">
 
 
 
@@ -543,7 +543,7 @@
 		</ul>
 		<ul class="double">
 								<li>
-					<a href="/wow/es/profession/fishing">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>fishing">
 
 
 
@@ -555,7 +555,7 @@
 									</a>
 								</li>
 								<li>
-					<a href="/wow/es/profession/first-aid">
+					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>first-aid">
 
 
 
@@ -579,19 +579,26 @@
 			<div class="extras">
 					<ul>
 						<li class="pvp">
-							<a href="/wow/es/pvp/arena/">
+							<a href="<?php echo $this->getWowUrl('pvp/arena/'); ?>">
 								<span class="icon"></span>
 								JcJ<br />
 								<span>Ver jerarquías de Arenas y campos de batalla puntuados actuales.</span>
 							</a>
 							</li>
 						<li class="realm">
-							<a href="/wow/es/status">
+							<a href="<?php echo $this->getWowUrl('status/'); ?>">
 								<span class="icon"></span>
 								Estado de los reinos<br />
 								<span>Información en tiempo real del estado de los reinos de World of Warcraft.</span>
 							</a>
 						</li>
+						<li class="patches">
+							<a href="<?php echo $this->getWowUrl('bugtracker/'); ?>">
+								<span class="icon"></span>
+								Bugtracker<br />
+								<span>Report about any bug you've found in game!</span>
+							</a>
+							</li>
 					</ul>
 
 	<span class="clear"> </span>

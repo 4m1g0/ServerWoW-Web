@@ -163,11 +163,129 @@ class Admin_Controller_Component extends Controller_Component
 			case 'default':
 				$this->buildBlock($this->m_action);
 				break;
+			case 'store':
+				if (isset($this->m_subaction[0]) && $this->m_subaction[0])
+				{
+					switch ($this->m_subaction[0])
+					{
+						case 'category':
+							if (isset($this->m_subaction[1]) && $this->m_subaction[1])
+							{
+								if ($this->m_subaction[1] == 'add')
+								{
+									if (isset($_POST['cat']))
+										$this->c('Admin')->addStoreCategory();
+									$this->buildBlock('addStoreCategory');
+								}
+								elseif (intval($this->m_subaction[1]) == $this->m_subaction[1])
+								{
+									if (isset($this->m_subaction[2]) && $this->m_subaction[2])
+									{
+										switch ($this->m_subaction[2])
+										{
+											case 'edit':
+												if (isset($_POST['cat']))
+													$this->c('Admin')->editStoreCategory();
+												$this->buildBlock('editStoreCategory');
+												break;
+											case 'delete':
+												$this->c('Admin')->deleteStoreCategory($this->m_subaction[1]);
+												break;
+											case 'items':
+												if (isset($_POST['cat']))
+													$this->c('Admin')->editStoreCategoryItems();
+												$this->buildBlock('editStoreCategoryItems');
+												break;
+										}
+									}
+								}
+							}
+							break;
+						case 'item':
+							if (isset($this->m_subaction[1]) && $this->m_subaction[1])
+							{
+								if ($this->m_subaction[1] == 'add')
+								{
+									if (isset($_POST['item']))
+										$this->c('Admin')->addStoreItem();
+									$this->buildBlock('addStoreItem');
+								}
+								elseif (intval($this->m_subaction[1]) == $this->m_subaction[1])
+								{
+									if (isset($this->m_subaction[2]) && $this->m_subaction[2])
+									{
+										switch ($this->m_subaction[2])
+										{
+											case 'edit':
+												if (isset($_POST['item']))
+													$this->c('Admin')->editStoreItem();
+												$this->buildBlock('editStoreItem');
+												break;
+											case 'delete':
+												$this->c('Admin')->deleteStoreItem($this->m_subaction[1]);
+												break;
+										}
+									}
+								}
+							}
+							break;
+					}
+				}
+				$this->buildBlock('store');
+				break;
 		}
 
 		$this->buildBlock('main');
 
 		return $this;
+	}
+
+	protected function block_editStoreCategoryItems()
+	{
+		return $this->block()
+			->setTemplate('editstorecatitems', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_addStoreItem()
+	{
+		return $this->block()
+			->setTemplate('addstoreitem', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_editStoreItem()
+	{
+		return $this->block()
+			->setTemplate('editstoreitem', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_store()
+	{
+		return $this->block()
+			->setTemplate('store', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_editStoreCategory()
+	{
+		return $this->block()
+			->setTemplate('editstorecat', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_addStoreCategory()
+	{
+		return $this->block()
+			->setTemplate('addstorecat', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
 	}
 
 	protected function block_forums()

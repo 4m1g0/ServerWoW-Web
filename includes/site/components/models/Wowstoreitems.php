@@ -29,7 +29,7 @@ class WowStoreItems_Model_Component extends Model_Db_Component
 		'title' => array('type' => 'string'),
 		'description' => array('type' => 'string'),
 		'tags' => array('type' => 'string'),
-		'price' => array('type' => 'float'),
+		'price' => array('type' => 'integer'),
 		'in_store' => array('type' => 'integer'),
 	);
 }

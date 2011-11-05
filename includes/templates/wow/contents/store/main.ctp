@@ -58,7 +58,10 @@
 							<?php endif; ?>
 							</td>
 						</tr>
-					<?php ++$toggleStyle; endforeach; endif; ?>
+					<?php ++$toggleStyle; endforeach; else : ?>
+						<tr class="row1">
+							<td colspan="5" class="align-center">Nothing found</td><?php endif; ?>
+						</tr>
 
 					</tbody>
 				</table>
@@ -70,40 +73,22 @@
 	</div>
 	<div style="float:left;width:230px;position:relative;">
 
-	<ul class="dynamic-menu" id="menu-pvp" style="display:true">
-				<li class="root-item  item-active">
+	<ul class="dynamic-menu" style="display:true">
+				<li class="root-item item-active">
 					<a href="<?php echo $this->getWowUrl('store'); ?>">
 						<span class="arrow">Home</span>
 					</a>
 				</li>
 
 		<?php
-		$store_cats = $store->getCategories();
+		$menu = $store->getMenuItems();
 		$categoryId = $store->getCategoryId();
-		foreach ($store_cats as $cat) : ?>
-			<li class="has-submenu<?php //if ($cat['info']['cat_id'] == $categoryId) echo ' item-active'; ?>"><a href="<?php echo $this->getWowUrl('store/' . $cat['info']['cat_id']); ?>"><span class="arrow"><?php echo $cat['info']['title']; ?></span></a>
-			<?php
-			if ($cat['child']) : ?><ul class="dynamic-menu" id="menu-store<?php echo $cat['info']['cat_id']; ?>"><?php foreach ($cat['child'] as $child) :?>
-				<li class="has-submenu<?php //if ($cat['info']['cat_id'] == $categoryId) echo ' item-active'; ?>"><a href="<?php echo $this->getWowUrl('store/' . $child['info']['cat_id']); ?>"><span class="arrow"><?php echo $child['info']['title']; ?></span></a>
-				<?php
-				if ($child['child']) : echo '<ul class="dynamic-menu" id="menu-store' . $child['info']['cat_id'] . '">'; foreach ($child['child'] as $ch) :
-					?>
-						<li class="has-submenu<?php //if ($cat['info']['cat_id'] == $categoryId) echo ' item-active'; ?>"><a href="<?php echo $this->getWowUrl('store/' . $ch['info']['cat_id']); ?>"><span class="arrow"><?php echo $ch['info']['title']; ?></span></a>
-				<?php
-					if ($ch['child']) : echo '<ul class="dynamic-menu" id="menu-store' . $ch['info']['cat_id'] . '">'; foreach ($ch['child'] as $c) :
-					?>
-							<li class="has-submenu<?php //if ($cat['info']['cat_id'] == $categoryId) echo ' item-active'; ?>"><a href="<?php echo $this->getWowUrl('store/' . $c['info']['cat_id']); ?>"><span class="arrow"><?php echo $c['info']['title']; ?></span></a>
-				<?php
-					if ($c['child']) : echo '<ul class="dynamic-menu" id="menu-store' . $ch['info']['cat_id'] . '">'; foreach ($c['child'] as $t) :
-					?>
-								<li<?php //if ($cat['info']['cat_id'] == $categoryId) echo ' class="item-active"'; ?>><a href="<?php echo $this->getWowUrl('store/' . $t['info']['cat_id']); ?>"><span class="arrow"><?php echo $t['info']['title']; ?></span></a>
-							<?php endforeach; echo '</ul>'; endif; ?></li>
-						<?php endforeach; echo '</ul>'; endif; ?></li>
-				<?php endforeach; echo '</ul>'; endif; ?></li>
-			<?php endforeach; ?></ul><?php endif;?></li>
-		<?php endforeach; ?></li>
-
-</ul><span style="padding:20px;float:left"><?php
+		foreach ($menu as $cat) : ?>
+			<li class="has-submenu">
+				<a href="<?php echo $this->getWowUrl('store/' . $cat['cat_id']); ?>"><span class="arrow"><?php echo $cat['title']; ?></span></a>
+			</li>
+		<?php endforeach; ?>
+	</ul><span style="padding:20px;float:left"><?php
 $cart = $store->getCart();
 if (!$cart) : ?>
 <h1 class="color-q3">Your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a> is empty</h1>

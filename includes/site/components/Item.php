@@ -657,7 +657,7 @@ class Item_Component extends Component
 			{
 				foreach($item_spells as &$spell)
 				{
-					$this->c('Spell')->getSpellDescription($spell);
+					$sdesc = $this->c('Spell')->getSpellDescription($spell);
 					if (!$sdesc)
 						continue;
 					$t .= '<li class="color-q2"><span class="tip" data-spell="' . $spell['id'] . '">' . $l->format('template_item_spell_trigger_' . $spells[$spell['id']], $sdesc) . '</span></li>';
@@ -1286,8 +1286,12 @@ class Item_Component extends Component
 					$item['icon'] = $icons[$item['displayid']]['icon'];
 			}
 
-			unset($icons, $display_ids, $entries);
-			return $items_info;
+			unset($icons, $display_ids);
+
+			if (is_array($entries))
+				return $items_info;
+			elseif (is_numeric($entries) && isset($items_info[$entries]))
+				return $items_info[$entries];
 		}
 	}
 

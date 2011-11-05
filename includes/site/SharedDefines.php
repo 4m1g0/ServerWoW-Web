@@ -1064,4 +1064,15 @@ define('ITEM_SOURCE_TYPE_PICKPOCKETING', 8);
 define('ITEM_SOURCE_TYPE_PROSPECTING', 9);
 define('ITEM_SOURCE_TYPE_SKINNING', 10);
 define('ITEM_SOURCE_TYPE_FISHING', 11);
+
+/* Bugtracker */
+define('BT_DEFAULT', 0);
+define('BT_WEB',     1);
+define('BT_ITEM',    2);
+define('BT_QUEST',   3);
+define('BT_SPELL',   4);
+define('BT_OBJECT',  5);
+define('BT_NPC',     6);
+define('BT_ZONE',    7);
+define('BT_OTHER',   8);
 ?>

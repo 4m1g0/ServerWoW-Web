@@ -37,6 +37,7 @@ class Store_Component extends Component
 	protected $m_apiMethod = '';
 	protected $m_apiData = array();
 	protected $m_apiMethodResult = array();
+	protected $m_menuItems = array();
 
 	public function initStore($catId, $itemId)
 	{
@@ -134,7 +135,6 @@ class Store_Component extends Component
 			return $this;
 
 		$this->m_item['template'] = $this->c('Item')->getItemsInfo($itemId);
-		$this->m_item['template'] = $this->m_item['template'][$itemId];
 
 		if (!$this->m_item['template'])
 			return $this;
@@ -209,6 +209,11 @@ class Store_Component extends Component
 		$exclude = array();
 		foreach ($this->m_categories as $c)
 		{
+			if (!$this->m_categoryId && $c['parent_id'] == -1)
+				$this->m_menuItems[] = $c;
+			elseif ($this->m_categoryId > 0 && $c['parent_id'] == $this->m_categoryId)
+				$this->m_menuItems[] = $c;
+
 			$tree[$c['cat_id']] = array('info' => $c, 'child' => array());
 			if ($c['parent_id'] > 0 && !in_array($c['parent_id'], $tree[$c['cat_id']]))
 			{
@@ -222,6 +227,7 @@ class Store_Component extends Component
 				}
 			}
 		}
+
 		foreach ($m as $c)
 		{
 			$cid = $c['cat_id'];
@@ -281,6 +287,11 @@ class Store_Component extends Component
 	public function getCategories()
 	{
 		return $this->m_categories;
+	}
+
+	public function getMenuItems()
+	{
+		return $this->m_menuItems;
 	}
 
 	public function getBreadcrumbInfo()

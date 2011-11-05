@@ -25,6 +25,176 @@ class Admin_Component extends Component
 		
 	}
 
+	public function getStoreCategories()
+	{
+		return $this->c('QueryResult', 'Db')
+			->model('WowStoreCategories')
+			->loadItems();
+	}
+
+	public function getStoreCategory()
+	{
+		return $this->c('QueryResult', 'Db')
+			->model('WowStoreCategories')
+			->setItemId(intval($this->core->getUrlAction(3)))
+			->loadItem();
+	}
+
+	public function editStoreCategory()
+	{
+		if (!isset($_POST['cat']))
+			return $this;
+
+		$fields = array('cat_id', 'parent_id', 'title');
+
+		foreach ($fields as $f)
+			if (!isset($_POST['cat'][$f]) || !$_POST['cat'][$f])
+				return $this;
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowStoreCategories')
+			->setType('update')
+			->setId(intval($_POST['cat']['cat_id']));
+
+		$edt->parent_id = intval($_POST['cat']['parent_id']);
+		$edt->title = $_POST['cat']['title'];
+
+		$edt->save()->clearValues();
+	}
+
+	public function deleteStoreCategory($id)
+	{
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowStoreCategories')
+			->setId(intval($id));
+		$edt->delete()->clearValues();
+
+		return $this->core->redirectApp('/admin/store/');
+	}
+
+	public function addStoreCategory()
+	{
+		if (!isset($_POST['cat']))
+			return $this;
+
+		$fields = array('parent_id', 'title');
+
+		foreach ($fields as $f)
+			if (!isset($_POST['cat'][$f]) || !$_POST['cat'][$f])
+				return $this;
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowStoreCategories')
+			->setType('insert');
+
+		$edt->parent_id = intval($_POST['cat']['parent_id']);
+		$edt->title = $_POST['cat']['title'];
+
+		$edt->save()->clearValues();
+
+		return $this->core->redirectApp('/admin/store/');
+	}
+
+	public function addStoreItem()
+	{
+		if (!isset($_POST['item']))
+			return $this;
+
+		$fields = array('cat_id', 'id', 'price');
+
+		foreach ($fields as $f)
+			if (!isset($_POST['item'][$f]) || !$_POST['item'][$f])
+				return $this;
+
+		$item = $this->getStoreItem($_POST['item']['id']);
+
+		if ($item)
+			return $this->core->redirectApp('/admin/store/');
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowStoreItems')
+			->setType('insert');
+
+		$edt->item_id = intval($_POST['item']['id']);
+		$edt->cat_id = intval($_POST['item']['cat_id']);
+		$edt->title = isset($_POST['item']['title']) ? $_POST['item']['title'] : '';
+		$edt->price = intval($_POST['item']['price']);
+		$edt->in_store = isset($_POST['item']['in_store']) ? 1 : '0';
+
+		$edt->save()->clearValues();
+
+		return $this->core->redirectApp('/admin/store/');
+	}
+
+	public function getStoreCategoryItems()
+	{
+		$id = intval($this->core->getUrlAction(3));
+
+		if (!$id)
+			return false;
+
+		$ids = $this->c('QueryResult', 'Db')
+			->model('WowStoreItems')
+			->keyIndex('item_id')
+			->fieldCondition('cat_id', ' = ' . $id)
+			->loadItems();
+
+		if (!$ids)
+			return false;
+
+		$items = $this->c('Item')->getItemsInfo($ids);
+
+		if ($items)
+			foreach ($ids as &$id)
+				$id['template'] = $items[$id['item_id']];
+
+		return $ids;
+	}
+
+	public function editStoreCategoryItems()
+	{
+		if (!isset($_POST['cat']['items']))
+			return $this;
+
+		$ids = array_keys($_POST['cat']['items']);
+		$this->c('Db')->wow()->query("DELETE FROM `wow_store_items` WHERE `item_id` IN (%s)", $ids);
+
+		return $this->core->redirectApp('/admin/store/');
+	}
+
+	public function editStoreItem()
+	{
+		if (!isset($_POST['item']))
+			return $this;
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowStoreItems')
+			->setType('update')
+			->setId(intval($_POST['item']['id']));
+
+		$edt->cat_id = intval($_POST['item']['cat_id']);
+		$edt->title = isset($_POST['item']['title']) ? $_POST['item']['title'] : '';
+		$edt->price = intval($_POST['item']['price']);
+		$edt->in_store = isset($_POST['item']['in_store']) ? 1 : '0';
+
+		$edt->save()->clearValues();
+
+		return $this->core->redirectApp('/admin/store/');
+	}
+
+	public function getStoreItem($id)
+	{
+		return $this->c('QueryResult')
+			->model('WowStoreItems')
+			->fieldCondition('item_id', ' = ' . intval($id))
+			->loadItem();
+	}
+
 	public function getNews()
 	{
 		return $this->c('QueryResult', 'Db')
@@ -124,6 +294,8 @@ class Admin_Component extends Component
 		$this->c('Config')->setValue('site.locale_indexes', $d);
 
 		$this->c('Config')->setValue('site.log', $site['log']);
+
+		$this->c('Config')->setValue('site.locale', $site['locale']);
 
 		$this->c('Config')->setValue('misc', $_POST['misc']);
 
