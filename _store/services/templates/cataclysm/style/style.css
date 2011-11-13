@@ -1,0 +1,65 @@
+﻿* { padding: 0; margin: 0; }
+BODY { background: url(bg_body.jpg) repeat; font-family: Tahoma, Verdana; font-size: 12px; color: #d4bea6; }
+
+#all { width: 1004px; margin: 0 auto 0 auto; }
+
+h1 { font-size: 12px; font-weight: text-transform: uppercase; font-family: Tahoma, Verdana; color: #DF0101; }
+h2 { font-size: 16px; color: #B40404; }
+p { margin: 10px 0 10px 0;}
+a { color: #d4bea6; text-decoration: underline; }
+a:visited
+{
+    color: #d4c8a2;
+    text-decoration: none;
+}
+a:hover, a:active
+{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.inp { border: 1px solid #765a3d; background: #1a1006; font-family: Tahoma, Verdana; font-size: 11px; color: #e1e1e1; padding: 2px 5px 2px 5px; }
+.red { color: #f25f5f; }
+.submit { background: #d4bea6; color: #1a1006; cursor: hand; border: 0; }
+.dissubmit { background: #d4bea6; color: #1a1006; border: 0; }
+.select { border: 1px solid #765a3d; background: #1a1006; font-family: Tahoma, Verdana; font-size: 11px; color: #e1e1e1; padding: 2px 5px 2px 5px; }
+
+#footer { background: url(bg_foote.jpg) repeat; padding: 40px; text-align: center; }
+#top { background: url(bg_top.jpg) no-repeat left top; text-align: center; height: 55px; vertical-align: middle; font-family: "Times New Roman", Times, serif; font-size: 20px; font-weight: bold; color: #d4bea6; }
+#left { background: url(bg_left.jpg) no-repeat left top; width: 280px; vertical-align: top; }
+#right { background: url(bg_right.jpg) no-repeat right top; vertical-align: top; width: 722px; }
+
+#navi { padding: 58px 0 25px 83px; }
+
+#content { padding: 58px 43px 43px 43px; }
+#content .tbl td { padding: 5px 5px 0 0; }
+.tr { background: url(bg_foote.jpg) repeat; font-weight: bold; }
+
+.smscountry { font-weight: bold; }
+.smstable { background: #d4bea6; color: #1a1006; }
+.smstabletr { background: #1a1006; font-weight: bold; color: #d4bea6; }
+
+.openedcountry { font-weight: bold; text-decoration: none; }
+.closedcountry { font-weight: bold; text-decoration: underline; }
+
+.log_error { padding: 50px 0 0 0; font-size: 16px; font-weight: bold; color: #1a1006;}
+.other_message { font-size: 16px; font-weight: bold; color: #1a1006;}
+
+#userinfo { 
+	position: absolute; 
+	z-index: 2; 
+	top: 90px; 
+	margin-left: 30px; 
+	width: 380px; 
+	height: 180px; 
+	font-weight: bold;
+	color: #E9D0B3;
+	background: url(bg_useri.jpg) no-repeat left top;
+}
+#userinfo .content { 
+	padding-left: 40px; 
+	padding-top: 15px;
+}
+
+.error { color: #f25f5f; font-weight: bold; }
+

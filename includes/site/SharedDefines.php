@@ -18,7 +18,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-include('UpdateFields.php');
+include(SITE_DIR . 'UpdateFields.php');
+include(SITE_DIR . 'StoreDefines.php');
 
 /** WoW Classes **/
 define('CLASS_WARRIOR', 1);

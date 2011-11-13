@@ -124,6 +124,7 @@ class Admin_Component extends Component
 		$edt->title = isset($_POST['item']['title']) ? $_POST['item']['title'] : '';
 		$edt->price = intval($_POST['item']['price']);
 		$edt->in_store = isset($_POST['item']['in_store']) ? 1 : '0';
+		$edt->service_type = isset($_POST['item']['service']) ? intval($_POST['item']['service']) : 0;
 
 		$edt->save()->clearValues();
 

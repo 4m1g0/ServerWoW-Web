@@ -37,16 +37,19 @@
 						$toggleStyle = 2;
 						foreach ($items as &$i) :
 					?>
-						<tr class="row<?php echo $toggleStyle % 2 ? '1' : '2'; ?>" id="removefromcart-link-<?php echo $i['entry']; ?>">
-							<td data-raw="<?php echo (7 - $i['Quality']) . ' ' . $i['name']; ?>">
+						<tr class="row<?php echo $toggleStyle % 2 ? '1' : '2'; ?>" id="removefromcart-link-<?php echo $i['storeInfo']['item_id']; ?>">
+							<td<?php if ($i['storeInfo']['service_type'] == 0) : ?> data-raw="<?php echo (7 - $i['Quality']) . ' ' . $i['name']; ?>"<?php endif; ?>>
+							<?php if ($i['storeInfo']['service_type'] == 0) : ?>
 								<a href="<?php echo $this->getWowUrl('item/' . $i['entry']); ?>" class="item-link color-q<?php echo $i['Quality']; ?>">
-<span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $i['icon']; ?>.jpg");'>
-</span>
+									<span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $i['icon']; ?>.jpg");'>
+									</span>
 									<strong><?php echo $i['name']; ?></strong>
 								</a>
+							<?php else : ?>
+							<strong><?php echo $i['name']; ?></strong><?php endif; ?>
 							</td>
 							<td class="align-center">
-								<?php echo $i['ItemLevel']; ?>
+								<?php if ($i['storeInfo']['service_type'] == 0) echo $i['ItemLevel']; ?>
 							</td>
 							<td class="align-center"><a href="<?php echo $this->getWowUrl('store/' . $i['storeInfo']['cat_id']); ?>"><?php echo $i['storeInfo']['catTitle']; ?></a>
 							</td>
@@ -58,7 +61,7 @@
 							</td>
 							<td>
 							<?php if ($i['storeInfo']['in_store']) : ?>
-							<a href="javascript:;" onclick="Store.removeFromCart(<?php echo $i['entry'] . ', ' . $xstoken; ?>);">Remove</a>
+							<a href="javascript:;" onclick="Store.removeFromCart(<?php echo $i['storeInfo']['item_id'] . ', ' . $xstoken; ?>);">Remove</a>
 							<?php endif; ?>
 							</td>
 						</tr>

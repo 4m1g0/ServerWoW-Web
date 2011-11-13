@@ -26,7 +26,19 @@ Title
 <div class="input text long">
 Price
 <input type="text" name="item[price]" value="<?php if (isset($_POST['item']['price'])) echo $_POST['item']['price']; else echo '0'; ?>" size=50 />
-</div><br />
+</div>
+<div class="input select">
+Service Type
+<select name="item[service]">
+<option value="0"<?php if (!isset($_POST['item']['service']) || (isset($_POST['item']['service']) && $_POST['item']['service'] == 0)) echo ' selected="selected"'; ?>>-- No Service --</option>
+<?php
+foreach ($GLOBALS['_STORE_SERVICES'] as $c) :
+?>
+	<option value="<?php echo $c[0]; ?>"<?php if (isset($_POST['item']['service']) && $_POST['item']['service'] == $c[0]) echo ' selected="selected"'; ?>><?php echo $c[1]; ?></option>
+<?php endforeach; ?>
+</select>
+</div>
+<br />
 <div class="input checkbox">
 <input type="checkbox" name="item[in_store]" value="1" <?php if (isset($_POST['item']['title'])) echo ' checked="checked"'; ?> id="instore" /><label for="instore">Available in store</label>
 </div><br />

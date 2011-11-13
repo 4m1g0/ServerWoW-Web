@@ -134,10 +134,19 @@ class Store_Component extends Component
 		if (!$this->m_item['store'])
 			return $this;
 
-		$this->m_item['template'] = $this->c('Item')->getItemsInfo($itemId);
+		if ($this->m_item['store']['service_type'] == 0)
+		{
+			$this->m_item['template'] = $this->c('Item')->getItemsInfo($itemId);
 
-		if (!$this->m_item['template'])
-			return $this;
+			if (!$this->m_item['template'])
+				return $this;
+		}
+		else
+		{
+			foreach ($GLOBALS['_STORE_SERVICES'] as $srv)
+				if ($srv[0] == $this->m_item['store']['service_type'])
+					$this->m_item['service'] = array('id' => $srv[0], 'name' => $srv[1]);
+		}
 
 		return $this;
 	}
@@ -326,11 +335,30 @@ class Store_Component extends Component
 			);
 		}
 
-		if ($this->m_itemId > 0 && $this->m_item)
-			$bc[] = array(
-				'link' => 'store/' . $this->m_item['store']['cat_id'] . '/' . $this->m_item['template']['entry'],
-				'caption' => $this->m_item['template']['name']
-			);
+		if ($this->m_item)
+		{
+			if ($this->m_item['store']['service_type'] == 0)
+			{
+				if ($this->m_itemId > 0 && $this->m_item['template'])
+					$bc[] = array(
+						'link' => 'store/' . $this->m_item['store']['cat_id'] . '/' . $this->m_item['template']['entry'],
+						'caption' => $this->m_item['template']['name']
+					);
+			}
+			elseif ($this->m_item['store']['service_type'] > 0)
+			{
+				$service_caption = '';
+
+				foreach ($GLOBALS['_STORE_SERVICES'] as $serv)
+					if ($serv[0] == $this->m_item['store']['service_type'])
+						$service_caption = $serv[1];
+
+				$bc[] = array(
+					'link' => 'store/' . $this->m_item['store']['cat_id'] . '/' . $this->m_item['store']['item_id'],
+					'caption' => $service_caption ? $service_caption : 'Unknown'
+				);
+			}
+		}
 
 		$this->m_rawBc = $this->m_bcData;
 		$this->m_bcData = $bc;
@@ -429,19 +457,51 @@ class Store_Component extends Component
 
 	public function getCartItems()
 	{
-		$ids = array_keys($this->m_cart);
+		$ids = array();
+		$services = array();
 
-		if (!$ids)
+		foreach ($this->m_cart as $id => $item)
+		{
+			if ($item['service_type'] == 0)
+				$ids[] = $id;
+			else
+				$services[$item['item_id']] = $item['service_type'];
+		}
+
+		if (!$ids && !$services)
 			return false;
 
-		$items = $this->c('Item')->getItemsInfo($ids, true);
-		if (!$items)
-			return false;
+		$cart_items = array();
 
-		foreach ($items as &$i)
-			$i['storeInfo'] = $this->m_cart[$i['entry']];
+		if ($ids)
+		{
+			$items = $this->c('Item')->getItemsInfo($ids, true);
 
-		return $items;
+			if (!$items)
+				return false;
+
+			foreach ($items as &$i)
+				$i['storeInfo'] = $this->m_cart[$i['entry']];
+
+			$cart_items = array_merge($cart_items, $items);
+		}
+
+		if ($services)
+		{
+			$srv = array();
+			foreach ($services as $sId => $s)
+			{
+				foreach ($GLOBALS['_STORE_SERVICES'] as $serv)
+				{
+					if ($serv[0] == $s)
+						$srv[$sId] = array('id' => $serv[0], 'name' => $serv[1], 'storeInfo' => $this->m_cart[$sId]);
+				}
+			}
+
+			$cart_items = array_merge($cart_items, $srv);
+		}
+
+		return $cart_items;
 	}
 
 	public function getTotalPrice()
@@ -495,13 +555,42 @@ class Store_Component extends Component
 		if (!$ids)
 			return false;
 
-		$items = $this->c('Item')->getItemsInfo($ids);
+		$item_ids = array();
+		$services = array();
 
-		if ($items)
-			foreach ($items as &$it)
-				$it['storeInfo'] = $ids[$it['entry']];
+		foreach ($ids as $item)
+		{
+			if ($item['service_type'] == 0)
+				$item_ids[$item['item_id']] = $item['item_id'];
+			elseif ($item['service_type'] > 0)
+			{
+				foreach ($GLOBALS['_STORE_SERVICES'] as $srv)
+				{
+					if ($srv[0] == $item['service_type'])
+						$services[$item['item_id']] = array('id' => $srv[0], 'name' => $srv[1], 'storeInfo' => $item);
+				}
+			}
+		}
 
-		return $items;
+		$store_items = array();
+
+		if ($item_ids)
+		{
+			$items = $this->c('Item')->getItemsInfo($item_ids);
+
+			if ($items)
+			{
+				foreach ($items as &$it)
+					$it['storeInfo'] = $ids[$it['entry']];
+
+				$store_items = array_merge($store_items, $items);
+			}
+		}
+
+		if ($services)
+			$store_items = array_merge($store_items, $services);
+
+		return $store_items;
 	}
 
 	public function isCorrect()
@@ -570,10 +659,19 @@ class Store_Component extends Component
 		$performed = array();
 
 		foreach ($this->m_cart as $item)
+		{
 			if ($this->c('AccountManager')->changeBonus($item['price'], -1))
+			{
+				if ($item['service_type'] > 0)
+					$this->performCharacterOperation($item['service_type'], intval($_POST['guid']), intval($_POST['realmId']), $_POST['service_data']);
+				else
+					$this->sendItemMail($item['item_id'], $item['quantity'], intval($_POST['guid']), intval($_POST['realmId']));
+
 				$performed[] = $item;
+			}
 			else
 				break;
+		}
 
 		return $this->setBuyoutResult($performed);
 	}
@@ -581,16 +679,75 @@ class Store_Component extends Component
 	protected function setBuyoutResult()
 	{
 		if (!$this->isCorrect())
-			return false;
+			return $this;
 
-		return true;
+		return $this;
 	}
 
-	protected function senditemMail($itemId, $guid, $realmId)
+	protected function sendItemMail($itemId, $quantity, $guid, $realmId)
 	{
 		$this->c('Db')->switchTo('characters', $realmId);
 
-		// Connect via RA!
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('MailExternal')
+			->setType('insert');
+
+		$edt->acct = $this->c('AccountManager')->user('id');
+		$edt->receiver = $guid;
+		$edt->subject = 'World of Warcraft Store';
+		$edt->message = '$N,$B this mail contains the item you bought.$B$BThank you for using our online store!';
+		$edt->item = $itemId;
+		$edt->item_count = $quanitity;
+		$edt->date = time(); //
+
+		$edt->save()->clearValues();
+
+		return $this;
+	}
+
+	protected function performCharacterOperation($operation_type, $guid, $realmId, $data = null)
+	{
+		if (!$this->c('AccountManager')->isLoggedIn())
+			return $this;
+
+		$this->c('Db')->switchTo('characters', $realmId);
+
+		$op_result = false;
+
+		switch ($operation_type)
+		{
+			case SERVICE_CUSTOMIZE_CHARACTER:
+				$this->c('Db')->characters()->query("UPDATE characters SET at_login = at_login | 0x08 WHERE guid = %d", $guid);
+				break;
+			case SERVICE_CHANGE_FACTION:
+				$this->c('Db')->characters()->query("UPDATE characters SET at_login = at_login | 0x40 WHERE guid = %d", $guid);
+				break;
+			case SERVICE_CHANGE_RACE:
+				$this->c('Db')->characters()->query("UPDATE characters SET at_login = at_login | 0x80 WHERE guid = %d", $guid);
+				break;
+			case SERVICE_CHANGE_PASSWORD:
+				if ((!isset($data['newpassword']) || !$data['newpassword']))
+					return $this;
+
+				$this->c('Db')->realm()->query("UPDATE account SET sha_pass_hash = '%s' WHERE id = %d", sha1(strtoupper($this->c('AccountManager')->user('username')) . ':' . strtoupper($data['newpassword'])), $this->c('AccountManager')->user('id'));
+				break;
+			case SERVICE_CHARACTER_ACCOUNT_TRANSFER:
+				if (!isset($data['newaccount']) || !$data['newaccount'] || $data['newaccount'] == $this->c('AccountManager')->user('id'))
+					return $this;
+
+				$this->c('Db')->characters()->query("UPDATE characters SET account = %d WHERE account = %d AND guid = %d LIMIT 1", $data['newaccount'], $this->c('AccountManager')->user('id'), $guid);
+				break;
+			case SERVICE_RENAME_CHARACTER:
+				$this->c('Db')->characters()->query("UPDATE characters SET at_login = at_login | 0x01 WHERE guid = %d", $guid);
+				break;
+			default:
+				return $this;
+		}
+
+		$op_result = true;
+
+		return $this;
 	}
 }
 ?>

@@ -14,6 +14,7 @@ if (!$store_item) return;
 $item = $store_item['template'];
 ?>
 <script><?php $xstoken = $this->c('Cookie')->read('xstoken'); ?>Store.init(<?php echo $xstoken; ?>);</script>
+<?php if ($store_item['store']['service_type'] == 0) : ?>
 <h1 class="color-q<?php echo $item['Quality']; ?>"><a href="<?php echo $this->getWowUrl('item/' . $item['entry']); ?>"><?php
 
 echo $item['name']; ?></a></h1>
@@ -25,6 +26,13 @@ echo $item['name']; ?></a></h1>
 </span>
 <div id="op-result-<?php echo $item['entry']; ?>"><?php if ($store->isItemInCart($item['entry'])) : ?>This item is in your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a>!<?php endif; ?></div>
 <span id="removefromcart-link-<?php echo $item['entry']; ?>" style="display:<?php if ($store->isItemInCart($store_item['store']['item_id'])) echo 'true'; else echo 'none'; ?>;"><a href="javascript:;" onclick="Store.removeFromCart(<?php echo $item['entry'] . ', ' . $xstoken; ?>);">Remove from Cart</a></span>
+<?php else : ?>
+<h1 class="color-q2"><?php echo $store_item['service']['name']; ?></h1><em>Service</em>
+<span id="add2cart-link-<?php echo $store_item['store']['item_id']; ?>" style="display:<?php if (!$store->isItemInCart($store_item['store']['item_id'])) echo 'true'; else echo 'none'; ?>;">
+	<input type="hidden" id="item-<?php echo $store_item['store']['item_id']; ?>-quantity" value="1" /><br />
+	<a href="javascript:;" onclick="Store.addToCart(<?php echo $store_item['store']['item_id'] . ', ' . $store_item['store']['cat_id'] . ', ' . $xstoken; ?>);">Add to Cart</a>
+</span>
+<?php endif;?>
 </div>
 </div>
 </div>
