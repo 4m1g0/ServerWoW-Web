@@ -18,7 +18,7 @@ $item = $store_item['template'];
 <h1 class="color-q<?php echo $item['Quality']; ?>"><a href="<?php echo $this->getWowUrl('item/' . $item['entry']); ?>"><?php
 
 echo $item['name']; ?></a></h1>
-<h2 class="color-q2">Price: <?php echo $store_item['store']['price']; ?></h2>
+<h2 class="color-q2">Price: <?php echo $store_item['store']['price']; ?> points</h2>
 <span id="add2cart-link-<?php echo $item['entry']; ?>" style="display:<?php if (!$store->isItemInCart($store_item['store']['item_id'])) echo 'true'; else echo 'none'; ?>;">
 	Quantity: <input type="text" id="item-<?php echo $item['entry']; ?>-quantity" value="1" /><br />
 	<a href="javascript:;" onclick="Store.addToCart(<?php echo $item['entry'] . ', ' . $store_item['store']['cat_id'] . ', ' . $xstoken; ?>);">Add to Cart</a>

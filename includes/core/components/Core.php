@@ -276,6 +276,11 @@ class Core_Component extends Component
 		return implode('/', $this->m_actions);
 	}
 
+	public function getApplicationUrl($path = '')
+	{
+		return 'http://' . $_SERVER['SERVER_NAME'] . '/' . $path;
+	}
+
 	public function getCoreVars()
 	{
 		return $this->m_variables;

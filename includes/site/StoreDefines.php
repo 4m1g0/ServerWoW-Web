@@ -10,8 +10,8 @@ define('CURRENCY_CODE',"EUR"); // Currency code to be used by PayPal.
 define('CURRENCY_CHAR',"$"); // Symbol representing your currency code.
 
 // PayPal information. Use 'www.sandbox.paypal.com' if you wish to test with the sandbox.
-define('PAYPAL_URL',"www.paypal.com"); // Only change this for sandbox testing.
-define('PAYPAL_EMAIL',"@.com"); // The account that donations will go to.
+define('PAYPAL_URL',"sandbox.paypal.com"); // Only change this for sandbox testing.
+define('PAYPAL_EMAIL',"d_mas_1321699272_biz@ulanovka.ru"); // The account that donations will go to.
 
 // Mail information.
 define('MAIL_SUBJECT',"Sistema PP"); // Subject of the reward mail.
@@ -20,6 +20,9 @@ define('MAIL_BODY',"Envio! ID: " . (isset($_POST['txn_id']) ? $_POST['txn_id'] :
 //Misc
 define('ACP_USERNAME',""); // Username to access the ACP
 define('ACP_PASSWORD',""); // Password to access the ACP
+
+define('PP_DESCRIPTION', 'World of Warcraft Services'); // Description for item_name POST field
+define('POINT_PRICE', 0.5);
 
 define('SERVICE_CUSTOMIZE_CHARACTER', 1);
 define('SERVICE_CHANGE_FACTION', 2);

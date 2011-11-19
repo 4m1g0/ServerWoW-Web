@@ -308,8 +308,16 @@ class AccountManager_Component extends Component
 			$checker['gmlevel'] = -1;
 
 		$checker['banned'] = $this->loadBanInfo($checker['id']);
+
 		/// WOW STORE
-		$checker['amount'] = 0;
+		$amount = $this->c('QueryResult', 'Db')
+			->model('AccountPoints')
+			->fieldCondition('account_id', ' = ' . $checker['id'])
+			->loadItem();
+		if ($amount)
+			$checker['amount'] = $amount['amount'];
+		else
+			$checker['amount'] = 0;
 
 		$user = (object) $checker;
 
@@ -489,7 +497,14 @@ class AccountManager_Component extends Component
 		$user['banned'] = $this->loadBanInfo($user['id']);
 
 		/// WOW STORE
-		$user['amount'] = 0;
+		$amount = $this->c('QueryResult', 'Db')
+			->model('AccountPoints')
+			->fieldCondition('account_id', ' = ' . $user['id'])
+			->loadItem();
+		if ($amount)
+			$user['amount'] = $amount['amount'];
+		else
+			$user['amount'] = 0;
 
 		$user = (object) $user;
 

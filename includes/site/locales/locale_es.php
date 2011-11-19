@@ -138,7 +138,7 @@ $Site_Locale = array(
     'template_bn_got_account' => '¿Ya eres usuario?',
     'template_bn_log_in' => 'Conéctate',
     'template_bn_what_is_caption' => 'Unete a <strong>millones de jugadores</strong> que han descubierto nuevas experiencias con este juego <span>Leer mas</span>',
-    'template_servicebar_auth_caption' => '<a href="?login" onclick="return Login.open(\'' . CLIENT_FILES_PATH . 'login/login.frag\')">Iniciar Sesión</a> o <a href="' . CLIENT_FILES_PATH . 'account/creation/tos.html">Crear una cuenta</a>',
+    'template_servicebar_auth_caption' => '<a href="?login" onclick="return Login.open(\'%s\')">Iniciar Sesión</a> o <a href="%s">Crear una cuenta</a>',
     'template_servicebar_account' => 'CUENTA',
 	'template_servicebar_support' => 'SOPORTE',
 	'template_servicebar_explore' => 'EXPLORAR',

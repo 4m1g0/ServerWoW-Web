@@ -52,7 +52,7 @@
 							<td class="align-center"><a href="<?php echo $this->getWowUrl('store/' . $i['storeInfo']['cat_id']); ?>"><?php echo $i['storeInfo']['catTitle']; ?></a>
 							</td>
 							<td>
-							$<?php echo $i['storeInfo']['price']; ?>
+							<?php echo $i['storeInfo']['price']; ?> PTS
 							</td>
 							<td>
 							<?php if ($i['storeInfo']['in_store']) : ?>
@@ -93,12 +93,14 @@
 	</ul><span style="padding:20px;float:left"><?php
 $cart = $store->getCart();
 if (!$cart) : ?>
-<h1 class="color-q3">Your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a> is empty</h1>
+<h1 class="color-q3">Your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a> is empty
 <?php else : 
 $price = $store->getTotalPrice();
 ?>
-<h1 class="color-q2">You have <?php echo sizeof($cart); ?> item(s) in your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a><br />(Total price: $<?php echo $price; ?>)</h1>
-<?php endif; ?></span>
+<h1 class="color-q2">You have <?php echo sizeof($cart); ?> item(s) in your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a><br />(Total price: <?php echo $price; ?> points)
+<?php endif; ?>
+<br /><br />Available Points: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/payments'); ?>">Buy more</a>)</h1>
+</span>
 	</div>
 </div>
 	</div>

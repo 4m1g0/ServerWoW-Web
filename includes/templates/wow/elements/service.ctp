@@ -1,9 +1,9 @@
 <ul class="service-bar">
-<li class="service-cell service-home"><a href="<?php echo CLIENT_FILES_PATH; ?>/" tabindex="50" accesskey="1" title="Battle.net Home"> </a></li>
+<li class="service-cell service-home"><a href="<?php echo $this->getAppUrl(); ?>/" tabindex="50" accesskey="1" title="Battle.net Home"> </a></li>
 <li class="service-cell service-welcome">
-<?php if (!$this->c('AccountManager')->isLoggedIn()) echo $l->format('template_servicebar_auth_caption', $this->getCoreUrl('login/login.frag'), $this->getCoreUrl('account/creation/tos.html')); else echo $l->format('template_servicebar_welcome_caption', $this->c('AccountManager')->user('username')); ?>
+<?php if (!$this->c('AccountManager')->isLoggedIn()) echo $l->format('template_servicebar_auth_caption', $this->getAppUrl('login/login.frag'), $this->getAppUrl('account/creation/tos.html')); else echo $l->format('template_servicebar_welcome_caption', $this->c('AccountManager')->user('username')); ?>
 </li>
-<li class="service-cell service-account"><a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/" class="service-link" tabindex="50" accesskey="3"><?php echo $l->getString('template_servicebar_account'); ?></a></li>
+<li class="service-cell service-account"><a href="<?php echo $this->getAppUrl('account/management/'); ?>" class="service-link" tabindex="50" accesskey="3"><?php echo $l->getString('template_servicebar_account'); ?></a></li>
 <li class="service-cell service-support service-support-enhanced">
 <a href="#support" class="service-link service-link-dropdown" tabindex="50" accesskey="4" id="support-link" onclick="return false" style="cursor: progress" rel="javascript"><?php echo $l->getString('template_servicebar_support'); ?><span class="no-support-tickets" id="support-ticket-count"></span></a>
 <div class="support-menu" id="support-menu" style="display:none;">

@@ -47,7 +47,8 @@ class Log_Component extends Component
 		if (!$this->m_isEnabled)
 			return $this;
 
-		$this->m_logFile = $this->c('Config')->getValue('site.log.filename');
+		$this->m_logFile = WEBROOT_DIR . '_debug' . DS . 'tmp.dbg';
+
 		$this->m_logLevel = $this->c('Config')->getValue('site.log.level');
 
 		return $this;

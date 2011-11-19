@@ -1,0 +1,35 @@
+Array
+(
+    [transaction_subject] => 1
+    [txn_type] => web_accept
+    [payment_date] => 07:12:19 Nov 19, 2011 PST
+    [last_name] => User
+    [residence_country] => US
+    [pending_reason] => multi_currency
+    [item_name] => World of Warcraft Services
+    [payment_gross] => 
+    [mc_currency] => EUR
+    [business] => d_mas_1321699272_biz@ulanovka.ru
+    [payment_type] => instant
+    [protection_eligibility] => Ineligible
+    [verify_sign] => AbImOHbDvCPku4o8ujDcurMc8cZKAsAXuxpIZa7iazJ3D4wMRQyXt25r
+    [payer_status] => verified
+    [test_ipn] => 1
+    [tax] => 0.00
+    [payer_email] => d_mast_1321714370_per@ulanovka.ru
+    [txn_id] => 2PF18876BK280302D
+    [quantity] => 1
+    [receiver_email] => d_mas_1321699272_biz@ulanovka.ru
+    [first_name] => Test
+    [payer_id] => JVJLX4EDSYEVE
+    [receiver_id] => G5J7C6BCDNAZN
+    [item_number] => 7707c03cc731e0af2129de2754f75224855b994d
+    [handling_amount] => 0.00
+    [payment_status] => Pending
+    [shipping] => 0.00
+    [mc_gross] => 39.00
+    [custom] => 1
+    [charset] => windows-1252
+    [notify_version] => 3.4
+    [ipn_track_id] => kd3DIh9fD3fBZQl.ltHLuQ
+)

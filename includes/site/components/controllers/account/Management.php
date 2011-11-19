@@ -39,11 +39,33 @@ class Management_Account_Controller_Component extends Controller_Component
 			$this->c('AccountManager')->changePassword();
 			$this->buildBlock('changePassword');
 		}
+		elseif (strtolower($core->getUrlAction(2)) == 'payments')
+		{
+			$action = $core->getUrlAction(3);
+			switch ($action)
+			{
+				default:
+					$this->c('Paypal')->generateOrderId();
+					if (isset($_POST['amount']) && $_POST['confirmed'] == 1)
+					{
+						$this->c('Paypal')->initPayPal(intval($_POST['amount']), floatval($_POST['price']));
+					}
+					$this->buildBlock('paypal_def');
+					break;
+			}
+		}
 		else
 			$this->buildBlock('lobby');
 
 		$this->buildBlocks(array('service', 'footer'));
 		return $this;
+	}
+
+	protected function block_paypal_def()
+	{
+		return $this->block()
+			->setTemplate('payments_form', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
 	}
 
 	protected function block_changePassword()
