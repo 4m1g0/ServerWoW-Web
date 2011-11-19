@@ -26,6 +26,7 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 	protected $m_apiMethod = '';
 	protected $m_isCart = false;
 	protected $m_menuIndex = 'services';
+	protected $m_isBuyout = false;
 
 	public function checkInfo()
 	{
@@ -38,6 +39,9 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 		elseif ($this->core->getUrlAction(2) == 'cart')
 		{
 			$this->m_isCart = true;
+			if ($this->core->getUrlAction(3) == 'buyout')
+				$this->m_isBuyout = true;
+
 			return true;
 		}
 
@@ -52,6 +56,7 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 	protected function setBreadcrumb()
 	{
 		if ($this->m_isCart)
+		{
 			$this->m_breadcrumb = array(
 				array(
 					'link' => '',
@@ -66,6 +71,13 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 					'caption' => 'My Cart'
 				)
 			);
+
+			if ($this->m_isBuyout)
+				$this->m_breadcrumb[] = array(
+					'link' => 'store/cart/buyout',
+					'caption' => 'Buyout'
+				);
+		}
 		else
 			$this->m_breadcrumb = $this->c('Store')->getBreadcrumbInfo();
 
@@ -80,6 +92,7 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 			return $this;
 		}
 		$this->checkInfo();
+
 		if ($this->m_isApiRq && $this->m_apiMethod && isset($_POST['store']))
 		{
 			$this->c('Store')->initApi($this->m_apiMethod);
@@ -88,12 +101,27 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 			$this->buildBlock('api');
 			return $this;
 		}
+
 		$this->c('Store')->initStore($this->m_catId, $this->m_itemId);
+
+		if ($core->getUrlAction(2) == 'api2' && $core->getUrlAction(3) == 'buyoutall')
+		{
+			$this->ajaxPage();
+			define('AJAX_PAGE', true);
+			$this->c('Store')->buyout();
+
+			return $this;
+		}
 
 		$this->buildBreadcrumb(); // fuck yeah
 
 		if ($this->m_isCart)
-			$this->buildBlock('cart');
+		{
+			if ($this->m_isBuyout)
+				$this->buildBlock('buyout');
+			else
+				$this->buildBlock('cart');
+		}
 		elseif (!$this->m_itemId)
 			$this->buildBlock('main');
 		else
@@ -130,6 +158,14 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 	{
 		return $this->block()
 			->setTemplate('item', 'wow' . DS . 'contents' . DS . 'store')
+			->setVar('store', $this->c('Store'))
+			->setRegion('pagecontent');
+	}
+
+	protected function block_buyout()
+	{
+		return $this->block()
+			->setTemplate('buyout', 'wow' . DS . 'contents' . DS . 'store')
 			->setVar('store', $this->c('Store'))
 			->setRegion('pagecontent');
 	}

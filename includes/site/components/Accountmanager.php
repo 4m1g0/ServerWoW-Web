@@ -736,7 +736,9 @@ class AccountManager_Component extends Component
 			$this->m_user->amount -= $amount;
 		}
 		elseif ($type == 0)
-			$this->m_user->amount = $type;
+			$this->m_user->amount = $amount;
+
+		$this->c('Db')->realm()->query("UPDATE account_points SET amount = %d WHERE account_id = %d", $this->m_user->amount, $this->user('id'));
 
 		return true;
 	}

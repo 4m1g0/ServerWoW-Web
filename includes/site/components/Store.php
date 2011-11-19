@@ -442,12 +442,33 @@ class Store_Component extends Component
 		if (!$store_items)
 			return $this;
 
+		//$item_templates = $this->c('Item')->getItemsInfo($store_items);
+
 		foreach ($store_items as &$it)
+		{
+			//if (isset($item_templates[$it['item_id']]))
+			//	$it['template'] = $item_templates[$it['item_id']];
+			//else
+			//	$it['template'] = null;
+
 			$it['quantity'] = $quant[$it['item_id']];
+		}
 
 		$this->m_cart = $store_items;
 
 		return $this;
+	}
+
+	public function getCartPrice()
+	{
+		if (!$this->m_cart)
+			return 0;
+
+		$price = 0;
+		foreach ($this->m_cart as $it)
+			$price += $it['price'];
+
+		return $price;
 	}
 
 	public function getCart()
@@ -638,9 +659,6 @@ class Store_Component extends Component
 
 	public function dropCart()
 	{
-		if (!$this->isCorrect())
-			return false;
-
 		$this->c('Session')->setSession('wowstoreitems', '');
 
 		return true;
@@ -693,13 +711,23 @@ class Store_Component extends Component
 			->setModel('MailExternal')
 			->setType('insert');
 
+		$id = $this->c('QueryResult', 'Db')
+			->model('MailExternal')
+			->runFunction('MAX', 'id')
+			->loadItem();
+
+		$m_id = 1;
+		if ($id)
+			$m_id = $id['id'] + 1;
+
+		$edt->id = $m_id;
 		$edt->acct = $this->c('AccountManager')->user('id');
 		$edt->receiver = $guid;
 		$edt->subject = 'World of Warcraft Store';
 		$edt->message = '$N,$B this mail contains the item you bought.$B$BThank you for using our online store!';
 		$edt->item = $itemId;
-		$edt->item_count = $quanitity;
-		$edt->date = time(); //
+		$edt->item_count = $quantity;
+		$edt->date = date('Y-m-d');
 
 		$edt->save()->clearValues();
 
@@ -726,18 +754,6 @@ class Store_Component extends Component
 			case SERVICE_CHANGE_RACE:
 				$this->c('Db')->characters()->query("UPDATE characters SET at_login = at_login | 0x80 WHERE guid = %d", $guid);
 				break;
-			case SERVICE_CHANGE_PASSWORD:
-				if ((!isset($data['newpassword']) || !$data['newpassword']))
-					return $this;
-
-				$this->c('Db')->realm()->query("UPDATE account SET sha_pass_hash = '%s' WHERE id = %d", sha1(strtoupper($this->c('AccountManager')->user('username')) . ':' . strtoupper($data['newpassword'])), $this->c('AccountManager')->user('id'));
-				break;
-			case SERVICE_CHARACTER_ACCOUNT_TRANSFER:
-				if (!isset($data['newaccount']) || !$data['newaccount'] || $data['newaccount'] == $this->c('AccountManager')->user('id'))
-					return $this;
-
-				$this->c('Db')->characters()->query("UPDATE characters SET account = %d WHERE account = %d AND guid = %d LIMIT 1", $data['newaccount'], $this->c('AccountManager')->user('id'), $guid);
-				break;
 			case SERVICE_RENAME_CHARACTER:
 				$this->c('Db')->characters()->query("UPDATE characters SET at_login = at_login | 0x01 WHERE guid = %d", $guid);
 				break;
@@ -746,6 +762,65 @@ class Store_Component extends Component
 		}
 
 		$op_result = true;
+
+		return $this;
+	}
+
+	public function buyout()
+	{
+		if (!isset($_POST['buyout']))
+			return $this;
+
+		$b = $_POST['buyout'];
+
+		if (!$b)
+			return $this;
+
+		if ($this->getCartPrice() > $this->c('AccountManager')->user('amount'))
+			return $this;
+
+		foreach ($b as $item)
+		{
+			if (!isset($this->m_cart[$item['item']]))
+				continue;
+
+			$it = $this->m_cart[$item['item']];
+
+			if (!$it)
+				continue;
+
+			if ($it['service_type'] > 0)
+				$this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm']);
+			else
+				$this->sendItemMail($it['item_id'], $it['quantity'], $item['guid'], $item['realm']);
+
+			$this->c('AccountManager')->changeBonus($it['price'], -1);
+
+			$this->writeOperationLog($it, $item['guid'], $item['realm']);
+		}
+
+		$this->dropCart();
+
+		return $this;
+	}
+
+	protected function writeOperationLog($item, $guid, $realm)
+	{
+		$edt = $this->c('Editing');
+		$edt->clearValues()
+			->setModel('AccountBuyout')
+			->setType('insert');
+
+		$edt->account_id = $this->c('AccountManager')->user('id');
+		$edt->item_id = $item['item_id'];
+		$edt->quantity = $item['quantity'];
+		$edt->price = $item['price'];
+		$edt->time_date = time();
+		$edt->service_type = $item['service_type'];
+		$edt->guid = $guid;
+		$edt->realm_id = $realm;
+
+		$edt->save()->clearValues();
 
 		return $this;
 	}

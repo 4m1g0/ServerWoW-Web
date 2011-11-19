@@ -88,7 +88,7 @@
 $cart = $store->getCart();
 if (!$cart) : ?>
 <h1 class="color-q3">Your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a> is empty
-<br /><br />Available Points: <?php echo $this->c('AccountManager')->user('amount'); ?></h1>
+<br /><br />Available Points: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/payments'); ?>">Buy more</a>)</h1>
 <?php else : 
 $price = $store->getTotalPrice();
 ?>
