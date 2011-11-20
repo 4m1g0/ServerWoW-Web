@@ -22,7 +22,7 @@ class Grouplogin_Controller_Component extends Wowcstemplate_Controller_Component
 {
 	protected function beforeActions()
 	{
-		if (!$this->core->getUrlLocale())
+		/*if (!$this->core->getUrlLocale())
 		{
 			// Redirect
 			$actions = $this->core->getActions();
@@ -41,7 +41,7 @@ class Grouplogin_Controller_Component extends Wowcstemplate_Controller_Component
 			header('Location: ' . substr($location, 0, strlen($location)-1));
 
 			exit(0);
-		}
+		}*/
 
 		$this->wowTemplater();
 		return $this;

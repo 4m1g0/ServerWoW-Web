@@ -1,5 +1,5 @@
 <ul class="service-bar">
-<li class="service-cell service-home"><a href="<?php echo $this->getAppUrl(); ?>/" tabindex="50" accesskey="1" title="Battle.net Home"> </a></li>
+<li class="service-cell service-home"><a href="/" tabindex="50" accesskey="1" title="Battle.net Home"> </a></li>
 <li class="service-cell service-welcome">
 <?php if (!$this->c('AccountManager')->isLoggedIn()) echo $l->format('template_servicebar_auth_caption', $this->getAppUrl('login/login.frag'), $this->getAppUrl('account/creation/tos.html')); else echo $l->format('template_servicebar_welcome_caption', $this->c('AccountManager')->user('username')); ?>
 </li>
