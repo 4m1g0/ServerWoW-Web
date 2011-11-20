@@ -1,3 +1,5 @@
+-- Realmd database
+
 DROP TABLE IF EXISTS `account_buyout`;
 CREATE TABLE `account_buyout` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

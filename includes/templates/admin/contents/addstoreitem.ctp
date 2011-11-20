@@ -40,8 +40,16 @@ foreach ($GLOBALS['_STORE_SERVICES'] as $c) :
 </div>
 <br />
 <div class="input checkbox">
-<input type="checkbox" name="item[in_store]" value="1" <?php if (isset($_POST['item']['title'])) echo ' checked="checked"'; ?> id="instore" /><label for="instore">Available in store</label>
+<input type="checkbox" name="item[in_store]" value="1" <?php if (isset($_POST['item']['in_store'])) echo ' checked="checked"'; ?> id="instore" /><label for="instore">Available in store</label>
+</div>
+<br />
+<div class="input checkbox">
+<input type="checkbox" name="item[itemset]" value="1" <?php if (isset($_POST['item']['itemset'])) echo ' checked="checked"'; ?> id="itemset" /><label for="itemset">Itemset</label>
 </div><br />
+<div class="input text long">
+Itemset pieces ("32458 32459 32460", for example)
+<input type="text" name="item[itemset_pieces]" value="<?php if (isset($_POST['item']['itemset_pieces'])) echo $_POST['item']['itemset_pieces']; else echo ''; ?>" size=50 />
+</div>
 <div class="input text long">
 <input type="submit" value="Save" size=50 />
 </div>

@@ -126,6 +126,19 @@ class Admin_Component extends Component
 		$edt->in_store = isset($_POST['item']['in_store']) ? 1 : '0';
 		$edt->service_type = isset($_POST['item']['service']) ? intval($_POST['item']['service']) : 0;
 
+		if ($_POST['item']['itemset'] && $_POST['item']['itemset_pieces'])
+		{
+			$pieces = '';
+			$pieces_post = explode(' ', $_POST['item']['itemset_pieces']);
+			if ($pieces_post)
+			{
+				foreach ($pieces_post as $p)
+					$pieces .= intval(str_replace(' ', '', $p)) . ' ';
+			}
+
+			$edt->itemset_pieces = trim($pieces);
+		}
+
 		$edt->save()->clearValues();
 
 		return $this->core->redirectApp('/admin/store/');
@@ -182,6 +195,21 @@ class Admin_Component extends Component
 		$edt->title = isset($_POST['item']['title']) ? $_POST['item']['title'] : '';
 		$edt->price = intval($_POST['item']['price']);
 		$edt->in_store = isset($_POST['item']['in_store']) ? 1 : '0';
+
+		if (isset($_POST['item']['itemset']) && $_POST['item']['itemset_pieces'])
+		{
+			$pieces = '';
+			$pieces_post = explode(' ', $_POST['item']['itemset_pieces']);
+			if ($pieces_post)
+			{
+				foreach ($pieces_post as $p)
+					$pieces .= intval(str_replace(' ', '', $p)) . ' ';
+			}
+
+			$edt->itemset_pieces = trim($pieces);
+		}
+		elseif (!isset($_POST['item']['itemset']))
+			$edt->itemset_pieces = '';
 
 		$edt->save()->clearValues();
 

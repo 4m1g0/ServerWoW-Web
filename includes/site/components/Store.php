@@ -136,10 +136,25 @@ class Store_Component extends Component
 
 		if ($this->m_item['store']['service_type'] == 0)
 		{
-			$this->m_item['template'] = $this->c('Item')->getItemsInfo($itemId);
+			if (!trim($this->m_item['store']['itemset_pieces']))
+			{
+				$this->m_item['template'] = $this->c('Item')->getItemsInfo($itemId);
 
-			if (!$this->m_item['template'])
-				return $this;
+				if (!$this->m_item['template'])
+					return $this;
+			}
+			else
+			{
+				$all_ids = array();
+				$pieces = explode(' ', $this->m_item['store']['itemset_pieces']);
+				if ($pieces)
+				{
+					foreach ($pieces as $p)
+						$all_ids[] = intval(str_replace(' ', '', $p));
+					
+					$this->m_item['itemset_items'] = $this->c('Item')->getItemsInfo($all_ids, true);
+				}
+			}
 		}
 		else
 		{
@@ -480,19 +495,46 @@ class Store_Component extends Component
 	{
 		$ids = array();
 		$services = array();
+		$itemsets = array();
 
 		foreach ($this->m_cart as $id => $item)
 		{
 			if ($item['service_type'] == 0)
-				$ids[] = $id;
+			{
+				if (!trim($item['itemset_pieces']))
+					$ids[] = $id;
+				else
+				{
+					$item['storeInfo'] = $item;
+					$itemsets[] = $item;
+				}
+			}
 			else
 				$services[$item['item_id']] = $item['service_type'];
 		}
 
-		if (!$ids && !$services)
+		if (!$ids && !$services && !$itemsets)
 			return false;
 
-		$cart_items = array();
+		if ($itemsets)
+		{
+			foreach ($itemsets as &$set)
+			{
+				$all_ids = array();
+				$pieces = explode(' ', trim($set['itemset_pieces']));
+
+				if ($pieces)
+				{
+					foreach ($pieces as $p)
+						$all_ids[] = intval(str_replace(' ', '', $p));
+
+					$set['itemset_items'] = $this->c('Item')->getItemsInfo($all_ids, true);
+				}
+			}
+		}
+
+//		$store_items = $itemsets;
+		$cart_items = $itemsets;
 
 		if ($ids)
 		{
@@ -578,11 +620,20 @@ class Store_Component extends Component
 
 		$item_ids = array();
 		$services = array();
+		$itemsets = array();
 
 		foreach ($ids as $item)
 		{
 			if ($item['service_type'] == 0)
-				$item_ids[$item['item_id']] = $item['item_id'];
+			{
+				if (!trim($item['itemset_pieces']))
+					$item_ids[$item['item_id']] = $item['item_id'];
+				else
+				{
+					$item['storeInfo'] = $item;
+					$itemsets[] = $item;
+				}
+			}
 			elseif ($item['service_type'] > 0)
 			{
 				foreach ($GLOBALS['_STORE_SERVICES'] as $srv)
@@ -593,7 +644,24 @@ class Store_Component extends Component
 			}
 		}
 
-		$store_items = array();
+		if ($itemsets)
+		{
+			foreach ($itemsets as &$set)
+			{
+				$all_ids = array();
+				$pieces = explode(' ', trim($set['itemset_pieces']));
+
+				if ($pieces)
+				{
+					foreach ($pieces as $p)
+						$all_ids[] = intval(str_replace(' ', '', $p));
+
+					$set['itemset_items'] = $this->c('Item')->getItemsInfo($all_ids, true);
+				}
+			}
+		}
+
+		$store_items = $itemsets;
 
 		if ($item_ids)
 		{
@@ -723,8 +791,8 @@ class Store_Component extends Component
 		$edt->id = $m_id;
 		$edt->acct = $this->c('AccountManager')->user('id');
 		$edt->receiver = $guid;
-		$edt->subject = 'World of Warcraft Store';
-		$edt->message = '$N,$B this mail contains the item you bought.$B$BThank you for using our online store!';
+		$edt->subject = STORE_MAIL_SUBJECT;
+		$edt->message = STORE_MAIL_MESSAGE;
 		$edt->item = $itemId;
 		$edt->item_count = $quantity;
 		$edt->date = date('Y-m-d');
@@ -792,7 +860,20 @@ class Store_Component extends Component
 			if ($it['service_type'] > 0)
 				$this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm']);
 			else
-				$this->sendItemMail($it['item_id'], $it['quantity'], $item['guid'], $item['realm']);
+			{
+				if (!trim($it['itemset_pieces']))
+					$this->sendItemMail($it['item_id'], $it['quantity'], $item['guid'], $item['realm']);
+				else
+				{
+					$pieces = explode(' ', trim($it['itemset_pieces']));
+
+					if ($pieces)
+					{
+						foreach ($pieces as $p)
+							$this->sendItemMail(intval(str_replace(' ', '', $p)), 1, $item['guid'], $item['realm']);
+					}
+				}
+			}
 
 			$this->c('AccountManager')->changeBonus($it['price'], -1);
 

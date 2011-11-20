@@ -32,6 +32,7 @@ class WowStoreItems_Model_Component extends Model_Db_Component
 		'price' => array('type' => 'integer'),
 		'in_store' => array('type' => 'integer'),
 		'service_type' => array('type' => 'integer'),
+		'itemset_pieces' => array('type' => 'string'),
 	);
 }
 ?>

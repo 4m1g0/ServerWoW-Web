@@ -37,6 +37,20 @@
 						foreach ($items as &$i) :
 					?>
 						<tr class="row<?php echo $toggleStyle % 2 ? '1' : '2'; ?>">
+						<?php
+						if (isset($i['itemset_items'])) : ?>
+						<td><?php echo $i['title']; ?> 
+						<?php
+							foreach ($i['itemset_items'] as $pi) :
+						?>
+							<a href="<?php echo $this->getWowUrl('item/' . $pi['entry']); ?>" class="item-link color-q<?php echo $pi['Quality']; ?>">
+								<span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $pi['icon']; ?>.jpg");'></span>
+							</a>
+						<?php
+						endforeach;?>
+						</td><?php
+						else :
+						?>
 							<td<?php if ($i['storeInfo']['service_type'] == 0) : ?> data-raw="<?php echo (7 - $i['Quality']) . ' ' . $i['name']; ?>"<?php endif; ?>>
 								<?php if ($i['storeInfo']['service_type'] == 0) : ?><a href="<?php echo $this->getWowUrl('item/' . $i['entry']); ?>" class="item-link color-q<?php echo $i['Quality']; ?>">
 <span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $i['icon']; ?>.jpg");'>
@@ -46,8 +60,14 @@
 								<?php else : echo $i['name']; ?>
 								<?php endif; ?>
 							</td>
+						<?php endif; ?>
 							<td class="align-center">
-								<?php if ($i['storeInfo']['service_type'] == 0) echo $i['ItemLevel']; else echo 'None'; ?>
+								<?php
+								if ($i['storeInfo']['service_type'] == 0 && isset($i['ItemLevel']))
+									echo $i['ItemLevel'];
+								else
+									echo 'None';
+								?>
 							</td>
 							<td class="align-center"><a href="<?php echo $this->getWowUrl('store/' . $i['storeInfo']['cat_id']); ?>"><?php echo $i['storeInfo']['catTitle']; ?></a>
 							</td>

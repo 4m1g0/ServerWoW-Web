@@ -31,7 +31,15 @@ Price
 </div><br />
 <div class="input checkbox">
 <input type="checkbox" name="item[in_store]" value="1" <?php if ($item['in_store']) echo ' checked="checked"'; ?> id="instore" /><label for="instore">Available in store</label>
+</div>
+<br />
+<div class="input checkbox">
+<input type="checkbox" name="item[itemset]" value="1" <?php if (trim($item['itemset_pieces']) != '') echo ' checked="checked"'; ?> id="itemset" /><label for="itemset">Itemset</label>
 </div><br />
+<div class="input text long">
+Itemset pieces ("32458 32459 32460", for example)
+<input type="text" name="item[itemset_pieces]" value="<?php echo $item['itemset_pieces']; ?>" size=50 />
+</div>
 <div class="input text long">
 <input type="submit" value="Save" size=50 />
 </div>

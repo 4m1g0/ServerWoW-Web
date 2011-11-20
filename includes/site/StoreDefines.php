@@ -1,10 +1,5 @@
 <?php
 
-// Path information, EXTREMELY IMPORTANT that you do these right or this will not work.
-define('SITE_URL',"http://"); // COMPLETE url to your web site, NO TRAILING SLASH!
-define('SYS_PATH',"/services?p=21"); // Path to the directory this file is in, beginning with a slash.
-define('NOTIFY_URL',""); // 
-
 // Currency information.
 define('CURRENCY_CODE',"EUR"); // Currency code to be used by PayPal.
 define('CURRENCY_CHAR',"$"); // Symbol representing your currency code.
@@ -12,14 +7,6 @@ define('CURRENCY_CHAR',"$"); // Symbol representing your currency code.
 // PayPal information. Use 'www.sandbox.paypal.com' if you wish to test with the sandbox.
 define('PAYPAL_URL',"sandbox.paypal.com"); // Only change this for sandbox testing.
 define('PAYPAL_EMAIL',"d_mas_1321699272_biz@ulanovka.ru"); // The account that donations will go to.
-
-// Mail information.
-define('MAIL_SUBJECT',"Sistema PP"); // Subject of the reward mail.
-define('MAIL_BODY',"Envio! ID: " . (isset($_POST['txn_id']) ? $_POST['txn_id'] : '')); // Mail message.
-
-//Misc
-define('ACP_USERNAME',""); // Username to access the ACP
-define('ACP_PASSWORD',""); // Password to access the ACP
 
 define('PP_DESCRIPTION', 'World of Warcraft Services'); // Description for item_name POST field
 define('POINT_PRICE', 0.5);
@@ -30,6 +17,11 @@ define('SERVICE_CHANGE_RACE', 3);
 define('SERVICE_CHANGE_PASSWORD', 4);
 define('SERVICE_CHARACTER_ACCOUNT_TRANSFER', 5);
 define('SERVICE_RENAME_CHARACTER', 6);
+
+// Constants for mail_external.subject and mail_external.message fields
+// You can use some placeholders ($B, $N, etc.)
+define('STORE_MAIL_SUBJECT', 'World of Warcraft Store');
+define('STORE_MAIL_MESSAGE', '$N,$B this mail contains the item you bought.$B$BThank you for using our online store!');
 
 $GLOBALS['_STORE_SERVICES'] = array(
 	// array( SERVICE_ID, SERVICE_CAPTION )

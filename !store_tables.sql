@@ -1,3 +1,5 @@
+-- Realmd database
+
 DROP TABLE IF EXISTS `account_points`;
 CREATE TABLE `account_points` (
   `account_id` int(11) NOT NULL,
