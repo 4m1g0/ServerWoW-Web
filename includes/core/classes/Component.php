@@ -272,7 +272,7 @@ abstract class Component
 		if (!defined('CLIENT_FILES_PATH'))
 			define('CLIENT_FILES_PATH', $this->c('Config')->getValue('site.path'));
 
-		$this->m_coreUrl = CLIENT_FILES_PATH . '/wow/' . $this->m_locale;
+		$this->m_coreUrl = CLIENT_FILES_PATH . '/wow';
 		return $this->m_coreUrl . $url;
 	}
 
@@ -287,7 +287,7 @@ abstract class Component
 		if (!defined('CLIENT_FILES_PATH'))
 			define('CLIENT_FILES_PATH', $this->c('Config')->getValue('site.path'));
 
-		$this->m_coreUrl = CLIENT_FILES_PATH . '/wow/' . $this->m_locale;
+		$this->m_coreUrl = CLIENT_FILES_PATH . '/wow';
 		return $this->m_coreUrl . '/' . $url;
 	}
 

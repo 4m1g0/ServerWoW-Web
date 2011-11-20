@@ -135,15 +135,18 @@ class Core_Component extends Component
 			{
 				if (!$action)
 					continue;
-
-				if (!$this->isLocale($action, $index))
+				$this->m_actions['action' . $index] = $action;
+				++$index;
+				/*if (!$this->isLocale($action, $index))
 				{
 					$this->m_actions['action' . $index] = $action;
 					++$index;
 				}
 				else
-					$this->m_urlLocale = $action;
+					$this->m_urlLocale = $action;*/
 			}
+			// SET LOCALE
+			$this->c('Locale')->setLocale('es', $this->c('Locale')->GetLocaleIDForLocale('es'), true);
 		}
 
 		$this->m_actionsCount = $index;
