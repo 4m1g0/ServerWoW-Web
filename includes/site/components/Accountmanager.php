@@ -29,6 +29,7 @@ class AccountManager_Component extends Component
 	protected $m_lastErrorIdx = '';
 	protected $m_success = false;
 	protected $m_adminData = array();
+	protected $m_userSettings = array();
 
 	public function initialize()
 	{
@@ -390,7 +391,16 @@ class AccountManager_Component extends Component
 
 			$this->c('Session')->setSession('isAdmin', ($admin ? true : false));
 			$this->m_adminData = $admin;
+			$this->m_userSettings['forums']['forums_username'] = $admin['forums_name'];
 		}
+
+		$user_settings = $this->c('QueryResult', 'Db')
+			->model('WowUserSettings')
+			->fieldCondition('account', ' = ' . $user->id)
+			->loadItem();
+
+		if ($user_settings)
+			$this->m_userSettings['forums']['forums_signature'] = $user_settings['forums_signature'];
 
 		// Set XSTOKEN if empty
 		if (!$this->c('Cookie')->read('xstoken'))
@@ -413,6 +423,14 @@ class AccountManager_Component extends Component
 			return $this->m_user->{$field};
 
 		return false;
+	}
+
+	public function settings($name, $type)
+	{
+		if (!$type || !$name || !isset($this->m_userSettings[$type]) || !isset($this->m_userSettings[$type][$name]))
+			return false;
+
+		return $this->m_userSettings[$type][$name];
 	}
 
 	public function admin($field)
@@ -627,7 +645,7 @@ class AccountManager_Component extends Component
 		if (!$this->isAdmin())
 			return false;
 
-		$name = $this->admin('forums_name');
+		$name = $this->settings('forums_username', 'forums');
 
 		if ($name)
 			return $name;
@@ -741,6 +759,51 @@ class AccountManager_Component extends Component
 		$this->c('Db')->realm()->query("UPDATE account_points SET amount = %d WHERE account_id = %d", $this->m_user->amount, $this->user('id'));
 
 		return true;
+	}
+
+	public function updateForumsSettings()
+	{
+		if (!isset($_POST['csrftoken']))
+			return $this;
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowUserSettings');
+		if (!$this->m_userSettings || !isset($this->m_userSettings['forums']) || !$this->m_userSettings['forums'])
+		{
+			// New
+			$this->m_userSettings['forums'] = array();
+			$edt->setType('insert')->account = $this->user('id');
+		}
+		else
+			$edt->setType('update')->setId($this->user('id'));
+
+		if ($this->isAllowedToModerate() && isset($_POST['forums_username']) && $_POST['forums_username'])
+			$this->m_userSettings['forums']['forums_username'] = $_POST['forums_username'];
+
+		if (isset($_POST['forums_signature']) && $_POST['forums_signature'])
+		{
+			$_POST['forums_signature'] = str_replace(array('<', '>'), array('&lt;', '&gt;'), $_POST['forums_signature']);
+
+			$lines = explode(NL, $_POST['forums_signature']);
+
+			if (mb_strlen($_POST['forums_signature'], 'UTF-8') <= 255 && sizeof($lines) <= 3)
+				$this->m_userSettings['forums']['forums_signature'] = $_POST['forums_signature']; // 3 or lesser lines, 255 or lesser symbols
+		}
+
+		if (isset($this->m_userSettings['forums']['forums_signature']) && $this->m_userSettings['forums']['forums_signature'])
+			$edt->forums_signature = $this->m_userSettings['forums']['forums_signature'];
+
+		$edt->save()->clearValues();
+
+		if ($this->isAllowedToModerate() && isset($this->m_userSettings['forums']['forums_username']) && $this->m_userSettings['forums']['forums_username'])
+		{
+			$edt->setModel('WowAccounts')->setType('update')->setId($this->user('id'));
+			$edt->forums_name = $this->m_userSettings['forums']['forums_username'];
+			$edt->save()->clearValues();
+		}
+
+		return $this->core->redirectApp('account/management');
 	}
 }
 ?>

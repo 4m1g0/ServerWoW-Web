@@ -81,7 +81,9 @@ if ($posts) :
 
 		if ($post['blizzpost'])
 		{
-			if ($post['blizz_name'])
+			if ($post['forums_name'])
+				$post['name'] = $post['forums_name'];
+			elseif ($post['blizz_name'])
 				$post['name'] = $post['blizz_name'];
 		}
 		else
@@ -124,7 +126,8 @@ if ($posts) :
                                 <td>
                                     <div class="post-detail">
 										<?php echo $l->format('template_forum_post_deleted_by',  $post['name']); ?>
-                                    </div></td>
+                                    </div>
+								</td>
                                 <td class="post-info">
                                     <div class="post-info-int">
                                         <div class="postData">
@@ -136,7 +139,8 @@ if ($posts) :
                                         </div>
                                     </div>
                                 </td>
-                             </tr></table>
+                             </tr>
+							</table>
                          </div>
 				<?php endif; ?>
 				<div class="post-interior<?php if ($post['deleted']) echo ' low-rated'; ?>">
@@ -223,6 +227,12 @@ if ($posts) :
 						
 								<div class="post-detail">
 									<?php echo $post['message']; ?>
+									<?php if (isset($post['signature'])) : ?>
+									<br /><br />
+									<div>_____________<br />
+											<small><?php echo $post['signature']; ?></small>
+									</div>
+									<?php endif; ?>
 								</div>
 							</td>
 							<td class="post-info">
@@ -257,7 +267,6 @@ if ($posts) :
 							</td>
 						</tr>
 					</table>
-					
 					<div class="post-options">
 						<?php if ($this->c('AccountManager')->user('gmlevel') > 0) : ?>
 						<div class="mod-actions">

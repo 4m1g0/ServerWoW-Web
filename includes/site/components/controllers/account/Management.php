@@ -39,6 +39,11 @@ class Management_Account_Controller_Component extends Controller_Component
 			$this->c('AccountManager')->changePassword();
 			$this->buildBlock('changePassword');
 		}
+		elseif (strtolower($this->core->getUrlAction(2)) == 'settings' && strtolower($this->core->getUrlAction(3)) == 'forums.html')
+		{
+			$this->c('AccountManager')->updateForumsSettings();
+			$this->buildBlock('forumsSettings');
+		}
 		elseif (strtolower($core->getUrlAction(2)) == 'payments')
 		{
 			$action = $core->getUrlAction(3);
@@ -72,6 +77,14 @@ class Management_Account_Controller_Component extends Controller_Component
 	{
 		return $this->block()
 			->setTemplate('password', 'account' . DS . 'contents')
+			->setVar('account', $this->c('AccountManager'))
+			->setRegion('pagecontent');
+	}
+
+	protected function block_forumsSettings()
+	{
+		return $this->block()
+			->setTemplate('forums_settings', 'account' . DS . 'contents')
 			->setVar('account', $this->c('AccountManager'))
 			->setRegion('pagecontent');
 	}

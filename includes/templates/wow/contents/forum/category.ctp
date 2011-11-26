@@ -83,7 +83,6 @@
 						</div>
 					</td>
 					<td class="post-title">
-
 								<span class="post-status">
 								<?php echo $typeInfo['prefix']; ?></span>
 
@@ -110,7 +109,7 @@
 					<td class="post-author">
 							<?php if ($topic['blizzpost'] == 1):  ?>
 							<span class="type-blizzard">
-								<?php echo $topic['blizz_name'] ? $topic['blizz_name'] : $topic['name']; ?>
+								<?php echo $topic['forums_name'] ? $topic['forums_name'] : $topic['name']; ?>
 								<img src="<?php echo CLIENT_FILES_PATH; ?>/wow/static/images/layout/cms/icon_blizzard.gif" alt="" />
 							</span>
 							<?php else : echo $topic['name']; endif; ?>

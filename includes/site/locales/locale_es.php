@@ -1833,5 +1833,12 @@ El equipo de cuentas de Battle.net <br />
 
 	'template_search_post_answers' => '[t] Answers: %d',
 	'template_search_post_author' => '[t] Message from ',
+    'template_management_menu_parameters_forums_settings' => '[t] Forums Settings',
+	'template_management_forums_settings_forums_username' => '[t] Forums Username',
+	'template_management_forums_settings_forums_signature' => '[t] Forums Signature',
+	'template_management_points_balance' => '[t] My Points Balance',
+	'template_management_points_balance_fmt' => '[t] %.2f points',
+	'template_management_points_balance_buy' => '[t] <a href="%s">Buy More</a>',
+	'template_management_menu_parameters_payments' => '[t] Buy Points',
 );
 ?>

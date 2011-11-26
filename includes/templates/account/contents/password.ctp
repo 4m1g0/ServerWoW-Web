@@ -68,7 +68,7 @@ tabindex="1"
 </span>
 </button>
 <a class="ui-cancel "
-href="/account/management/"
+href="<?php echo $this->getAppUrl('account/management/'); ?>"
 tabindex="1">
 <span>
 <?php echo $l->getString('template_blog_cancel_report'); ?> </span>

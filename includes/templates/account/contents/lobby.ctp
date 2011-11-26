@@ -6,6 +6,9 @@
 <h4 class="subcategory"><?php echo $l->getString('template_management_account_name'); ?></h4>
 <p><?php echo $this->c('AccountManager')->user('username'); ?>
 </p>
+<h4 class="subcategory"><?php echo $l->getString('template_management_points_balance'); ?></h4>
+<p><?php echo $l->format('template_management_points_balance_fmt', $this->c('AccountManager')->user('amount')); ?>
+<br /><?php echo $l->format('template_management_points_balance_buy', $this->getAppUrl('account/management/payments')); ?></p>
 </div>
 </div>
 <div id="lobby-games">

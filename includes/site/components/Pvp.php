@@ -378,6 +378,9 @@ class Pvp_Component extends Component
 		$this->m_team['bg'] = $this->c('Config')->getValue('site.battlegroup');
 		$this->m_team['bg_link'] = $this->getWowUrl('pvp/arena/' . $this->team('bg') . '/' . $this->team('format'));
 
+		if (!$this->m_team['members'])
+			return $this;
+
 		foreach ($this->m_team['members'] as &$m)
 			$m['url'] = $this->getWowUrl('character/' . $this->team('realmName') . '/' . $m['name'] . '/');
 
