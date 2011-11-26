@@ -59,11 +59,56 @@ class Management_Account_Controller_Component extends Controller_Component
 					break;
 			}
 		}
+		elseif (strtolower($core->getUrlAction(2)) == 'smspayments')
+		{
+			$action = $core->getUrlAction(3);
+			switch ($action)
+			{
+				case 'confirm':
+					if (!isset($_POST['code']) || !isset($_POST['type']))
+						die('post required');
+					if ($this->c('Sms')->checkCode($_POST['code'], $_POST['type']))
+						die('ok');
+					else
+						die('failed');
+					break;
+				case 'success':
+					$this->buildBlock('success_sms');
+					break;
+				case 'failed':
+					$this->buildBlock('failed_sms');
+					break;
+				default:
+					$this->buildBlock('sms');
+					break;
+			}
+		}
 		else
 			$this->buildBlock('lobby');
 
 		$this->buildBlocks(array('service', 'footer'));
 		return $this;
+	}
+
+	protected function block_sms()
+	{
+		return $this->block()
+			->setTemplate('sms', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_success_sms()
+	{
+		return $this->block()
+			->setTemplate('smssuccess', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_failed_sms()
+	{
+		return $this->block()
+			->setTemplate('smsfailed', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
 	}
 
 	protected function block_paypal_def()

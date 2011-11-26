@@ -91,7 +91,8 @@ Flash.expressInstall= 'http://eu.media.blizzard.com/global-video-player/expressI
 <ul>
 <li><a href="<?php echo $this->getAppUrl('account/management/settings/change-password.html'); ?>"><?php echo $l->getString('template_management_menu_parameters_change_password'); ?></a></li>
 <li><a href="<?php echo $this->getAppUrl('account/management/settings/forums.html'); ?>"><?php echo $l->getString('template_management_menu_parameters_forums_settings'); ?></a></li>
-<li><a href="<?php echo $this->getAppUrl('account/management/payments'); ?>"><?php echo $l->getString('template_management_menu_parameters_payments'); ?></a></li>
+<li><a href="<?php echo $this->getAppUrl('account/management/payments'); ?>"><?php echo $l->getString('template_management_menu_parameters_payments_pp'); ?></a></li>
+<li><a href="<?php echo $this->getAppUrl('account/management/smspayments'); ?>"><?php echo $l->getString('template_management_menu_parameters_payments_sms'); ?></a></li>
 </ul>
 </div>
 </li>

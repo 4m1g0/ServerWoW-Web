@@ -1839,7 +1839,14 @@ El equipo de cuentas de Battle.net <br />
 	'template_management_points_balance' => '[t] My Points Balance',
 	'template_management_points_balance_fmt' => '[t] %.2f points',
 	'template_management_points_balance_buy' => '[t] <a href="%s">Buy More</a>',
-	'template_management_menu_parameters_payments' => '[t] Buy Points',
+	'template_management_menu_parameters_payments_pp' => '[t] Buy Points (PayPal)',
+	'template_management_menu_parameters_payments_sms' => '[t] Buy Points (SMS)',
 	'template_account_creation_username_taken' => '[t] This username was already taken',
+	'template_account_sms_select_country' => '[t] Select country:',
+	'template_account_sms_success_title' => '[t] Success!',
+	'template_account_sms_success_text' => '[t] Thank you for using our SMS payments!',
+	'template_account_sms_error_title' => '[t] Failed!',
+	'template_account_sms_error_text' => '[t] Something goes wrong. Please, try again.',
+	'template_account_sms_error_back' => '[t] Back',
 );
 ?>
