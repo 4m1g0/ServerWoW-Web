@@ -671,7 +671,10 @@ class AccountManager_Component extends Component
 			->loadItem();
 
 		if ($check)
+		{
+			$this->m_loginError |= ERROR_USERNAME_TAKEN;
 			return false;
+		}
 
 		$this->c('Db')->realm()->query("INSERT INTO account (username,sha_pass_hash,expansion,email) VALUES ('%s', '%s', 2, '%s')", $user, $sha, $email);
 

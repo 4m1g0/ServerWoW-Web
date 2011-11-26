@@ -1,0 +1,84 @@
+/*default styles overwritten*/
+html,
+.page{background:#e8e8e8 url(../../images/lightweight-account-creation/promo-tv-spot/background.jpg) 50% 0 no-repeat;}
+.page { min-height: 1200px; }
+.footer .divider { color: #777777; }
+.footer, .languageSelection { color: #000;}
+.footer .needHelp a { color: #3f7ea8;}
+.footer a, .languageSelection a.changeLanguage, .footer .legal .asterisks { color: #000; width:400px}
+.footer a.bnet { background-image: url(../../images/logos/bnet-logo.png); width: 240px; height: 65px; }
+.footer a.blizzard { background-image: url(../../images/logos/blizz-logo.png); width: 100px; height: 57px; }
+ 
+.header-text { width:594px; height:80px; position:absolute; top:55px; left:50%; margin-left:-485px; }
+.video { position:absolute; top:143px; left:171px }
+.human { position:absolute; width:150px; height:100px;  background: url(../../images/lightweight-account-creation/promo-tv-spot/human.png); top:551px; left:680px; z-index:100}
+.wow-logo { width:350px; height:54px; position:relative; top:671px; left:282px } 
+.video-thumb-container { position:absolute; width:170px; height:92px; top:476px; left:169px  }
+.video-thumb-container a {  display:block; width:81px; height:46px;  }
+.video-thumb-container .chuck { float:left; background: url(../../images/lightweight-account-creation/promo-tv-spot/video-thumb-chuck.jpg) 0 0 no-repeat; }
+.video-thumb-container .aubrey { float:right; background: url(../../images/lightweight-account-creation/promo-tv-spot/video-thumb-aubrey.jpg) 0 0px no-repeat; }
+.video-thumb-container .chuck.active { background-position:-81px 0 }
+.video-thumb-container .aubrey.active { background-position:-81px 0px }
+.button-container { position:absolute; width:350px; height:32px; top:820px; left:281px} 
+.button-container a { display:block; width:157px; height:32px; }
+.button-container a.learn-more { float:left; background-position:0 0 }
+.button-container a.learn-more:hover { background-position:-157px 0 }
+.button-container a.buy-now { float:right; background-position:0 -32px }
+.button-container a.buy-now:hover { background-position:-157px -32px }
+
+.topLogin { background-image: none; background-color: #f6dc9f; border: 1px solid #9a6d4d; color: #620d06;margin: 0 0 20px 100px; position: relative; left: -100px; }
+.languageSelection { padding-top: 109px; }
+.languageSelection a.changeLanguage { background-image:url(../../images/lightweight-account-creation/promo-tv-spot/language-select.gif);}
+.logo { background-image: url(../../images/lightweight-account-creation-success/promo-mistert/en-us/logo.jpg); }
+.legal-notice { display:block;width:480px;height:50px;position:relative;top:420px;left:135px; font-size: 11px; color: #000;}
+.starter-desc { position:relative; height:70px; top:681px; left:180px; width: 560px; color:#252525; font-size:15px; line-height:22px; text-align:center; font-weight:normal; font-family:Georgia, 'Times New Roman', Times, serif; }
+.starter-faq { margin-left:20px; color:#000 }
+.starter-faq a { color:#3f7ea8 }
+
+#previewContainer .bg:after, #previewContainer:after, #previewContainer ul:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+/* Form parchment*/
+.accountInfo { width: 375px; }
+.validField { height: 23px; }
+.starter-additional-msg {color:#003972; font:bold 12px/15px Georgia, 'Times New Roman', Times, serif; margin-top:13px; text-align:center; width:320px; margin-left:30px; border:0;}
+td.leftCol { font-size: 12px; width: 141px; color:#003972; font-family:Georgia, 'Times New Roman', Times, serif; font-weight:bold; letter-spacing:0;}
+input.text { background-color: #F8F4E8; border: 2px solid #621300; float: left; font-size: 12px; height: 18px; padding: 2px; width: 155px; -moz-box-shadow: #884300 3px 3px 10px; -webkit-box-shadow: #884300 0 3px 10px; box-shadow: #884300 0 3px 10px;}
+select.text { height: 22px; margin-right: 3px; padding: 2px; width: auto; font-size: 12px;}
+#parchment-container { margin-top: 35px; position: relative; width: 427px;}
+#parchment-container .wrapper-parchment-bottom { margin-left: 3px; background: url("../../images/lightweight-account-creation/promo-tv-spot/parchment/parchment-bottom.png") no-repeat scroll 2px 100% transparent;}
+#parchment-container .parchment-top { min-height: 427px; background: url("../../images/lightweight-account-creation/promo-tv-spot/parchment/parchment-top.jpg") no-repeat scroll 0 0 transparent;}
+#parchment-container .parchment-top-smoothener { background: url("../../images/lightweight-account-creation/promo-free-starter/parchment/parchment-smoothener.png") no-repeat scroll 48px 496px transparent; min-height:560px }
+#parchment-container .parchment-bottom { background: url("../../images/lightweight-account-creation/promo-free-starter/parchment/parchment-bottom.jpg") no-repeat scroll 50px 100% transparent; padding-bottom: 9px;}
+#parchment-container .parchment-bottom-edge { background: url("../../images/lightweight-account-creation/promo-tv-spot/parchment/parchment-bottom-bottom.png") no-repeat scroll 0 100% transparent; bottom: -74px; height: 74px; left: 5px;position: absolute; width: 427px; }
+#formValidation.messageBox { margin: -40px 0 0 341px; }
+
+/* Layout */
+.rightCol .messageBox { margin: -30px 0 0 185px; }
+.rightColumn { width: 510px; margin-top:0; position:relative;}
+.rightColumn .signUpForm h1.formHeader {width: 294px; height:47px; margin-left:30px; background:url("../../images/lightweight-account-creation/en-us/promo-free-starter/signup-msg-title.png") no-repeat 0 0;}
+.rightColumn .formHeader-desc {font:bold 12px/21px Georgia, 'Times New Roman', Times, serif; color:#003972; width:308px; margin:-4px 0 0 35px;}
+.leftColumn { width: 743px; position:relative; height:750px }
+
+#touAgreeRow td {padding-top:5px;}
+#touAgreeRow .terms-desc { font-size:11px; margin-top:5px; padding-right:15px }
+#captcha td {padding-bottom:10px;}
+#securityTextRow td {padding-bottom:10px;}
+#securityTextRow .leftCol label {color:#003972; }
+
+
+/*form graphics*/
+.signUpForm { padding-top:65px;  width: 427px; }
+.signUpForm .backgroundExtension{ background: url(../../images/lightweight-account-creation/promo-mistert/parchment-extension.jpg) 0 100% no-repeat; padding: 0 0 82px 0; height: 450px; margin-left: -34px; width: 610px; position: relative; }
+.signUpForm .formBackground{ background:none; }
+.signUpForm .formTop{ background:none; }
+.signUpForm .formBottom{ background:none }
+.signUpForm .submit { background: url("../../images/lightweight-account-creation/promo-free-starter/submit.gif") no-repeat 0 0; color:#ffe81e; font-size:18px; font-family:Georgia, 'Times New Roman', Times, serif; width:240px; height:42px; line-height:42px; -moz-box-shadow: #5d401a 0 0 10px; -webkit-box-shadow: #5d401a 0 0 10px; box-shadow: #5d401a 0 0 10px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; margin-top:2px;}
+.signUpForm .submit:hover { background-position: 0 -47px;}
+a.signIn span { background-image: url(../../images/lightweight-account-creation/promo-mistert/small-button-right.gif); }
+a.signIn { background-image: url(../../images/lightweight-account-creation/promo-mistert/small-button-left.gif); }
+
+#returningVisitor { top: 160px; left:740px; width:370px; clear:both;}
+#returningVisitor .returningInformation { width:330px; margin:2px 0 0 30px;}
+#returningVisitor h1.formHeader { background:none; width:340px; margin: 20px 0 0 15px;}
+#returningVisitor .formHeader span {display:block; word-wrap:break-word;}
+

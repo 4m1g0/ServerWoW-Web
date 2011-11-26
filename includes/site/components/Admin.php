@@ -322,6 +322,8 @@ class Admin_Component extends Component
 
 		$this->c('Config')->setValue('site.locale_indexes', $d);
 
+		$this->c('Config')->setValue('site.creation_youtube_id', $site['creation_youtube_id']);
+
 		$this->c('Config')->setValue('site.log', $site['log']);
 
 		$this->c('Config')->setValue('site.locale', $site['locale']);

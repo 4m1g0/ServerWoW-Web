@@ -14,6 +14,10 @@ Client files path
 <input type="text" name="site[path]" size=50 value="<?php echo $site['path']; ?>" />
 </div>
 <div class="input text long">
+Creation page video ID (YouTube)
+<input type="text" name="site[creation_youtube_id]" size=50 value="<?php echo $site['creation_youtube_id']; ?>" />
+</div>
+<div class="input text long">
 Locale Indexes
 <input type="text" name="site[locale_indexes]" size=50 value="<?php echo implode(', ', array_values($site['locale_indexes'])); ?>" />
 </div>

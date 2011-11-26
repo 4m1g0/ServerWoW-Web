@@ -1840,5 +1840,6 @@ El equipo de cuentas de Battle.net <br />
 	'template_management_points_balance_fmt' => '[t] %.2f points',
 	'template_management_points_balance_buy' => '[t] <a href="%s">Buy More</a>',
 	'template_management_menu_parameters_payments' => '[t] Buy Points',
+	'template_account_creation_username_taken' => '[t] This username was already taken',
 );
 ?>
