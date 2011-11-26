@@ -27,7 +27,7 @@ So:
 - BugTracker (in /media/) (with Moderation Panel//Admin Panel) // Done
 - Search Engine // done
 
-- Credits Store "Paypal/SMS" (in /services/) (with Admin Panel) // current PHP scripts required to finish it
+- Credits Store "Paypal/SMS" (in /services/) (with Admin Panel) // done
 
 - Admin Panel (General) // done
 - Moderation Panel (General) // done (forums)
