@@ -13,6 +13,10 @@ Forums NickName
 <input type="text" name="user[forums_name]" value="<?php echo $user['forums_name']; ?>" size=50 />
 </div>
 <div class="input text long">
+Access Level
+<input type="text" name="user[access_level]" value="<?php echo $user['access_level']; ?>" size=50 />
+</div>
+<div class="input text long">
 <input type="submit" value="Send" />
 </div>
 </form>
