@@ -53,7 +53,12 @@ echo $item['name']; ?></a></h1>
 <?php endif; else : ?>
 <h1 class="color-q2"><?php echo $store_item['service']['name']; ?></h1><em>Service</em>
 <span id="add2cart-link-<?php echo $store_item['store']['item_id']; ?>" style="display:<?php if (!$store->isItemInCart($store_item['store']['item_id'])) echo 'true'; else echo 'none'; ?>;">
+	<?php
+	if ($store_item['store']['service_type'] == SERVICE_POWERLEVEL) : ?>
+	<br/>Levels Count: <input type="text" id="item-<?php echo $store_item['store']['item_id']; ?>-quantity" value="1" /><br />
+	<?php else : ?>
 	<input type="hidden" id="item-<?php echo $store_item['store']['item_id']; ?>-quantity" value="1" /><br />
+	<?php endif; ?>
 	<a href="javascript:;" onclick="Store.addToCart(<?php echo $store_item['store']['item_id'] . ', ' . $store_item['store']['cat_id'] . ', ' . $xstoken; ?>);">Add to Cart</a>
 </span>
 <?php endif;?>

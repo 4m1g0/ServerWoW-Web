@@ -749,7 +749,7 @@ class Store_Component extends Component
 			if ($this->c('AccountManager')->changeBonus($item['price'], -1))
 			{
 				if ($item['service_type'] > 0)
-					$this->performCharacterOperation($item['service_type'], intval($_POST['guid']), intval($_POST['realmId']), $_POST['service_data']);
+					$this->performCharacterOperation($item['service_type'], intval($_POST['guid']), intval($_POST['realmId']), $_POST['service_data'], $item['quantity']);
 				else
 					$this->sendItemMail($item['item_id'], $item['quantity'], intval($_POST['guid']), intval($_POST['realmId']));
 
@@ -802,7 +802,7 @@ class Store_Component extends Component
 		return $this;
 	}
 
-	protected function performCharacterOperation($operation_type, $guid, $realmId, $data = null)
+	protected function performCharacterOperation($operation_type, $guid, $realmId, $data = null, $levels = 0)
 	{
 		if (!$this->c('AccountManager')->isLoggedIn())
 			return $this;
@@ -824,6 +824,26 @@ class Store_Component extends Component
 				break;
 			case SERVICE_RENAME_CHARACTER:
 				$this->c('Db')->characters()->query("UPDATE characters SET at_login = at_login | 0x01 WHERE guid = %d", $guid);
+				break;
+			case SERVICE_CHARACTER_CHANGE_GENDER:
+				$gender = $this->c('Db')->characters()->selectRow("SELECT gender FROM characters WHERE guid = %d", $guid);
+
+				if ($gender['gender'] == 1)
+					$this->c('Db')->characters()->query("UPDATE characters SET gender = 0 WHERE guid = %d", $guid);
+				else
+					$this->c('Db')->characters()->query("UPDATE characters SET gender = 1 WHERE guid = %d", $guid);
+
+				break;
+			case SERVICE_POWERLEVEL:
+				if ($levels >= STORE_POWERLEVEL_MAX || $levels < 1)
+					return $this;
+
+				$curr = $this->c('Db')->characters()->selectRow("SELECT level FROM characters WHERE guid = %d", $guid);
+				if (($curr['level'] + $levels) > STORE_POWERLEVEL_MAX)
+					$setlevel = STORE_POWERLEVEL_MAX;
+				else
+					$setlevel = $curr['level'] + $levels;
+				$this->c('Db')->characters()->query("UPDATE characters SET level = %d WHERE guid = %d", $setlevel, $guid);
 				break;
 			default:
 				return $this;
@@ -858,7 +878,7 @@ class Store_Component extends Component
 				continue;
 
 			if ($it['service_type'] > 0)
-				$this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm']);
+				$this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm'], null, $it['quantity']);
 			else
 			{
 				if (!trim($it['itemset_pieces']))

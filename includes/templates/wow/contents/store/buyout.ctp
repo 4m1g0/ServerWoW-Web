@@ -2,6 +2,7 @@
 $realms_str = '';
 $chars_str = array();
 $chars = $this->c('AccountManager')->getCharacters();
+$chars[] = $this->c('AccountManager')->getActiveCharacter();
 $char_realms = array();
 
 foreach ($chars as $c)

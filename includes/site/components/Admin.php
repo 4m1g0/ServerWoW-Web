@@ -261,7 +261,7 @@ class Admin_Component extends Component
 		$edt->in_store = isset($_POST['item']['in_store']) ? 1 : '0';
 		$edt->service_type = isset($_POST['item']['service']) ? intval($_POST['item']['service']) : 0;
 
-		if ($_POST['item']['itemset'] && $_POST['item']['itemset_pieces'])
+		if (isset($_POST['item']['itemset']) && $_POST['item']['itemset_pieces'])
 		{
 			$pieces = '';
 			$pieces_post = explode(' ', $_POST['item']['itemset_pieces']);
