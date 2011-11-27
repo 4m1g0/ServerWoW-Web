@@ -25,17 +25,14 @@ class Editconfig_Component extends Component
 		if (!isset($_POST['cfg']))
 			return $this;
 
-		$cfg = array();
-		$cfg['site'] = $_POST['site'];
-		$cfg['site']['locale_indexes'] = explode(',', $cfg['site']['locale_indexes']);
-		$cfg['misc'] = $_POST['misc'];
-		$cfg['session'] = $_POST['session'];
-		$cfg['realms'] = $_POST['realms'];
-		$cfg['database'] = $_POST['database'];
+//		$cfg = array();
+//		$cfg['database'] = $_POST['database'];
 
+		$conf = $this->c('Config')->getConfigHolder();
+		$conf['database'] = $_POST['database'];
 		$cfg_file = SITE_CONFIGS_DIR . 'Site.dat';
 
-		file_put_contents($cfg_file, serialize($cfg));
+		file_put_contents($cfg_file, serialize($conf));
 		$this->core->redirectApp('/editconfig');
 	}
 }
