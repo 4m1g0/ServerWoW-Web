@@ -18,18 +18,15 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class WowAccounts_Model_Component extends Model_Db_Component
+class WowUserGroups_Model_Component extends Model_Db_Component
 {
-	public $m_model = 'WowAccounts';
-	public $m_table = 'wow_accounts';
+	public $m_model = 'WowUserGroups';
+	public $m_table = 'wow_user_groups';
 	public $m_dbType = 'wow';
 	public $m_fields = array(
-		'id' => 'Id',
-		'game_id' => array('type' => 'integer'),
-		'access_level' => array('type' => 'integer'),
-		'forums_name' => array('type' => 'string'),
-		'active' => array('type' => 'integer'),
-		'group_id' => array('type' => 'integer'),
+		'group_id' => 'Id',
+		'group_title' => array('type' => 'string'),
+		'group_mask' => array('type' => 'integer'),
 	);
 }
 ?>

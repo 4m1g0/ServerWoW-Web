@@ -20,9 +20,132 @@
 
 class Admin_Component extends Component
 {
+	public function getPermissions()
+	{
+		return array(
+			array(
+				'label' => 'Admin Panel Access',
+				'mask' => ADMIN_GROUP_ADMIN_PANEL,
+				'id' => 'grallowadmin'
+			),
+			array(
+				'label' => 'Moderate Forums',
+				'mask' => ADMIN_GROUP_MODERATE_FORUMS,
+				'id' => 'grallowmoderate'
+			),
+			array(
+				'label' => 'Bugtracker Actions',
+				'mask' => ADMIN_GROUP_BUGTRACKER_ACCESS,
+				'id' => 'grallowbt'
+			),
+			array(
+				'label' => 'MVP Group',
+				'mask' => ADMIN_GROUP_MVP,
+				'id' => 'grmvp'
+			)
+		);
+	}
+
+	public function getUserGroups()
+	{
+		return $this->c('QueryResult', 'Db')
+			->model('WowUserGroups')
+			->loadItems();
+	}
+
 	public function getNotifications()
 	{
 		
+	}
+
+	public function editGroup()
+	{
+		$id = intval($this->core->getUrlAction(4));
+
+		if (!$id)
+			return $this->core->redirectApp('/admin/users/groups');
+
+		if (!isset($_POST['group']))
+			return $this->core->redirectApp('/admin/users/groups');
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowUserGroups')
+			->setType('update')
+			->setId($id);
+
+		$edt->group_title = $_POST['group']['group_title'];
+		$edt->group_mask = 0;
+
+		if (isset($_POST['group']['mask']['grallowadmin']))
+			$edt->group_mask |= ADMIN_GROUP_ADMIN_PANEL;
+		if (isset($_POST['group']['mask']['grallowmoderate']))
+			$edt->group_mask |= ADMIN_GROUP_MODERATE_FORUMS;
+		if (isset($_POST['group']['mask']['grmvp']))
+			$edt->group_mask |= ADMIN_GROUP_MVP;
+		if (isset($_POST['group']['mask']['grallowbt']))
+			$edt->group_mask |= ADMIN_GROUP_BUGTRACKER_ACCESS;
+
+		$edt->save()->clearValues();
+
+		return $this->core->redirectApp('/admin/users/groups');
+	}
+
+	public function deleteGroup()
+	{
+		$id = intval($this->core->getUrlAction(4));
+
+		if (!$id)
+			return $this->core->redirectApp('/admin/users/groups');
+
+		$this->c('Editing')->clearValues()->setModel('WowUserGroups')->setType('delete')->setId($id)->delete()->save()->clearValues();
+
+		return $this->core->redirectApp('/admin/users/groups');
+	}
+
+	public function addGroup()
+	{
+		if (!isset($_POST['group']))
+			return $this->core->redirectApp('/admin/users/groups');
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowUserGroups')
+			->setType('insert');
+
+		$edt->group_title = $_POST['group']['group_title'];
+		$edt->group_mask = 0;
+
+		if (isset($_POST['group']['mask']['grallowadmin']))
+			$edt->group_mask |= ADMIN_GROUP_ADMIN_PANEL;
+		if (isset($_POST['group']['mask']['grallowmoderate']))
+			$edt->group_mask |= ADMIN_GROUP_MODERATE_FORUMS;
+		if (isset($_POST['group']['mask']['grmvp']))
+			$edt->group_mask |= ADMIN_GROUP_MVP;
+		if (isset($_POST['group']['mask']['grallowbt']))
+			$edt->group_mask |= ADMIN_GROUP_BUGTRACKER_ACCESS;
+
+		$edt->save()->clearValues();
+
+		return $this->core->redirectApp('/admin/users/groups');
+	}
+
+	public function getEditableGroup()
+	{
+		$id = intval($this->core->getUrlAction(4));
+
+		if (!$id)
+			return $this->core->redirectApp('/admin/users/groups');
+
+		$group = $this->c('QueryResult', 'Db')
+			->model('WowUserGroups')
+			->setItemId($id)
+			->loadItem();
+
+		if (!$group)
+			return $this->core->redirectApp('/admin/users/groups');
+
+		return $group;
 	}
 
 	public function getStoreCategories()
@@ -619,7 +742,9 @@ class Admin_Component extends Component
 	{
 		return $this->c('QueryResult', 'Db')
 			->model('WowAccounts')
-			->setItemId(intval($this->core->getUrlAction(3)))
+			->addModel('WowUserGroups')
+			->join('left', 'WowUserGroups', 'WowAccounts', 'group_id', 'group_id')
+			->fieldCondition('wow_accounts.id', ' = ' . intval($this->core->getUrlAction(3)))
 			->loadItem();
 	}
 
@@ -635,6 +760,8 @@ class Admin_Component extends Component
 			->setId(intval($this->core->getUrlAction(3)));
 
 		$edt->forums_name = $_POST['user']['forums_name'];
+
+		$edt->group_id = $_POST['user']['group_id'];
 
 		$edt->save()->clearValues();
 
@@ -673,6 +800,7 @@ class Admin_Component extends Component
 		$edt->id = $user['id'];
 		$edt->game_id = $user['id'];
 		$edt->forums_name = $_POST['user']['forums_name'];
+		$edt->group_id = $_POST['user']['group_id'];
 
 		$edt->save()->clearValues();
 

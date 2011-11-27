@@ -1077,4 +1077,9 @@ define('BT_OBJECT',  5);
 define('BT_NPC',     6);
 define('BT_ZONE',    7);
 define('BT_OTHER',   8);
+
+define('ADMIN_GROUP_ADMIN_PANEL', 1);
+define('ADMIN_GROUP_MODERATE_FORUMS', 2);
+define('ADMIN_GROUP_MVP', 4);
+define('ADMIN_GROUP_BUGTRACKER_ACCESS', 8);
 ?>

@@ -110,7 +110,7 @@ class Bugtracker_Component extends Component
 	{
 		if ($this->m_item)
 		{
-			if (!$this->c('AccountManager')->isAccountCharacter($this->m_item['realmId'], $this->m_item['guid']) && !$this->c('AccountManager')->isAdmin())
+			if (!$this->c('AccountManager')->isAccountCharacter($this->m_item['realmId'], $this->m_item['guid']) && !$this->c('AccountManager')->isAllowedToBugtracker())
 			{
 				$this->m_apiResponse['errno'] = 3;
 				$this->m_apiResponse['error'] = 'You are not allowed to perform any action under this bug report!';
@@ -242,7 +242,7 @@ class Bugtracker_Component extends Component
 
 	protected function runAdminApiAction($action)
 	{
-		if (!$this->c('AccountManager')->isAdmin())
+		if (!$this->c('AccountManager')->isAllowedToBugtracker())
 		{
 			$this->m_apiResponse['errno'] = 4;
 			$this->m_apiResponse['error'] = 'You are not allowed to perform current action under this bug report!';

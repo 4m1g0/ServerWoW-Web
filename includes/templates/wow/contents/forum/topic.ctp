@@ -45,14 +45,14 @@
 		<div class="forum-actions top">
 			<div class="actions-panel">
 				<?php echo $this->region('pagination'); ?>
-				<a class="ui-button button1<?php if ($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->user('gmlevel') > 0) echo ' disabled'; ?>" href="<?php echo ($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->user('gmlevel') > 0) ? 'javascript:;' : '#new-post'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
+				<a class="ui-button button1<?php if ($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) echo ' disabled'; ?>" href="<?php echo ($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) ? 'javascript:;' : '#new-post'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
 					<span>
 						<span><?php echo $l->getString('template_blog_add_post'); ?></span>
 					</span>
 				</a>
 				<span class="clear"><!-- --></span>
 			</div>
-			<?php if ($this->c('AccountManager')->user('gmlevel') > 0) : ?>
+			<?php if ($this->c('AccountManager')->isAllowedToModerate()) : ?>
 				<div class="cm-actions">
 					<?php if ($flags & THREAD_FLAG_CLOSED) : ?>
 						<a class="button3" href="<?php echo $this->getWowUrl('forum/topic/' . $topic['thread_id'] . '/unlock'); ?>"><span title="Unlock" class="icon unlock"></span></a>
@@ -89,7 +89,7 @@ if ($posts) :
 		else
 			$charUrl = $this->getWowUrl('character/' . $post['realmName'] . '/' . $post['name']);
 ?>
-			<div id="post-<?php echo $post['post_id']; ?>" class="post<?php if ($post['blizzpost']) echo ' blizzard'; if ($post['deleted']) echo ' hidden' ?>">
+			<div id="post-<?php echo $post['post_id']; ?>" class="post<?php if ($post['blizzpost']) echo ' blizzard'; if ($post['group_mask'] & ADMIN_GROUP_MVP) echo ' mvp'; if ($post['deleted']) echo ' hidden' ?>">
 				<span id="<?php echo $post['post_num']; ?>"></span>
 				<?php if ($post['deleted']) : ?>
 				<div class="deleted">
@@ -268,7 +268,7 @@ if ($posts) :
 						</tr>
 					</table>
 					<div class="post-options">
-						<?php if ($this->c('AccountManager')->user('gmlevel') > 0) : ?>
+						<?php if ($this->c('AccountManager')->isAllowedToModerate()) : ?>
 						<div class="mod-actions">
 							<a title="Edit post" href="<?php echo $this->getWowUrl('forum/topic/post/' . $post['post_id'] . '/edit'); ?>" class="edit"><span></span></a>
 							<a title="Delete post" href="javascript:;" class="delete" onclick="return Cms.Topic.deletePost(<?php echo $post['post_id']; ?>, '<?php echo $l->getString('template_forum_post_delete_confirm'); ?>');"><span></span></a>
@@ -324,7 +324,7 @@ if ($posts) :
 				<input type="hidden" name="xstoken" value="52df612a-c1dc-4537-98c1-f053f739302e"/>
 				<input type="hidden" name="sessionPersist" value="forum.topic.post"/>
 				<div class="post general">
-				<?php if ($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->user('gmlevel') > 0) : ?>
+				<?php if ($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) : ?>
 				<table class="dynamic-center ">
 					<tr>
 						<td><?php echo $l->getString('template_forum_topic_closed'); ?></td>
@@ -351,7 +351,7 @@ if ($posts) :
 						<div class="editor1" id="post-edit">
 							<a id="editorMax" rel="10000"></a>
 							<textarea id="detail" name="detail" class="post-editor" cols="78" rows="13"></textarea>
-							<?php if ($this->c('AccountManager')->user('gmlevel') > 0) : ?><input type="checkbox" value="1" name="bluepost" id="bluepost" checked="checked"> <label for="bluepost">Bluepost</label><?php endif; ?>
+							<?php if ($this->c('AccountManager')->isAllowedToModerate()) : ?><input type="checkbox" value="1" name="bluepost" id="bluepost" checked="checked"> <label for="bluepost">Bluepost</label><?php endif; ?>
 							<script type="text/javascript" src="<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common/js/bml.js"></script>
 							<script type="text/javascript">
 							//<![CDATA[

@@ -69,13 +69,13 @@ if (!$item) return;
 		</span>
 		<br />
 		<br />
-		<?php if ($this->c('AccountManager')->isAccountCharacter($item['realmId'], $item['guid']) || $this->c('AccountManager')->isAdmin()) : ?>
+		<?php if ($this->c('AccountManager')->isAccountCharacter($item['realmId'], $item['guid']) || $this->c('AccountManager')->isAllowedToBugtracker()) : ?>
 		<span id="editbug"><a class="ui-button button2" id="editbuglink" href="javascript:;"><span><span id="editbugcaption">Edit</span></span></a></span>
 		<span id="solvebug"><a class="ui-button button2" id="solvebuglink" href="javascript:;"><span><span id="solvebugcaption">Mark as <?php echo $item['status'] ? 'Uns' : 'S'; ?>olved</span></span></a></span>
 		<span id="closebug"><a class="ui-button button2" id="closebuglink" href="javascript:;"><span><span id="closebugcaption"><?php if ($item['closed']) echo 'Re-open'; else echo 'Close'; ?></span></span></a></span>
 		<?php
 		endif;
-		if ($this->c('AccountManager')->isAdmin()) : ?>
+		if ($this->c('AccountManager')->isAllowedToBugtracker()) : ?>
 		<span id="deletebug"><a class="ui-button button3" id="deletebuglink" href="javascript:;"><span><span id="deletebugcaption">Delete</span></span></a></span>
 		<span id="responsebug"><a class="ui-button button3" id="responsebuglink" href="javascript:;"><span><span id="responsebugcaption">Post Response</span></span></a></span>
 		<?php endif; ?>

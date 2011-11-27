@@ -380,15 +380,16 @@ class AccountManager_Component extends Component
 
 		$this->c('Session')->setSession('isLoggedIn', true);
 
-		if ($user->gmlevel >= 1)
-		{
-			// Check user in admins table
-			$admin = $this->c('QueryResult')
-				->model('WowAccounts')
-				->fieldCondition('game_id', ' = ' . $this->m_user->id, 'AND')
-				->fieldCondition('active', ' = 1')
-				->loadItem();
+		// Check user in admins table
+		$admin = $this->c('QueryResult')
+			->model('WowAccounts')
+			->addModel('WowUserGroups')
+			->join('left', 'WowUserGroups', 'WowAccounts', 'group_id', 'group_id')
+			->fieldCondition('game_id', ' = ' . $this->m_user->id)
+			->loadItem();
 
+		if ($admin)
+		{
 			$this->c('Session')->setSession('isAdmin', ($admin ? true : false));
 			$this->m_adminData = $admin;
 			$this->m_userSettings['forums']['forums_username'] = $admin['forums_name'];
@@ -435,9 +436,6 @@ class AccountManager_Component extends Component
 
 	public function admin($field)
 	{
-		if (!$this->isAdmin())
-			return false;
-
 		if (isset($this->m_adminData[$field]))
 			return $this->m_adminData[$field];
 
@@ -634,7 +632,15 @@ class AccountManager_Component extends Component
 
 	public function isAllowedToModerate()
 	{
-		if (!$this->isAdmin() || !$this->isAllowedToForums())
+		if (!$this->isAllowedToForums() || !($this->admin('group_mask') & ADMIN_GROUP_MODERATE_FORUMS))
+			return false;
+
+		return true;
+	}
+
+	public function isAllowedToBugtracker()
+	{
+		if (!($this->admin('group_mask') & ADMIN_GROUP_BUGTRACKER_ACCESS))
 			return false;
 
 		return true;
@@ -642,9 +648,6 @@ class AccountManager_Component extends Component
 
 	public function getForumsName()
 	{
-		if (!$this->isAdmin())
-			return false;
-
 		$name = $this->settings('forums_username', 'forums');
 
 		if ($name)
@@ -655,7 +658,7 @@ class AccountManager_Component extends Component
 
 	public function isAdmin()
 	{
-		return $this->isLoggedIn() && is_array($this->m_adminData);
+		return $this->isLoggedIn() && is_array($this->m_adminData) && ($this->admin('group_mask') & ADMIN_GROUP_ADMIN_PANEL);
 	}
 
 	public function createAccount($user, $pass, $confirm, $email)

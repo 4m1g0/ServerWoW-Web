@@ -164,6 +164,7 @@ class Editing_Component extends Component
 	{
 		$this->m_data = array();
 		$this->m_deleteBeforeInsert = false;
+		$this->m_changedValues = array();
 		$this->m_fields = array();
 		$this->m_id = 0;
 		$this->m_insertType = '';

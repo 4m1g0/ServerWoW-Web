@@ -1,5 +1,7 @@
 <h3>Users Management</h3>
-<a href="/admin/users/add">Add User</a>
+<a href="/admin/users/add">Add User</a> | <a href="/admin/users/groups">Groups</a>
+<br />
+<br />
 
 <h4>Edit User:</h4>
 <ul>

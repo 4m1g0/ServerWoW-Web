@@ -29,7 +29,7 @@
 							<a id="editorMax" rel="10000"></a>
 							<?php if (!$editing && !$topicEditing) echo '<input type="text" id="subject" name="subject" value="' . ($topicEditing ? $topic['title'] : '') . '" class="post-subject" maxlength="55"    />'; ?>
 							<?php if (!$topicEditing) : ?><textarea id="detail" name="detail" class="post-editor" cols="78" rows="13"><?php if (isset($post['message'])) echo $post['message']; ?></textarea>
-							<?php endif; if (!$editing && $this->c('AccountManager')->user('gmlevel') > 0): ?>
+							<?php endif; if (!$editing && $this->c('AccountManager')->isAllowedToModerate()): ?>
 							<input type="checkbox" name="blizzard" id="blizzard" value="1" <?php if ((isset($topic, $topic['flags']) && $topic['flags'] & THREAD_FLAG_BLIZZARD) || !isset($topic)) echo ' checked="checked"'; ?> /><label for="blizzard">Blizzard Thread</label>
 							<input type="checkbox" name="pinned" id="pinned" value="1" <?php if ((isset($topic, $topic['flags']) && $topic['flags'] & THREAD_FLAG_PINNED)) echo ' checked="checked"'; ?>/><label for="pinned">Pinned Thread</label>
 							<input type="checkbox" name="featured" id="featured" value="1" <?php if ((isset($topic, $topic['flags']) && $topic['flags'] & THREAD_FLAG_FEATURED)) echo ' checked="checked"'; ?>/><label for="featured">Featured Thread</label>

@@ -431,11 +431,13 @@ class Forum_Component extends Component
 			->addModel('WowUserCharacters')
 			->addModel('WowBlizztrackerPosts')
 			->addModel('WowUserSettings')
+			->addModel('WowUserGroups')
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
 			->join('left', 'WowBlizztrackerPosts', 'WowForumPosts', 'post_id', 'tracker_post_id')
 			->join('left', 'WowUserSettings', 'WowForumPosts', 'account_id', 'account')
 			->join('left', 'WowAccounts', 'WowForumPosts', 'account_id', 'id')
+			->join('left', 'WowUserGroups', 'WowAccounts', 'group_id', 'group_id')
 			->fieldCondition('wow_forum_posts.thread_id', ' = ' . $this->m_topicId)
 			->setAlias('WowUserSettings', 'forums_signature', 'signature')
 			->limit(self::POSTS_PER_PAGE, (self::POSTS_PER_PAGE * $this->getPage(true)))
@@ -461,6 +463,23 @@ class Forum_Component extends Component
 			return $this;
 
 		$rawMessages = array();
+
+		$topics = array();
+		$used = array();
+
+		foreach ($this->m_topicPosts as $p)
+		{
+			if (in_array($p['post_id'], $used))
+				continue;
+			else
+			{
+				$topics[] = $p;
+				$used[$p['post_id']] = $p['post_id'];
+			}
+		}
+
+		$this->m_topicPosts = $topics;
+
 		foreach ($this->m_topicPosts as &$post)
 		{
 			$rawMessages[$post['post_id']] = $post['message'];
@@ -651,7 +670,7 @@ class Forum_Component extends Component
 		$edt->account_id = $this->c('AccountManager')->user('id');
 		$edt->character_guid = $this->c('AccountManager')->charInfo('guid');
 		$edt->character_realm = $this->c('AccountManager')->charInfo('realmId');
-		$edt->blizzpost = $this->c('AccountManager')->isAllowedToModerate() >= 3 ? 1 : 0;
+		$edt->blizzpost = $this->c('AccountManager')->isAllowedToModerate() ? 1 : 0;
 		$edt->blizz_name = $blizzName;
 		$edt->message = $topicData['detail'];
 		$edt->post_date = $create_time;
@@ -735,7 +754,7 @@ class Forum_Component extends Component
 		if (isset($_POST['bluepost']) && $_POST['bluepost'] == 1 && $isGm)
 			$isBluePost = true;
 
-		$edt->thread_id = $lastPost['thread_id'];
+		$edt->thread_id = $topicId;
 		$edt->cat_id = $lastPost['cat_id'];
 		$edt->account_id = $this->c('AccountManager')->user('id');
 		$edt->character_guid = $char['guid'];
@@ -753,7 +772,8 @@ class Forum_Component extends Component
 		$edt->clearValues();
 
 		// Set thread's last update time
-		$edt->setModel('WowForumThreads')
+		$edt->clearValues()
+			->setModel('WowForumThreads')
 			->setType('update')
 			->setId($lastPost['thread_id'])
 			->load();

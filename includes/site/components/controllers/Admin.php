@@ -155,6 +155,31 @@ class Admin_Controller_Component extends Controller_Component
 						case 'delete':
 							$this->c('Admin')->deleteUser();
 							break;
+						case 'groups':
+							$type = isset($this->m_subaction[1]) ? $this->m_subaction[1] : '';
+							$id = isset($this->m_subaction[2]) ? $this->m_subaction[2] : 0;
+							switch ($type)
+							{
+								case 'edit':
+									if (isset($_POST['group']))
+										$this->c('Admin')->editGroup();
+
+									$this->buildBlock('editusergroup');
+									break;
+								case 'add':
+									if (isset($_POST['group']))
+										$this->c('Admin')->addGroup();
+
+									$this->buildBlock('addusergroup');
+									break;
+								case 'delete':
+									$this->c('Admin')->deleteGroup();
+									break;
+								default:
+									$this->buildBlock('usergroups');
+									break;
+							}
+							break;
 					}
 				}
 				else
@@ -238,6 +263,30 @@ class Admin_Controller_Component extends Controller_Component
 		$this->buildBlock('main');
 
 		return $this;
+	}
+
+	protected function block_editusergroup()
+	{
+		return $this->block()
+			->setTemplate('editusergroup', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_addusergroup()
+	{
+		return $this->block()
+			->setTemplate('addusergroup', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_usergroups()
+	{
+		return $this->block()
+			->setTemplate('usergroups', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
 	}
 
 	protected function block_editStoreCategoryItems()
