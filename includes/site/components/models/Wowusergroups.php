@@ -27,6 +27,7 @@ class WowUserGroups_Model_Component extends Model_Db_Component
 		'group_id' => 'Id',
 		'group_title' => array('type' => 'string'),
 		'group_mask' => array('type' => 'integer'),
+		'group_style' => array('type' => 'string'),
 	);
 }
 ?>

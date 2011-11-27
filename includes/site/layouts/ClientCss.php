@@ -344,6 +344,10 @@ $ClientCSS = array(
 				'file' => '/wow/static/css/cms.css',
 				'version' => 15
 			),
+			array(
+				'file' => '/wow/static/local-common/css/cms/forums_groups.css',
+				'version' => 28
+			),
 		),
 	),
 	'class' => array(

@@ -564,6 +564,10 @@ class Forum_Component extends Component
 						if ($post['blizz_name'])
 							$name = $post['blizz_name'];
 					}
+					elseif ($post['group_mask'] & ADMIN_GROUP_MVP)
+						$replaceText .= 'mvp';
+					elseif ($post['group_mask'] & ADMIN_GROUP_EXTRA_FORUM_COLOR)
+						$replaceText .= $post['group_style'];
 					else
 						$replaceText .= 'public';
 
@@ -591,8 +595,12 @@ class Forum_Component extends Component
 		$q = $this->c('QueryResult', 'Db')
 			->model('WowForumPosts')
 			->addModel('WowUserCharacters')
+			->addModel('WowAccounts')
+			->addModel('WowUserGroups')
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
-			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId');
+			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
+			->join('left', 'WowAccounts', 'WowUserCharacters', 'account', 'game_id')
+			->join('left', 'WowUserGroups', 'WowAccounts', 'group_id', 'group_id');
 		if (is_array($post_id))
 			return $q->fieldCondition('wow_forum_posts.post_id', $post_id)->keyIndex('post_id')->loadItems();
 		else

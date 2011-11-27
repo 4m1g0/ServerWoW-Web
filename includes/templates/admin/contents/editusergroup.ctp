@@ -21,6 +21,10 @@ foreach ($permissions as $p)
 ?>
 </div>
 <div class="input text long">
+Extra forum style (works only with "Extra Color (forums)" selected)
+<input type="text" name="group[group_style]" value="<?php echo $group['group_style']; ?>" size=32 />
+</div>
+<div class="input text long">
 <input type="submit" value="Send" />
 </div>
 </form>

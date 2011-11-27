@@ -42,6 +42,11 @@ class Admin_Component extends Component
 				'label' => 'MVP Group',
 				'mask' => ADMIN_GROUP_MVP,
 				'id' => 'grmvp'
+			),
+			array(
+				'label' => 'Extra Color (forums)',
+				'mask' => ADMIN_GROUP_EXTRA_FORUM_COLOR,
+				'id' => 'grxtracolor'
 			)
 		);
 	}
@@ -75,6 +80,7 @@ class Admin_Component extends Component
 			->setId($id);
 
 		$edt->group_title = $_POST['group']['group_title'];
+		$edt->group_style = $_POST['group']['group_style'];
 		$edt->group_mask = 0;
 
 		if (isset($_POST['group']['mask']['grallowadmin']))
@@ -85,6 +91,9 @@ class Admin_Component extends Component
 			$edt->group_mask |= ADMIN_GROUP_MVP;
 		if (isset($_POST['group']['mask']['grallowbt']))
 			$edt->group_mask |= ADMIN_GROUP_BUGTRACKER_ACCESS;
+		if (isset($_POST['group']['mask']['grxtracolor']))
+			$edt->group_mask |= ADMIN_GROUP_EXTRA_FORUM_COLOR;
+			
 
 		$edt->save()->clearValues();
 
@@ -114,6 +123,7 @@ class Admin_Component extends Component
 			->setType('insert');
 
 		$edt->group_title = $_POST['group']['group_title'];
+		$edt->group_style = $_POST['group']['group_style'];
 		$edt->group_mask = 0;
 
 		if (isset($_POST['group']['mask']['grallowadmin']))
@@ -124,6 +134,8 @@ class Admin_Component extends Component
 			$edt->group_mask |= ADMIN_GROUP_MVP;
 		if (isset($_POST['group']['mask']['grallowbt']))
 			$edt->group_mask |= ADMIN_GROUP_BUGTRACKER_ACCESS;
+		if (isset($_POST['group']['mask']['grxtracolor']))
+			$edt->group_mask |= ADMIN_GROUP_EXTRA_FORUM_COLOR;
 
 		$edt->save()->clearValues();
 

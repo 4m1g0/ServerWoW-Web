@@ -89,7 +89,7 @@ if ($posts) :
 		else
 			$charUrl = $this->getWowUrl('character/' . $post['realmName'] . '/' . $post['name']);
 ?>
-			<div id="post-<?php echo $post['post_id']; ?>" class="post<?php if ($post['blizzpost']) echo ' blizzard'; if ($post['group_mask'] & ADMIN_GROUP_MVP) echo ' mvp'; if ($post['deleted']) echo ' hidden' ?>">
+			<div id="post-<?php echo $post['post_id']; ?>" class="post<?php if ($post['blizzpost']) echo ' blizzard'; else {if ($post['group_mask'] & ADMIN_GROUP_MVP) echo ' mvp'; elseif (($post['group_mask'] & ADMIN_GROUP_EXTRA_FORUM_COLOR) && $post['group_style']) echo ' ' . $post['group_style']; } if ($post['deleted']) echo ' hidden' ?>">
 				<span id="<?php echo $post['post_num']; ?>"></span>
 				<?php if ($post['deleted']) : ?>
 				<div class="deleted">
@@ -205,7 +205,12 @@ if ($posts) :
 														'classname' => $l->getString('character_class_' . $post['class'])
 													));
 													?>
-												</span>
+													</span>
+												<?php
+												if ($post['group_title']) :
+												?><div class="<?php echo $post['group_style']; ?>"><?php echo $post['group_title']; ?></div>
+												<?php endif; ?>
+												
 											</div>
 	<?php if ($post['guildId'] > 0) : ?>
 											<div class="guild">
@@ -214,7 +219,7 @@ if ($posts) :
 	<?php endif; ?>
 										</div>
 <?php else : ?>
-										<div class="blizzard-title">Customer Service</div>
+										<div class="blizzard-title"><?php echo $post['group_title']; ?></div>
 <?php endif; ?>
 
 									</div>
