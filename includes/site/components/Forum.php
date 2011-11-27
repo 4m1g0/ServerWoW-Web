@@ -1219,5 +1219,67 @@ class Forum_Component extends Component
 
 		return $this->core->redirectUrl('forum/topic/' . $post['thread_id']);
 	}
+
+	public function getBan()
+	{
+		if (!$this->c('AccountManager')->isAllowedToModerate())
+			return $this->core->redirectUrl('forum/');
+
+		$account_id = intval($this->core->getUrlAction(3));
+
+		if (!$account_id)
+			return $this->core->redirectUrl('forum/');
+
+		$user = $this->c('QueryResult', 'Db')
+			->model('Account')
+			->setItemId($account_id)
+			->loadItem();
+
+		if (!$user)
+			return $this->core->redirectUrl('forum/');
+
+		$admin = $this->c('QueryResult', 'Db')
+			->model('WowAccounts')
+			->setItemId($account_id)
+			->loadItem();
+
+		if ($admin)
+			return $this->core->redirectUrl('forum/');
+
+		return $user;
+	}
+
+	public function addBan()
+	{
+		if (!$this->c('AccountManager')->isAllowedToModerate() || !isset($_POST['ban']))
+			return $this->core->redirectUrl('forum/');
+
+		$account_id = intval($this->core->getUrlAction(3));
+
+		if (!$account_id)
+			return $this->core->redirectUrl('forum/');
+
+		$str = $_POST['ban']['day'] . '.' . $_POST['ban']['month'] . '.' . $_POST['ban']['year'] . ' ' . date('H:i:s');
+
+		$stamp = strtotime($str);
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('AccountBanned')
+			->setType('insert');
+
+		$edt->id = $account_id;
+		$edt->bandate = time();
+		$edt->unbandate = $stamp;
+		$edt->bannedby = $this->c('AccountManager')->user('id');
+		$edt->banreason = $_POST['ban']['reason'];
+		$edt->active = 1;
+		$edt->save()->clearValues();
+
+		if (isset($_POST['ban']['posts']))
+			$this->c('Db')->wow()->query("UPDATE wow_forum_posts SET deleted = 1 WHERE account_id = %d", $account_id);
+
+		return $this->core->redirectUrl('forum/');
+	}
 }
 ?>

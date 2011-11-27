@@ -45,7 +45,7 @@
 		<div class="forum-actions top">
 			<div class="actions-panel">
 				<?php echo $this->region('pagination'); ?>
-				<a class="ui-button button1<?php if ($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) echo ' disabled'; ?>" href="<?php echo ($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) ? 'javascript:;' : '#new-post'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
+				<a class="ui-button button1<?php if (($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) || !$this->c('AccountManager')->isAllowedToForums()) echo ' disabled'; ?>" href="<?php echo (($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) || !$this->c('AccountManager')->isAllowedToForums()) ? 'javascript:;' : '#new-post'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
 					<span>
 						<span><?php echo $l->getString('template_blog_add_post'); ?></span>
 					</span>
@@ -277,6 +277,7 @@ if ($posts) :
 						<div class="mod-actions">
 							<a title="Edit post" href="<?php echo $this->getWowUrl('forum/topic/post/' . $post['post_id'] . '/edit'); ?>" class="edit"><span></span></a>
 							<a title="Delete post" href="javascript:;" class="delete" onclick="return Cms.Topic.deletePost(<?php echo $post['post_id']; ?>, '<?php echo $l->getString('template_forum_post_delete_confirm'); ?>');"><span></span></a>
+							<?php if ($post['group_id'] == 0) : ?><a title="Ban user" href="<?php echo $this->getWowUrl('forum/ban/' . $post['account_id']); ?>" class="delete"><span></span></a><?php endif; ?>
 							<?php if ($post['blizzpost']) : ?><a title="<?php echo ($post['tracker_post_id'] == $post['post_id'] ? 'Remove from ' : 'Add to ') . 'tracker'; ?>" href="<?php echo $this->getWowUrl('forum/topic/post/' . $post['post_id'] . '/' . ($post['tracker_post_id'] == $post['post_id'] ? 'un' : '') . 'track'); ?>" class="bookmark<?php if ($post['tracker_post_id'] == $post['post_id']) echo 'ed'; ?>"><span></span></a><?php endif; ?>
 						</div>
 						<?php endif; ?>
@@ -323,7 +324,7 @@ if ($posts) :
 					</div>
 				</div>
 			</form>
-			<?php else : ?>
+			<?php elseif ($this->c('AccountManager')->isAllowedToForums()) : ?>
 		<form method="post" onsubmit="return Cms.Topic.postValidate(this);" action="#new-post">
 			<div>
 				<input type="hidden" name="xstoken" value="52df612a-c1dc-4537-98c1-f053f739302e"/>

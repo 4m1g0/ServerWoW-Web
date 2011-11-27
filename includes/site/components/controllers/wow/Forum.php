@@ -206,6 +206,15 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 			$this->buildBlocks(array('charactersList', 'post'));
 			$allowDefaultBuild = false;
 		}
+		elseif (strtolower($core->getUrlAction(2)) == 'ban' && $core->getUrlAction(3) > 0 && $this->c('AccountManager')->isAllowedToModerate())
+		{
+			if (isset($_POST['ban']))
+				$this->c('Forum')->addBan();
+
+			$account_id = intval($core->getUrlAction(3));
+			$this->buildBlock('ban');
+			$allowDefaultBuild = false;
+		}
 
 		if ($allowDefaultBuild)
 		{
@@ -261,6 +270,13 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 		}
 
 		return $this;
+	}
+
+	protected function block_ban()
+	{
+		return $this->block()
+			->setTemplate('ban', 'wow' . DS . 'contents' . DS . 'forum')
+			->setRegion('pagecontent');
 	}
 
 	protected function block_pagination_bt()
