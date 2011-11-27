@@ -51,6 +51,7 @@ define('SITE_MODELS_DIR', SITE_DIR . 'models' . DS);
 define('SITE_LOCALES_DIR', SITE_DIR . 'locales' . DS);
 define('SITE_TEMPLATES_DIR', SITE_DIR . 'templates' . DS);
 define('CACHE_DIR', ROOT . DS . 'cache' . DS);
+define('UPLOADS_DIR', WEBROOT_DIR . 'uploads' . DS);
 
 define('NL', "\n");
 define('TAB', "\t");

@@ -47,7 +47,12 @@ class Admin_Component extends Component
 				'label' => 'Extra Color (forums)',
 				'mask' => ADMIN_GROUP_EXTRA_FORUM_COLOR,
 				'id' => 'grxtracolor'
-			)
+			),
+			array(
+				'label' => 'Allow add videos',
+				'mask' => ADMIN_GROUP_ADD_VIDEO,
+				'id' => 'grvideos'
+			),
 		);
 	}
 
@@ -93,6 +98,8 @@ class Admin_Component extends Component
 			$edt->group_mask |= ADMIN_GROUP_BUGTRACKER_ACCESS;
 		if (isset($_POST['group']['mask']['grxtracolor']))
 			$edt->group_mask |= ADMIN_GROUP_EXTRA_FORUM_COLOR;
+		if (isset($_POST['group']['mask']['grvideos']))
+			$edt->group_mask |= ADMIN_GROUP_ADD_VIDEO;
 			
 
 		$edt->save()->clearValues();
@@ -136,6 +143,8 @@ class Admin_Component extends Component
 			$edt->group_mask |= ADMIN_GROUP_BUGTRACKER_ACCESS;
 		if (isset($_POST['group']['mask']['grxtracolor']))
 			$edt->group_mask |= ADMIN_GROUP_EXTRA_FORUM_COLOR;
+		if (isset($_POST['group']['mask']['grvideos']))
+			$edt->group_mask |= ADMIN_GROUP_ADD_VIDEO;
 
 		$edt->save()->clearValues();
 

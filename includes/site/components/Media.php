@@ -61,7 +61,55 @@ class Media_Component extends Component
 			->loadItem();
 		$this->m_quickView['videos']['count'] = $count['id'];
 
+		$this->m_quickView['ss']['latest'] = $this->c('QueryResult', 'Db')
+			->model('WowMediaScreenshots')
+			->limit(4)
+			->order(array('WowMediaScreenshots' => array('post_date')), 'DESC')
+			->loadItems();
+
+		$count = $this->c('QueryResult', 'Db')
+			->model('WowMediaScreenshots')
+			->fields(array('WowMediaScreenshots' => array('id')))
+			->runFunction('COUNT', 'id')
+			->loadItem();
+		$this->m_quickView['ss']['count'] = $count['id'];
+
 		return $this;
+	}
+
+	public function submitScreenshot()
+	{
+		if (!$this->c('AccountManager')->isLoggedIn())
+			return $this;
+
+		if (!isset($_FILES['ss']) || !$_FILES['ss'])
+			return $this->core->redirectUrl('media/screenshots');
+
+		$types = array('image/jpeg', 'image/png', 'image/gif', 'image/bmp');
+
+		if (!in_array($_FILES['ss']['type'], $types))
+			return $this->core->redirectUrl('media/screenshots');
+
+		$maxid = $this->c('Db')->wow()->selectCell("SELECT MAX(id) FROM wow_media_screenshots");
+
+		$d = explode('.', $_FILES['ss']['name']);
+		$ext = $d[sizeof($d)-1];
+		$file = ($maxid + 1) . '.' . $ext;
+		
+		move_uploaded_file($_FILES['ss']['tmp_name'], UPLOADS_DIR . 'screenshots' . DS . $file);
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowMediaScreenshots')
+			->setType('insert');
+
+		$edt->file = $file;
+		$edt->post_date = time();
+		$edt->approved = 1;
+		$edt->sender_id = $this->c('AccountManager')->user('id');
+
+		$edt->save()->clearValues();
+
+		return $this->core->redirectUrl('media/screenshots');
 	}
 
 	public function getQuickView()
@@ -258,7 +306,7 @@ class Media_Component extends Component
 				$edt->key = strtolower(str_replace(' ', '-', $_POST['title']));
 				$edt->post_date = time();
 				$edt->youtube = $youtube;
-				$edt->approved = 0;
+				$edt->approved = 1;
 				$edt->title = $title;
 				$edt->sender_id = $this->c('AccountManager')->user('id');
 				$edt->save()->clearValues();

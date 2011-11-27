@@ -35,6 +35,16 @@ $("#thumbnail-page div").css("visibility", "hidden");
 </script>
 <div class="thumbnail-page-wrapper">
 <div id="thumbnail-page">
+<?php if ($this->c('AccountManager')->isLoggedIn()) : ?>
+<div>
+<h3>Submit Screenshot</h3>
+<form action="" method="post" enctype="multipart/form-data">
+<label>File: </label><input type="file" name="ss" /><br/>
+<input type="submit" value="Upload" />
+</form>
+</div>
+<br/>
+<?php endif; ?>
 <?php
 $items = $media->getVideos();
 if ($items) :

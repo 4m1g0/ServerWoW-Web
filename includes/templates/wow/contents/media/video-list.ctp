@@ -1,4 +1,41 @@
- <div class="media-content">
+<script type="text/javascript">
+function showSubmitForm()
+{
+	$('#submitform').show();
+}
+
+function hideSubmitForm()
+{
+	$('#video-submit-youtube').val('');
+	$('#video-submit-title').val('');
+	$('#submitform').hide();
+}
+
+function submitForm()
+{
+	$('#errors-submit').html('<br /><br />').hide();
+	var youtube = $('#video-submit-youtube').val();
+	var title = $('#video-submit-title').val();
+
+	if (!youtube || !title)
+	{
+		$('#errors-submit').html('All fields are requried!<br /><br />').show();
+		return false;
+	}
+
+	$.ajax({
+		url: '<?php echo $this->getWowUrl('media/api/addvideo'); ?>',
+		type: 'POST',
+		'data-type': 'JSON',
+		data: {'link': youtube, 'title': title},
+		success: function(resp) {
+			resp = $.parseJSON(resp);
+			$('#op-result').html(resp.result).show();
+		}
+	});
+}
+</script>
+<div class="media-content">
 <!--[if IE]>
 <script type="text/javascript">
 //<![CDATA[
@@ -27,6 +64,28 @@ $("#thumbnail-page div").css("visibility", "hidden");
 <div class="thumbnail-page-wrapper">
 
 <div id="thumbnail-page" class="video-page">
+<div>
+<?php
+if ($this->c('AccountManager')->admin('group_mask') & ADMIN_GROUP_ADD_VIDEO) : ?>
+<a href="javascript:;" onclick="showSubmitForm();">Submit New Video</a>
+<div id="submitform" style="display:none">
+<br />
+<fieldset>
+<input type="text" name="youtube" class="input text" id="video-submit-youtube" value="" /> <label for="video-submit-youtube">YouTube Link</label><br />
+<input type="text" name="title" class="input text" id="video-submit-title" value="" /> <label for="video-submit-title">Title</label><br />
+<input type="button" value="Send" class="input submit" onclick="javascript:submitForm();" />
+<br />
+<br />
+<div id="errors-submit" style="display:none;">
+</div>
+<div id="op-result" style="display:none;">
+</div>
+<a href="javascript:;" onclick="javascript:hideSubmitForm();">Cancel and hide form</a>
+</fieldset>
+</div>
+<?php endif; ?>
+</div>
+<Br />
 <?php
 $videos = $media->getVideos();
 if ($videos) : 

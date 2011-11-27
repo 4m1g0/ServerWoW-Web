@@ -60,6 +60,9 @@ class Media_Wow_Controller_Component extends Groupwow_Controller_Component
 		$this->checkInfo();
 		$this->buildBreadcrumb();
 
+		if (isset($_FILES['ss']))
+			$this->c('Media')->submitScreenshot();
+
 		$this->c('Media')->initMedia($this->m_action, $this->m_itemInfo);
 
 		switch ($this->m_action)
