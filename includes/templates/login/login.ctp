@@ -31,6 +31,7 @@ if ($loginError != ERROR_NONE) : ?>
 			<?php if ($loginError & ERROR_EMPTY_PASSWORD) echo '<li>' . $l->getString('login_error_empty_password_title') . '</li>'; ?>
 			<?php if ($loginError & ERROR_WRONG_USERNAME_OR_PASSWORD) echo '<li>' . $l->getString('login_error_wrong_username_or_password_title') . '</li>'; ?>
 			<?php if ($loginError & ERORR_INVALID_PASSWORD_FORMAT) echo '<li>' . $l->getString('login_error_invalid_password_format_title') . '</li>'; ?>
+			<?php if ($loginError & ERROR_RECAPTCHA_FAILED) echo '<li>' . $l->getString('login_error_invalid_captcha') . '</li>'; ?>
 		</ul>
 	</div>
 <?php endif; ?>
@@ -42,6 +43,16 @@ if ($loginError != ERROR_NONE) : ?>
 <p><label for="password" class="label">Contraseña</label>
 <input id="password" name="password" maxlength="16" type="password" tabindex="2" autocomplete="off" class="input"/></p>
 <p>
+<p>
+<?php
+if ($this->c('AccountManager')->getLoginErrorsCount() >= 3)
+{
+	require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
+	$publickey = "6LcZjsoSAAAAAPYGkJOTrHl_j_4zS6S9Chcyh2m6"; // you got this from the signup page
+	echo recaptcha_get_html($publickey);
+}
+?>
+</p>
 <span id="remember-me">
 <label for="persistLogin">
 <input type="checkbox" checked="checked" name="persistLogin" id="persistLogin" />

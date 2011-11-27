@@ -188,7 +188,7 @@ if ($posts) :
 												</div>
 											</div>
 <?php if (!$post['blizzpost']) : ?>
-											<a href="<?php echo $charUrl; ?>" class="context-link wow-class-<?php echo $post['class']; ?>" rel="np"><?php echo $post['name']; ?></a>
+											<a href="<?php echo $charUrl; ?>" class="context-link <?php if ($post['group_mask'] & ADMIN_GROUP_EXTRA_FORUM_COLOR) echo $post['group_style']; else echo 'wow-class-' . $post['class']; ?> " rel="np"><?php echo $post['name']; ?></a>
 <?php else : ?>
 											<a href="javascript:;" class="context-link" rel="np"><?php echo $post['name']; ?></a>
 <?php endif; ?>
@@ -208,7 +208,7 @@ if ($posts) :
 													</span>
 												<?php
 												if ($post['group_title']) :
-												?><div class="<?php echo $post['group_style']; ?>"><?php echo $post['group_title']; ?></div>
+												?><div class="<?php if ($post['group_mask'] & ADMIN_GROUP_EXTRA_FORUM_COLOR) echo $post['group_style']; ?>"><?php echo $post['group_title']; ?></div>
 												<?php endif; ?>
 												
 											</div>

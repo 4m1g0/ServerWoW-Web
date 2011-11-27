@@ -1848,5 +1848,7 @@ El equipo de cuentas de Battle.net <br />
 	'template_account_sms_error_title' => '[t] Failed!',
 	'template_account_sms_error_text' => '[t] Something goes wrong. Please, try again.',
 	'template_account_sms_error_back' => '[t] Back',
+
+	'login_error_invalid_captcha' => '[t] Invalid captcha code',
 );
 ?>

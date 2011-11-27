@@ -470,6 +470,24 @@ class AccountManager_Component extends Component
 		return $this;
 	}
 
+	public function updateLoginError()
+	{
+		$count = $this->c('Session')->getSession('failedlogins');
+		if (!$count)
+			$count = 1;
+		else
+			$count ++;
+
+		$this->c('Session')->setSession('failedlogins', $count);
+
+		return $this;
+	}
+
+	public function getLoginErrorsCount()
+	{
+		return $this->c('Session')->getSession('failedlogins');
+	}
+
 	public function performLogin()
 	{
 		$this->m_loginError = 0;
@@ -477,12 +495,14 @@ class AccountManager_Component extends Component
 		if (!isset($_POST['accountName']))
 		{
 			$this->m_loginError |= ERROR_EMPTY_USERNAME;
+			$this->updateLoginError();
 			return false;
 		}
 
 		if (!isset($_POST['password']))
 		{
 			$this->m_loginError |= ERROR_EMPTY_PASSWORD;
+			$this->updateLoginError();
 			return false;
 		}
 
@@ -492,9 +512,23 @@ class AccountManager_Component extends Component
 		if (!$username || !$password)
 		{
 			$this->m_loginError |= ERROR_WRONG_USERNAME_OR_PASSWORD;
+			$this->updateLoginError();
 			return false;
 		}
 
+		if (isset($_POST['recaptcha_challenge_field']))
+		{
+			require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
+			$privatekey = "6LcZjsoSAAAAAHcliYKVqU5DI4naoEmsvc0UYA80";
+			$resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+			if (!$resp->is_valid)
+			{
+				$this->m_loginError |= ERROR_RECAPTCHA_FAILED;
+				$this->updateLoginError();
+				return false;
+			}
+			
+		}
 		$user = $this->c('QueryResult', 'Db')
 			->model('Account')
 			->fieldCondition('username', ' = \'' . $username . '\'')
@@ -504,6 +538,7 @@ class AccountManager_Component extends Component
 		if (!$user)
 		{
 			$this->m_loginError |= ERROR_WRONG_USERNAME_OR_PASSWORD;
+			$this->updateLoginError();
 			return false;
 		}
 
@@ -545,6 +580,8 @@ class AccountManager_Component extends Component
 		}
 
 		$this->saveUser($user)->m_loginError = ERROR_NONE;
+
+		$this->c('Session')->setSession('failedlogins', 0);
 
 		return true;
 	}
