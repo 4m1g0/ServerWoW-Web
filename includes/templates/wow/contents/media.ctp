@@ -15,7 +15,7 @@ Vídeos <span class="total">(<?php echo $v['count']; ?>)</span>
 if ($v['latest']) :
 	$i = 0;
 	foreach ($v['latest'] as $vi) : ?>
-<a href="<?php echo $this->getWowUrl('videos/?view=' .$vi['key']); ?>" class="thumb-wrapper video-thumb-wrapper<?php if ($i == 0) echo ' first-video'; ?>">
+<a href="<?php echo $this->getWowUrl('media/videos/?view=' .$vi['key']); ?>" class="thumb-wrapper video-thumb-wrapper<?php if ($i == 0) echo ' first-video'; ?>">
 <span class="video-info">
 <span class="video-title"><?php echo $vi['title']; ?></span>
 <span class="video-desc"></span>

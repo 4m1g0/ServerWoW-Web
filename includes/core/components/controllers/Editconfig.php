@@ -22,10 +22,12 @@ class Editconfig_Controller_Component extends Controller_Component
 {
 	public function build($core)
 	{
-		if (isset($_POST['cfg']))
-			$this->c('Editconfig')->updateConfigs();
+		return $this;
 
-		$this->buildBlock('main');
+	//	if (isset($_POST['cfg']))
+			//$this->c('Editconfig')->updateConfigs();
+
+	//	$this->buildBlock('main');
 		return $this;
 	}
 

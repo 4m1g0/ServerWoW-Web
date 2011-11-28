@@ -255,6 +255,9 @@ class AccountManager_Component extends Component
 		$characters = array();
 		foreach ($db_cfg as $realmId => $realm)
 		{
+			if (!$realm || !isset($realm['id']))
+				continue;
+
 			$this->c('Db')->switchTo('characters', $realm['id']);
 			$realm_characters = $this->c('QueryResult', 'Db')
 				->model('Characters')

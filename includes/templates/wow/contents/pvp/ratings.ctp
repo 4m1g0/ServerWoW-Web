@@ -179,7 +179,7 @@ $format = $pvp->getLadderType() . 'v' . $pvp->getLadderType();
 			if ($ladder) :
 				$toggleStyle = 2;
 				$id = 1;
-				foreach ($ladder as $t) :
+				foreach ($ladder as $t) : if (!$t) continue;
 			?>
 				<tr class="row<? echo $toggleStyle % 2 ? '1' : '2'; ?>" id="rank-<?php echo $id; ?>">
 									<td class="ranking">		<?php echo $t['rank']; ?></td>

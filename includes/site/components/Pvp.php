@@ -156,6 +156,9 @@ class Pvp_Component extends Component
 			$ladder = $q->fieldCondition('arena_team.type', ' = ' . $this->getLadderType(), 'AND')
 				->order(array('ArenaTeam' => array('rank', 'rating')), 'DESC')
 				->loadItems();
+
+			foreach ($ladder as &$l)
+				$l['realmName'] = $realms[$useRealm]['name'];
 		}
 		else
 		{
