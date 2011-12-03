@@ -1078,6 +1078,7 @@ define('BT_OBJECT',  5);
 define('BT_NPC',     6);
 define('BT_ZONE',    7);
 define('BT_OTHER',   8);
+define('BT_STORE',   9);
 
 define('ADMIN_GROUP_ADMIN_PANEL', 1);
 define('ADMIN_GROUP_MODERATE_FORUMS', 2);

@@ -815,6 +815,7 @@ class AccountManager_Component extends Component
 		$edt = $this->c('Editing')
 			->clearValues()
 			->setModel('WowUserSettings');
+
 		if (!$this->m_userSettings || !isset($this->m_userSettings['forums']) || !$this->m_userSettings['forums'])
 		{
 			// New

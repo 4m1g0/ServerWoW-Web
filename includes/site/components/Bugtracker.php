@@ -261,6 +261,7 @@ class Bugtracker_Component extends Component
 		{
 			case 'response':
 				$edt->admin_response = $_POST['message'];
+				$edt->admin_id = $this->c('AccountManager')->user('id');
 				$edt->response_date = time();
 				$edt->save()->clearValues();
 				$this->m_apiResponse = array(
@@ -268,7 +269,7 @@ class Bugtracker_Component extends Component
 					'type' => $action,
 					'error' => 'none',
 					'success' => true,
-					'editedFields' => array('response' => $_POST['message'], 'date' => date('d/m/Y', time()))
+					'editedFields' => array('response' => $_POST['message'], 'date' => date('d/m/Y', time()), 'admin' => $this->c('AccountManager')->settings('forums_username', 'forums'))
 				);
 				break;
 			case 'delete':
@@ -389,6 +390,16 @@ class Bugtracker_Component extends Component
 		if (!$this->m_item)
 			return $this;
 
+		$this->m_item['comments'] = $this->c('QueryResult', 'Db')
+			->model('WowBugtrackerComments')
+			->addModel('WowUserCharacters')
+			->join('left', 'WowUserCharacters', 'WowBugtrackerComments', 'account_id', 'account')
+			->join('left', 'WowUserCharacters', 'WowBugtrackerComments', 'character_guid', 'guid')
+			->join('left', 'WowUserCharacters', 'WowBugtrackerComments', 'character_realm', 'realmId')
+			->fieldCondition('wow_bugtracker_comments.report_id', ' = ' . $this->m_item['id'])
+			->order(array('WowBugtrackerComments' => array('post_date')), 'DESC')
+			->loadItems();
+
 		$this->handleItem($this->m_item);
 
 		$wow_type = '';
@@ -421,6 +432,38 @@ class Bugtracker_Component extends Component
 		return $this;
 	}
 
+	public function addComment()
+	{
+		if (!$this->c('AccountManager')->isLoggedIn() || !isset($_POST['comment']['text']))
+			return $this;
+
+		$text = str_replace(array('<', '>'), array('&lt;', '&gt;'), $_POST['comment']['text']);
+
+		if (!$text)
+			return $this;
+
+		$char = $this->c('AccountManager')->getActiveCharacter();
+
+		if (!$char)
+			return $this;
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowBugtrackerComments')
+			->setType('insert');
+
+		$edt->report_id = intval($this->core->getUrlAction(3));
+		$edt->account_id = $char['account'];
+		$edt->character_guid = $char['guid'];
+		$edt->character_realm = $char['realmId'];
+		$edt->post_date = time();
+		$edt->comment = $text;
+
+		$edt->save()->clearValues();
+
+		return $this->core->redirectApp('/' . $this->core->getAppUrl());
+	}
+
 	public function getCategoryId()
 	{
 		switch ($this->m_currentType)
@@ -439,6 +482,8 @@ class Bugtracker_Component extends Component
 				return BT_NPC;
 			case 'zones':
 				return BT_ZONE;
+			case 'store':
+				return BT_STORE;
 			case 'others':
 				return BT_OTHER;
 			default:
@@ -451,27 +496,7 @@ class Bugtracker_Component extends Component
 		if ($id <= 0)
 			$id = $this->getCategoryId();
 
-		switch ($id)
-		{
-			case BT_WEB:
-				return 'Web';
-			case BT_ITEM:
-				return 'Item';
-			case BT_QUEST:
-				return 'Quest';
-			case BT_SPELL:
-				return 'Spell';
-			case BT_OBJECT:
-				return 'Object';
-			case BT_NPC:
-				return 'NPC';
-			case BT_ZONE:
-				return 'Zone';
-			case BT_OTHER:
-				return 'Other';
-			case BT_DEFAULT:
-				return 'Default';
-		}
+		return $this->c('Locale')->getString('template_bt_section_' . $this->getCategoryAddress($id) . '_item');
 	}
 
 	public function getCategoryAddress($id = -1)
@@ -495,6 +520,8 @@ class Bugtracker_Component extends Component
 				return 'npcs';
 			case BT_ZONE:
 				return 'zones';
+			case BT_STORE:
+				return 'store';
 			case BT_OTHER:
 				return 'others';
 			case BT_DEFAULT:
@@ -534,13 +561,25 @@ class Bugtracker_Component extends Component
 		if (!$item)
 			return $this;
 
-		if (!in_array($item['type'], array(BT_OTHER, BT_DEFAULT, BT_WEB)))
+		if (!in_array($item['type'], array(BT_OTHER, BT_DEFAULT, BT_WEB, BT_STORE)))
 			$item['title'] = $this->getCategoryName($item['type']) . ' #' . $item['item_id'];
-		else
+		elseif (!$item['title'])
 			$item['title'] = $this->getCategoryName($item['type']) . ' #' . $item['id'];
 
 		$item['categoryName'] = $this->getCategoryName($item['type']);
 		$item['type_str'] = $this->getCategoryAddress($item['type']);
+		$item['admin_name'] = '';
+
+		if ($item['admin_id'] > 0)
+		{
+			$adm = $this->c('QueryResult', 'Db')
+				->model('WowAccounts')
+				->setItemId($item['admin_id'])
+				->loadItem();
+
+			if ($adm)
+				$item['admin_name'] = $adm['forums_name'];
+		}
 
 		switch ($item['priority'])
 		{
@@ -557,6 +596,20 @@ class Bugtracker_Component extends Component
 				$item['prColor'] = '#00ff00';
 				$item['prName'] = 'Low';
 				break;
+		}
+
+		if (isset($item['comments']) && $item['comments'])
+		{
+			foreach ($item['comments'] as &$comment)
+			{
+				$comment['date'] = date('d/m/Y H:i', $comment['post_date']);
+				$comment['url'] = $this->getWowUrl('character/' . $comment['realmName'] . '/' . $comment['name']);
+				$comment['comment'] = str_replace(array('<', '>'), array('&lt;', '&gt;'), $comment['comment']);
+				$comment['comment'] = str_replace(array('[code]', '[/code]'), array('<code style="border-color:#48230b;background:#21130b;color:#fae5cf;display:block;white-space:pre;overflow:auto;border:1px solid black;max-height:1000px;margin:5px 0;padding:10px;-webkit-border-radius:5px; border-radius:5px;font-family:monospace;">', '</code>'), $comment['comment']);
+
+				$comment['comment'] = preg_replace('/\[url\=(.+?)\](.+?)\[\/url\]/six', '<a href="$1" target="_blank">$2</a>', $comment['comment']);
+				$comment['comment'] = preg_replace('/\[img](.+?)\[\/img\]/six', '<img src="$1" />', $comment['comment']);
+			}
 		}
 
 		return $this;
@@ -582,32 +635,48 @@ class Bugtracker_Component extends Component
 		if (!$this->c('AccountManager')->isLoggedIn())
 			return $this;
 
-		$fields = array('type', 'item', 'priority', 'desc');
+		$fields = array('type', 'priority', 'desc');
+
+		if (isset($_POST['type']))
+		{
+			if (!in_array($_POST['type'], array(BT_WEB, BT_OTHER, BT_DEFAULT, BT_STORE)))
+				$fields[] = 'item';
+		}
+		else
+			return $this;
+
 		foreach ($fields as $f)
+		{
 			if (!isset($_POST[$f]) || !$_POST[$f])
 				return $this;
+		}
 
 		if ($_POST['type'] != $this->getCategoryId())
 			return $this;
 
-		$item = $this->c('QueryResult', 'Db')
-			->model('WowBugtrackerItems')
-			->fieldCondition('type', ' = ' . $this->getCategoryId())
-			->fieldCondition('item_id', ' = ' . intval($_POST['item']))
-			->loadItem();
-		if ($item)
+		if (!in_array($_POST['type'], array(BT_WEB, BT_OTHER, BT_DEFAULT, BT_STORE)))
 		{
-			$this->core->redirectUrl('bugtracker/bug/' . $item['id']);
+			$item = $this->c('QueryResult', 'Db')
+				->model('WowBugtrackerItems')
+				->fieldCondition('type', ' = ' . $this->getCategoryId())
+				->fieldCondition('item_id', ' = ' . intval($_POST['item']))
+				->loadItem();
 
-			return $this;
+			if ($item)
+			{
+				$this->core->redirectUrl('bugtracker/bug/' . $item['id']);
+
+				return $this;
+			}
 		}
 
 		$edt = $this->c('Editing')
 			->clearValues()
 			->setModel('WowBugtrackerItems')
 			->setType('insert');
+
 		$edt->type = $this->getCategoryId();
-		$edt->item_id = intval($_POST['item']);
+		$edt->item_id = isset($_POST['item']) ? intval($_POST['item']) : rand();
 		$edt->account_id = $this->c('AccountManager')->user('id');
 		$edt->character_realm = $this->c('AccountManager')->charInfo('realmId');
 		$edt->character_guid = $this->c('AccountManager')->charInfo('guid');
@@ -619,6 +688,10 @@ class Bugtracker_Component extends Component
 		$edt->admin_response = '';
 		$edt->response_date = '0';
 		$edt->close_date = '0';
+
+		if (isset($_POST['title']) && $_POST['title'])
+			$edt->title = $_POST['title'];
+
 		$id = $edt->save()->getInsertId();
 
 		if ($id)

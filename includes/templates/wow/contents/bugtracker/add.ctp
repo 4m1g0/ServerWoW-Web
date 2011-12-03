@@ -21,13 +21,22 @@
 		<br />
 		<form action="" method="POST">
 		<input type="hidden" name="type" value="<?php echo $bt->getCategoryId(); ?>" id="type" />
+		<?php if (!in_array($bt->getCategoryId(), array(BT_WEB, BT_OTHER, BT_DEFAULT, BT_STORE))) :?>
 		<span style="color: #ffff00;">Use Wowhead to find out ID</span>
+		<?php endif; ?>
 		<br />
 		<table>
+		<?php if (!in_array($bt->getCategoryId(), array(BT_WEB, BT_OTHER, BT_DEFAULT, BT_STORE))) :?>
 			<tr>
 				<td><label for="item">ID:</label></td>
 				<td><input type="text" class="input text" name="item" id="item" value="<?php if (isset($_POST['item'])) echo $_POST['item']; ?>" /></td>
 			</tr>
+		<?php else : ?>
+			<tr>
+				<td><label for="title">Title:</label></td>
+				<td><input type="text" class="input text" size=64 name="title" value="<?php if (isset($_POST['title'])) echo $_POST['title']; ?>" /></td>
+			</tr>
+		<?php endif; ?>
 			<tr id="sameReport" style="display:none;">
 				<td colspan="2" id="sameReportText">
 					<span style="color: #ff0000;">

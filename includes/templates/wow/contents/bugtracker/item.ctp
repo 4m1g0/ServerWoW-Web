@@ -7,10 +7,8 @@ if (!$item) return;
 	Bt.setId(<?php echo $item['id']; ?>);
 	Bt.setItemInfo({priority: <?php echo $item['priority']; ?>, status: <?php echo $item['status']; ?>, closed: <?php echo $item['closed']; ?>, desc: '<?php echo str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['description']); ?>', response: '<?php echo str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['admin_response']); ?>'});
 </script>
-<div class="media-content">
-<div class="media-content">
 
-<div class="currently-viewing">
+<div>
 <div>
 <span style="padding:20px;float:left"><h1>World of Warcraft Bug Tracker</h1>
 </span>
@@ -22,8 +20,8 @@ if (!$item) return;
 </div>
 </div>
 
-<div style="min-height:900px;">
-	<div style="padding:20px;width:720px;float:right;margin-top:-65px;">
+<div style="">
+	<div style="padding:20px;width:720px;height:<?php echo (500 + (sizeof($item['comments']) * 130)); ?>px;float:right;margin-top:-65px;position:relative;">
 		<br />
 		<h1<?php if ($item['type'] == BT_ITEM && isset($item['info'])) echo ' class="color-q' . $item['info']['Quality'] . '"'; ?>><?php
 		switch ($item['type'])
@@ -55,7 +53,7 @@ if (!$item) return;
 		Priority: <strong><?php echo '<span id="bugpriority" style="color: ' . $item['prColor'] . ';">' . $item['prName']; ?></span></strong>
 		<br />
 		Description: <strong><span id="bugdescription"><?php echo $item['description']; ?></span></strong>
-		<?php if (!in_array($item['type'], array(BT_DEFAULT, BT_WEB))) : ?>
+		<?php if (!in_array($item['type'], array(BT_DEFAULT, BT_WEB, BT_OTHER, BT_STORE))) : ?>
 		<br />
 		Internal Link: <strong><a href="http://es.wowhead.com/<?php echo strtolower($item['categoryName']) . '=' . $item['item_id']; ?>" target="_blank">Wowhead.com</a></strong>
 		<?php endif; ?>
@@ -64,7 +62,7 @@ if (!$item) return;
 		if ($item['admin_response']) :
 		?>
 		<br />
-		Admin's Response: <strong><?php echo $item['admin_response']; ?></strong> <i>(<?php echo date('d/m/Y', $item['response_date']); ?>)</i>
+		<b style="color: #00ff00;"><?php echo $item['admin_name'] ? $item['admin_name'] : 'Admin'; ?>'s Response:</b> <strong><?php echo $item['admin_response']; ?></strong> <i>(<?php echo date('d/m/Y', $item['response_date']); ?>)</i>
 		<?php endif; ?>
 		</span>
 		<br />
@@ -82,11 +80,66 @@ if (!$item) return;
 		<br /><br />
 		<div id="editformplace" style="display:none;"></div>
 		<div id="responseformplace" style="display:none;"></div>
+
+		<br />
+		<span class="clear"><!-- --></span>
+		
+		<?php
+		$char = $this->c('AccountManager')->getActiveCharacter();
+		if ($char) :
+		?>
+		<h1>Add New Comment:</h1>
+		<form action="" method="post">
+		<table>
+			<tr>
+				<td>
+					<strong><a href="<?php echo $this->getWowUrl('character/' . $char['realmName'] . '/' . $char['name']); ?>"><?php echo $char['name'] . ' @ ' . $char['realmName']; ?> </a></strong>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea name="comment[text]" cols=100 rows=10 class="input textarea"><?php if (isset($_POST['comment']['text'])) echo $_POST['comment']['text']; ?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button class="ui-button button2" type="submit" >
+						<span>
+							<span>Create</span>
+						</span>
+					</button>
+				</td>
+			</tr>
+		</table>
+		</form>
+		<span class="clear"><!-- --></span>
+		<br />
+		<?php endif; ?>
+		<?php if (isset($item['comments']) && $item['comments'] && sizeof($item['comments']) > 0) : ?>
+
+		<h1>Comments (<?php echo sizeof($item['comments']); ?>):</h1>
+
+		<div id="comments">
+		<?php foreach ($item['comments'] as $c) : ?>
+			<hr noshade/>
+			<div>
+				<strong><a href="<?php echo $c['url']; ?>" class="profile-link"><?php echo $c['name'] . ' @ ' . $c['realmName']; ?></a></strong>
+				<br />
+				<small><?php echo $c['date']; ?></small>
+				<br />
+				<br />
+				<div>
+					<?php echo $c['comment']; ?>
+				</div>
+				<span class="clear"><!-- --></span>
+			</div>
+			<br />
+		<?php endforeach; ?>
+		</div>
+		<?php endif; ?>
 	</div>
 
-	<div style="float:left;width:230px;position:relative;">
+	<div style="float:left;width:230px;height:<?php echo (500 + (sizeof($item['comments']) * 130)); ?>px;position:relative;">
 		<?php echo $this->region('bt_menu'); ?>
 	</div>
 </div>
-	</div>
-	</div>

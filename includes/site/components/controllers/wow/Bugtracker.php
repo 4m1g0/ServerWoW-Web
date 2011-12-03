@@ -36,7 +36,10 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 		elseif ($this->core->getUrlAction(2) == 'api')
 			$this->m_isApi = true;
 		elseif ($this->core->getUrlAction(3) == 'add')
-			$this->m_isAdding = true;
+		{
+			if ($this->c('Bugtracker')->getCategoryId() > 0)
+				$this->m_isAdding = true;
+		}
 
 		return true;
 	}
@@ -108,7 +111,12 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 			else
 			{
 				if ($this->c('Bugtracker')->isCorrect())
+				{
+					if (isset($_POST['comment']['text']))
+						$this->c('Bugtracker')->addComment();
+
 					$block = 'item';
+				}
 				else
 				{
 					$this->setErrorPage()->c('Error_Wow', 'Controller');

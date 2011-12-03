@@ -18,28 +18,19 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class WowBugtrackerItems_Model_Component extends Model_Db_Component
+class WowBugtrackerComments_Model_Component extends Model_Db_Component
 {
-	public $m_model = 'WowBugtrackerItems';
-	public $m_table = 'wow_bugtracker_items';
+	public $m_model = 'WowBugtrackerComments';
+	public $m_table = 'wow_bugtracker_comments';
 	public $m_dbType = 'wow';
 	public $m_fields = array(
 		'id' => 'Id',
-		'type' => array('type' => 'integer'),
-		'item_id' => array('type' => 'integer'),
-		'title' => array('type' => 'string'),
+		'report_id' => array('type' => 'integer'),
 		'account_id' => array('type' => 'integer'),
-		'character_realm' => array('type' => 'integer'),
 		'character_guid' => array('type' => 'integer'),
+		'character_realm' => array('type' => 'integer'),
 		'post_date' => array('type' => 'integer'),
-		'status' => array('type' => 'integer'),
-		'priority' => array('type' => 'integer'),
-		'description' => array('type' => 'string'),
-		'closed' => array('type' => 'integer'),
-		'admin_response' => array('type' => 'string'),
-		'admin_id' => array('type' => 'integer'),
-		'response_date' => array('type' => 'integer'),
-		'close_date' => array('type' => 'integer'),
+		'comment' => array('type' => 'string'),
 	);
 }
 ?>

@@ -1850,5 +1850,25 @@ El equipo de cuentas de Battle.net <br />
 	'template_account_sms_error_back' => '[t] Back',
 
 	'login_error_invalid_captcha' => '[t] Invalid captcha code',
+
+	'template_bt_section_web_menu' => 'Web Site',
+	'template_bt_section_items_menu' => 'WoW Items',
+	'template_bt_section_quests_menu' => 'WoW Quests',
+	'template_bt_section_spells_menu' => 'WoW Spells',
+	'template_bt_section_objects_menu' => 'WoW Objects',
+	'template_bt_section_npcs_menu' => 'WoW NPCs',
+	'template_bt_section_zones_menu' => 'WoW Zones',
+	'template_bt_section_store_menu' => 'Web Store',
+	'template_bt_section_others_menu' => 'Other Bugs',
+
+	'template_bt_section_web_item' => 'Web bug',
+	'template_bt_section_items_item' => 'Item',
+	'template_bt_section_quests_item' => 'Quest',
+	'template_bt_section_spells_item' => 'Spell',
+	'template_bt_section_objects_item' => 'Object',
+	'template_bt_section_npcs_item' => 'NPC',
+	'template_bt_section_zones_item' => 'Zone',
+	'template_bt_section_store_item' => 'Store bug',
+	'template_bt_section_others_item' => 'Other bug',
 );
 ?>

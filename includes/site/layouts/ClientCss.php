@@ -594,6 +594,8 @@ $ClientCSS = array(
 				'version' => 18
 			)
 		)
-	)
+	),
+	'bugtracker' => array(
+	),
 );
 ?>

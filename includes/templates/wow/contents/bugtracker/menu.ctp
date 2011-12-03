@@ -6,20 +6,21 @@
 			</li>
 			<?php
 			$types = array(
-				array('web', 'Web Site'),
-				array('items', 'WoW Items'),
-				array('quests', 'WoW Quests'),
-				array('spells', 'WoW Spells'),
-				array('objects', 'WoW Objects'),
-				array('npcs', 'WoW NPCs'),
-				array('zones', 'WoW Zones'),
-				array('others', 'Other Bugs'),
+				'web',
+				'store',
+				'items',
+				'quests',
+				'spells',
+				'objects',
+				'npcs',
+				'zones',
+				'others',
 			);
 			foreach ($types as $type) :
 			?>
-			<li class="<?php if ($bt->getCurrent() == $type[0] || $bt->item('type_str') == $type[0]) echo 'item-active'; ?>">
-				<a href="<?php echo $this->getWowUrl('bugtracker/' . $type[0]); ?>">
-					<span class="arrow"><?php echo $type[1]; ?></span>
+			<li class="<?php if ($bt->getCurrent() == $type || $bt->item('type_str') == $type) echo 'item-active'; ?>">
+				<a href="<?php echo $this->getWowUrl('bugtracker/' . $type); ?>">
+					<span class="arrow"><?php echo $l->getString('template_bt_section_' . $type . '_menu'); ?></span>
 				</a>
 			</li>
 			<?php endforeach; ?>

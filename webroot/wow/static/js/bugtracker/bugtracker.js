@@ -156,7 +156,7 @@ var Bt = {
 				return true;
 			}
 
-			$('#adminresponse').html('<br />Admin\'s Response: <strong>' + data.editedFields.response + '</strong> <i>(' + data.editedFields.date + ')</i>').fadeIn();
+			$('#adminresponse').html('<br /><b style="color: #00ff00;">' + data.editedFields.admin + '\'s Response:</b> <strong>' + data.editedFields.response + '</strong> <i>(' + data.editedFields.date + ')</i>').fadeIn();
 
 			return true;
 		}
@@ -328,7 +328,7 @@ var Bt = {
 		var id = $('#item').val();
 		var type = $('#type').val();
 
-		if (!id || !type)
+		if (!id || !type || (type == 0 || type == 1 || type == 8 || type == 9))
 			return false;
 
 		Bt.processQuery('find', {'type': type, 'id': id});
