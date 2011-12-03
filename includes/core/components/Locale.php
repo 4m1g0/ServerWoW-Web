@@ -81,8 +81,7 @@ class Locale_Component extends Component
 
 		$coreLocale = array();
 		$siteLocale = array();
-		$this->getLocaleFile('core', CORE_LOCALES_DIR, $coreLocale)
-			->getLocaleFile('site', SITE_LOCALES_DIR, $siteLocale);
+		$this->getLocaleFile('site', SITE_LOCALES_DIR, $siteLocale);
 
 		$this->m_localeHolder = $siteLocale;
 
