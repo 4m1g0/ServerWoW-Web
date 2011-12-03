@@ -484,9 +484,24 @@ class Forum_Component extends Component
 		{
 			$rawMessages[$post['post_id']] = $post['message'];
 			$this->handleBbCodes($post['message']);
+
+			if (isset($post['signature']))
+				$this->handleSignature($post['signature']);
 		}
 
 		$this->m_rawPostMessages = $rawMessages;
+
+		return $this;
+	}
+
+	protected function handleSignature(&$sig)
+	{
+		if (!$sig)
+			return $this;
+
+		$sig = str_replace(array('<', '>'), array('&lt;', '&gt;'), $sig);
+		$sig = preg_replace('/\[url\=(.+?)\](.+?)\[\/url\]/six', '<a href="$1">$2</a>', $sig);
+		$sig = preg_replace('/\[img](.+?)\[\/img\]/six', '<img src="$1" />', $sig);
 
 		return $this;
 	}
