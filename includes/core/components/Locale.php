@@ -91,7 +91,7 @@ class Locale_Component extends Component
 	private function getLocaleFile($type, $path, &$localeHolder)
 	{
 		include(SITE_LOCALES_DIR . 'locale_es.php');
-		$localeHolder = $SiteLocale;
+		$localeHolder = $Site_Locale;
 
 		return $this;
 
