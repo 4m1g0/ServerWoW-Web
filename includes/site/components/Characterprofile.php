@@ -593,6 +593,7 @@ class CharacterProfile_Component extends Component
 				->keyIndex('spell')
 				->fieldCondition('active', ' = 1')
 				->fieldCondition('disabled', ' = 0')
+				->fieldCondition('guid', ' = ' . $this->getGUID())
 				->loadItems();
 		}
 
@@ -2777,7 +2778,7 @@ class CharacterProfile_Component extends Component
 				if ((!isset($item['enchant']) || !isset($item['enchant']['id']) || $item['enchant']['id'] == 0) && !in_array($item['slot'], array(INV_BELT, INV_SHIRT, INV_RANGED_RELIC, INV_TABARD, INV_TRINKET_1, INV_TRINKET_2, INV_NECK, INV_OFF_HAND, INV_RING_1, INV_RING_2, INV_NECK)))
 					$this->updateAudit(AUDIT_TYPE_UNENCHANTED_ITEM, array($item['slot'], $item['entry']));
 
-				if ($item['slot'] == INV_BELT && $item['data_field'][ITEM_FIELD_ENCHANTMENT_7_1] == 0)
+				if ($item['slot'] == INV_BELT && isset($item['data_field']) && $item['data_field'][ITEM_FIELD_ENCHANTMENT_7_1] == 0)
 				{
 					$q = $this->c('QueryResult', 'Db')->model('ItemTemplate');
 
