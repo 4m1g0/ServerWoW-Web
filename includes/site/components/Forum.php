@@ -500,7 +500,7 @@ class Forum_Component extends Component
 			return $this;
 
 		$sig = str_replace(array('<', '>'), array('&lt;', '&gt;'), $sig);
-		$sig = preg_replace('/\[url\=(.+?)\](.+?)\[\/url\]/six', '<a href="$1">$2</a>', $sig);
+		$sig = preg_replace('/\[url\=(.+?)\](.+?)\[\/url\]/six', '<a href="$1" target="_blank">$2</a>', $sig);
 		$sig = preg_replace('/\[img](.+?)\[\/img\]/six', '<img src="$1" />', $sig);
 
 		return $this;
@@ -601,6 +601,11 @@ class Forum_Component extends Component
 						$inpStr = str_replace('[quote="' . $t['replaceId'] . '"]', $t['replaceText'], $inpStr);
 			}
 		}
+
+		// Handle [img] and [url] tags
+
+		$inpStr = preg_replace('/\[url\=(.+?)\](.+?)\[\/url\]/six', '<a href="$1" target="_blank">$2</a>', $inpStr);
+		$inpStr = preg_replace('/\[img](.+?)\[\/img\]/six', '<img src="$1" />', $inpStr);
 
 		return $this;
 	}
