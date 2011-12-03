@@ -90,6 +90,12 @@ class Locale_Component extends Component
 
 	private function getLocaleFile($type, $path, &$localeHolder)
 	{
+		include(SITE_LOCALES_DIR . 'locale_es.php');
+		$localeHolder = $SiteLocale;
+
+		return $this;
+
+		/*
 		$Core_Locale = array();
 		$Site_Locale = array();
 
@@ -108,7 +114,7 @@ class Locale_Component extends Component
 
 		unset($Core_Locale, $Site_Locale);
 
-		return $this;
+		return $this;*/
 	}
 
 	public function setLocale($locale_name, $locale_id = -1, $load_locale = true)
