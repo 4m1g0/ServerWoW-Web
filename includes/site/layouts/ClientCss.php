@@ -397,6 +397,32 @@ $ClientCSS = array(
 			)
 		)
 	),
+	'guide' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/game/game-common.css',
+				'version' => 15
+			),
+			array(
+				'file' => '/wow/static/css/game/game-guide-common.css',
+				'version' => 15
+			),
+			array(
+				'file' => '/wow/static/css/game/game-guide-ie6.css',
+				'version' => 15,
+				'browser' => 'IE 6'
+			),
+			array(
+				'file' => '/wow/static/css/game/game-guide-common-ie6.css',
+				'version' => 15,
+				'browser' => 'IE 6'
+			),
+			array(
+				'file' => '/wow/static/css/lightbox.css',
+				'version' => 15
+			)
+		)
+	),
 	'accountstatus' => array(
 		'header' => array(
 			array(

@@ -32,6 +32,10 @@ class Sidebar_Wow_Controller_Component extends Groupwow_Controller_Component
 				$this->m_sidebarData = $this->c('Forum')->getSidebarData();
 				$this->buildBlock('forums');
 				break;
+			case 'sotd':
+				$this->m_sidebarData = $this->c('Media')->getSidebarData();
+				$this->buildBlock('sotd');
+				break;
 			default:
 				$this->setErrorPage()->c('Error_Wow', 'Controller');
 				$error = true;
@@ -52,6 +56,14 @@ class Sidebar_Wow_Controller_Component extends Groupwow_Controller_Component
 		return $this->block()
 			->setVar('sidebar', $this->m_sidebarData)
 			->setTemplate('forums', 'wow' . DS . 'contents' . DS . 'sidebar')
+			->setRegion('wow_ajax');
+	}
+
+	protected function block_sotd()
+	{
+		return $this->block()
+			->setVar('sidebar', $this->m_sidebarData)
+			->setTemplate('sotd', 'wow' . DS . 'contents' . DS . 'sidebar')
 			->setRegion('wow_ajax');
 	}
 }

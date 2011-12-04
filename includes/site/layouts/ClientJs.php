@@ -237,6 +237,14 @@ $ClientJS = array(
 			)
 		)
 	),
+	'guide' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/local-common/js/lightbox.js',
+				'version' => 29
+			)
+		)
+	),
 	'guild' => array(
 		'footer' => array(
 			array(

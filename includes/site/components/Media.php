@@ -330,5 +330,10 @@ class Media_Component extends Component
 			->fieldCondition('id', ' = ' . intval($_GET['id']))
 			->loadItem();
 	}
+
+	public function getSidebarData()
+	{
+		return $this->c('Db')->wow()->selectRow("SELECT * FROM wow_media_screenshots ORDER BY RAND() LIMIT 1");
+	}
 }
 ?>

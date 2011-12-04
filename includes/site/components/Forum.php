@@ -607,6 +607,9 @@ class Forum_Component extends Component
 		$inpStr = preg_replace('/\[url\=(.+?)\](.+?)\[\/url\]/six', '<a href="$1" target="_blank">$2</a>', $inpStr);
 		$inpStr = preg_replace('/\[img](.+?)\[\/img\]/six', '<img src="$1" />', $inpStr);
 
+		// Handle [youtube] tag
+		$inpStr = preg_replace('/\[youtube\](.+?)\[\/youtube\]/six', '<object style="height: 390px; width: 640px"><param name="movie" value="http://www.youtube.com/v/$1?version=3&feature=player_profilepage"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><embed src="http://www.youtube.com/v/$1?version=3&feature=player_profilepage" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="360"></object>', $inpStr);
+
 		return $this;
 	}
 

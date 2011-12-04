@@ -23,7 +23,7 @@ class Game_Wow_Controller_Component extends Groupwow_Controller_Component
 	protected $m_menuIndex = 'game';
 	protected $m_gameType = 'index';
 	protected $m_clientFilesController = '';
-	protected $m_pages = array('race', 'class', 'zone', 'faction', 'lore', 'profession', 'tool');
+	protected $m_pages = array('race', 'class', 'zone', 'faction', 'lore', 'profession', 'tool', 'guide');
 	protected $m_gameData = array();
 
 	protected function checkInfo()
@@ -92,6 +92,29 @@ class Game_Wow_Controller_Component extends Groupwow_Controller_Component
 		$this->core->setVar('body_class', 'game-index');
 		return $this->block()
 			->setTemplate('game', 'wow' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_guide()
+	{
+		$type = 'game-guide-what-is-wow';
+		$template = 'main';
+		$css = 'what-is-wow';
+		switch ($this->core->getUrlAction(3))
+		{
+			case 'getting-started':
+			case 'how-to-play':
+			case 'playing-together':
+			case 'late-game':
+				$type = 'game-guide-' . $this->core->getUrlAction(3);
+				$template = $this->core->getUrlAction(3);
+				$css = $this->core->getUrlAction(3);
+				break;
+		}
+		$this->core->setVar('body_class', 'game-guide-section ' . $type);
+		return $this->block()
+			->setVar('css', $css)
+			->setTemplate($template, 'wow' . DS . 'contents' . DS . 'game' . DS . 'guide')
 			->setRegion('pagecontent');
 	}
 

@@ -60,6 +60,16 @@ class GameWoW_Component extends Component
 			case 'tool':
 				break;
 			case 'index':
+				break;
+			case 'guide':
+				$this->m_gameData = $this->m_gameType;
+				$this->m_gameBreadcrumbData = array(
+					array(
+						'link' => 'game/guide/',
+						'locale_index' => 'Guía para principiantes'
+					)
+				);
+				break;
 			default:
 				break;	
 		}
