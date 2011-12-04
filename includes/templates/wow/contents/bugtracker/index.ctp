@@ -43,7 +43,7 @@
 						</span>
 					</button>
 					<a href="<?php echo $this->getWowUrl('bugtracker/' . $bt->getCurrent()); ?>">Reiniciar</a>
-					<?php if ($bt->getCurrent() != null) echo '<br /><br /><span><a class="ui-button button2" href="' . $this->getWowUrl('bugtracker/' . $bt->getCurrent() . '/add') . '"><span><span>Create Bug Report</span></span></a></span>'; ?>
+					<?php if ($bt->getCurrent() != null && $this->c('AccountManager')->isLoggedIn()) echo '<br /><br /><span><a class="ui-button button2" href="' . $this->getWowUrl('bugtracker/' . $bt->getCurrent() . '/add') . '"><span><span>Create Bug Report</span></span></a></span>'; ?>
 					<span class="clear"><!-- --></span>
 					<br />
 			</form>

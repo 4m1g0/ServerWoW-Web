@@ -35,7 +35,7 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 		}
 		elseif ($this->core->getUrlAction(2) == 'api')
 			$this->m_isApi = true;
-		elseif ($this->core->getUrlAction(3) == 'add')
+		elseif ($this->core->getUrlAction(3) == 'add' && $this->c('AccountManager')->isLoggedIn())
 		{
 			if ($this->c('Bugtracker')->getCategoryId() > 0)
 				$this->m_isAdding = true;
