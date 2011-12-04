@@ -91,7 +91,10 @@ class AccountManager_Component extends Component
 			->loadItem();
 
 		if ($count_realm_characters['numchars'] != sizeof($characters))
+		{
 			$needSave = true;
+			$this->c('Log')->writeDebug('%s : save required: realmcharacters count is not equal (%d and %d)', __METHOD__, $count_realm_characters['numchars'], sizeof($characters));
+		}
 		else
 		{
 			$save_date = $this->c('QueryResult', 'Db')
@@ -100,9 +103,15 @@ class AccountManager_Component extends Component
 				->loadItem();
 
 			if (!$save_date)
+			{
 				$needSave = true;
+				$this->c('Log')->writeDebug('%s : save required: save_date was not found', __METHOD__);
+			}
 			elseif ($save_date['chars_save'] < time())
+			{
 				$needSave = true; // Rebuild cache
+				$this->c('Log')->writeDebug('%s : save required: save_date expired', __METHOD__);
+			}
 		}
 
 		if ($needSave)
