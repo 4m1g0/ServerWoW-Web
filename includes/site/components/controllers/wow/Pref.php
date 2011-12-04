@@ -26,7 +26,6 @@ class Pref_Wow_Controller_Component extends Groupwow_Controller_Component
 			return $this->redirectUrl();
 
 		$this->ajaxPage();
-		DEFINE('AJAX_PAGE', true);
 
 		if (isset($_POST['index']))
 		{
@@ -34,17 +33,16 @@ class Pref_Wow_Controller_Component extends Groupwow_Controller_Component
 
 			$chars = $this->c('QueryResult', 'Db')
 				->model('WowUserCharacters')
-				->fields(array('WowUserCharacters' => array('id')))
+				->fields(array('WowUserCharacters' => array('index')))
 				->fieldCondition('account', ' = ' . $this->c('AccountManager')->user('id'))
-				->keyIndex('id')
+				->keyIndex('index')
 				->loadItems();
 
 			if ($chars && isset($chars[$idx]))
 			{
-				dump($chars);
 				$id = $this->c('AccountManager')->user('id');
 				$this->c('Db')->wow()->query("UPDATE `wow_user_characters` SET `isActive` = 0 WHERE `account` = %d", $id);
-				$this->c('Db')->wow()->query("UPDATE `wow_user_characters` SET `isActive` = 1 WHERE `id` = %d AND `account` = %d", $chars[$idx]['id'], $id);
+				$this->c('Db')->wow()->query("UPDATE `wow_user_characters` SET `isActive` = 1 WHERE `index` = %d AND `account` = %d", $idx, $id);
 			}
 		}
 		return $this;
