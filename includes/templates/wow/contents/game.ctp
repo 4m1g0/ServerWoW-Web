@@ -11,9 +11,37 @@
 			</a>
 			</div>
 
+
 		<div class="index">
 			<div class="panel">
 
+			<div class="extras">
+					<ul>
+						<li class="pvp">
+							<a href="<?php echo $this->getWowUrl('pvp/arena/'); ?>">
+								<span class="icon"></span>
+								JcJ<br />
+								<span>Ver jerarquías de Arenas y campos de batalla puntuados actuales.</span>
+							</a>
+							</li>
+						<li class="realm">
+							<a href="<?php echo $this->getWowUrl('status/'); ?>">
+								<span class="icon"></span>
+								Estado de los reinos<br />
+								<span>Información en tiempo real del estado de los reinos de World of Warcraft.</span>
+							</a>
+						</li>
+						<li class="patches">
+							<a href="<?php echo $this->getWowUrl('bugtracker/'); ?>">
+								<span class="icon"></span>
+								Bugtracker<br />
+								<span>Report about any bug you've found in game!</span>
+							</a>
+							</li>
+					</ul>
+
+	<span class="clear"> </span>
+							</div>
 	<div class="column" style="width: 295px;">
 		<div class="box first-child">
 				<h2 class="header "><a href="<?php echo $this->getWowUrl('game/race/'); ?>">Razas</a></h2>
@@ -575,34 +603,6 @@
 
 	<span class="clear"> </span>
 			</div>
-
-			<div class="extras">
-					<ul>
-						<li class="pvp">
-							<a href="<?php echo $this->getWowUrl('pvp/arena/'); ?>">
-								<span class="icon"></span>
-								JcJ<br />
-								<span>Ver jerarquías de Arenas y campos de batalla puntuados actuales.</span>
-							</a>
-							</li>
-						<li class="realm">
-							<a href="<?php echo $this->getWowUrl('status/'); ?>">
-								<span class="icon"></span>
-								Estado de los reinos<br />
-								<span>Información en tiempo real del estado de los reinos de World of Warcraft.</span>
-							</a>
-						</li>
-						<li class="patches">
-							<a href="<?php echo $this->getWowUrl('bugtracker/'); ?>">
-								<span class="icon"></span>
-								Bugtracker<br />
-								<span>Report about any bug you've found in game!</span>
-							</a>
-							</li>
-					</ul>
-
-	<span class="clear"> </span>
-							</div>
 					</div>
 
 
