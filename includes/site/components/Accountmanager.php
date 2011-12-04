@@ -86,6 +86,7 @@ class AccountManager_Component extends Component
 			->model('Realmcharacters')
 			->fields(array('Realmcharacters' => array('numchars')))
 			->fieldCondition('acctid', ' = ' . $this->user('id'))
+			->fieldCondition('realmid', array_keys($this->c('Config')->getValue('realms')))
 			->runFunction('SUM', 'numchars')
 			->loadItem();
 
