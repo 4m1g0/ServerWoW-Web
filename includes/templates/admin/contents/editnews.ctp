@@ -46,7 +46,12 @@ Tags (separate with commas)
 <input id="communityPage" type="checkbox" name="news[community]" value="1"<?php if ($item['community'] == 1) echo ' checked="checked"'; ?> /><label for="communityPage">Add to Community page</label>
 <br />
 </div><br />
-<div class="input submit">
+<div class="input checkbox">
+<br />
+<input id="allow_comments" type="checkbox" name="news[allow_comments]" value="1"<?php if ($item['allow_comments'] == 1) echo ' checked="checked"'; ?> /><label for="allow_comments">Allow comments for this entry</label>
+<br />
+</div><br />
+<div class="input text">
 <br />
 <input type="submit" value="Send" />
 </div>

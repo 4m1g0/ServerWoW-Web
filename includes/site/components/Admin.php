@@ -420,6 +420,11 @@ class Admin_Component extends Component
 		else
 			$edt->community = '0';
 
+		if (isset($_POST['news']['allow_comments']))
+			$edt->allow_comments = '1';
+		else
+			$edt->allow_comments = '0';
+
 		$edt->save()->clearValues();
 
 		if (isset($_POST['carousel']))
@@ -628,6 +633,7 @@ class Admin_Component extends Component
 		$edt->postdate = time();
 		$edt->tags = isset($_POST['news']['tags']) ? $_POST['news']['tags'] : '';
 		$edt->community = (isset($_POST['news']['community']) && $_POST['news']['community'] == 1) ? 1 : 0;
+		$edt->allow_comments = (isset($_POST['news']['allow_comments']) && $_POST['news']['allow_comments'] == 1) ? 1 : 0;
 
 		$id = $edt->save()->getInsertId();
 
