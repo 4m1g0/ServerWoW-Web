@@ -380,6 +380,27 @@ $ClientCSS = array(
 			)
 		)
 	),
+	'faction' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/wiki/wiki.css',
+				'version' => 15
+			),
+			array(
+				'file' => '/wow/static/css/wiki/wiki-ie.css',
+				'version' => 15,
+				'browser' => 'IE'
+			),
+			array(
+				'file' => '/wow/static/css/wiki/zone.css',
+				'version' => 15
+			),
+			array(
+				'file' => '/wow/static/css/wiki/faction.css',
+				'version' => 15
+			)
+		)
+	),
 	'zone' => array(
 		'header' => array(
 			array(

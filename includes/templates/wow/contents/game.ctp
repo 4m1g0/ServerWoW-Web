@@ -353,7 +353,7 @@
 
 
 	<div class="column" style="margin: 0 19px; width: 235px;">
-			<div class="box first-child">
+			<!--<div class="box first-child">
 					<h2 class="header "><a href="<?php echo $this->getWowUrl('game/zone/'); ?>">Mazmorras y bandas</a></h2>
 
 
@@ -363,7 +363,7 @@
 						<li><a href="<?php echo $this->getWowUrl('game/zone/'); ?>#expansion=1">The Burning Crusade</a></li>
 						<li><a href="<?php echo $this->getWowUrl('game/zone/'); ?>#expansion=0">Clásico</a></li>
 				</ul>
-			</div>
+			</div>-->
 
 			<div class="box">
 					<h2 class="header "><a href="<?php echo $this->getWowUrl('game/faction/'); ?>">Facciones</a></h2>

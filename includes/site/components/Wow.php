@@ -180,6 +180,9 @@ class Wow_Component extends Component
 		$this->c('Config')->setValue('tmp.db_characters.active', $rId);
 		$this->c('Config')->setValue('tmp.db_world.active', $rId);
 
+		$this->c('Db')->switchTo('characters', $rId);
+		$this->c('Db')->switchTo('world', $rId);
+
 		return true;
 	}
 

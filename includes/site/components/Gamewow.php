@@ -52,6 +52,13 @@ class GameWoW_Component extends Component
 				$this->buildZone();
 				break;
 			case 'faction':
+				$this->m_gameData = $this->m_gameType;
+				$this->m_gameBreadcrumbData = array(
+					array(
+						'link' => 'game/faction/',
+						'locale_index' => 'Facciones'
+					)
+				);
 				break;
 			case 'lore':
 				break;

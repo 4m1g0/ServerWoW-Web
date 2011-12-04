@@ -237,6 +237,18 @@ $ClientJS = array(
 			)
 		)
 	),
+	'faction' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/js/wiki/wiki.js',
+				'version' => 15
+			),
+			array(
+				'file' => '/wow/static/local-common/js/filter.js',
+				'version' => 29
+			)
+		)
+	),
 	'guide' => array(
 		'footer' => array(
 			array(

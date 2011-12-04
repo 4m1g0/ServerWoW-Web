@@ -131,6 +131,14 @@ class Game_Wow_Controller_Component extends Groupwow_Controller_Component
 			->setVar('gameData', $this->m_gameData);
 	}
 
+	protected function block_faction()
+	{
+		$this->core->setVar('body_class', 'faction-index expansion-3');
+		return $this->block()
+			->setRegion('pagecontent')
+			->setTemplate('faction', 'wow' . DS . 'contents' . DS . 'game' . DS . 'faction');
+	}
+
 	protected function block_race()
 	{
 		if ($this->m_gameData['page'] == 'game-race-index')
