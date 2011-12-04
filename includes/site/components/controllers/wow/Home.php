@@ -22,6 +22,8 @@ class Home_WoW_Controller_Component extends Groupwow_Controller_Component
 {
 	public function build()
 	{
+		$this->c('Wow')->checkBlogPagination();
+
 		$this->buildBlocks(array('carousel', 'featured', 'news', 'main'));
 		return $this;
 	}
@@ -66,7 +68,7 @@ class Home_WoW_Controller_Component extends Groupwow_Controller_Component
 	protected function block_main()
 	{
 		return $this->block('List')
-			->setMainUnit('news')
+			->setVar('items', $this->c('Wow')->getBlogNews())
 			->setRegion('pagecontent')
 			->setTemplate('home', 'wow' . DS . 'contents');
 	}
@@ -90,7 +92,7 @@ class Home_WoW_Controller_Component extends Groupwow_Controller_Component
 	protected function block_news()
 	{
 		return $this->block('List')
-			->setMainUnit('news')
+			->setVar('items', $this->c('Wow')->getBlogNews())
 			->setRegion('news')
 			->setTemplate('news', 'wow' . DS . 'blocks');
 	}

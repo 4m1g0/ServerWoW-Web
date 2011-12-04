@@ -20,6 +20,156 @@
 
 class Wow_Component extends Component
 {
+	public function getBlogEntry($id)
+	{
+		if ($id <= 0)
+			return false;
+
+		$blog = $this->c('QueryResult', 'Db')
+			->model('WowNews')
+			->setItemId($id)
+			->loadItem();
+
+		if (!$blog)
+			return false;
+
+		if (!$blog['allow_comments'])
+			return $blog;
+
+		$blog['blog_comments'] = $this->c('QueryResult', 'Db')
+			->model('WowBlogComments')
+			->addModel('WowUserCharacters')
+			->join('left', 'WowUserCharacters', 'WowBlogComments', 'account', 'account')
+			->join('left', 'WowUserCharacters', 'WowBlogComments', 'character_guid', 'guid')
+			->join('left', 'WowUserCharacters', 'WowBlogComments', 'realm_id', 'realmId')
+			->fieldCondition('wow_blog_comments.blog_id', ' = ' . $id)
+			->order(array('WowBlogComments' => array('postdate')), 'DESC')
+			->limit(15, ($this->getPage(true) * 15))
+			->loadItems();
+
+		return $blog;
+	}
+
+	public function addBlogComment($blog_id, $text)
+	{
+		if (!$this->c('AccountManager')->isLoggedIn() || !$blog_id || !$text)
+			return $this->core->redirectUrl('');
+
+		$char = $this->c('AccountManager')->getActiveCharacter();
+
+		if (!$char)
+			return $this->core->redirectUrl('');
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowBlogComments')
+			->setType('insert');
+
+		$text = str_replace(array('<', '>'), array('&lt;', '&gt;'), $text);
+
+		$edt->blog_id = $blog_id;
+		$edt->account = $this->c('AccountManager')->user('id');
+		$edt->character_guid = $char['guid'];
+		$edt->realm_id = $char['realmId'];
+		$edt->postdate = time();
+		$edt->comment_text = $text;
+
+		if ($this->c('AccountManager')->isAdmin())
+			$edt->blizzard = 1;
+		elseif ($this->c('AccountManager')->isAllowedToModerate())
+			$edt->mvp = 1;			
+
+		$id = $edt->save()->getInsertId();
+
+		// Update comments count
+		$edt->clearValues()
+			->setModel('WowNews')
+			->setId($blog_id)
+			->setType('update')
+			->load();
+
+		$edt->comments_count = $edt->comments_count + 1;
+
+		$edt->save()->clearValues();
+
+		$this->c('Session')->setSession('postTimeCountdown', time() + 60);
+
+		return $this->core->redirectUrl('blog/' . $blog_id . '#page-comments');
+	}
+
+	public function checkBlogPagination()
+	{
+		$page = $this->getPage();
+
+		$max = 10 * $page;
+
+		$count = $this->c('QueryResult', 'Db')
+			->model('WowNews')
+			->fields(array('WowNews' => array('id')))
+			->runFunction('COUNT', 'id')
+			->loadItem();
+
+		if ($count['id'] > $max)
+			$this->core->setDataVar('nextPage', $page + 1);
+		else
+			$this->core->setDataVar('nextPage', 0);
+	}
+
+	public function getBlogNews()
+	{
+		return $this->c('QueryResult', 'Db')
+			->model('WowNews')
+			->limit(10, ($this->getPage(true) * 10))
+			->order(array('WowNews' => array('postdate')), 'DESC')
+			->loadItems();
+	}
+
+	public function getBlogCommentsCount($blog_id)
+	{
+		$d = $this->c('QueryResult', 'Db')
+			->model('WowBlogComments')
+			->fieldCondition('blog_id', ' = ' . intval($blog_id))
+			->loadItems();
+
+		return sizeof($d);
+	}
+
+	public function runBlogApi($blog_id)
+	{
+		if (!isset($_GET['method']))
+			return false;
+
+		$method = $_GET['method'];
+
+		$edt = $this->c('Editing')->clearValues();
+
+		switch ($method)
+		{
+			case 'deleteComment':
+				if (!$this->c('AccountManager')->isAllowedToModerate() || !isset($_POST['comment_id']) || !intval($_POST['comment_id']))
+					return false;
+
+				$comment = intval($_POST['comment_id']);
+
+				$edt->setModel('WowBlogComments')
+					->setId($comment)
+					->setType('delete')
+					->delete()
+					->clearValues()
+					->setModel('WowNews')
+					->setId($blog_id)
+					->setType('update')
+					->load();
+
+				$edt->comments_count = $edt->comments_count - 1;
+
+				$edt->save()->clearValues();
+				break;
+		}
+
+		return true;
+	}
+
 	public function setActiveRealm($realmName)
 	{
 		$rId = $this->getRealmIDByName($realmName);

@@ -22,28 +22,28 @@
 
     <?php if ($this->issetRegion('news')) echo $this->region('news'); ?>
 
-								<div class="blog-paging">
-									
-
-	<a
-		class="ui-button button1 button1-next float-right "
-			href="?page=2"
-		
-		
-		
-		
-		
-		
-		>
+	<div class="blog-paging">
+	<?php
+	if ($this->core->getDataVar('nextPage') > 0) :
+	?>
+	<a class="ui-button button1 button1-next float-right " href="?page=<?php echo $this->core->getDataVar('nextPage'); ?>">
 		<span>
 			<span>Next</span>
 		</span>
 	</a>
-
+	<?php
+	endif;
+	if (isset($_GET['page']) && intval($_GET['page']) > 1) : ?>
+	<a class="ui-button button1 button1-previous" href="?page=1">
+		<span>
+			<span>Prev.</span>
+		</span>
+	</a>
+	<?php endif; ?>
 
 
 	<span class="clear"><!-- --></span>
-							</div>
+						</div>
 					</div>
 		        </div>
             </div>

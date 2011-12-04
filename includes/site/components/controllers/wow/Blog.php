@@ -20,11 +20,18 @@
 
 class Blog_WoW_Controller_Component extends Groupwow_Controller_Component
 {
-	protected function buildBreadcrumb()
+	protected $m_blogItem = null;
+	protected $m_pagerLimits = 0;
+
+	protected function setBreadcrumb()
 	{
-		$unit_data = $this->unit_item()->findData()->getData();
-		if (!$unit_data)
+		$this->m_blogItem = $this->c('Wow')->getBlogEntry(((int) $this->core->getUrlAction(2)));
+
+		if (!$this->m_blogItem)
 			return $this;
+
+		if ($this->m_blogItem['allow_comments'])
+			$this->m_pagerLimits = $this->c('Wow')->getBlogCommentsCount($this->m_blogItem['id']);
 
 		$this->m_breadcrumb = array(
 			array(
@@ -32,18 +39,19 @@ class Blog_WoW_Controller_Component extends Groupwow_Controller_Component
 				'caption' => 'World of Warcraft'
 			),
 			array(
-				'link' => 'blog/' . $unit_data['id'],
-				'caption' => $unit_data['title']
+				'link' => 'blog/' . $this->m_blogItem['id'],
+				'caption' => $this->m_blogItem['title']
 			)
 		);
-
-		$this->buildBlock('breadcrumb');
-		return $this;
 	}
 
 	public function build($core)
 	{
-		$this->buildBreadcrumb()->buildBlocks(array('featured', 'item'));
+		$this->buildBreadcrumb();
+
+		$this->m_pageTitle = $this->m_blogItem['title'];
+
+		$this->buildBlocks(array('featured', 'item'));
 
 		return $this;
 	}
@@ -64,17 +72,17 @@ class Blog_WoW_Controller_Component extends Groupwow_Controller_Component
 			->limit(10);
 	}
 
-	protected function unit_item()
-	{
-		return $this->unit('Item')
-			->setModel('WowNews')
-			->fieldCondition('id', ' = ' . ((int) $this->core->getUrlAction(2)));
-	}
-
 	protected function block_item()
 	{
 		return $this->block('Item')
-			->setMainUnit('item')
+			->setVar('item', $this->m_blogItem)
+			->setVar('pagination', $this->c('Pager')->generatePagination(
+				'/' . $this->core->getRawUrl(),
+				$this->m_pagerLimits,
+				15,
+				$this->c('Forum')->getPage(false) * 15
+				)
+			)
 			->setTemplate('blog', 'wow' . DS . 'contents')
 			->setRegion('pagecontent');
 	}

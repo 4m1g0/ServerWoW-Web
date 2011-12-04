@@ -24,7 +24,7 @@ class Wow_Controller_Component extends Controller_Component
 	protected $m_allowedControllers = array(
 		'home', 'character', 'guild', 'game', 'item', 'sidebar', 'community', 'media', 'forum', 'services',
 		'blog', 'data', 'spell', 'achievement', 'zone', 'faction', 'account-status', 'search', 'pvp', 'arena',
-		'pref', 'store', 'status', 'bugtracker'
+		'pref', 'store', 'status', 'bugtracker', 'discussion'
 	);
 
 	public function build($core)

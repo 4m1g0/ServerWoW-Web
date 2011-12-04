@@ -34,6 +34,8 @@ class WowNews_Model_Component extends Model_Db_Component
 		'postdate' => array('type' => 'integer'),
 		'tags' => array('type' => 'string'),
 		'community' => array('type' => 'integer'),
+		'comments_count' => array('type' => 'integer'),
+		'allow_comments' => array('type' => 'integer'),
 	);
 }
 ?>

@@ -18,22 +18,38 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class WowBlogComments_Model_Component extends Model_Db_Component
+class Discussion_Wow_Controller_Component extends Groupwow_Controller_Component
 {
-	public $m_model = 'WowBlogComments';
-	public $m_table = 'wow_blog_comments';
-	public $m_dbType = 'wow';
-	public $m_fields = array(
-		'comment_id' => 'Id',
-		'blog_id' => array('type' => 'integer'),
-		'account' => array('type' => 'integer'),
-		'character_guid' => array('type' => 'integer'),
-		'realm_id' => array('type' => 'integer'),
-		'postdate' => array('type' => 'integer'),
-		'comment_text' => array('type' => 'string'),
-		'answer_to' => array('type' => 'integer'),
-		'blizzard' => array('type' => 'integer'),
-		'mvp' => array('type' => 'integer'),
-	);
+	public function build($core)
+	{
+		if (!$this->c('AccountManager')->isLoggedIn())
+		{
+			$core->redirectUrl('');
+			return $this;
+		}
+
+		$this->ajaxPage(true);
+
+		$blog_id = intval($core->getUrlAction(2));
+
+		if ($blog_id > 0)
+		{
+			if ($core->getUrlAction(3) == 'api')
+			{
+				if ($this->c('Wow')->runBlogApi($blog_id))
+					echo 'ok';
+				else
+					echo 'nok';
+			}
+			elseif (isset($_POST['detail']))
+				$this->c('Wow')->addBlogComment($blog_id, $_POST['detail']);
+			else
+				$core->redirectUrl('');
+		}
+		else
+			$core->redirectUrl('');
+
+		return $this;
+	}
 }
 ?>
