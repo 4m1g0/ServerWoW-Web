@@ -82,11 +82,20 @@ class AccountManager_Component extends Component
 			->order(array('WowUserCharacters' => array('index')), 'ASC')
 			->loadItems();
 
+		$rids = array();
+		$realms = $this->c('Config')->getValue('realms');
+
+		if ($realms)
+		{
+			foreach ($realms as $r)
+				$rids[] = $r['db_id'];
+		}
+
 		$count_realm_characters = $this->c('QueryResult', 'Db')
 			->model('Realmcharacters')
 			->fields(array('Realmcharacters' => array('numchars')))
 			->fieldCondition('acctid', ' = ' . $this->user('id'))
-			->fieldCondition('realmid', array_keys($this->c('Config')->getValue('realms')))
+			->fieldCondition('realmid', $rids)
 			->runFunction('SUM', 'numchars')
 			->loadItem();
 

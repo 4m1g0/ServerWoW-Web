@@ -31,7 +31,7 @@ $SiteConfig = array (
     'log' => 
     array (
       'enabled' => '1',
-      'filename' => 'Y:\\home\\wowcs\\www\\webroot\\_debug\\tmp.dbg',
+      'filename' => 'Y:\home\wowcs\www\webroot\_debug\tmp.dbg',
       'level' => '3',
     ),
     'title' => 'World of Warcraft',
@@ -62,21 +62,7 @@ $SiteConfig = array (
       'id' => '1',
       'name' => 'Armory Realm',
       'type' => 'SERVER_TRINITY',
-      'db_id' => 1,
-    ),
-    2 => 
-    array (
-      'id' => '2',
-      'name' => 'Armory Realm 2',
-      'db_id' => '2',
-      'type' => 'SERVER_TRINITY',
-    ),
-    3 => 
-    array (
-      'name' => 'Test3',
-      'db_id' => '5',
-      'type' => 'SERVER_MANGOS',
-      'id' => 3,
+	  'db_id' => 1
     ),
   ),
   'database' => 
@@ -103,26 +89,6 @@ $SiteConfig = array (
         'driver' => 'mysqli',
         'prefix' => '',
       ),
-      2 => 
-      array (
-        'host' => '',
-        'user' => '',
-        'password' => '',
-        'db_name' => '',
-        'charset' => '',
-        'driver' => '',
-        'prefix' => '',
-      ),
-      3 => 
-      array (
-        'host' => '',
-        'user' => '',
-        'password' => '',
-        'db_name' => '',
-        'charset' => '',
-        'driver' => '',
-        'prefix' => '',
-      ),
     ),
     'world' => 
     array (
@@ -134,26 +100,6 @@ $SiteConfig = array (
         'db_name' => 'trinity_world',
         'charset' => 'UTF8',
         'driver' => 'mysqli',
-        'prefix' => '',
-      ),
-      2 => 
-      array (
-        'host' => '',
-        'user' => '',
-        'password' => '',
-        'db_name' => '',
-        'charset' => '',
-        'driver' => '',
-        'prefix' => '',
-      ),
-      3 => 
-      array (
-        'host' => '',
-        'user' => '',
-        'password' => '',
-        'db_name' => '',
-        'charset' => '',
-        'driver' => '',
         'prefix' => '',
       ),
     ),

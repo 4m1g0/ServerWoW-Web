@@ -563,6 +563,9 @@ class Admin_Component extends Component
 			if ($k != 'isNew')
 				$this->c('Config')->setValue('realms.' . $realmId . '.' . $k, $v);
 
+		if (isset($_POST['realm']['isNew']))
+			$this->c('Config')->setValue('realms.' . $realmId . '.id', $realmId);
+
 		if (isset($_POST['mysql']['character']))
 			foreach ($_POST['mysql']['character'] as $k => $v)
 				$this->c('Config')->setValue('database.characters.' . $realmId . '.' . $k, $v);

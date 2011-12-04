@@ -16,6 +16,10 @@ if (!$realm)
 Realm Name
 <input type="text" size=50 name="realm[name]" value="<?php echo $realm['name']; ?>" />
 </div>
+<div class="input text long">
+Realm ID (from auth.realms table!)
+<input type="text" size=50 name="realm[db_id]" value="<?php echo isset($realm['db_id']) ? $realm['db_id'] : 0; ?>" />
+</div>
 <div class="input select">
 Realm Type
 <select name="realm[type]">
