@@ -852,5 +852,107 @@ class AccountManager_Component extends Component
 
 		return $this->core->redirectApp('account/management');
 	}
+
+	public function sendPasswordEmail()
+	{
+		if (!isset($_POST['email']) || !isset($_POST['recaptcha_challenge_field']))
+			return $this;
+
+		$email = $_POST['email'];
+		$captcha = $_POST['recaptcha_response_field'];
+
+		if (!$email && !$captcha)
+			return $this->core->setDataVar('errors', (2 | 4));
+		elseif (!$email)
+			return $this->core->setDataVar('errors', 2);
+		elseif (!$captcha)
+			return $this->core->setDataVar('errors', 4);
+
+		require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
+		$privatekey = "6LcZjsoSAAAAAHcliYKVqU5DI4naoEmsvc0UYA80";
+		$resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+
+		if (!$resp->is_valid)
+			return $this->core->setDataVar('errors', 4);
+
+		$user = $this->c('QueryResult', 'Db')
+			->model('Account')
+			->fieldCondition('email', ' = \'' . $_POST['email'] . '\'')
+			->loadItem();
+
+		if (!$user)
+			return $this->core->setDataVar('errors', 2);
+
+		if ($this->sendRecoveryEmail($user['id'], $user['username'], $user['email']))
+			return $this->core->setDataVar('errors', 0)->setDataVar('success', true)->setDataVar('failed', false);
+		else
+			return $this->core->setDataVar('errors', 0)->setDataVar('failed', true)->setDataVar('success', false);
+	}
+
+	protected function sendRecoveryEmail($id, $username, $email)
+	{
+		if (!$email)
+			return false;
+
+		$limit = rand(8, 16);
+
+		$password = '';
+
+		// 65-90
+		// 97-122
+
+		for ($i = 0; $i < $limit; ++$i)
+		{
+			switch (rand(1, 3))
+			{
+				case 1:
+					$password .= chr(rand(65, 90));
+					break;
+				case 2:
+					$password .= chr(rand(97, 122));
+					break;
+				default:
+					$password .= rand(0, 9);
+					break;
+			}
+		}
+		
+		$body = wordwrap($this->c('Locale')->extraFormat('template_password_recovery_email_body',
+			array(
+				'username' => $username,
+				'password' => $password,
+				'url' => $this->getCoreUrl('account/management/settings/change-password.html')
+			)
+		));
+
+		$title = $this->c('Locale')->getString('template_password_recovery_email_title');
+
+		$send_email = $this->c('Config')->getValue('misc.admin_email');
+
+		$headers = 'MIME-Version: 1.0' . "\r\n" .
+		'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+		'From: ' . $send_email . "\n\r" .
+		'Reply-To: ' . $send_email . "\n\r" .
+		'X-Mailer: PHP/' . phpversion();
+
+		if (mail($email, $title, $body, $headers))
+		{
+			$edt = $this->c('Editing')
+				->clearValues()
+				->setModel('Account')
+				->setType('update')
+				->setId($id);
+
+			$edt->v = '';
+			$edt->s = '';
+			$edt->sha_pass_hash = sha1(strtoupper($username) . ':' . strtoupper($password));
+
+			$edt->save()->clearValues();
+
+			return true;
+		}
+
+		return false;
+	}
 }
 ?>

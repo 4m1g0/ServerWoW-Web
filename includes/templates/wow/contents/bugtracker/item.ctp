@@ -6,6 +6,9 @@ if (!$item) return;
 	Bt.setXsToken('<?php echo $this->c('Cookie')->read('xstoken'); ?>');
 	Bt.setId(<?php echo $item['id']; ?>);
 	Bt.setItemInfo({priority: <?php echo $item['priority']; ?>, status: <?php echo $item['status']; ?>, closed: <?php echo $item['closed']; ?>, desc: '<?php echo str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['description']); ?>', response: '<?php echo str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['admin_response']); ?>'});
+	$(document).ready(function() {
+	//	$('#content').attr('style', 'height:1024px');
+	});
 </script>
 
 <div>
@@ -19,9 +22,8 @@ if (!$item) return;
 </div>
 </div>
 </div>
-
-<div style="">
-	<div style="padding:20px;width:720px;height:<?php echo (500 + (sizeof($item['comments']) * 130)); ?>px;float:right;margin-top:-65px;position:relative;">
+<div>
+	<div style="padding:20px;width:720px;float:right;margin-top:-65px;position:relative;">
 		<br />
 		<h1<?php if ($item['type'] == BT_ITEM && isset($item['info'])) echo ' class="color-q' . $item['info']['Quality'] . '"'; ?>><?php
 		switch ($item['type'])
@@ -86,7 +88,7 @@ if (!$item) return;
 		
 		<?php
 		$char = $this->c('AccountManager')->getActiveCharacter();
-		if ($char) :
+		if ($char && !$item['closed']) :
 		?>
 		<h1>Add New Comment:</h1>
 		<form action="" method="post">
@@ -133,13 +135,15 @@ if (!$item) return;
 				</div>
 				<span class="clear"><!-- --></span>
 			</div>
-			<br />
 		<?php endforeach; ?>
 		</div>
 		<?php endif; ?>
 	</div>
 
-	<div style="float:left;width:230px;height:<?php echo (500 + (sizeof($item['comments']) * 130)); ?>px;position:relative;">
+	<div style="float:left;width:230px;">
 		<?php echo $this->region('bt_menu'); ?>
 	</div>
+	<br />
 </div>
+<span class="clear"><!-- --></span>
+<br/>

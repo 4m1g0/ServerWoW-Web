@@ -72,7 +72,7 @@ data-text="Procesando…"
 </form>
 <ul id="help-links">
 <li class="icon-pass">
-¿No puedes <a href="https://eu.battle.net/account/support/login-support.html">iniciar sesión</a>?
+¿No puedes <a href="<?php echo $this->getCoreUrl('account/support/password-reset.html'); ?>">iniciar sesión</a>?
 </li>
 <li class="icon-secure">
 Más información sobre cómo <a href="http://eu.battle.net/security/">proteger tu cuenta</a>.

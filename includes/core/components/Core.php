@@ -35,6 +35,7 @@ class Core_Component extends Component
 	private $m_rawUrl		 = '';
 	private $m_isCached		 = false;
 	private $m_cacheEntry	 = '';
+	private $m_dataVars		 = array();
 
 	/**
 	 * Separate constructor for Core_Component class
@@ -317,6 +318,23 @@ class Core_Component extends Component
 	public function getCacheEntry()
 	{
 		return $this->m_cacheEntry;
+	}
+
+	public function setDataVar($var, $value)
+	{
+		$this->m_dataVars[$var] = $value;
+
+		return $this;
+	}
+
+	public function getDataVar($var)
+	{
+		return isset($this->m_dataVars[$var]) ? $this->m_dataVars[$var] : false;
+	}
+
+	public function getDataVars()
+	{
+		return $this->m_dataVars;
 	}
 }
 ?>

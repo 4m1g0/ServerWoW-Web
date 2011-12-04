@@ -1870,5 +1870,15 @@ El equipo de cuentas de Battle.net <br />
 	'template_bt_section_zones_item' => 'Zone',
 	'template_bt_section_store_item' => 'Store bug',
 	'template_bt_section_others_item' => 'Other bug',
+
+	'template_password_recovery_email_title' => 'Password recovery',
+	// allowable placeholders: {username} -> account name, {password} -> temporary generated password, {url} -> account management page URL, requires domain first
+	'template_password_recovery_email_body' => 'Hello, {username}!<br />This is temporary password for your account on <a href="http://serverwow.com/">ServerWoW</a>: {password}.<br />Please, change it from <a href="http://serverwow.com/{url}" target="_blank">Account Management Page</a> once you logged in.<br />Thank you!',
+
+	'template_password_recovery_success_title' => 'Success!',
+	'template_password_recovery_failed_title' => 'Failed!',
+	'template_password_recovery_success_body' => '[t] Information about password recovery was sent to your E-Mail address.',
+	'template_password_recovery_failed_body' => '[t] Password recovery failed! Please, try again later.',
+	'template_password_recovery_failed_back' => '[t] Back',
 );
 ?>

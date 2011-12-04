@@ -1,4 +1,4 @@
- <div class="media-content">
+<div class="media-content">
 <div id="media-index">
 <div class="media-index-section float-left">
 <a class="gallery-title videos" href="<?php echo $this->getWowUrl('media/videos/'); ?>">

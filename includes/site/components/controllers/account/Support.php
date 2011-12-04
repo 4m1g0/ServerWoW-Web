@@ -18,31 +18,25 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class Account_Controller_Component extends Controller_Component
+class Support_Account_Controller_Component extends Controller_Component
 {
-	protected $m_skipBuild = true;
-	protected $m_allowedControllers = array(
-		'creation', 'management', 'support'
-	);
+	protected function setTemplates()
+	{
+		$this->m_templates = array(
+			(TEMPLATES_DIR . 'wow' . DS . 'elements' . DS . 'ajax.ctp'),
+			(TEMPLATES_DIR . 'elements' . DS . 'account' . DS . 'reset' . DS . 'layout.ctp'),
+		);
+
+		return $this;
+	}
 
 	public function build($core)
 	{
-		if (!$core->getUrlAction(1))
-			$action = 'Management';
-		else
-			$action = ucfirst(strtolower($core->getUrlAction(1)));
+		if ($this->c('AccountManager')->isLoggedIn())
+			$this->core->redirectApp('/account/management/');
 
-		if (!in_array(strtolower($action), $this->m_allowedControllers))
-			$com = 'Error_WoW';
-		else
-			$com = $action . '_Account';
-
-		if (!$this->c('AccountManager')->isLoggedIn() && ($action != 'Creation' && $action != 'Support'))
-			return $core->redirectApp('/login/');
-
-		$this->c($com, 'Controller');
+		$this->c('AccountManager')->sendPasswordEmail();
 
 		return $this;
 	}
 }
-?>
