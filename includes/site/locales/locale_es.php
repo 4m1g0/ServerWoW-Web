@@ -1880,5 +1880,6 @@ El equipo de cuentas de Battle.net <br />
 	'template_password_recovery_success_body' => '[t] Information about password recovery was sent to your E-Mail address.',
 	'template_password_recovery_failed_body' => '[t] Password recovery failed! Please, try again later.',
 	'template_password_recovery_failed_back' => '[t] Back',
+	'template_management_menu_payments' => '[t] Payments',
 );
 ?>
