@@ -37,7 +37,7 @@ if ($character) :
 					if ($characters) :
 						foreach ($characters as $char) : if ($char['realmName'] == $character['realmName'] && $char['name'] == $character['name']) continue;
 					?>
-					<a href="<?php echo $this->getWowUrl('character/' . $char['realmName'] . '/' . $char['name']); ?>" onclick="CharSelect.pin(<?php echo $char['id']; ?>, this); return false;" class="char " rel="np">
+					<a href="<?php echo $this->getWowUrl('character/' . $char['realmName'] . '/' . $char['name']); ?>" onclick="CharSelect.pin(<?php echo $char['index']; ?>, this); return false;" class="char " rel="np">
 						<span class="pin"></span>
 						<span class="name"><?php echo $char['name']; ?></span>
 						<span class="class color-c<?php echo $char['class']; ?>"><?php echo $l->extraFormat('template_charinfo_plate', array('classname' => $char['class_text'], 'racename' => $char['race_text'], 'level' => $char['level'])); ?></span>

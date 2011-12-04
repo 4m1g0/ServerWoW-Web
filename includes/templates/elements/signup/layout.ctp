@@ -71,9 +71,9 @@
 		<div class="video">
 			<div id="chuck" style="width: 560px; height: 315px;">
                 <object width="560" height="315">
-                    <param name="movie" value="https://www.youtube.com/v/DSRrrR4z_ks?version=3&amp;hl=es_ES"></param>
+                    <param name="movie" value="https://www.youtube.com/v/<?php echo $this->c('Config')->getValue('site.creation_youtube_id'); ?>?version=3&amp;hl=es_ES"></param>
                     <param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param>
-                    <embed src="https://www.youtube.com/v/DSRrrR4z_ks?version=3&amp;hl=es_ES" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed>
+                    <embed src="https://www.youtube.com/v/<?php echo $this->c('Config')->getValue('site.creation_youtube_id'); ?>?version=3&amp;hl=es_ES" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed>
                 </object>
             </div>
 		</div>
