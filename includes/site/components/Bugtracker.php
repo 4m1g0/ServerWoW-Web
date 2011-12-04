@@ -98,6 +98,7 @@ class Bugtracker_Component extends Component
 		{
 			case 'delete':
 			case 'response':
+			case 'deleteComment':
 				return $this->runAdminApiAction($_GET['type']);
 			default:
 				return $this->runApiAction($_GET['type']);
@@ -242,7 +243,7 @@ class Bugtracker_Component extends Component
 
 	protected function runAdminApiAction($action)
 	{
-		if (!$this->c('AccountManager')->isAllowedToBugtracker())
+		if (!$this->c('AccountManager')->isAllowedToBugtracker() && ($action == 'deleteComment' && !$this->c('AccountManager')->isAllowedToModerate()))
 		{
 			$this->m_apiResponse['errno'] = 4;
 			$this->m_apiResponse['error'] = 'You are not allowed to perform current action under this bug report!';
@@ -259,6 +260,22 @@ class Bugtracker_Component extends Component
 
 		switch ($action)
 		{
+			case 'deleteComment':
+				$del = $this->c('Editing')
+					->clearValues()
+					->setModel('WowBugtrackerComments')
+					->setId(intval($_POST['comment_id']))
+					->setType('delete')
+					->delete()
+					->clearValues();
+				
+				$this->m_apiResponse = array(
+					'errno' => 0,
+					'type' => $action,
+					'error' => 'none',
+					'success' => true,
+				);
+				break;
 			case 'response':
 				$edt->admin_response = $_POST['message'];
 				$edt->admin_id = $this->c('AccountManager')->user('id');
@@ -397,6 +414,7 @@ class Bugtracker_Component extends Component
 			->join('left', 'WowUserCharacters', 'WowBugtrackerComments', 'character_guid', 'guid')
 			->join('left', 'WowUserCharacters', 'WowBugtrackerComments', 'character_realm', 'realmId')
 			->fieldCondition('wow_bugtracker_comments.report_id', ' = ' . $this->m_item['id'])
+			->setAlias('WowBugtrackerComments', 'id', 'comment_id')
 			->order(array('WowBugtrackerComments' => array('post_date')), 'DESC')
 			->loadItems();
 
@@ -458,6 +476,11 @@ class Bugtracker_Component extends Component
 		$edt->character_realm = $char['realmId'];
 		$edt->post_date = time();
 		$edt->comment = $text;
+
+		if ($this->c('AccountManager')->isAdmin())
+			$edt->blizzard = 1;
+		elseif ($this->c('AccountManager')->isAllowedToModerate())
+			$edt->mvp = 1;
 
 		$edt->save()->clearValues();
 

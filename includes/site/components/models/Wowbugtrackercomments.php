@@ -31,6 +31,8 @@ class WowBugtrackerComments_Model_Component extends Model_Db_Component
 		'character_realm' => array('type' => 'integer'),
 		'post_date' => array('type' => 'integer'),
 		'comment' => array('type' => 'string'),
+		'blizzard' => array('type' => 'integer'),
+		'mvp' => array('type' => 'integer'),
 	);
 }
 ?>

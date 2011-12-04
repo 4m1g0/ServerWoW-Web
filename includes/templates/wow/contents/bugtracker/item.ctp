@@ -119,15 +119,53 @@ if (!$item) return;
 		<?php endif; ?>
 		<?php if (isset($item['comments']) && $item['comments'] && sizeof($item['comments']) > 0) : ?>
 
+		<?php if ($this->c('AccountManager')->isAllowedToModerate()) : ?>
+		<script language="javascript">
+			function deleteComment(id)
+			{
+				$.ajax({
+					url: Core.baseUrl + '/bugtracker/api?id=<?php echo $item['id']; ?>&xstoken=<?php echo $this->c('Cookie')->read('xstoken'); ?>&type=deleteComment',
+					'type': 'POST',
+					data: {comment_id: id},
+					success: function(data) {
+						data = $.parseJSON(data);
+
+						if (data.errno == 0)
+							$('#comment-' + id).fadeOut();
+					}
+				});
+			}
+		</script>
+		<?php endif; ?>
+		<style type="text/css">
+			.bt-blizzard {color:#00B6FF;}
+			.bt-blizzard a{ color:#00B6FF;}
+			.bt-mvp { color:#81b558 }
+			.bt-mvp a{ color:#81b558 }
+		</style>
 		<h1>Comments (<?php echo sizeof($item['comments']); ?>):</h1>
 
 		<div id="comments">
-		<?php foreach ($item['comments'] as $c) : ?>
+		<?php
+		$i = 0;
+		$page = 0;
+		foreach ($item['comments'] as $c) :
+		if ($i == 0)
+		{
+			++$page;
+			echo '<span id="bt_page' . $page .'"' . ($page > 1 ? ' style="display:none;"' : '') . '>';
+		}
+		?>
+			<div<?php if ($c['blizzard']) echo ' class="bt-blizzard"'; elseif ($c['mvp']) echo ' class="bt-mvp"'; ?> id="comment-<?php echo $c['comment_id']; ?>">
 			<hr noshade/>
-			<div>
-				<strong><a href="<?php echo $c['url']; ?>" class="profile-link"><?php echo $c['name'] . ' @ ' . $c['realmName']; ?></a></strong>
+			<strong><a href="<?php echo $c['url']; ?>" class="profile-link"><?php echo $c['name'] . ' @ ' . $c['realmName']; ?></a></strong>
 				<br />
 				<small><?php echo $c['date']; ?></small>
+				<?php 
+				if (($this->c('AccountManager')->isAllowedToModerate() && !$c['blizzard'] && (!$c['mvp'] || ($c['account_id'] == $this->c('AccountManager')->user('id')))) || ($this->c('AccountManager')->isAdmin())) : 
+				?>
+				<small><a href="javascript:;" onclick="deleteComment(<?php echo $c['comment_id']; ?>);">Delete Comment</a></small>
+				<?php endif; ?>
 				<br />
 				<br />
 				<div>
@@ -135,8 +173,69 @@ if (!$item) return;
 				</div>
 				<span class="clear"><!-- --></span>
 			</div>
-		<?php endforeach; ?>
+		<?php
+		++$i;
+		if ($i == 5)
+		{
+			echo '</span>';
+			$i = 0;
+		}
+		endforeach; ?>
 		</div>
+		<span class="clear"><!-- --></span>
+		<script language="javascript">
+			var pages = <?php echo $page; ?>;
+			var current = 1;
+			function switchPage(ctx, type)
+			{
+				if (!ctx)
+					return false;
+
+				if (type == 'prev' && current == 1)
+					return;
+				else if (type == 'next' && current == pages)
+					return;
+
+				for (var i = 1; i <= pages; ++i)
+				{
+					$('#bt_page' + i).hide();
+					$('#page' + i + 'li').removeClass('current');
+				}
+
+				if (!type)
+				{
+					current = parseInt($(ctx).attr('data-page'), 10);
+					$('#page' + current + 'li').addClass('current');
+					$('#bt_page' + current).show();
+					return true;
+				}
+
+				if (type && type == 'prev' && current > 1)
+				{
+					current -= 1;
+					$('#bt_page' + current).show();
+					$('#page' + current + 'li').addClass('current');
+				}
+				else if (type && type == 'next' && current < pages)
+				{
+					current += 1;
+					$('#bt_page' + current).show();
+					$('#page' + current + 'li').addClass('current');
+				}
+				return true;
+			}
+		</script>
+		<?php if ($page > 1) : ?>
+		<br /><br />
+		<ul class="ui-pagination">
+			<li class="cap-item"><a href="javascript:;" onclick="switchPage(this, 'prev');" id="pageprev">Prev.</a></li>
+			<?php
+			for ($i = 0; $i < $page; ++$i) : ?>
+			<li<?php if ($i == 0) echo ' class="current"'; ?> id="page<?php echo ($i + 1); ?>li"><a href="javascript:;" onclick="switchPage(this);" id="page<?php echo ($i + 1); ?>" data-page="<?php echo ($i + 1); ?>"><?php echo ($i + 1); ?></a></li>
+			<?php endfor; ?>
+			<li class="cap-item"><a href="javascript:;" onclick="switchPage(this, 'next');" id="pagenext">Next</a></li>
+		</ul>
+		<?php endif; ?>
 		<?php endif; ?>
 	</div>
 
