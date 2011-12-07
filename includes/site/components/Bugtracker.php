@@ -608,16 +608,16 @@ class Bugtracker_Component extends Component
 		{
 			case 2:
 				$item['prColor'] = '#ffff00';
-				$item['prName'] = 'Medium';
+				$item['prName'] = 'Media';
 				break;
 			case 3:
 				$item['prColor'] = '#ff0000';
-				$item['prName'] = 'High';
+				$item['prName'] = 'Alta';
 				break;
 			case 1:
 			default:
 				$item['prColor'] = '#00ff00';
-				$item['prName'] = 'Low';
+				$item['prName'] = 'Baja';
 				break;
 		}
 

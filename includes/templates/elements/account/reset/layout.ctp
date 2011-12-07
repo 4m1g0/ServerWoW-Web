@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es-es">
 <head>
-<title>¿No puedes iniciar sesión? - Battle.net</title>
+<title>¿No puedes iniciar sesión? - ServerWoW</title>
 <meta content="false" http-equiv="imagetoolbar" />
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
 <link rel="shortcut icon" href="<?php echo CLIENT_FILES_PATH; ?>/account/local-common/images/favicons/bam.ico" type="image/x-icon"/>
-<link rel="search" type="application/opensearchdescription+xml" href="http://eu.battle.net/es-es/data/opensearch" title="Búsqueda eb Battle.net" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://eu.battle.net/es-es/data/opensearch" title="Búsqueda eb ServerWoW" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo CLIENT_FILES_PATH; ?>/account/local-common/css/common.css?v37" />
 <!--[if IE]> <link rel="stylesheet" type="text/css" media="all" href="<?php echo CLIENT_FILES_PATH; ?>/account/local-common/css/common-ie.css?v37" />
 <![endif]-->
@@ -61,12 +61,12 @@ Flash.expressInstall= 'http://eu.media.blizzard.com/global-video-player/expressI
 <div id="search-bar">
 <form action="<?php echo $this->GetWowUrl('search'); ?>" method="get" id="search-form">
 <div>
-<input type="text" name="q" id="search-field" value="Buscar en Battle.net" maxlength="35" alt="Buscar en Battle.net" tabindex="50" accesskey="q" />
-<input type="submit" id="search-button" value="" title="Buscar en Battle.net" tabindex="50" />
+<input type="text" name="q" id="search-field" value="Buscar en ServerWoW" maxlength="35" alt="Buscar en ServerWoW" tabindex="50" accesskey="q" />
+<input type="submit" id="search-button" value="" title="Buscar en ServerWoW" tabindex="50" />
 </div>
 </form>
 </div>
-<h1 id="logo"><a href="/" tabindex="50" accesskey="h">Battle.net</a></h1>
+<h1 id="logo"><a href="/" tabindex="50" accesskey="h">ServerWoW</a></h1>
 <div id="navigation">
 <div id="page-menu" class="large">
 <h2 class="isolated"><a href="/account/support/login-support.html"> ¿No puedes iniciar sesión?
@@ -78,93 +78,69 @@ Flash.expressInstall= 'http://eu.media.blizzard.com/global-video-player/expressI
 </div>
 <div id="service">
 <ul class="service-bar">
-<li class="service-cell service-home"><a href="http://eu.battle.net/" tabindex="50" accesskey="1" title="Battle.net"> </a></li>
+<li class="service-cell service-home"><a href="http://serverwow.com/" tabindex="50" accesskey="1" title="ServerWoW"> </a></li>
 <li class="service-cell service-welcome">
-<a href="?login" onclick="return Login.open()">Inicia sesión</a> o <a href="https://eu.battle.net/account/creation/tos.html">Crea una cuenta</a>
+<a href="?login" onclick="return Login.open()">Inicia sesión</a> o <a href="https//serverwow.com/account/creation/tos.html">Crea una cuenta</a>
 </li>
-<li class="service-cell service-account"><a href="https://eu.battle.net/account/management/" class="service-link" tabindex="50" accesskey="3">Cuenta</a></li>
-<li class="service-cell service-support service-support-enhanced">
-<a href="#support" class="service-link service-link-dropdown" tabindex="50" accesskey="4" id="support-link" onclick="return false" style="cursor: progress" rel="javascript">Asistencia<span class="no-support-tickets" id="support-ticket-count"></span></a>
-<div class="support-menu" id="support-menu" style="display:none;">
-<div class="support-primary">
-<ul class="support-nav">
-<li>
-<a href="http://eu.blizzard.com/support/" tabindex="55" class="support-category">
-<strong class="support-caption">Artículos de asistencia</strong>
-Explorar base de datos
-</a>
-</li>
-<li>
-<a href="https://eu.battle.net/support/ticket/submit" tabindex="55" class="support-category">
-<strong class="support-caption">Hacer una pregunta</strong>
-Consigue ayuda de nuestros agentes
-</a>
-</li>
-<li>
-<a href="https://eu.battle.net/support/ticket/status" tabindex="55" class="support-category">
-<strong class="support-caption">Tus consultas</strong>
-Ver historial completo de tus consultas (debes iniciar sesión).
-</a>
-</li>
-</ul>
-<span class="clear"><!-- --></span>
-</div>
-<div class="support-secondary"></div>
-<!--[if IE 6]> <iframe id="support-shim" src="javascript:false;" frameborder="0" scrolling="no" style="display: block; position: absolute; top: 0; left: 9px; width: 297px; height: 400px; z-index: -1;"></iframe>
-<script type="text/javascript">
-//<![CDATA[
-(function(){
-var doc = document;
-var shim = doc.getElementById('support-shim');
-shim.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';
-shim.style.display = 'block';
-})();
-//]]>
-</script>
-<![endif]-->
-</div>
-</li>
+<li class="service-cell service-account"><a href="http://serverwow.com/account/management/" class="service-link" tabindex="50" accesskey="3">Cuenta</a></li>
+
+<li class="service-cell service-explore" style="background-position:-140px -200px;">
+            <a href="#explore" tabindex="50" accesskey="6" class="dropdown" id="vote-link" style="cursor: pointer; " rel="javascript">Votar</a>
+            <div class="explore-menu" id="vote-menu" style="display:none;width:350px;">
+                <div class="explore-primary">
+                    <div class="explore-links" style="float:left;">
+                        <ul>
+
+                            <li><a href="http://serversprivados.com/?in=33" target="_blank" tabindex="55"><img src="http://serversprivados.com/vote.jpg" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://www.wowtop.es/" target="_blank" tabindex="55"><img src="http://www.wowtop.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://100ranking.com/" target="_blank" tabindex="55"><img src="http://100ranking.com/button.php?u=nache" width="142" height="52" border="0" alt="Servidor privado"></a></li><li>                       
+                        </ul>
+                    </div>
+                    <div class="explore-links" style="margin-right:20px;">
+                        <ul>
+
+                          <li><a href="http://gratis-wow.es/" target="_blank" tabindex="55"><img src="http://gratis-wow.es/button.php?u=nache" width="142" height="52" border="0" alt="Server"></a></li><li><a href="http://wowranking.es/" target="_blank" tabindex="55"><img src="http://wowranking.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="servidor"></a></li><li><a href="http://www.servidoreswow.es/" target="_blank" tabindex="55"><img src="http://www.servidoreswow.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="Server de World of Warcraft"></a></li>                        
+                        </ul>
+                    </div>
+                    <center><span class="clear">Recuerda que cada vez que votas por nosotros, Agradeces nuestro trabajo, e invitas a que tengas <b>Muchos mas compañeros con quien jugar y COMPETIR!!</b></span></center>
+                </div>
+         	</div>
+ </li>
+
 <li class="service-cell service-explore">
-<a href="#explore" tabindex="50" accesskey="5" class="dropdown" id="explore-link" onclick="return false" style="cursor: progress" rel="javascript">Explorar</a>
+<a href="#explore" tabindex="50" accesskey="5" class="dropdown" id="explore-link" onclick="return false" style="cursor: progress" rel="javascript"><?php echo $l->getString('template_servicebar_twitter'); ?></a>
 <div class="explore-menu" id="explore-menu" style="display:none;">
 <div class="explore-primary">
-<ul class="explore-nav">
-<li>
-<a href="/" tabindex="55" data-label="Home">
-<strong class="explore-caption">Battle.net</strong>
-Conecta. Juega. Une.
-</a>
-</li>
-<li>
-<a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/" tabindex="55" data-label="Account">
-<strong class="explore-caption">Cuenta</strong>
-Gestiona tu cuenta
-</a>
-</li>
-<li>
-<a href="http://eu.blizzard.com/support/" tabindex="55" data-label="Support">
-<strong class="explore-caption">Asistencia</strong>
-Consigue asistencia
-</a>
-</li>
-<li>
-<a href="https://eu.battle.net/account/management/get-a-game.html" tabindex="55" data-label="Buy Games">
-<strong class="explore-caption">Comprar juegos</strong>
-Juegos en soporte digital para descargar
-</a>
-</li>
-</ul>
-<div class="explore-links">
-<h2 class="explore-caption">Más</h2>
-<ul>
-<li><a href="http://eu.battle.net/what-is/" tabindex="55" data-label="More">¿Qué es Battle.net?</a></li>
-<li><a href="http://eu.battle.net/realid/" tabindex="55" data-label="More">¿Qué es ID Real?</a></li>
-<li><a href="https://eu.battle.net/account/parental-controls/index.html" tabindex="55" data-label="More">Control paterno</a></li>
-<li><a href="http://eu.battle.net/security/" tabindex="55" data-label="More">Seguridad de cuentas</a></li>
-<li><a href="http://eu.battle.net/games/classic" tabindex="55" data-label="More">Juegos clásicos</a></li>
-<li><a href="https://eu.battle.net/account/support/index.html" tabindex="55" data-label="More">Asistencia de cuentas</a></li>
-</ul>
-</div>
+                			<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+			<script>
+			new TWTR.Widget({
+			version: 2,
+			type: 'list',
+			rpp: 10,
+			interval: 6000,
+			width: 380,
+			height: 200,
+			theme: {
+	    		shell: {
+			      background: 'transparent',
+	    		  color: '#7c7c85'
+		    		},
+	    		tweets: {
+		    	  background: 'transparent',
+    			  color: '#D1D4DA',
+			      links: '#2897e0'
+		    }
+			},
+			features: {
+			    scrollbar: true,
+		    	loop: false,
+			    live: false,
+			    hashtags: true,
+			    timestamp: true,
+			    avatars: true,
+			    behavior: 'all'
+			  }
+			}).render().setList('n4ch3', 'lcv').start();
+			</script>
+
 <span class="clear"><!-- --></span>
 <!--[if IE 6]> <iframe id="explore-shim" src="javascript:false;" frameborder="0" scrolling="no" style="display: block; position: absolute; top: 0; left: 9px; width: 409px; height: 400px; z-index: -1;"></iframe>
 <script type="text/javascript">
@@ -179,31 +155,11 @@ shim.style.display = 'block';
 </script>
 <![endif]-->
 </div>
-<ul class="explore-secondary">
-<li class="explore-game explore-game-sc2">
-<a href="http://eu.battle.net/sc2/" tabindex="55" data-label="Game - sc2">
-<span class="explore-game-inner">
-<strong class="explore-caption">StarCraft II</strong>
-<span>Noticias y Foros</span> <span>Guía para principiantes</span> <span>Perfil de jugador</span> <span>…</span>
-</span>
-</a>
+
+
+</div>
 </li>
-<li class="explore-game explore-game-wow">
-<a href="<?php echo $this->GetWowUrl(); ?>" tabindex="55" data-label="Game - wow">
-<span class="explore-game-inner">
-<strong class="explore-caption">World of Warcraft</strong>
-<span>Perfil de personaje</span> <span>Noticias y Foros</span> <span>Guía de juego</span> <span>…</span>
-</span>
-</a>
-</li>
-<li class="explore-game explore-game-d3">
-<a href="http://eu.battle.net/d3/" tabindex="55" data-label="Game - d3">
-<span class="explore-game-inner">
-<strong class="explore-caption">Diablo III</strong>
-<span>Guía de juego</span> <span>Noticias sobre la beta</span> <span>Foros</span> <span>…</span>
-</span>
-</a>
-</li>
+
 </ul>
 </div>
 </li>
@@ -278,7 +234,7 @@ if ($errors & 4) : ?>
 <div id="page-header">
 <span class="float-right"><span class="form-req">*</span> Obligatorio</span>
 <h2 class="subcategory">Recuperación de contraseña</h2>
-<h3 class="headline">Información sobre la cuenta de Battle.net&#160;&#160;&#160;</h3>
+<h3 class="headline">Información sobre la cuenta de ServerWoW&#160;&#160;&#160;</h3>
 </div>
 <?php
 $success = $this->core->getDataVar('success');
@@ -305,7 +261,7 @@ if ($success) : ?>
 <input type="hidden" name="csrftoken" value="128871cc-6ca4-41cc-94c5-de0f87913a32" />
 <div class="form-row required">
 <label for="email" class="label-full ">
-<strong> Cuenta de Battle.net (dirección de e-mail):
+<strong> Cuenta de ServerWoW (dirección de e-mail):
 </strong>
 <span class="form-required">*</span>
 </label>
@@ -353,68 +309,57 @@ tabindex="1"
 <div id="sitemap">
 <div class="column">
 <h3 class="bnet">
-<a href="<?php echo CLIENT_FILES_PATH; ?>/" tabindex="100">Battle.net</a>
+<a href="<?php echo CLIENT_FILES_PATH; ?>/" tabindex="100"><?php echo $l->getString('template_footer_home_title'); ?></a>
 </h3>
 <ul>
-<li><a href="http://eu.battle.net/what-is/">¿Qué es Battle.net?</a></li>
-<li><a href="https://eu.battle.net/account/management/get-a-game.html">Adquirir juegos</a></li>
-<li><a href="https://eu.battle.net/account/management/">Cuenta</a></li>
-<li><a href="http://eu.blizzard.com/support/">Asistencia</a></li>
-<li><a href="http://eu.battle.net/realid/">ID Real</a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/what-is/"><?php echo $l->getString('template_footer_home_link1'); ?></a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/"><?php echo $l->getString('template_footer_home_link4'); ?></a></li>
 </ul>
 </div>
 <div class="column">
 <h3 class="games">
-<a href="http://eu.battle.net/" tabindex="100">Juegos</a>
+<a href="<?php echo CLIENT_FILES_PATH; ?>" tabindex="100"><?php echo $l->getString('template_footer_games_title'); ?></a>
 </h3>
 <ul>
-<li><a href="http://eu.battle.net/sc2/">StarCraft II</a></li>
-<li><a href="http://eu.battle.net/wow/">World of Warcraft</a></li>
-<li><a href="http://eu.battle.net/d3/">Diablo III</a></li>
-<li><a href="http://eu.battle.net/games/classic">Juegos clásicos</a></li>
-<li><a href="https://eu.battle.net/account/download/">Descarga de juegos</a></li>
+<li><a href=""><?php echo $l->getString('template_footer_games_link1'); ?></a></li>
+<li><a href=""><?php echo $l->getString('template_footer_games_link2'); ?></a></li>
+<li><a href=""><?php echo $l->getString('template_footer_games_link3'); ?></a></li>
+<li><a href=""><?php echo $l->getString('template_footer_games_link4'); ?></a></li>
 </ul>
 </div>
 <div class="column">
 <h3 class="account">
-<a href="https://eu.battle.net/account/management/" tabindex="100">Cuenta</a>
+<a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/" tabindex="100"><?php echo $l->getString('template_footer_account_title'); ?></a>
 </h3>
 <ul>
-<li><a href="https://eu.battle.net/account/support/login-support.html">¿No puedes iniciar sesión?</a></li>
-<li><a href="https://eu.battle.net/account/creation/tos.html">Crear cuenta</a></li>
-<li><a href="https://eu.battle.net/account/management/">Resumen de cuenta</a></li>
-<li><a href="https://eu.battle.net/account/management/authenticator.html">Seguridad de cuentas</a></li>
-<li><a href="https://eu.battle.net/account/management/add-game.html">Añadir juego</a></li>
-<li><a href="https://eu.battle.net/account/management/redemption/redeem.html">Canjear código de promoción</a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/support/password-reset.html"><?php echo $l->getString('template_footer_account_link1'); ?></a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/creation/tos.html"><?php echo $l->getString('template_footer_account_link2'); ?></a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/"><?php echo $l->getString('template_footer_account_link3'); ?></a></li>
 </ul>
 </div>
 <div class="column">
 <h3 class="support">
-<a href="http://eu.blizzard.com/support/" tabindex="100">Asistencia</a>
+<a href="<?php echo CLIENT_FILES_PATH; ?>/wow/forum/9/" tabindex="100"><?php echo $l->getString('template_footer_support_title'); ?></a>
 </h3>
 <ul>
-<li><a href="http://eu.blizzard.com/support/">Artículos de asistencia</a></li>
-<li><a href="https://eu.battle.net/account/parental-controls/index.html">Control paterno</a></li>
-<li><a href="http://eu.battle.net/security/">Protege tu cuenta</a></li>
-<li><a href="http://eu.battle.net/security/help">¡Ayuda, me han pirateado!</a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/wow/forum/"><?php echo $l->getString('template_footer_support_link1'); ?></a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/wow/bugtracker/"><?php echo $l->getString('template_footer_support_link2'); ?></a></li>
 </ul>
 </div>
-<span class="clear"><!-- --></span>
-</div>
-<div id="copyright">
-<a href="javascript:;" tabindex="100" id="change-language">
-<span>Europa - Español (EU)</span>
-</a>
-©2011 Blizzard Entertainment, Inc. Todos los derechos reservados
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/termsofuse.html" tabindex="100">Condiciones de Uso</a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/legal/" tabindex="100">Legal</a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/privacy.html" tabindex="100">Protección de datos</a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/infringementnotice.html" tabindex="100">Derechos de autor</a>
-</div>
+
 <div id="international"></div>
 <div id="legal">
+<div id="legal-ratings" class="png-fix">
+<a href="http://www.pegi.info/" onclick="return Core.open(this);">
+<img class="legal-image" alt="" src="<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common/images/legal/eu/pegi-wow.png" />
+</a>
+</div>
+<div id="blizzard" class="png-fix" align="left">
+<span id="cdSiteSeal2"><script type="text/javascript" src="//tracedseals.starfieldtech.com/siteseal/get?scriptId=cdSiteSeal2&amp;cdSealType=Seal2&amp;sealId=55e4ye7y7mb73baeb3016453fcaa57x90cy7mb7355e4ye7d39bdb92695749257"></script></span>
+</div>
 <span class="clear"><!-- --></span>
 </div>
+
 </div>
 </div>
 </div>

@@ -27,7 +27,7 @@ foreach ($this->c('Config')->getValue('realms') as $realm)
 
 <div class="currently-viewing">
 <div>
-<h1>World of Warcraft Store</h1>
+<h1>ServerWoW Tienda & Servicios</h1>
 
 <div class="filter-details">
 
@@ -97,13 +97,13 @@ function buyout()
 {
 	if (totalPrice > totalPoints)
 	{
-		$('#error').html('You don\'t have enough points to buy all items listed here. Please, <a href="<?php echo $this->getWowUrl('store/cart'); ?>">remove some of them</a> or <a href="<?php echo $this->getCoreUrl('account/management/payments'); ?>">buy some more points</a>.');
+		$('#error').html('Tu no tienes suficientes puntos para comprar todos los items en la lista. Por favor, <a href="<?php echo $this->getWowUrl('store/cart'); ?>">quita algunos</a> o <a href="<?php echo $this->getCoreUrl('account/management/'); ?>">compra mas puntos</a>.');
 		return false;
 	}
 
 	if (lastIdx < items_count)
 	{
-		$('#error').html('Please, make sure that you have selected character for all items.');
+		$('#error').html('Porfavor, verifica que seleccionaste personajes para todas tus compras.');
 		return false;
 	}
 
@@ -127,9 +127,9 @@ function buyout()
 				<table>
 					<thead>
 						<tr>
-							<th><span class="sort-tab">Name</span></th>
-							<th><span class="sort-tab">Realm Name</span></th>
-							<th><span class="sort-tab">Character Name</span></th>
+							<th><span class="sort-tab">Nombre</span></th>
+							<th><span class="sort-tab">Nombre de Reino</span></th>
+							<th><span class="sort-tab">Personaje</span></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -182,7 +182,7 @@ function buyout()
 					</tbody>
 				</table>
 			</div>
-			<button onclick="buyout();">Buyout</button>
+			<button onclick="buyout();"><u>COMPRAR</u></button>
 			<div id="error"></div>
 	<?php echo $this->region('pagination'); ?>
 		</div>
@@ -201,15 +201,15 @@ function buyout()
 </ul><span style="padding:20px;float:left"><?php
 $cart = $store->getCart();
 if (!$cart) : ?>
-<h1 class="color-q3">Your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a> is empty
-<br /><br />Available Points: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/payments'); ?>">Buy more</a>)</h1>
+<h1 class="color-q3">Tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>">carro de compras</a> esta vacio
+<br /><br />Puntos Disponibles: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/'); ?>"><u>Comprar mas</u></a>)</h1>
 <?php else : 
 $price = $store->getTotalPrice();
 ?>
-<h1 class="color-q2">You have <?php echo sizeof($cart); ?> item(s) in your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a><br />(Total price: <?php echo $price; ?> points)
-<br /><br />Available Points: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/payments'); ?>">Buy more</a>)</h1>
+<h1 class="color-q2">Tienes <?php echo sizeof($cart); ?> item(s) en tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a><br />(Precio total: <?php echo $price; ?> puntos)
+<br /><br />Puntos Disponibles: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/'); ?>"><u>Comprar Mas</u></a>)</h1>
 <br />
-<a href="<?php echo $this->getWowUrl('store/cart/buyout'); ?>">Buyout</a>
+<a href="<?php echo $this->getWowUrl('store/cart/buyout'); ?>"><u>COMPRAR</u></a>
 <?php endif; ?></span>
 	</div>
 </div>

@@ -42,7 +42,7 @@ $format = $pvp->getLadderType() . 'v' . $pvp->getLadderType();
 
 
 				<div class="filter">
-					<label for="filter-team">Команда:</label>
+					<label for="filter-team">Equipo:</label>
 					<input type="text" class="input" id="filter-team" name="team" value="<?php if (isset($_GET['team'])) echo $_GET['team']; ?>" maxlength="30" />
 				</div>
 
@@ -50,7 +50,7 @@ $format = $pvp->getLadderType() . 'v' . $pvp->getLadderType();
 					<label for="filter-realm"><?php echo $l->getString('template_pvp_ladder_filter_realm'); ?>:</label>
 
 					<select class="input select" id="filter-realm" name="realm">
-						<option value="-1">Все</option>
+						<option value="-1">Seleccionar</option>
 						<?php
 						$realms = $this->c('Config')->getValue('realms');
 						if ($realms) : foreach ($realms as $realm) : ?>
@@ -60,10 +60,10 @@ $format = $pvp->getLadderType() . 'v' . $pvp->getLadderType();
 				</div>
 
 				<div class="filter">
-					<label for="filter-faction">Фракция:</label>
+					<label for="filter-faction">Faccion:</label>
 
 					<select class="input select" id="filter-faction" name="faction">
-						<option value="-1">Все</option>
+						<option value="-1">Seleccionar</option>
 							<option value="0"<?php if (isset($_GET['faction']) && $_GET['faction'] == FACTION_ALLIANCE) echo ' selected="selected"'; ?>><?php echo $l->getString('faction_alliance'); ?></option>
 							<option value="1"<?php if (isset($_GET['faction']) && $_GET['faction'] == FACTION_HORDE) echo ' selected="selected"'; ?>><?php echo $l->getString('faction_horde'); ?></option>
 					</select>
@@ -84,18 +84,30 @@ $format = $pvp->getLadderType() . 'v' . $pvp->getLadderType();
 
 	<button class="ui-button button1 " type="submit" id="submit-button">
 		<span>
-			<span>Фильтр</span>
+			<span>Filtrar</span>
 		</span>
 	</button>
-
-					<a href="<?php echo $this->getWowUrl('pvp/arena/' . $bg . '/' . $format); ?>">Сброс</a>
+					<a href="<?php echo $this->getWowUrl('pvp/arena/' . $bg . '/' . $format); ?>">Restablecer</a>
 				</div>
 			</form>
 
-			<div id="ladders">
+		<div id="ladders">
 
 	<?php echo $this->region('pagination'); ?>
 
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Juego-PvP 728&#42;90) */
+google_ad_slot = "3035081840";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
 
 	<div class="table ">
 		<table>

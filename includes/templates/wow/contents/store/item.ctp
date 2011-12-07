@@ -3,7 +3,7 @@
 
 <div class="currently-viewing">
 <div>
-<h1>World of Warcraft Store</h1>
+<h1>ServerWoW Tienda & Servicios</h1>
 
 <div class="filter-details">
 
@@ -34,7 +34,7 @@ endforeach;
 </ul>
 <span id="add2cart-link-<?php echo $store_item['store']['item_id']; ?>" style="display:<?php if (!$store->isItemInCart($store_item['store']['item_id'])) echo 'true'; else echo 'none'; ?>;">
 	<input type="hidden" id="item-<?php echo $store_item['store']['item_id']; ?>-quantity" value="1" /><br />
-	<a href="javascript:;" onclick="Store.addToCart(<?php echo $store_item['store']['item_id'] . ', ' . $store_item['store']['cat_id'] . ', ' . $xstoken; ?>);">Add to Cart</a>
+	<a href="javascript:;" onclick="Store.addToCart(<?php echo $store_item['store']['item_id'] . ', ' . $store_item['store']['cat_id'] . ', ' . $xstoken; ?>);"><u>A&ntildeadir al Carro</u></a>
 </span>
 <?php
 else :
@@ -45,11 +45,11 @@ echo $item['name']; ?></a></h1>
 <h2 class="color-q2">Price: <?php echo $store_item['store']['price']; ?> points</h2>
 <span id="add2cart-link-<?php echo $item['entry']; ?>" style="display:<?php if (!$store->isItemInCart($store_item['store']['item_id'])) echo 'true'; else echo 'none'; ?>;">
 	Quantity: <input type="text" id="item-<?php echo $item['entry']; ?>-quantity" value="1" /><br />
-	<a href="javascript:;" onclick="Store.addToCart(<?php echo $item['entry'] . ', ' . $store_item['store']['cat_id'] . ', ' . $xstoken; ?>);">Add to Cart</a>
+	<a href="javascript:;" onclick="Store.addToCart(<?php echo $item['entry'] . ', ' . $store_item['store']['cat_id'] . ', ' . $xstoken; ?>);"><u>A&ntildeadir al Carro</u></a>
 	
 </span>
 <div id="op-result-<?php echo $item['entry']; ?>"><?php if ($store->isItemInCart($item['entry'])) : ?>This item is in your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a>!<?php endif; ?></div>
-<span id="removefromcart-link-<?php echo $item['entry']; ?>" style="display:<?php if ($store->isItemInCart($store_item['store']['item_id'])) echo 'true'; else echo 'none'; ?>;"><a href="javascript:;" onclick="Store.removeFromCart(<?php echo $item['entry'] . ', ' . $xstoken; ?>);">Remove from Cart</a></span>
+<span id="removefromcart-link-<?php echo $item['entry']; ?>" style="display:<?php if ($store->isItemInCart($store_item['store']['item_id'])) echo 'true'; else echo 'none'; ?>;"><a href="javascript:;" onclick="Store.removeFromCart(<?php echo $item['entry'] . ', ' . $xstoken; ?>);"><u>Quitar del Carro</u></a></span>
 <?php endif; else : ?>
 <h1 class="color-q2"><?php echo $store_item['service']['name']; ?></h1><em>Service</em>
 <span id="add2cart-link-<?php echo $store_item['store']['item_id']; ?>" style="display:<?php if (!$store->isItemInCart($store_item['store']['item_id'])) echo 'true'; else echo 'none'; ?>;">
@@ -59,7 +59,7 @@ echo $item['name']; ?></a></h1>
 	<?php else : ?>
 	<input type="hidden" id="item-<?php echo $store_item['store']['item_id']; ?>-quantity" value="1" /><br />
 	<?php endif; ?>
-	<a href="javascript:;" onclick="Store.addToCart(<?php echo $store_item['store']['item_id'] . ', ' . $store_item['store']['cat_id'] . ', ' . $xstoken; ?>);">Add to Cart</a>
+	<a href="javascript:;" onclick="Store.addToCart(<?php echo $store_item['store']['item_id'] . ', ' . $store_item['store']['cat_id'] . ', ' . $xstoken; ?>);"><u>A&ntildeadir al Carro</u></a>
 </span>
 <?php endif;?>
 </div>

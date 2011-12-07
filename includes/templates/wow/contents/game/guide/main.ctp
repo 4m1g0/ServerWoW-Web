@@ -5,7 +5,7 @@
 						<em class="chapter-mark">
 							Qué es
 						</em>
-						World of Warcraft
+						ServerWoW y Guia de Instalacion
 					</span>
 				</a>
 				<a href="getting-started" class="btn-getting-started">
@@ -46,7 +46,7 @@
 		<div class="guide-intro-part">
 			<div class="guide-section-title">
 				<a href="/wow/">World of Warcraft</a><em>Guía para principiantes</em>
-				<h4>Qué es <br/>World of Warcraft</h4>
+				<h4>Qué es <br/>ServerWoW y Guia de Instalacion</h4>
 			</div>
 			<div class="guide-intro-text"><p>Server WoW Realms es un server de world of warcraft, para conectarte deberás tener inatalada la version 3.3.35 y crear una cuenta en la web, que tambien te servirá para acceder al juego.</div>
 		</div>

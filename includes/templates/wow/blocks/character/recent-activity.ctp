@@ -1,4 +1,20 @@
 <div class="profile-recentactivity">
+
+<h3 class="category ">Publicidad</h3>
+<div class="profile-box-simple">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Armeria Characters 336&#42;280) */
+google_ad_slot = "3190607740";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+
 	<h3 class="category "><?php echo $l->getString('template_profile_recent_activity'); ?></h3>
 	<div class="profile-box-simple">
 	<?php if ($feeds) : 

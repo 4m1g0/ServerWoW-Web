@@ -75,7 +75,7 @@ data-text="Procesando…"
 ¿No puedes <a href="<?php echo $this->getCoreUrl('account/support/password-reset.html'); ?>">iniciar sesión</a>?
 </li>
 <li class="icon-secure">
-Más información sobre cómo <a href="http://eu.battle.net/security/">proteger tu cuenta</a>.
+Más información sobre cómo <a href="">proteger tu cuenta</a>.
 </li>
 <li class="icon-signup">
 ¿Aún no tienes una cuenta? ¡<a href="<?php echo $this->getCoreUrl('account/creation/'); ?>">Regístrate ya</a>!
@@ -93,6 +93,18 @@ href="<?php echo $this->getCoreUrl('account/creation/'); ?>"
 <span>Crear una cuenta</span>
 </span>
 </a>
+<br><br>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Login 336&#42;280) */
+google_ad_slot = "0980210044";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
 </div>
 <span class="clear"><!-- --></span>
 <script type="text/javascript">
@@ -102,73 +114,72 @@ $('#accountName').focus();
 </script>
 </div>
 <div id="footer">
-<div id="sitemap">
+
+<div id="sitemap" class="promotions">
 <div class="column">
 <h3 class="bnet">
-<a href="http://eu.battle.net/" tabindex="100">Battle.net</a>
+<a href="<?php echo CLIENT_FILES_PATH; ?>/" tabindex="100"><?php echo $l->getString('template_footer_home_title'); ?></a>
 </h3>
 <ul>
-<li><a href="http://eu.battle.net/what-is/">¿Qué es Battle.net?</a></li>
-<li><a href="https://eu.battle.net/account/management/get-a-game.html">Adquirir juegos</a></li>
-<li><a href="http://eu.battle.net/sc2/community/esports/">e-Sports</a></li>
-<li><a href="https://eu.battle.net/account/management/">Cuenta</a></li>
-<li><a href="http://eu.blizzard.com/support/">Asistencia</a></li>
-<li><a href="http://eu.battle.net/realid/">ID Real</a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/what-is/"><?php echo $l->getString('template_footer_home_link1'); ?></a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/"><?php echo $l->getString('template_footer_home_link4'); ?></a></li>
 </ul>
 </div>
 <div class="column">
 <h3 class="games">
-<a href="http://eu.battle.net/" tabindex="100">Juegos</a>
+<a href="<?php echo CLIENT_FILES_PATH; ?>" tabindex="100"><?php echo $l->getString('template_footer_games_title'); ?></a>
 </h3>
 <ul>
-<li><a href="http://eu.battle.net/sc2/">StarCraft II</a></li>
-<li><a href="http://eu.battle.net/wow/">World of Warcraft</a></li>
-<li><a href="http://eu.battle.net/d3">Diablo III</a></li>
-<li><a href="http://eu.battle.net/games/classic">Juegos clásicos</a></li>
-<li><a href="https://eu.battle.net/account/download/">Descarga de juegos</a></li>
+<li><a href=""><?php echo $l->getString('template_footer_games_link1'); ?></a></li>
+<li><a href=""><?php echo $l->getString('template_footer_games_link2'); ?></a></li>
+<li><a href=""><?php echo $l->getString('template_footer_games_link3'); ?></a></li>
+<li><a href=""><?php echo $l->getString('template_footer_games_link4'); ?></a></li>
 </ul>
 </div>
 <div class="column">
 <h3 class="account">
-<a href="https://eu.battle.net/account/management/" tabindex="100">Cuenta</a>
+<a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/" tabindex="100"><?php echo $l->getString('template_footer_account_title'); ?></a>
 </h3>
 <ul>
-<li><a href="https://eu.battle.net/account/support/password-reset.html">¿No puedes iniciar sesión?</a></li>
-<li><a href="https://eu.battle.net/account/creation/tos.html">Crear cuenta</a></li>
-<li><a href="https://eu.battle.net/account/management/">Resumen de cuenta</a></li>
-<li><a href="https://eu.battle.net/account/management/authenticator.html">Seguridad de cuentas</a></li>
-<li><a href="https://eu.battle.net/account/management/add-game.html">Añadir juego</a></li>
-<li><a href="https://eu.battle.net/account/management/redemption/redeem.html">Canjear código de promoción</a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/support/password-reset.html"><?php echo $l->getString('template_footer_account_link1'); ?></a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/creation/tos.html"><?php echo $l->getString('template_footer_account_link2'); ?></a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/"><?php echo $l->getString('template_footer_account_link3'); ?></a></li>
 </ul>
 </div>
 <div class="column">
 <h3 class="support">
-<a href="http://eu.blizzard.com/support/" tabindex="100">Asistencia</a>
+<a href="http://eu.blizzard.com/support/" tabindex="100"><?php echo $l->getString('template_footer_support_title'); ?></a>
 </h3>
 <ul>
-<li><a href="http://eu.blizzard.com/support/">Artículos de Asistencia</a></li>
-<li><a href="https://eu.battle.net/account/parental-controls/index.html">Control paterno</a></li>
-<li><a href="http://eu.battle.net/security/">Protege tu cuenta</a></li>
-<li><a href="http://eu.battle.net/security/help">¡Ayuda, me han pirateado!</a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/wow/forum/"><?php echo $l->getString('template_footer_support_link1'); ?></a></li>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/wow/bugtracker/"><?php echo $l->getString('template_footer_support_link2'); ?></a></li>
 </ul>
 </div>
-<span class="clear"><!-- --></span>
+
 </div>
 <div id="copyright">
 <a href="javascript:;" tabindex="100" id="change-language">
-<span>Europa - Español (EU)</span>
+<span><?php echo $l->getString('locale_region') . ' - ' . $l->getString('locale_name'); ?></span>
 </a>
-©2011 Blizzard Entertainment, Inc. Todos los derechos reservados
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/termsofuse.html" tabindex="100">Condiciones de Uso</a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/legal/" tabindex="100">Legal</a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/privacy.html" tabindex="100">Protección de datos</a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/infringementnotice.html" tabindex="100">Derechos de autor</a>
+<?php echo $l->getString('copyright_bottom_title'); ?>
+<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/termsofuse.html" tabindex="100"><?php echo $l->getString('copyright_bottom_tos'); ?></a>
+<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/legal/" tabindex="100"><?php echo $l->getString('copyright_bottom_legal'); ?></a>
+<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/privacy.html" tabindex="100"><?php echo $l->getString('copyright_bottom_privacy'); ?></a>
+<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/infringementnotice.html" tabindex="100"><?php echo $l->getString('copyright_bottom_copyright'); ?></a>
 </div>
 <div id="international"></div>
 <div id="legal">
+<div id="legal-ratings" class="png-fix">
+<a href="http://www.pegi.info/" onclick="return Core.open(this);">
+<img class="legal-image" alt="" src="<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common/images/legal/eu/pegi-wow.png" />
+</a>
+</div>
+<div id="blizzard" class="png-fix">
+<span id="cdSiteSeal2"><script type="text/javascript" src="//tracedseals.starfieldtech.com/siteseal/get?scriptId=cdSiteSeal2&amp;cdSealType=Seal2&amp;sealId=55e4ye7y7mb73baeb3016453fcaa57x90cy7mb7355e4ye7d39bdb92695749257"></script></span>
+</div>
 <span class="clear"><!-- --></span>
 </div>
-</div>
+
 </div>
 </body>
 </html>

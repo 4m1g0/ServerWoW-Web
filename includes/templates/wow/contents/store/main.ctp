@@ -3,13 +3,16 @@
 
 <div class="currently-viewing">
 <div>
-<h1>World of Warcraft Store</h1>
+<h1>ServerWoW Tienda & Servicios</h1>
 
 <div class="filter-details">
 
 <span class="clear"><!-- --></span>
 
-<h1>Items in current category:</h1>
+<h1>Items en la categoria seleccionada:</h1>
+<br>
+<a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u><b>Ir al Carro de compras</b></u></a>
+<br>
 </div>
 </div>
 </div>
@@ -22,11 +25,11 @@
 				<table>
 					<thead>
 						<tr>
-							<th><span class="sort-tab">Name</span></th>
+							<th><span class="sort-tab">Nombre</span></th>
 							<th><span class="sort-tab">Item Level</span></th>
-							<th><span class="sort-tab">Category</span></th>
-							<th><span class="sort-tab">Price</span></th>
-							<th><span class="sort-tab">Available</span></th>
+							<th><span class="sort-tab">Categoria</span></th>
+							<th><span class="sort-tab">Precio</span></th>
+							<th><span class="sort-tab">Disponible</span></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -76,7 +79,7 @@
 							</td>
 							<td>
 							<?php if ($i['storeInfo']['in_store']) : ?>
-							<a href="<?php echo $this->getWowUrl('store/' . $i['storeInfo']['cat_id'] . '/' . $i['storeInfo']['item_id']); ?>">Buy!</a>
+							<a href="<?php echo $this->getWowUrl('store/' . $i['storeInfo']['cat_id'] . '/' . $i['storeInfo']['item_id']); ?>">Adquirir!</a>
 							<?php endif; ?>
 							</td>
 						</tr>
@@ -98,7 +101,7 @@
 	<ul class="dynamic-menu" style="display:true">
 				<li class="root-item item-active">
 					<a href="<?php echo $this->getWowUrl('store'); ?>">
-						<span class="arrow">Home</span>
+						<span class="arrow">Inicio</span>
 					</a>
 				</li>
 
@@ -113,13 +116,13 @@
 	</ul><span style="padding:20px;float:left"><?php
 $cart = $store->getCart();
 if (!$cart) : ?>
-<h1 class="color-q3">Your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a> is empty
+<h1 class="color-q3">Tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a> esta vacio
 <?php else : 
 $price = $store->getTotalPrice();
 ?>
-<h1 class="color-q2">You have <?php echo sizeof($cart); ?> item(s) in your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a><br />(Total price: <?php echo $price; ?> points)
+<h1 class="color-q2">Tienes <?php echo sizeof($cart); ?> item(s) en tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><B><u>CARRO DE COMPRAS</u></B></a><br />(Precio Total: <?php echo $price; ?> puntos)
 <?php endif; ?>
-<br /><br />Available Points: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/payments'); ?>">Buy more</a>)</h1>
+<br /><br />Puntos Disponibles: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/'); ?>"><u>COMPRAR MAS</u></a>)</h1>
 </span>
 	</div>
 </div>

@@ -1,5 +1,20 @@
 <div class="media-content">
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Media 728&#42;90) */
+google_ad_slot = "3247785244";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+
 <div id="media-index">
+
 <div class="media-index-section float-left">
 <a class="gallery-title videos" href="<?php echo $this->getWowUrl('media/videos/'); ?>">
 <span class="view-all"><span class="arrow"></span>Mostrar todo</span>

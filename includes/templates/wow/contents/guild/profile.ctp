@@ -81,11 +81,11 @@
 									<span class="symbol"></span>
 								</span>
 								<div class="text">
-									<strong>Вперед и вверх! (Уровень 1)</strong>
-									<span class="desc" title="Количество опыта, получаемого за убийства монстров и выполнение заданий, увеличено на 5%.">Количество опыта, получаемого за убийства монстров и выполнение заданий, ув…</span>
+									<strong></strong>
+									<span class="desc" title="…</span>
 								</div>
 
-								<span class="type">Уровень 2</span>
+								<span class="type"></span>
 	<span class="clear"><!-- --></span>
 
 							</a>

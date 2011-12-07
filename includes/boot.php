@@ -24,7 +24,7 @@ if (!defined('BOOT_FILE'))
 session_start();
 error_reporting(E_ALL);
 
-$debug = false;
+$debug = true;
 
 $tstart = array_sum(explode(' ', microtime()));
 

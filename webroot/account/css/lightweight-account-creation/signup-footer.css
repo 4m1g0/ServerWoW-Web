@@ -10,7 +10,31 @@
 #languageOptions a:hover,
 #languageOptions a:focus{background-color:#133e69;text-decoration:none}
 
-/*footer */
+/* footer */
+#footer { font: normal 12px "Lucida Sans Unicode", Arial, Helvetica, sans-serif; padding: 25px 0; }
+#footer a { color: #697489; }
+#footer a:hover { color: #dcdcdc; }
+#footer h3,
+#footer h3 a { font-weight: normal; font-size: 13px; color: #b2bac7; text-transform: uppercase; }
+#footer-ad { float: right; width: 300px; padding-bottom: 20px; }
+#footer-ad a { color: #b2bac7; }
+#sitemap h3 { border-bottom: 2px solid #414a56; padding-bottom: 10px; margin-bottom: 10px; padding-left: 20px; background: url("../../images/icons/footer.png") no-repeat; }
+#sitemap h3.bnet { background-position: 0 0 }
+#sitemap h3.games { background-position: 2px -50px }
+#sitemap h3.classic { background-position: 0 -100px }
+#sitemap h3.account { background-position: 2px -150px; padding-left: 23px; }
+#sitemap h3.support { background-position: 0 -200px; padding-left: 23px; }
+#sitemap .column { float: left; width: 25%; padding-bottom: 20px }
+#sitemap .column ul a { display: block; margin: 2px 0; }
+#sitemap.footer-ads .column { width: 170px; }
+#copyright { color: #2a2c2f; border-top: 1px solid #414a56; text-transform: uppercase; font-size: 10px; clear: both; padding: 10px 0;  }
+#copyright a { margin-left: 15px; color: #b2bac7; }
+#legal { padding: 15px 0; }
+#legal #blizzard { float: left; }
+#legal #legal-ratings { float: right; vertical-align: top; }
+#legal #legal-ratings .legal-image { vertical-align: top; }
+
+/*footer 
 .footer{width:880px;margin:0 auto;font-size:11px;color:#515151;border-top:1px solid #1c3651;padding: 10px 0 0 20px}
 .footer a{color:#055A76}
 .footer a:hover,
@@ -30,3 +54,4 @@
 .footer a.esrb-rating{float:right;display:block;width:170px;height:104px;background:url(../../images/lightweight-account-creation/esrb-rating.gif) no-repeat;margin:0;}
 .pt-br .footer a.esrb-rating{ width:290px;height:52px;background:url(../../images/lightweight-account-creation/esrb-rating-pt-br.png) no-repeat; }
 .es-mx .footer a.esrb-rating{ width:200px;height:147px;background:url(../../images/lightweight-account-creation/esrb-rating-es-mx.png) no-repeat; }
+*/

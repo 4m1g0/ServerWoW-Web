@@ -1,9 +1,36 @@
 	<div id="wiki" class="wiki wiki-item">
+	
+	<br>
+	<div style="margin-left:30px">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (items 728&#42;90) */
+google_ad_slot = "5245760639";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
 		<div class="sidebar">
 	
 	<?php if (in_array($item->item('class'), array(ITEM_CLASS_ARMOR, ITEM_CLASS_WEAPON))) :
 		if (!in_array($item->item('InventoryType'), array(INV_TYPE_FINGER, INV_TYPE_NECK, INV_TYPE_RANGED, INV_TYPE_RELIC, INV_TYPE_TRINKET))) :
 	?>
+	
+	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Armeria-items 300&#42;250) */
+google_ad_slot = "3165312077";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
 	<div class="snippet">
 		<div class="model-viewer">
 				<div class="model" id="model-<?php echo $item->item('entry'); ?>">
@@ -31,6 +58,7 @@
 	<?php endif; endif; ?>
 
 	<div class="snippet">
+	
 		<h3><?php echo $l->getString('template_item_quick_facts'); ?></h3>
 		<ul class="fact-list">
 			<?php if ($item->item('RequiredDisenchantSkill') > 0) : ?>
@@ -75,8 +103,8 @@
         </script>
 	</div>
 		</div>
-
-	<?php echo $this->region('wow_ajax'); ?>
+		
+<?php echo $this->region('wow_ajax'); ?>
 
 	<span class="clear"><!-- --></span>
 			<div class="related">

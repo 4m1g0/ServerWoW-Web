@@ -1,3 +1,17 @@
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Foro-general 728&#42;90) */
+google_ad_slot = "5762382137";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+
 <?php if (!isset($forum) || !$forum) return; ?>
 
 <div id="forum-content">
@@ -15,7 +29,7 @@
 		<div class="actions-panel">
 			<form action="<?php echo $this->getWowUrl('search'); ?>" class="forum-search" method="get">
 				<div>
-					<input type="text" name="q" value="Search this forum…" alt="Search this forum…" id="forum-search-field" />
+					<input type="text" name="q" value="Buscar en este foro.." alt="Buscar en este foro.." id="forum-search-field" />
 					<input type="hidden" name="f" value="post" />
 					<input type="hidden" name="forum" value="<?php echo $forum->getCategoryId(); ?>" />
 				</div>

@@ -64,9 +64,6 @@
 			</li>
 
 
-
-
-
 			<li class=" active">
 
 		<a href="<?php echo $team['url']; ?>" class="" rel="np">
@@ -86,13 +83,17 @@
 		</div>
 		
 		<div class="profile-contents">
-
+		
 		<div class="summary">
 
 			<div class="profile-section">
-
+			
 					<div class="summary-stats">
+				
 	<div class="arenateam-stats table">
+	
+
+	
 		<table>
 			<thead>
 				<tr>
@@ -140,7 +141,20 @@
 	</div>
 					</div>
 
-					<div class="summary-roster">
+				<div class="summary-roster">
+				
+<center><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Arena 728&#42;90) */
+google_ad_slot = "0686925155";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center><br>
+				
 					<div class="ui-dropdown" id="filter-timeframe">
 						<select>
 							<option value="season"><?php echo $l->getString('template_character_team_per_season'); ?></option>
@@ -149,7 +163,6 @@
 					</div>
 
 							<h3 class="category "><?php echo $l->getString('template_character_pvp_roster'); ?></h3>
-
 
 	<div class="arenateam-roster table" id="arena-roster">
 		<table>

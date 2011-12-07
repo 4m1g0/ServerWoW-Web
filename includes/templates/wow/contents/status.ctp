@@ -24,8 +24,6 @@
 			</a>
 		</div>
 
-	<span class="clear"><!-- --></span>
-
 		<div id="realm-filters" class="table-filters">
 			<form action="">
 				<div class="filter">
@@ -64,7 +62,6 @@
 							</option>
 					</select>
 				</div>
-
 				<div class="filter">
 					<label for="filter-population">Población</label>
 
@@ -116,9 +113,18 @@
 			</form>
 		</div>
 	</div>
-
-	<span class="clear"><!-- --></span>
-
+<center>
+	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Estado 728&#42;90) */
+google_ad_slot = "2183527149";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center>
 
 		<div id="all-realms">
 	<div class="table full-width">

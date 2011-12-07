@@ -4,88 +4,64 @@
 <?php if (!$this->c('AccountManager')->isLoggedIn()) echo $l->format('template_servicebar_auth_caption', $this->getAppUrl('login/login.frag'), $this->getAppUrl('account/creation/tos.html')); else echo $l->format('template_servicebar_welcome_caption', $this->c('AccountManager')->user('username')); ?>
 </li>
 <li class="service-cell service-account"><a href="<?php echo $this->getAppUrl('account/management/'); ?>" class="service-link" tabindex="50" accesskey="3"><?php echo $l->getString('template_servicebar_account'); ?></a></li>
-<li class="service-cell service-support service-support-enhanced">
-<a href="#support" class="service-link service-link-dropdown" tabindex="50" accesskey="4" id="support-link" onclick="return false" style="cursor: progress" rel="javascript"><?php echo $l->getString('template_servicebar_support'); ?><span class="no-support-tickets" id="support-ticket-count"></span></a>
-<div class="support-menu" id="support-menu" style="display:none;">
-<div class="support-primary">
-<ul class="support-nav">
-<li>
-<a href="http://eu.blizzard.com/support/" tabindex="55" class="support-category">
-<strong class="support-caption">Knowledge Center</strong>
-Browse our support articles
-</a>
-</li>
-<li>
-<a href="https://eu.battle.net/support/ticket/submit" tabindex="55" class="support-category">
-<strong class="support-caption">Ask a Question</strong>
-Create a new support ticket
-</a>
-</li>
-<li>
-<a href="https://eu.battle.net/support/ticket/status" tabindex="55" class="support-category">
-<strong class="support-caption">Your Support Tickets</strong>
-View your active tickets (login required).
-</a>
-</li>
-</ul>
-<span class="clear"><!-- --></span>
-</div>
-<div class="support-secondary"></div>
-<!--[if IE 6]> <iframe id="support-shim" src="javascript:false;" frameborder="0" scrolling="no" style="display: block; position: absolute; top: 0; left: 9px; width: 297px; height: 400px; z-index: -1;"></iframe>
-<script type="text/javascript">
-//<![CDATA[
-(function(){
-var doc = document;
-var shim = doc.getElementById('support-shim');
-shim.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)';
-shim.style.display = 'block';
-})();
-//]]>
-</script>
-<![endif]-->
-</div>
-</li>
+
+<li class="service-cell service-explore" style="background-position:-140px -200px;">
+            <a href="#explore" tabindex="50" accesskey="6" class="dropdown" id="vote-link" style="cursor: pointer; " rel="javascript">Votar</a>
+            <div class="explore-menu" id="vote-menu" style="display:none;width:350px;">
+                <div class="explore-primary">
+                    <div class="explore-links" style="float:left;">
+                        <ul>
+
+                            <li><a href="http://serversprivados.com/?in=33" target="_blank" tabindex="55"><img src="http://serversprivados.com/vote.jpg" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://www.wowtop.es/" target="_blank" tabindex="55"><img src="http://www.wowtop.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://100ranking.com/" target="_blank" tabindex="55"><img src="http://100ranking.com/button.php?u=nache" width="142" height="52" border="0" alt="Servidor privado"></a></li><li>                       
+                        </ul>
+                    </div>
+                    <div class="explore-links" style="margin-right:20px;">
+                        <ul>
+
+                          <li><a href="http://gratis-wow.es/" target="_blank" tabindex="55"><img src="http://gratis-wow.es/button.php?u=nache" width="142" height="52" border="0" alt="Server"></a></li><li><a href="http://wowranking.es/" target="_blank" tabindex="55"><img src="http://wowranking.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="servidor"></a></li><li><a href="http://www.servidoreswow.es/" target="_blank" tabindex="55"><img src="http://www.servidoreswow.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="Server de World of Warcraft"></a></li>                        
+                        </ul>
+                    </div>
+                    <center><span class="clear">Recuerda que cada vez que votas por nosotros, Agradeces nuestro trabajo, e invitas a que tengas <b>Muchos mas compañeros con quien jugar y COMPETIR!!</b></span></center>
+                </div>
+         	</div>
+ </li>
+
 <li class="service-cell service-explore">
-<a href="#explore" tabindex="50" accesskey="5" class="dropdown" id="explore-link" onclick="return false" style="cursor: progress" rel="javascript"><?php echo $l->getString('template_servicebar_explore'); ?></a>
+<a href="#explore" tabindex="50" accesskey="5" class="dropdown" id="explore-link" onclick="return false" style="cursor: progress" rel="javascript"><?php echo $l->getString('template_servicebar_twitter'); ?></a>
 <div class="explore-menu" id="explore-menu" style="display:none;">
 <div class="explore-primary">
-<ul class="explore-nav">
-<li>
-<a href="<?php echo CLIENT_FILES_PATH; ?>/" tabindex="55">
-<strong class="explore-caption"><?php echo $l->getString('template_servicebar_explore_menu_home_title'); ?></strong>
-<?php echo $l->getString('template_servicebar_explore_menu_home_description'); ?>
-</a>
-</li>
-<li>
-<a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/" tabindex="55">
-<strong class="explore-caption"><?php echo $l->getString('template_servicebar_explore_menu_account_title'); ?></strong>
-<?php echo $l->getString('template_servicebar_explore_menu_account_description'); ?>
-</a>
-</li>
-<li>
-<a href="http://eu.blizzard.com/support/" tabindex="55">
-<strong class="explore-caption"><?php echo $l->getString('template_servicebar_explore_menu_support_title'); ?></strong>
-<?php echo $l->getString('template_servicebar_explore_menu_support_description'); ?>
-</a>
-</li>
-<li>
-<a href="https://eu.battle.net/account/management/get-a-game.html" tabindex="55">
-<strong class="explore-caption"><?php echo $l->getString('template_servicebar_explore_menu_buy_title'); ?></strong>
-<?php echo $l->getString('template_servicebar_explore_menu_buy_description'); ?>
-</a>
-</li>
-</ul>
-<div class="explore-links">
-<h2 class="explore-caption"><?php echo $l->getString('template_servicebar_explore_menu_more_title'); ?></h2>
-<ul>
-<li><a href="<?php echo CLIENT_FILES_PATH; ?>/what-is/" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link1'); ?></a></li>
-<li><a href="http://eu.battle.net/realid/" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link2'); ?></a></li>
-<li><a href="https://eu.battle.net/account/parental-controls/index.html" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link3'); ?></a></li>
-<li><a href="http://eu.battle.net/security/" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link4'); ?></a></li>
-<li><a href="http://eu.battle.net/games/classic" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link5'); ?></a></li>
-<li><a href="https://eu.battle.net/account/support/index.html" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link6'); ?></a></li>
-</ul>
-</div>
+                			<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+			<script>
+			new TWTR.Widget({
+			version: 2,
+			type: 'list',
+			rpp: 10,
+			interval: 6000,
+			width: 380,
+			height: 200,
+			theme: {
+	    		shell: {
+			      background: 'transparent',
+	    		  color: '#7c7c85'
+		    		},
+	    		tweets: {
+		    	  background: 'transparent',
+    			  color: '#D1D4DA',
+			      links: '#2897e0'
+		    }
+			},
+			features: {
+			    scrollbar: true,
+		    	loop: false,
+			    live: false,
+			    hashtags: true,
+			    timestamp: true,
+			    avatars: true,
+			    behavior: 'all'
+			  }
+			}).render().setList('n4ch3', 'lcv').start();
+			</script>
+
 <span class="clear"><!-- --></span>
 <!--[if IE 6]> <iframe id="explore-shim" src="javascript:false;" frameborder="0" scrolling="no" style="display: block; position: absolute; top: 0; left: 9px; width: 409px; height: 400px; z-index: -1;"></iframe>
 <script type="text/javascript">
@@ -100,26 +76,8 @@ shim.style.display = 'block';
 </script>
 <![endif]-->
 </div>
-<ul class="explore-secondary">
-<li class="explore-game explore-game-sc2">
-<a href="http://eu.battle.net/sc2/" tabindex="55">
-<strong class="explore-caption">StarCraft II</strong>
-<?php echo $l->getString('template_servicebar_explore_menu_starcraft'); ?>
-</a>
-</li>
-<li class="explore-game explore-game-wow">
-<a href="<?php echo $this->getWowUrl(); ?>" tabindex="55">
-<strong class="explore-caption">World of Warcraft</strong>
-<?php echo $l->getString('template_servicebar_explore_menu_worldofwarcraft'); ?>
-</a>
-</li>
-<li class="explore-game explore-game-d3">
-<a href="http://eu.battle.net/games/d3" tabindex="55">
-<strong class="explore-caption">Diablo III</strong>
-<?php echo $l->getString('template_servicebar_explore_menu_diablo'); ?>
-</a>
-</li>
-</ul>
+
+
 </div>
 </li>
 </ul>

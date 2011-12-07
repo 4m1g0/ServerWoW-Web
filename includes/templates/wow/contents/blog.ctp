@@ -34,6 +34,8 @@
 	        <span class="clear"></span>
         </div>
     </div>
+	
+	
             <div id="blog">
             	<div class="blog-inner">
 						<h3 class="blog-title">
@@ -49,6 +51,20 @@
 	<span class="clear"><!-- --></span>
 						</div>
 							<div class="header-image"><img alt="<?php echo $item['title']; ?>" src="<?php echo CLIENT_FILES_PATH; ?>/cms/blog_header/<?php echo $item['header_image']; ?>" /></div>
+							
+<center>
+<br>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Blog 468&#42;60) */
+google_ad_slot = "3890262694";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center>							
 
 						<div class="detail"><?php echo $item['text']; ?>
 <style type="text/css">
@@ -69,6 +85,17 @@ border: 1px solid #CD9000;
 </div>
 
 						<div class="keyword-list">
+						<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Blog 728&#42;90) */
+google_ad_slot = "9881073143";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
 						<?php
 						if ($item['tags']) :
 						$tags = explode(',', $item['tags']);
@@ -361,10 +388,21 @@ border: 1px solid #CD9000;
 
 	<div class="bnet-offer">
 		<!--  -->
+				            		<div class="sidebar-title">
+			            <h3 class="title-bnet-ads">PUBLICIDAD</h3>
+		            </div>
 		<div class="bnet-offer-bg">
-				<a href="<?php echo $this->getCoreUrl('account/creation/wow/signup/'); ?>" target="_blank" id="ad2555187" class="bnet-offer-image" onclick="BnetAds.trackEvent('2555187', 'Trial-EU', 'wow', true);">
-				<img src="http://eu.media1.battle.net/cms/ad_300x250/278A4B1NC79Q1309451833883.jpg" width="300" height="250" alt=""/>
-			</a>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com Blog (300&#42;250) */
+google_ad_slot = "1662060769";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
 		</div>
 		<script type="text/javascript">
 			//<![CDATA[

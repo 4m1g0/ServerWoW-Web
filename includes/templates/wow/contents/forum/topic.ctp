@@ -1,3 +1,17 @@
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Foro-general 728&#42;90) */
+google_ad_slot = "5762382137";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+
 <?php if (!isset($forum) || !$forum) return; ?>
 <script type="text/javascript">
         //<![CDATA[
@@ -294,8 +308,23 @@ if ($posts) :
 					<?php endif; ?>
 				</div>
 			</div>
-
+			
 <?php ++$currentPostNum; endforeach; endif; ?>
+
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Foro-general 728&#42;90) */
+google_ad_slot = "5762382137";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+
 		</div>
 		<div class="forum-actions bottom">
 			<div class="actions-panel">

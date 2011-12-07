@@ -317,6 +317,7 @@ class Database_Component extends Component
 					$funcArgs[$i] = $this->ConvertArray($funcArgs[$i]);
 			}
 		}
+		
 		$safe_sql = call_user_func_array('sprintf', $funcArgs);
 		if (!$safe_sql)
 			$this->c('Log')->writeError('%s : unable to execute sql query, dump:("%s")!', __METHOD__, print_r($funcArgs, true));

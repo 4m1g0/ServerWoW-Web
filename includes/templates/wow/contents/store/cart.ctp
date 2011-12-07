@@ -3,13 +3,13 @@
 
 <div class="currently-viewing">
 <div>
-<h1>World of Warcraft Store</h1>
+<h1>ServerWoW Tienda & Servicios</h1>
 
 <div class="filter-details">
 
 <span class="clear"><!-- --></span>
 
-<h1>Items in your cart:</h1>
+<h1>Items en tu carro:</h1>
 </div>
 </div>
 </div>
@@ -22,12 +22,12 @@
 				<table>
 					<thead>
 						<tr>
-							<th><span class="sort-tab">Name</span></th>
+							<th><span class="sort-tab">Nombre</span></th>
 							<th><span class="sort-tab">Item Level</span></th>
-							<th><span class="sort-tab">Category</span></th>
-							<th><span class="sort-tab">Price</span></th>
-							<th><span class="sort-tab">Quantity</span></th>
-							<th><span class="sort-tab">Actions</span></th>
+							<th><span class="sort-tab">Categoria</span></th>
+							<th><span class="sort-tab">Precio</span></th>
+							<th><span class="sort-tab">Cantidad</span></th>
+							<th><span class="sort-tab">Acciones</span></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -70,14 +70,14 @@
 							<td class="align-center"><a href="<?php echo $this->getWowUrl('store/' . $i['storeInfo']['cat_id']); ?>"><?php echo $i['storeInfo']['catTitle']; ?></a>
 							</td>
 							<td>
-							<?php echo $i['storeInfo']['price']; ?> PTS
+							<?php echo $i['storeInfo']['price']; ?> puntos
 							</td>
 							<td>
 							<?php echo $i['storeInfo']['quantity']; ?>
 							</td>
 							<td>
 							<?php if ($i['storeInfo']['in_store']) : ?>
-							<a href="javascript:;" onclick="Store.removeFromCart(<?php echo $i['storeInfo']['item_id'] . ', ' . $xstoken; ?>);">Remove</a>
+							<a href="javascript:;" onclick="Store.removeFromCart(<?php echo $i['storeInfo']['item_id'] . ', ' . $xstoken; ?>);">Quitar</a>
 							<?php endif; ?>
 							</td>
 						</tr>
@@ -103,15 +103,15 @@
 </ul><span style="padding:20px;float:left"><?php
 $cart = $store->getCart();
 if (!$cart) : ?>
-<h1 class="color-q3">Your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a> is empty
-<br /><br />Available Points: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/payments'); ?>">Buy more</a>)</h1>
+<h1 class="color-q3">Tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a> esta vacio
+<br /><br />Puntos Disponibles: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/'); ?>"><u>COMPRAR MAS</u></a>)</h1>
 <?php else : 
 $price = $store->getTotalPrice();
 ?>
-<h1 class="color-q2">You have <?php echo sizeof($cart); ?> item(s) in your <a href="<?php echo $this->getWowUrl('store/cart'); ?>">cart</a><br />(Total price: <?php echo $price; ?> points)
-<br /><br />Available Points: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/payments'); ?>">Buy more</a>)</h1>
+<h1 class="color-q2">Tienes <?php echo sizeof($cart); ?> item(s) en tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a><br />(Precio Total: <?php echo $price; ?> puntos)
+<br /><br />Puntos Disponibles: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/'); ?>"><u>COMPRAR MAS</u></a>)</h1>
 <br />
-<a href="<?php echo $this->getWowUrl('store/cart/buyout'); ?>">Buyout</a>
+<a href="<?php echo $this->getWowUrl('store/cart/buyout'); ?>"><u>COMPRAR</u></a>
 <?php endif; ?></span>
 	</div>
 </div>

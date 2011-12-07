@@ -3,15 +3,26 @@ $bg = $this->c('Config')->getValue('site.battlegroup');
 ?>
 <div class="content-header">
 	<h2 class="header ">PvP</h2>
-
-
 	<span class="clear"><!-- --></span>
 	</div>
 
 	<div class="pvp pvp-summary">
 		<div class="pvp-right">
 			<div class="top-title">
-				<h3 class="category ">Лучшие команды Арены</h3>
+				<h3 class="category ">Mejores Equipos de Arenas</h3>
+				<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Juego-PvP 728&#42;90) */
+google_ad_slot = "3035081840";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
 				<span class="clear"><!-- --></span>
 			</div>
 			<div class="top-teams">
@@ -53,11 +64,9 @@ $bg = $this->c('Config')->getValue('site.battlegroup');
 							</li>
 							<?php ++$count; endforeach; endif; ?>
 						</ul>
-
 						<a href="<?php echo $this->getWowUrl('pvp/arena/' . $bg . '/' . $format); ?>" class="all"><?php echo $l->format('template_pvp_browse_rating_caption', $type, $type); ?></a>
 				</div>
 			<?php endforeach; ?>
-
 	<span class="clear"><!-- --></span>
 			</div>
 		</div>

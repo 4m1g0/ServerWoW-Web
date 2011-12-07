@@ -2,15 +2,27 @@
 
 		<div class="title">
 			<h2>Guía del juego</h2>
-
 			<p class="desc">Esta sección está dedicada a ayudarte en la épica fantasía de World of Warcraft, desde tus primeras misiones hasta alcanzar la gloria que te aguarda como un auténtico campeón de Azeroth.</p>
-
+			
 			<a href="guide/" class="beginners-guide">
 				<strong>Guía para principiantes</strong>
 				<span>Esta completa guía para principiantes te enseñará todo lo que necesitas saber para dar los primeros pasos.</span>
 			</a>
-			</div>
+		</div>
 
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Juego 728&#42;90) */
+google_ad_slot = "5115960124";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
 
 		<div class="index">
 			<div class="panel">
@@ -40,17 +52,14 @@
 							</li>
 					</ul>
 
-	<span class="clear"> </span>
-							</div>
+								</div>
+	
 	<div class="column" style="width: 295px;">
 		<div class="box first-child">
 				<h2 class="header "><a href="<?php echo $this->getWowUrl('game/race/'); ?>">Razas</a></h2>
 
 
 				<h4 class="subcategory ">Alianza</h4>
-
-
-
 
 		<ul class="double">
 							<li>
@@ -600,11 +609,22 @@
 			</div>
 
 	</div>
-
 	<span class="clear"> </span>
 			</div>
 					</div>
 
-
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Juego 728&#42;90) */
+google_ad_slot = "5115960124";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
 	<span class="clear"> </span>
 	</div>

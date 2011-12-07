@@ -1,3 +1,15 @@
+<div align="right" style="margin-right:30px"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Blog 468&#42;60) */
+google_ad_slot = "3890262694";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+
 <?php $profileType = $character->getProfileType(); ?>
 <div class="summary-top">
 	<div class="summary-top-right">
@@ -147,6 +159,18 @@ endif; ?>
 
 <?php if ($this->issetRegion('recentActivity')) echo $this->region('recentActivity'); ?>
 		<div class="summary-bottom-left">
+		<center><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Personaje 468&#42;60) */
+google_ad_slot = "0614753472";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center>
+<br>
 			<div class="summary-talents" id="summary-talents">
 				<ul>
 <?php

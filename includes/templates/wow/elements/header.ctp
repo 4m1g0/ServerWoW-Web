@@ -1,15 +1,15 @@
 <div class="search-bar">
 <form action="<?php echo $this->getWowUrl('search'); ?>" method="get" autocomplete="off">
 <div>
-<input type="text" class="search-field input" name="q" id="search-field" maxlength="200" tabindex="40" alt="Search characters, items, forums and more…" value="Search characters, items, forums and more…" />
+<input type="text" class="search-field input" name="q" id="search-field" maxlength="200" tabindex="40" alt="Buscar en la armeria, foro y mas…" value="Buscar en la armeria, foro y mas…" />
 <input type="submit" class="search-button" value="" tabindex="41" />
 </div>
 </form>
+<g:plusone href="http://serverwow.com/"></g:plusone>
 </div>
 <h1 id="logo"><a href="<?php echo $this->getWowUrl(); ?>">World of Warcraft</a></h1>
 <div class="header-plate">
 <?php echo $this->region('main_menu'); ?>
-
 <div class="user-plate ajax-update">
 <?php if (!$this->c('AccountManager')->isLoggedIn()) : ?>
 <a href="?login" class="card-login"
@@ -35,3 +35,12 @@ onclick="BnetAds.trackImpression('Battle.net Login', 'Character Card', 'New'); r
 </div>
 <?php endif; ?>
 </div>
+<div style="width:38px;height: 117px;position:fixed;right: 0pt; top: 33%; z-index: 99999;">
+<a href="http://www.facebook.com/ServerWoW" target="_blank" title="Sigueme en Facebook"><img src="http://serverwow.com/webroot/cms/hazte-fan_facebook.png" width="38" height="117" border="0" alt="Sigueme en Facebook" title="Sígueme en Facebook"></a>
+</div>
+<div style="width:39px;height: 179px;position:fixed;right: 0pt; top: 55%; z-index: 99999;">
+<a href="https://twitter.com/#!/list/n4ch3/lcv" target="_blank" title="Sigueme en Twitter"><img src="http://serverwow.com/webroot/cms/naranja_twitter.png" width="39" height="179" border="0" alt="Sigueme en Twitter" title="Sigueme en Twitter" /></a>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+  {lang: 'es'}
+</script>
+</div> 

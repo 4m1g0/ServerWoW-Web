@@ -9,6 +9,7 @@ $(function() {
 	Page.initialize();
 	Input.initialize();
 	Explore.initialize();
+	Vote.initialize();
 	Tickets.initialize();
 	Flash.initialize();
 	Locale.initialize();
@@ -1244,6 +1245,47 @@ var Tickets = {
 		}
 	}
 };
+
+/**
+ * Votation menu.
+ */
+var Vote = {
+
+        /**
+         * Enable the Votation links.
+         *
+         * @constructor
+         */
+        initialize: function() {
+                var links = $('a[rel="javascript"]');
+
+                if (links.length) {
+                        links
+                                .removeAttr('onclick')
+                                .removeAttr('onmouseover')
+                                .removeAttr('title')
+                                .css('cursor', 'pointer');
+                }
+
+                var voteLink = $('#vote-link');
+                var newsLink = $('#breaking-link');
+
+                if (voteLink.length > 0) {
+                        voteLink.unbind().click(function() {
+                                Toggle.open(this, 'active', '#vote-menu');
+                                return false;
+                        });
+                }
+
+                if (newsLink.length > 0) {
+                        newsLink.unbind().click(function() {
+                                App.breakingNews();
+                                return false;
+                        });
+                }
+        }
+};
+
 
 /**
  * Simple open/hide toggle system.

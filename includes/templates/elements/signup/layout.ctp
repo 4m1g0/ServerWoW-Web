@@ -4,7 +4,7 @@
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Suscribirse a una prueba gratis de World of Warcraft</title>
+		<title>Crear Cuenta Gratis en ServerWoW</title>
 		<meta name="description" content="Regístrate para probar World of Warcraft gratis"/>
 		<link rel="shortcut icon" href="/account/images/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="/account/css/lightweight-account-creation/signup.css"/>
@@ -37,7 +37,7 @@
 		FormValidation.validators.required.errorProperties.text         = "Por favor, rellena todos los campos obligatorios.";
 		FormValidation.validators.emailMatch.errorProperties.text       = "Ambas direcciones de correo electrónico deben coincidir.";
 		FormValidation.validators.captcha.errorProperties.text          = "El código de seguridad introducido no es válido. Vuelve a intentarlo.";
-		FormValidation.validators.emailUnavailable.errorProperties.text = 'Esta dirección de correo electrónico ya está en uso. Los usuarios de Battle.net pueden &lt;a href=&quot;{0}&quot;&gt;iniciar sesión&lt;/a&gt; y añadir una prueba gratuita a su cuenta.';
+		FormValidation.validators.emailUnavailable.errorProperties.text = 'Esta dirección de correo electrónico ya está en uso. Los usuarios de ServerWoW pueden &lt;a href=&quot;{0}&quot;&gt;iniciar sesión&lt;/a&gt; y añadir una prueba gratuita a su cuenta.';
 		FormValidation.validators.emailInvalid.errorProperties.text     = "Por favor, introduce una dirección de correo electrónico válido.";
 		FormValidation.validators.password.errorProperties.text         = "Tu contraseña no reúne todos los requisitos.";
 		FormValidation.validators.cannotPaste.errorProperties.text      = "Por favor, rellena este campo manualmente.";
@@ -79,13 +79,13 @@
 		</div>
 		<div class="wow-logo"></div>
 		<div class="starter-desc">
-			¡Ahora podrás jugar gratis los primeros veinte niveles del juego online más épico del planeta! Entra en World of Warcraft y descubre un mundo lleno de magia, mitos y aventuras legendarias. Esta es tu oportunidad de vivir una experiencia única…
+			¡Ahora podrás jugar gratis World of Warcraft y descubrir un mundo lleno de magia, mitos y aventuras legendarias. Esta es tu oportunidad de vivir una experiencia única…
 		</div>
 		<div class="human">
 		</div>
 		<div class="button-container">
-			<a href="http://us.blizzard.com/en-us/games/wow/" class="learn-more" target="_blank"></a>
-			<a href="http://us.blizzard.com/store/details.xml?id=110000044" class="buy-now" target="_blank"></a>
+			<a href="" class="learn-more" target="_blank"></a>
+			<a href="" class="buy-now" target="_blank"></a>
 		</div>
 	</div>
 	<div class="rightColumn">
@@ -114,7 +114,7 @@
 		<h1 class="formHeader">
 			<!-- Regístrate. Es gratis. -->
 					</h1>
-		<div class="formHeader-desc">Ahora World of Warcraft: Starter Edition es gratis hasta el nivel 80.</div>
+		<div class="formHeader-desc">Bienvenido a ServerWoW.</div>
 
 
 		<div class="relative">
@@ -238,10 +238,10 @@
 		</td>
 		<td class="rightCol">
 			<label for="touAgree">
-					Acepto las <a href="http://us.blizzard.com/en-us/company/about/termsofuse.html" onclick="window.open(this.href);return false;">Condiciones de Uso</a>
+					Acepto las <a href="" onclick="window.open(this.href);return false;">Condiciones de Uso</a>
 			</label>
 			<div class="terms-desc">
-				No facilitaremos tu dirección de email a terceros, pero sí es posible que nos pongamos en contacto contigo sobre productos Blizzard.
+				No facilitaremos tu dirección de email a terceros, pero sí es posible que nos pongamos en contacto contigo sobre productos y promociones.
 			</div>
 		</td>
 	</tr>
@@ -301,133 +301,29 @@
 	</div>
 
 	<div class="clear"><!-- --></div>
-
-
-		<div class="languageSelection">
-
-			<span style="float:left">Idioma:</span>
-
-	<a id="toggleGlobal2" class="changeLanguage" href="javascript:void(0)" onclick="Toggle.open(this, '', $('#globalOptions2'))">
-		Español (EU)
-	</a>
+	<br><br>
 	
-	<div class="languageContainer" id="globalOptions2">
-				<table id="languageOptions">
-					<tr>
-							<th style="padding-right:20px">Américas y Oceanía</th>
-							<th>Europa</th>
-									<th><!-- --></th>
-					</tr>
-					<tr>
-						<td valign="top">
-							
-									<a href="javascript:;" onclick="selectLanguage('en_US');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to en_US'); return false;">
-										English (US)
-									</a>
-							
-									<a href="javascript:;" onclick="selectLanguage('es_MX');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to es_MX'); return false;">
-										Español (AL)
-									</a>
-							
-									<a href="javascript:;" onclick="selectLanguage('pt_BR');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to pt_BR'); return false;">
-										Português (BR)
-									</a>
-						</td>
-						<td valign="top">
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=de_DE" onclick="selectLanguage('de_DE');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to de_DE'); return false;">
-										Deutsch
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=en_GB" onclick="selectLanguage('en_GB');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to en_GB'); return false;">
-										English (EU)
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=es_ES" onclick="selectLanguage('es_ES');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to es_ES'); return false;">
-										Español (EU)
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=fr_FR" onclick="selectLanguage('fr_FR');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to fr_FR'); return false;">
-										Français
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=ru_RU" onclick="selectLanguage('ru_RU');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to ru_RU'); return false;">
-										Русский
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=it_IT" onclick="selectLanguage('it_IT');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to it_IT'); return false;">
-										Italiano
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=pl_PL" onclick="selectLanguage('pl_PL');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to pl_PL'); return false;">
-										Polski
-									</a>
-							</td><td valign="top">
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=nl_NL" onclick="selectLanguage('nl_NL');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to nl_NL'); return false;">
-										Nederlands
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=da_DK" onclick="selectLanguage('da_DK');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to da_DK'); return false;">
-										Dansk
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=sv_SE" onclick="selectLanguage('sv_SE');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to sv_SE'); return false;">
-										Svenska
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=nb_NO" onclick="selectLanguage('nb_NO');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to nb_NO'); return false;">
-										Norsk
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=fi_FI" onclick="selectLanguage('fi_FI');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to fi_FI'); return false;">
-										Suomi
-									</a>
-							
-									<a href="http://eu.battle.net/account/creation/wow/signup/?locale=tr_TR" onclick="selectLanguage('tr_TR');pageTracker._trackEvent('WoW Trial Signup', 'Change Language', 'es_ES to tr_TR'); return false;">
-										Türkçe
-									</a>
-						</td>
-					</tr>
-				</table>
-			<div class="clear"><!-- --></div>
-	</div>
-			<span class="starter-faq">Más información en las <a href="http://eu.blizzard.com/support/article/wowclassictrialfaq?locale=es">Preguntas Frecuentes de Starter Edition</a>.</span>			
-			<div class="clear"><!-- --></div>
-		</div>
+	<div id="footer">
+</div>
+<div id="copyright">
+<?php echo $l->getString('copyright_bottom_title'); ?>
+<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/termsofuse.html" tabindex="100"><?php echo $l->getString('copyright_bottom_tos'); ?></a>
+<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/legal/" tabindex="100"><?php echo $l->getString('copyright_bottom_legal'); ?></a>
+<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/privacy.html" tabindex="100"><?php echo $l->getString('copyright_bottom_privacy'); ?></a>
+<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/infringementnotice.html" tabindex="100"><?php echo $l->getString('copyright_bottom_copyright'); ?></a>
+</div>
+<div id="international"></div>
+<div id="legal">
+<div id="legal-ratings" class="png-fix">
+<a href="http://www.pegi.info/" onclick="return Core.open(this);">
+<img class="legal-image" alt="" src="<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common/images/legal/eu/pegi-wow.png" />
+</a>
+</div>
+<div id="blizzard" class="png-fix">
+<span id="cdSiteSeal2"><script type="text/javascript" src="//tracedseals.starfieldtech.com/siteseal/get?scriptId=cdSiteSeal2&amp;cdSealType=Seal2&amp;sealId=55e4ye7y7mb73baeb3016453fcaa57x90cy7mb7355e4ye7d39bdb92695749257"></script></span>
+</div>
+</div>
 
-	<div class="footer">
-
-
-		<div class="needHelp">
-			¿Necesitas ayuda?<br />
-			<a href="http://us.blizzard.com/support/index.xml?locale=es_ES" onclick="window.open(this.href);return false;">Página web de Asistencia</a>
-		</div>
-
-			<div class="legal">
-				<a class="blizzard" onclick="window.open(this.href);return false;" href="http://us.blizzard.com/es-es/"><!-- --></a>
-				<a class="bnet" onclick="window.open(this.href);return false;" href="http://us.battle.net?locale=es_ES"><!-- --></a>
-	
-				<a href="http://us.blizzard.com/es-es/company/about/privacy.html" onclick="window.open(this.href);return false;">Política de Protección de Datos</a>
-	
-				<span class="divider">|</span>
-	
-				<a href="http://us.blizzard.com/es-es/company/about/termsofuse.html" onclick="window.open(this.href);return false;">Condiciones de Uso Blizzard</a>
-				<div class="asterisks"><span>*</span>Basado en datos internos de la compañía, información pública, y/o informes de colaboradores clave.</div>
-				<a href="http://us.blizzard.com/es-es/company/about/legal-faq.html" onclick="window.open(this.href);return false;">©2004 – 2011 Blizzard Entertainment, Inc. Todos los derechos reservados.<br/> Todas las marcas registradas aquí mencionadas son propiedad de sus respectivos dueños.</a>
-	
-				<div class="clear"><!-- --></div>
-			</div>
-
-			<div class="esrbLinks">
-				<a class="esrb-rating" onclick="window.open(this.href);return false;" href="http://www.esrb.org/ratings/ratings_guide.jsp"><!-- --></a>
-				<a class="truste-link" href="//privacy-policy.truste.com/click-with-confidence/ctv/en/us.battle.net/seal_m" title="Validar certificado de privacidad TRUSTe" onclick="return Core.open(this);">
-					<img src="//privacy-policy.truste.com/certified-seal/wps/en/us.battle.net/seal_m.png" alt="Validar certificado de privacidad TRUSTe"/>
-				</a>
-				<div class="clear"><!-- --></div>
-			</div>
-	</div>
-			</div>
-		</div>
 	</div>
 
 	<script type="text/javascript">
