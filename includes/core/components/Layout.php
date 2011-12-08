@@ -24,6 +24,10 @@ class Layout_Component extends Component
 	private $m_js = array();
 	protected $m_pageTitle = '';
 	protected $m_menuTitle = '';
+	protected $m_pageDescription = '';
+	protected $m_menuDescription = '';
+	protected $m_pageKeywords = '';
+	protected $m_menuKeywords = '';
 
 	public function setMenuTitle($title)
 	{
@@ -35,6 +39,20 @@ class Layout_Component extends Component
 	public function setPageTitle($title)
 	{
 		$this->m_pageTitle = $title;
+
+		return $this;
+	}
+	
+	public function setPageDescription($title)
+	{
+		$this->m_pageDescription = $title;
+
+		return $this;
+	}
+	
+	public function setPageKeywords($title)
+	{
+		$this->m_pageKeywords = $title;
 
 		return $this;
 	}
@@ -54,6 +72,44 @@ class Layout_Component extends Component
 		else
 		{
 			$title[] = $this->c('Config')->getValue('site.title');
+			return implode(' - ', $title);
+		}
+	}
+	
+	public function getPageDescription()
+	{
+		$title = array();
+
+		if ($this->m_pageDescription)
+			$title[] = $this->m_pageDescription;
+
+		if ($this->m_menuDescription)
+			$title[] = $this->m_menuDescription;
+
+		if (!$title)
+			return $this->c('Config')->getValue('site.description');
+		else
+		{
+			$title[] = $this->c('Config')->getValue('site.description');
+			return implode(' - ', $title);
+		}
+	}
+
+	public function getPageKeywords()
+	{
+		$title = array();
+
+		if ($this->m_pageKeywords)
+			$title[] = $this->m_pageKeywords;
+
+		if ($this->m_menuKeywords)
+			$title[] = $this->m_menuKeywords;
+
+		if (!$title)
+			return $this->c('Config')->getValue('site.keywords');
+		else
+		{
+			$title[] = $this->c('Config')->getValue('site.keywords');
 			return implode(' - ', $title);
 		}
 	}

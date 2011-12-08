@@ -1,12 +1,14 @@
 <?php if ($this->core->isCached()) echo '<!-- Restored from cache: ' . $this->core->getCacheEntry() . ' -->' . NL; ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
 <head>
 <title><?php echo $this->c('Layout')->getPageTitle(); ?></title>
+<meta name="description" content="<?php echo $this->c('Layout')->getPageDescription(); ?>">
+<meta name="keywords" content="<?php echo $this->c('Layout')->getPageKeywords(); ?>">
 <meta content="false" http-equiv="imagetoolbar" />
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
 <link rel="shortcut icon" href="<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common/images/favicons/wow.ico" type="image/x-icon"/>
-<link rel="search" type="application/opensearchdescription+xml" href="http://eu.battle.net/en-gb/data/opensearch" title="Battle.net Search" />
+
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common/css/common.css?v27" />
 <!--[if IE]> <link rel="stylesheet" type="text/css" media="all" href="<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common/css/common-ie.css?v27" />
 <![endif]-->
@@ -43,19 +45,19 @@ try { document.execCommand('BackgroundImageCache', false, true) } catch(e) {}
 Core.staticUrl = '<?php echo CLIENT_FILES_PATH; ?>/wow/static';
 Core.sharedStaticUrl= '<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common';
 Core.baseUrl = '<?php echo $this->localeWowUrl(); ?>';
-Core.cdnUrl = 'http://eu.media.blizzard.com';
-Core.supportUrl = 'http://eu.battle.net/support/';
-Core.secureSupportUrl= 'https://eu.battle.net/support/';
+Core.cdnUrl = 'http://serverwow.com';
+Core.supportUrl = 'http://serverwow.com/wow/forum/9/';
+Core.secureSupportUrl= 'https://serverwow.com/wow/forum/9/';
 Core.project = 'wow';
 Core.locale = '<?php echo $l->getLocale(LOCALE_DOUBLE); ?>';
 Core.buildRegion = 'eu';
 Core.shortDateFormat= 'dd/MM/yyyy';
 Core.dateTimeFormat = 'dd/MM/yyyy HH:mm';
 Core.loggedIn = false;
-Flash.videoPlayer = 'http://eu.media.blizzard.com/global-video-player/themes/wow/video-player.swf';
-Flash.videoBase = 'http://eu.media.blizzard.com/wow/media/videos';
-Flash.ratingImage = 'http://eu.media.blizzard.com/global-video-player/ratings/wow/rating-pegi.jpg';
-Flash.expressInstall= 'http://eu.media.blizzard.com/global-video-player/expressInstall.swf';
+Flash.videoPlayer = '<?php echo CLIENT_FILES_PATH; ?>/wow/player/video-player.swf';
+Flash.videoBase = '<?php echo CLIENT_FILES_PATH; ?>/wow/media/videos';
+Flash.ratingImage = '<?php echo CLIENT_FILES_PATH; ?>/wow/player/rating-pegi.jpg';
+Flash.expressInstall= '<?php echo CLIENT_FILES_PATH; ?>/wow/player/video-player.swf';
 //]]>
 </script>
 <?php echo $this->c('Document')->releaseJs('header'); ?>
@@ -69,7 +71,7 @@ $(document).ready(function() {
 });
 </script>
 <?php endif; ?>
-<meta name="title" content="World of Warcraft" />
+<meta name="title" content="Server WoW - Server de World of Warcraft, Server de WoW" />
 <link rel="image_src" href="<?php echo CLIENT_FILES_PATH; ?>/wow/static/images/icons/facebook/game.jpg" />
 
 <?php

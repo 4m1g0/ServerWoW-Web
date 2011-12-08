@@ -44,7 +44,7 @@
 <!-- -->
 <div class="bnet-offer-bg">
 <a href="<?php echo CLIENT_FILES_PATH; ?>/wow/store/2" target="_blank" id="ad2556050" class="bnet-offer-image" onclick="BnetAds.trackEvent('2556050', 'PetStoreEU', 'wow', true);">
-<img src="http://eu.media2.battle.net/cms/ad_300x100/4BYC22JAZ8DS1309457319339.gif" width="300" height="100" alt=""/>
+<img src="<?php echo CLIENT_FILES_PATH; ?>/cms/ad_300x100/4BYC22JAZ8DS1309457319339.gif" width="300" height="100" alt=""/>
 </a>
 </div>
 <script type="text/javascript">
@@ -64,10 +64,10 @@ BnetAds.trackEvent('2556050', 'PetStoreEU', 'wow');
 <span><?php echo $l->getString('locale_region') . ' - ' . $l->getString('locale_name'); ?></span>
 </a>
 <?php echo $l->getString('copyright_bottom_title'); ?>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/termsofuse.html" tabindex="100"><?php echo $l->getString('copyright_bottom_tos'); ?></a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/legal/" tabindex="100"><?php echo $l->getString('copyright_bottom_legal'); ?></a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/privacy.html" tabindex="100"><?php echo $l->getString('copyright_bottom_privacy'); ?></a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/infringementnotice.html" tabindex="100"><?php echo $l->getString('copyright_bottom_copyright'); ?></a>
+<a onclick="return Core.open(this);" href="" tabindex="100"><?php echo $l->getString('copyright_bottom_tos'); ?></a>
+<a onclick="return Core.open(this);" href="" tabindex="100"><?php echo $l->getString('copyright_bottom_legal'); ?></a>
+<a onclick="return Core.open(this);" href="" tabindex="100"><?php echo $l->getString('copyright_bottom_privacy'); ?></a>
+<a onclick="return Core.open(this);" href="" tabindex="100"><?php echo $l->getString('copyright_bottom_copyright'); ?></a>
 </div>
 <div id="international"></div>
 <div id="legal">

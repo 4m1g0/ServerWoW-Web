@@ -30,11 +30,13 @@ $SiteConfig = array (
     ),
     'log' => 
     array (
-      'enabled' => '1',
+      'enabled' => '0',
       'filename' => 'Y:\\home\\wowcs\\www\\webroot\\_debug\\tmp.dbg',
       'level' => '3',
     ),
     'title' => 'World of Warcraft',
+	'description' => '',
+    'keywords' => '',
     'battlegroup' => 'Massive Online',
     'icons_server' => 'http://eu.battle.net/wow-assets/static/images/icons',
     'locale' => 
