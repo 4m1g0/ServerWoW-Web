@@ -42,10 +42,24 @@ class Layout_Component extends Component
 
 		return $this;
 	}
+
+	public function setMenuDescription($title)
+	{
+		$this->m_menuDescription = $title;
+
+		return $this;
+	}
 	
 	public function setPageDescription($title)
 	{
 		$this->m_pageDescription = $title;
+
+		return $this;
+	}
+
+	public function setMenuKeywords($title)
+	{
+		$this->m_menuKeywords = $title;
 
 		return $this;
 	}
