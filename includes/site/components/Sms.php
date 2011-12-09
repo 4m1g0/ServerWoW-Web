@@ -89,7 +89,12 @@ class Sms_Component extends Controller_Component
 
 		$edt->save()->clearValues();
 
-		$this->c('Db')->realm()->query("UPDATE account_points SET amount = %d WHERE account_id = %d LIMIT 1", ($this->c('AccountManager')->user('amount') + STORE_SMS_POINTS), $this->c('AccountManager')->user('id'));
+		$query = $this->c('Db')->realm()->selectRow("SELECT account_id FROM account_points WHERE account_id = %d", $this->c('AccountManager')->user('id'));
+
+		if ($query)
+			$this->c('Db')->realm()->query("UPDATE account_points SET amount = %d WHERE account_id = %d LIMIT 1", ($this->c('AccountManager')->user('amount') + STORE_SMS_POINTS), $this->c('AccountManager')->user('id'));
+		else
+			$this->c('Db')->realm()->query("INSERT INTO account_points (account_id, amount) VALUES ('%d', '%d')", $this->c('AccountManager')->user('id'), STORE_SMS_POINTS);
 
 		return true;
 	}
