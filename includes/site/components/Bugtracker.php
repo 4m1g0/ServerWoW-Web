@@ -171,10 +171,15 @@ class Bugtracker_Component extends Component
 					$edt->status = '0';
 					$edited['status'] = array('#ff0000', 'No');
 				}
-				else
+				else if ($_POST['solved'] == 1)
 				{
 					$edt->status = 1;
 					$edited['status'] = array('#00ff00', 'Si');
+				}
+				else // $_POST['solved'] == 2
+				{
+				    $edt->status = 2;
+					$edited['status'] = array('#cccccc', 'Desestimado');
 				}
 				$edt->save()->clearValues();
 				

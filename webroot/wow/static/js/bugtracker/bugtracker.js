@@ -104,8 +104,10 @@ var Bt = {
 
 		if (Bt.itemInfo.status == 1)
 			Bt.processQuery('solve', {'solved': 0});
-		else
-			Bt.processQuery('solve', {'solved': 1});
+		else if (Bt.itemInfo.status == 0)
+			Bt.processQuery('solve', {'solved': 2});
+	    else // Bt.itemInfo.status == 2
+            Bt.processQuery('solve', {'solved': 1});
 
 		return true;
 	},
@@ -197,9 +199,14 @@ var Bt = {
 								$('#solvebugcaption').text('Marcar no solucionado');
 								Bt.itemInfo.status = 1;
 							}
-							else
+							else if (data.editedFields.status[1] == 'Desestimado')
 							{
 								$('#solvebugcaption').text('Marcar solucionado');
+								Bt.itemInfo.status = 2;
+							}
+							else // data.editedFields.status[1] == 'No'
+							{
+							    $('#solvebugcaption').text('Marcar desestimado');
 								Bt.itemInfo.status = 0;
 							}
 							

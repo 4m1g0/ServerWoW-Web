@@ -83,7 +83,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 							<td class="align-center"><?php echo $item['categoryName']; ?></td>
 							<td class="align-center"><span style="color: <?php echo $item['prColor']; ?>;"><strong><?php echo $item['prName']; ?></strong></span></td>
 							<td><span style="color: <?php echo $item['closed'] == 0 ? '#ffff00' : '#00ff00'; ?>;"><strong><?php echo $item['closed'] == 0 ? 'Abierto' : 'Cerrado'; ?></strong></span></td>
-							<td><span style="color: <?php echo $item['status'] == 0 ? '#ffff00' : '#00ff00'; ?>;"><strong><?php echo $item['status'] == 0 ? 'Sin Resolver' : 'Solucionado'; ?></strong></span></td>
+							<td><span style="color: <?php if ($item['status'] == 0) echo '#ffff00'; else if ($item['status'] == 1) echo '#00ff00'; else echo '#cccccc'; ?>;"><strong><?php if ($item['status'] == 0) echo 'Sin Resolver'; else if ($item['status'] == 1) echo 'Solucionado'; else echo 'Desestimado'; ?></strong></span></td>
 							<td><?php echo date('d/m/Y', $item['post_date']); ?></td>
 						</tr>
 						<?php ++$toggleStyle; endforeach; else : ?>

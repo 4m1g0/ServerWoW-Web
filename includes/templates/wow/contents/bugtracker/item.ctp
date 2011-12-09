@@ -50,7 +50,7 @@ if (!$item) return;
 		<br />
 		Estado: <strong><?php echo !$item['closed'] ? '<span style="color: #ffff00;" id="bugopened">Abierto' : '<span style="color: #00ff00;" id="bugopened">Cerrado'; ?></span></strong>
 		<br />
-		Solucionado: <strong><?php echo $item['status'] == 0 ? '<span style="color: #ff0000;" id="bugsolved">No' : '<span style="color: #00ff00;" id="bugsolved">Si'; ?></span></strong>
+		Solucionado: <strong><?php if ($item['status'] == 0) echo '<span style="color: #ff0000;" id="bugsolved">No'; else if ($item['status'] == 1) echo '<span style="color: #00ff00;" id="bugsolved">Si'; else echo '<span style="color: #cccccc;" id="bugsolved">Desestimado'; ?></span></strong>
 		<br />
 		Prioridad: <strong><?php echo '<span id="bugpriority" style="color: ' . $item['prColor'] . ';">' . $item['prName']; ?></span></strong>
 		<br />
@@ -71,7 +71,7 @@ if (!$item) return;
 		<br />
 		<?php if ($this->c('AccountManager')->isAccountCharacter($item['realmId'], $item['guid']) || $this->c('AccountManager')->isAllowedToBugtracker()) : ?>
 		<span id="editbug"><a class="ui-button button2" id="editbuglink" href="javascript:;"><span><span id="editbugcaption">Editar</span></span></a></span>
-		<span id="solvebug"><a class="ui-button button2" id="solvebuglink" href="javascript:;"><span><span id="solvebugcaption"><?php echo $item['status'] ? 'Marcar no solucionado' : 'Marcar solucionado'; ?></span></span></a></span>
+		<span id="solvebug"><a class="ui-button button2" id="solvebuglink" href="javascript:;"><span><span id="solvebugcaption"><?php if ($item['status'] == 0) echo 'Marcar desestimado'; else if ($item['status'] == 1) echo 'Marcar no solucionado'; else echo 'Marcar solucionado'; ?></span></span></a></span>
 		<span id="closebug"><a class="ui-button button2" id="closebuglink" href="javascript:;"><span><span id="closebugcaption"><?php if ($item['closed']) echo 'Abrir'; else echo 'Cerrar'; ?></span></span></a></span>
 		<?php
 		endif;
