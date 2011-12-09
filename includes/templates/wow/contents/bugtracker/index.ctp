@@ -88,7 +88,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 						</tr>
 						<?php ++$toggleStyle; endforeach; else : ?>
 						<tr class="row1">
-							<td colspan="6" class="align-center">Nothing found</td>
+							<td colspan="6" class="align-center">No se ha encontrado ningun resultado</td>
 						</tr>
 						<?php endif; ?>
 					</tbody>

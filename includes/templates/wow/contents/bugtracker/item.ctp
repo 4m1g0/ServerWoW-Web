@@ -42,42 +42,42 @@ if (!$item) return;
 				echo $item['title'];
 		}
 		?></h1>
-		Type: <strong><a href="<?php echo $this->getWowUrl('bugtracker/' . $item['type_str']); ?>"><span id="bugtype"><?php echo $item['categoryName']; ?></span></a></strong>
+		Tipo: <strong><a href="<?php echo $this->getWowUrl('bugtracker/' . $item['type_str']); ?>"><span id="bugtype"><?php echo $item['categoryName']; ?></span></a></strong>
 		<br />
-		Author: <strong><a href="<?php echo $item['url']; ?>"><?php echo $item['name'] . ' @ ' . $item['realmName']; ?></a></strong>
+		Autor: <strong><a href="<?php echo $item['url']; ?>"><?php echo $item['name'] . ' @ ' . $item['realmName']; ?></a></strong>
 		<br />
 		Created: <strong><?php echo date('d/m/Y', $item['post_date']); ?></strong>
 		<br />
-		Status: <strong><?php echo !$item['closed'] ? '<span style="color: #ffff00;" id="bugopened">Opened' : '<span style="color: #00ff00;" id="bugopened">Closed'; ?></span></strong>
+		Estado: <strong><?php echo !$item['closed'] ? '<span style="color: #ffff00;" id="bugopened">Abierto' : '<span style="color: #00ff00;" id="bugopened">Cerrado'; ?></span></strong>
 		<br />
-		Solved: <strong><?php echo $item['status'] == 0 ? '<span style="color: #ff0000;" id="bugsolved">No' : '<span style="color: #00ff00;" id="bugsolved">Yes'; ?></span></strong>
+		Solucionado: <strong><?php echo $item['status'] == 0 ? '<span style="color: #ff0000;" id="bugsolved">No' : '<span style="color: #00ff00;" id="bugsolved">Si'; ?></span></strong>
 		<br />
-		Priority: <strong><?php echo '<span id="bugpriority" style="color: ' . $item['prColor'] . ';">' . $item['prName']; ?></span></strong>
+		Prioridad: <strong><?php echo '<span id="bugpriority" style="color: ' . $item['prColor'] . ';">' . $item['prName']; ?></span></strong>
 		<br />
-		Description: <strong><span id="bugdescription"><?php echo $item['description']; ?></span></strong>
+		Descripción: <strong><span id="bugdescription"><?php echo $item['description']; ?></span></strong>
 		<?php if (!in_array($item['type'], array(BT_DEFAULT, BT_WEB, BT_OTHER, BT_STORE))) : ?>
 		<br />
-		Internal Link: <strong><a href="http://es.wowhead.com/<?php echo strtolower(substr($item['type_str'], 0, -1)) . '=' . $item['item_id']; ?>" target="_blank">Wowhead.com</a></strong>
+		Enlace interno: <strong><a href="http://es.wowhead.com/<?php echo strtolower(substr($item['type_str'], 0, -1)) . '=' . $item['item_id']; ?>" target="_blank">Wowhead.com</a></strong>
 		<?php endif; ?>
 		<span id="adminresponse">
 		<?php
 		if ($item['admin_response']) :
 		?>
 		<br />
-		<b style="color: #00ff00;"><?php echo $item['admin_name'] ? $item['admin_name'] : 'Admin'; ?>'s Response:</b> <strong><?php echo $item['admin_response']; ?></strong> <i>(<?php echo date('d/m/Y', $item['response_date']); ?>)</i>
+		<b style="color: #00ff00;">Respuesta de <?php echo $item['admin_name'] ? $item['admin_name'] : 'Admin'; ?>:</b> <strong><?php echo $item['admin_response']; ?></strong> <i>(<?php echo date('d/m/Y', $item['response_date']); ?>)</i>
 		<?php endif; ?>
 		</span>
 		<br />
 		<br />
 		<?php if ($this->c('AccountManager')->isAccountCharacter($item['realmId'], $item['guid']) || $this->c('AccountManager')->isAllowedToBugtracker()) : ?>
-		<span id="editbug"><a class="ui-button button2" id="editbuglink" href="javascript:;"><span><span id="editbugcaption">Edit</span></span></a></span>
-		<span id="solvebug"><a class="ui-button button2" id="solvebuglink" href="javascript:;"><span><span id="solvebugcaption">Mark as <?php echo $item['status'] ? 'Uns' : 'S'; ?>olved</span></span></a></span>
-		<span id="closebug"><a class="ui-button button2" id="closebuglink" href="javascript:;"><span><span id="closebugcaption"><?php if ($item['closed']) echo 'Re-open'; else echo 'Close'; ?></span></span></a></span>
+		<span id="editbug"><a class="ui-button button2" id="editbuglink" href="javascript:;"><span><span id="editbugcaption">Editar</span></span></a></span>
+		<span id="solvebug"><a class="ui-button button2" id="solvebuglink" href="javascript:;"><span><span id="solvebugcaption"><?php echo $item['status'] ? 'Marcar no solucionado' : 'Marcar solucionado'; ?></span></span></a></span>
+		<span id="closebug"><a class="ui-button button2" id="closebuglink" href="javascript:;"><span><span id="closebugcaption"><?php if ($item['closed']) echo 'Abrir'; else echo 'Cerrar'; ?></span></span></a></span>
 		<?php
 		endif;
 		if ($this->c('AccountManager')->isAllowedToBugtracker()) : ?>
-		<span id="deletebug"><a class="ui-button button3" id="deletebuglink" href="javascript:;"><span><span id="deletebugcaption">Delete</span></span></a></span>
-		<span id="responsebug"><a class="ui-button button3" id="responsebuglink" href="javascript:;"><span><span id="responsebugcaption">Post Response</span></span></a></span>
+		<span id="deletebug"><a class="ui-button button3" id="deletebuglink" href="javascript:;"><span><span id="deletebugcaption">Borrar</span></span></a></span>
+		<span id="responsebug"><a class="ui-button button3" id="responsebuglink" href="javascript:;"><span><span id="responsebugcaption">Respuesta desarrollo</span></span></a></span>
 		<?php endif; ?>
 		<br /><br />
 		<div id="editformplace" style="display:none;"></div>
@@ -90,7 +90,7 @@ if (!$item) return;
 		$char = $this->c('AccountManager')->getActiveCharacter();
 		if ($char && !$item['closed']) :
 		?>
-		<h1>Add New Comment:</h1>
+		<h1>Añadir nuevo comentario:</h1>
 		<form action="" method="post">
 		<table>
 			<tr>
@@ -107,7 +107,7 @@ if (!$item) return;
 				<td>
 					<button class="ui-button button2" type="submit" >
 						<span>
-							<span>Create</span>
+							<span>Enviar</span>
 						</span>
 					</button>
 				</td>
@@ -143,7 +143,7 @@ if (!$item) return;
 			.bt-mvp { color:#81b558 }
 			.bt-mvp a{ color:#81b558 }
 		</style>
-		<h1>Comments (<?php echo sizeof($item['comments']); ?>):</h1>
+		<h1>Comentarios (<?php echo sizeof($item['comments']); ?>):</h1>
 
 		<div id="comments">
 		<?php
@@ -164,7 +164,7 @@ if (!$item) return;
 				<?php 
 				if (($this->c('AccountManager')->isAllowedToModerate() && !$c['blizzard'] && (!$c['mvp'] || ($c['account_id'] == $this->c('AccountManager')->user('id')))) || ($this->c('AccountManager')->isAdmin())) : 
 				?>
-				<small><a href="javascript:;" onclick="deleteComment(<?php echo $c['comment_id']; ?>);">Delete Comment</a></small>
+				<small><a href="javascript:;" onclick="deleteComment(<?php echo $c['comment_id']; ?>);">Borrar comentario</a></small>
 				<?php endif; ?>
 				<br />
 				<br />

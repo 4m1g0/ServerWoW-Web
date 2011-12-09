@@ -147,8 +147,8 @@ class Bugtracker_Component extends Component
 				$edt->closed = $opened;
 				$edt->priority = $priority;
 
-				$statusColors = array(0 => array('#ffff00', 'Opened', 0), 1 => array('#00ff00', 'Closed', 1));
-				$priorityColors = array(1 => array('#00ff00', 'Low', 1), 2 => array('#ffff00', 'Medium', 2), 3 => array('#ff0000', 'High', 3));
+				$statusColors = array(0 => array('#ffff00', 'Abierto', 0), 1 => array('#00ff00', 'Cerrado', 1));
+				$priorityColors = array(1 => array('#00ff00', 'Baja', 1), 2 => array('#ffff00', 'Media', 2), 3 => array('#ff0000', 'Alta', 3));
 				$edited['status'] = $statusColors[$opened];
 				$edited['bugpriority'] = $priorityColors[$priority];
 
@@ -174,7 +174,7 @@ class Bugtracker_Component extends Component
 				else
 				{
 					$edt->status = 1;
-					$edited['status'] = array('#00ff00', 'Yes');
+					$edited['status'] = array('#00ff00', 'Si');
 				}
 				$edt->save()->clearValues();
 				
@@ -191,12 +191,12 @@ class Bugtracker_Component extends Component
 				if ($_POST['closed'] == 0)
 				{
 					$edt->closed = '0';
-					$edited['closed'] = array('#ffff00', 'Opened');
+					$edited['closed'] = array('#ffff00', 'Abierto');
 				}
 				else
 				{
 					$edt->closed = 1;
-					$edited['closed'] = array('#00ff00', 'Closed');
+					$edited['closed'] = array('#00ff00', 'Cerrado');
 				}
 				$edt->save()->clearValues();
 				

@@ -156,7 +156,7 @@ var Bt = {
 				return true;
 			}
 
-			$('#adminresponse').html('<br /><b style="color: #00ff00;">' + data.editedFields.admin + '\'s Response:</b> <strong>' + data.editedFields.response + '</strong> <i>(' + data.editedFields.date + ')</i>').fadeIn();
+			$('#adminresponse').html(' <br /><b style="color: #00ff00;">Respuesta de ' + data.editedFields.admin + ':</b> <strong>' + data.editedFields.response + '</strong> <i>(' + data.editedFields.date + ')</i>').fadeIn();
 
 			return true;
 		}
@@ -192,14 +192,14 @@ var Bt = {
 						if (data.errno == 0)
 						{
 							$('#bugsolved').attr('style', 'color: ' + data.editedFields.status[0]).text(data.editedFields.status[1]);
-							if (data.editedFields.status[1] == 'Yes')
+							if (data.editedFields.status[1] == 'Si')
 							{
-								$('#solvebugcaption').text('Mark As Unsolved');
+								$('#solvebugcaption').text('Marcar no solucionado');
 								Bt.itemInfo.status = 1;
 							}
 							else
 							{
-								$('#solvebugcaption').text('Mark As Solved');
+								$('#solvebugcaption').text('Marcar solucionado');
 								Bt.itemInfo.status = 0;
 							}
 							
@@ -212,14 +212,14 @@ var Bt = {
 						if (data.errno == 0)
 						{
 							$('#bugopened').attr('style', 'color: ' + data.editedFields.closed[0]).text(data.editedFields.closed[1]);
-							if (data.editedFields.closed[1] == 'Closed')
+							if (data.editedFields.closed[1] == 'Cerrado')
 							{
-								$('#closebugcaption').text('Re-open');
+								$('#closebugcaption').text('Abrir');
 								Bt.itemInfo.closed = 1;
 							}
 							else
 							{
-								$('#closebugcaption').text('Close');
+								$('#closebugcaption').text('Cerrar');
 								Bt.itemInfo.closed = 0;
 							}
 							
@@ -257,8 +257,8 @@ var Bt = {
 	showResponseForm: function() {
 		var html = '';
 
-		html += '<fieldset><label for="response">Message (set empty to delete response):</label><br /><textarea class="input textarea" id="response" rows="10" cols="80">' + Bt.itemInfo.response + '</textarea>';
-		html += '<br /><a href="javascript:;" onclick="Bt.submitResponseForm();" id="submitEdit" class="ui-button button2"><span><span>Send</span></span></a><a class="ui-button button2" href="javascript:;" onclick="Bt.hideResponseForm();"><span><span>Cancel</span></span></a>';
+		html += '<fieldset><label for="response">Mensaje (Dejar en blanco para borrar):</label><br /><textarea class="input textarea" id="response" rows="10" cols="80">' + Bt.itemInfo.response + '</textarea>';
+		html += '<br /><a href="javascript:;" onclick="Bt.submitResponseForm();" id="submitEdit" class="ui-button button2"><span><span>Enviar</span></span></a><a class="ui-button button2" href="javascript:;" onclick="Bt.hideResponseForm();"><span><span>Cancelar</span></span></a>';
 		html += '</fieldset>';
 
 		$('#responseformplace').html(html).fadeIn();
@@ -269,9 +269,9 @@ var Bt = {
 	showEditForm: function() {
 		var html = '';
 
-		html += '<fieldset><label for="status">Status:</label><select class="input select" id="status"><option value="0"' + (Bt.itemInfo.closed == 0 ? ' selected="selected"' : '') + '>Opened</option><option value="1"' + (Bt.itemInfo.closed == 1 ? ' selected="selected"' : '') + '>Closed</option></select>';
-		html += '<br /><label for="priority">Priority:</label><select class="input select" id="priority">';
-		var priority = ['Low', 'Medium', 'High'];
+		html += '<fieldset><label for="status">Status:</label><select class="input select" id="status"><option value="0"' + (Bt.itemInfo.closed == 0 ? ' selected="selected"' : '') + '>Abierto</option><option value="1"' + (Bt.itemInfo.closed == 1 ? ' selected="selected"' : '') + '>Cerrado</option></select>';
+		html += '<br /><label for="priority">Prioridad:</label><select class="input select" id="priority">';
+		var priority = ['Baja', 'Media', 'Alta'];
 		for (var i = 0; i < 3; ++i)
 		{
 			html += '<option value="' + (i + 1) + '"';
@@ -280,8 +280,8 @@ var Bt = {
 			html += '>' + priority[i] + '</option>';
 		}
 		html += '</select>';
-		html += '<br /><label for="description">Description:</label><br /><textarea class="input textarea" id="description" rows="10" cols="80">' + Bt.itemInfo.desc + '</textarea>';
-		html += '<br /><a href="javascript:;" onclick="Bt.submitEditForm();" id="submitEdit" class="ui-button button2"><span><span>Save</span></span></a><a class="ui-button button2" href="javascript:;" onclick="Bt.hideEditForm();"><span><span>Cancel</span></span></a>';
+		html += '<br /><label for="description">Descripción:</label><br /><textarea class="input textarea" id="description" rows="10" cols="80">' + Bt.itemInfo.desc + '</textarea>';
+		html += '<br /><a href="javascript:;" onclick="Bt.submitEditForm();" id="submitEdit" class="ui-button button2"><span><span>Guardar</span></span></a><a class="ui-button button2" href="javascript:;" onclick="Bt.hideEditForm();"><span><span>Cancelar</span></span></a>';
 		html += '</fieldset>';
 
 		$('#editformplace').html(html).fadeIn();
