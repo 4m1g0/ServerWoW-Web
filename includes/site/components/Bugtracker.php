@@ -364,7 +364,7 @@ class Bugtracker_Component extends Component
 		$this->applyFilters($q);
 
 		$this->m_items = $q
-			->order(array('WowBugtrackerItems' => array('Priority', 'post_date')), 'DESC')
+			->order(array('WowBugtrackerItems' => array('post_date')), 'DESC')
 			->loadItems();
 
 		return $this;
@@ -384,7 +384,7 @@ class Bugtracker_Component extends Component
 		$this->applyFilters($q);
 
 		$this->m_items = $q
-			->order(array('WowBugtrackerItems' => array('Priority', 'post_date')), 'DESC')
+			->order(array('WowBugtrackerItems' => array('post_date')), 'DESC')
 			->fieldCondition('wow_bugtracker_items.type', ' = ' . $this->getCategoryId())
 			->loadItems();
 
