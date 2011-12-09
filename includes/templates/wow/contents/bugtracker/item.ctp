@@ -57,7 +57,7 @@ if (!$item) return;
 		Description: <strong><span id="bugdescription"><?php echo $item['description']; ?></span></strong>
 		<?php if (!in_array($item['type'], array(BT_DEFAULT, BT_WEB, BT_OTHER, BT_STORE))) : ?>
 		<br />
-		Internal Link: <strong><a href="http://es.wowhead.com/<?php echo strtolower($item['categoryName']) . '=' . $item['item_id']; ?>" target="_blank">Wowhead.com</a></strong>
+		Internal Link: <strong><a href="http://es.wowhead.com/<?php echo strtolower(substr($item['type_str'], 0, -1)) . '=' . $item['item_id']; ?>" target="_blank">Wowhead.com</a></strong>
 		<?php endif; ?>
 		<span id="adminresponse">
 		<?php
