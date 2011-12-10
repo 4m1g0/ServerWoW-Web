@@ -64,6 +64,12 @@ class Management_Account_Controller_Component extends Controller_Component
 					}
 					$this->buildBlock('paypal_def');
 					break;
+				case 'cancelled':
+					$this->buildBlock('paypal_cancel');
+					break;
+				case 'success':
+					$this->buildBlock('paypal_success');
+					break;
 			}
 		}
 		elseif (strtolower($core->getUrlAction(2)) == 'smspayments')
@@ -112,6 +118,20 @@ class Management_Account_Controller_Component extends Controller_Component
 	}
 
 	protected function block_failed_sms()
+	{
+		return $this->block()
+			->setTemplate('smsfailed', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_paypal_success()
+	{
+		return $this->block()
+			->setTemplate('paypalsuccess', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_paypal_cancel()
 	{
 		return $this->block()
 			->setTemplate('smsfailed', 'account' . DS . 'contents')

@@ -1899,6 +1899,7 @@ El equipo de cuentas de ServerWoW <br />
 	'template_store_service_gold_caption' => '[t] Gold Amount',
 	'template_management_menu_parameters_unstuck' => '[t] Unstuck character',
 	'template_account_unstuck_success_title' => '[t] Success!',
-	'template_account_sms_success_text' => '[t] Selected character were unstucked!',
+	'template_account_unstuck_success_text' => '[t] Selected character were unstucked!',
+	'template_account_paypal_success_text' => '[t] Your transaction was sucessfully performed!',
 );
 ?>

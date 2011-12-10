@@ -308,8 +308,20 @@ class Forum_Component extends Component
 			->loadItems();
 
 		$topics = $this->m_categoryTopics;
+
 		if (!$topics)
-			return $this;
+		{
+			if ($this->m_featuredTopics)
+			{
+				$topics = $this->m_featuredTopics;
+				$this->m_featuredTopics = null;
+			}
+			elseif ($this->m_pinnedTopics)
+			{
+				$topics = $this->m_pinnedTopics;
+				$this->m_pinnedTopics = null;
+			}
+		}
 
 		if ($this->m_featuredTopics)
 			$topics = array_merge($this->m_featuredTopics, $topics);
