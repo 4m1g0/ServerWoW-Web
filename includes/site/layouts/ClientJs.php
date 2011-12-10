@@ -237,6 +237,34 @@ $ClientJS = array(
 			)
 		)
 	),
+	'profession' => array(
+		'footer' => array(
+			array(
+				'file' => '/wow/static/js/wiki/wiki.js',
+				'version' => 15
+			),
+			array(
+				'file' => '/wow/static/js/wiki/profession.js',
+				'version' => 19
+			),
+			array(
+				'file' => '/wow/static/local-common/js/table.js',
+				'version' => 19
+			),
+			array(
+				'file' => '/wow/static/local-common/js/cms.js',
+				'version' => 19
+			),
+			array(
+				'file' => '/wow/static/local-common/js/filter.js',
+				'version' => 29
+			),
+			array(
+				'file' => '/wow/static/local-common/js/lightbox.js',
+				'version' => 19
+			)
+		)
+	),
 	'faction' => array(
 		'footer' => array(
 			array(
@@ -246,6 +274,26 @@ $ClientJS = array(
 			array(
 				'file' => '/wow/static/local-common/js/filter.js',
 				'version' => 29
+			),
+			array(
+				'file' => '/wow/static/js/wiki/npc.js',
+				'version' => 19
+			),
+			array(
+				'file' => '/wow/static/local-common/js/utility/model-rotator.js',
+				'version' => 19
+			),
+			array(
+				'file' => '/wow/static/local-common/js/table.js',
+				'version' => 19
+			),
+			array(
+				'file' => '/wow/static/local-common/js/cms.js',
+				'version' => 19
+			),
+			array(
+				'file' => '/wow/static/local-common/js/lightbox.js',
+				'version' => 19
 			)
 		)
 	),

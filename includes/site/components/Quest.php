@@ -18,30 +18,28 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class Wow_Controller_Component extends Controller_Component
+class Quest_Component extends Component
 {
-	protected $m_skipBuild = true;
-	protected $m_allowedControllers = array(
-		'home', 'character', 'guild', 'game', 'item', 'sidebar', 'community', 'media', 'forum', 'services',
-		'blog', 'data', 'spell', 'achievement', 'zone', 'faction', 'account-status', 'search', 'pvp', 'arena',
-		'pref', 'store', 'status', 'bugtracker', 'discussion', 'profession'
-	);
-
-	public function build($core)
+	public function getQuestsInfo($entries, $values = false)
 	{
-		if (!$core->getUrlAction(1))
-			$action = 'Home';
+		$q = $this->c('QueryResult', 'Db')
+			->model('QuestTemplate')
+			->addModel('LocalesQuest')
+			->join('left', 'LocalesQuest', 'QuestTemplate', 'entry', 'entry');
+
+		if (is_array($entries))
+		{
+			if ($values)
+				$q->fieldCondition('quest_template.entry', $entries);
+			else
+				$q->fieldCondition('quest_template.entry', array_keys($entries));
+		}
 		else
-			$action = ucfirst(strtolower($core->getUrlAction(1)));
+			$q->fieldCondition('quest_template.entry', ' = '. $entries);
 
-		if (!in_array(strtolower($action), $this->m_allowedControllers))
-			$com = 'Error_WoW';
-		else
-			$com = $action . '_WoW';
+		$quests = $q->keyIndex('entry')
+			->loadItems();
 
-		$this->c($com, 'Controller');
-
-		return $this;
+		return $quests;
 	}
 }
-?>

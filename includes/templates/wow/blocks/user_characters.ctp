@@ -19,8 +19,7 @@ if ($character) :
 			<div class="context-links">
 				<a href="<?php echo $this->getWowUrl('character/' . $character['realmName'] . '/' . $character['name']); ?>" title="<?php echo $l->getString('template_profile_caption'); ?>" rel="np" class="icon-profile link-first"><?php echo $l->getString('template_profile_caption'); ?></a>
 				<a href="<?php echo $this->getWowUrl('search?f=post&amp;a=' . urlencode($character['name'] . '@' . $character['realmName']) . '&amp;sort=time') ?>" title="<?php echo $l->getString('template_my_forum_posts_caption'); ?>" rel="np"class="icon-posts"> </a>
-				<a href="<?php echo $this->getWowUrl('vault/character/auction/' . $character['faction_text'] . '/'); ?>" title="<?php echo $l->getString('template_browse_auction_caption'); ?>" rel="np" class="icon-auctions"> </a>
-				<a href="<?php echo $this->getWowUrl('vault/character/event'); ?>" title="<?php echo $l->getString('template_browse_events_caption'); ?>" rel="np" class="icon-events link-last"> </a>
+				<a title="<?php echo $l->format('template_charlist_points_amount', $this->c('AccountManager')->user('amount')); ?>" rel="np" class="icon-auctions"> </a>
 			</div>
 		</div>
 		<div class="character-list">

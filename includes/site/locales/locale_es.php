@@ -82,6 +82,7 @@ $Site_Locale = array(
     
     'faction_alliance' => 'Alianza',
     'faction_horde' => 'Horda',
+	'faction_neutral' => 'Neutral',
     
     'creature_type_1' => 'Bestia',
     'creature_type_2' => 'Dragonante',
@@ -1682,6 +1683,11 @@ El equipo de cuentas de ServerWoW <br />
 	'template_account_change_pass_s1t5' => 'Nueva contraseña:',
 	'template_account_change_pass_s1t6' => 'Confirmar nueva contraseña:',
 
+	'template_item_tab_rewards' => 'Recompensas',
+	'template_item_tab_npcs' => 'PNJs',
+	'template_item_tab_quests' => 'Misiones',
+	'template_item_tab_achievements' => 'Logros',
+
 	'template_menu_community' => 'Comunidad',
 	'template_menu_media' => 'Media',
 	'armor_shield' => '[t] Shield',
@@ -1888,5 +1894,6 @@ El equipo de cuentas de ServerWoW <br />
 	'template_password_recovery_failed_body' => 'Fallo la recuperacion de contraseña, por favor, intentalo de nuevo.',
 	'template_password_recovery_failed_back' => 'Atras',
 	'template_management_menu_payments' => 'Ingresar Puntos',
+	'template_charlist_points_amount' => '[t] %.2f points',
 );
 ?>

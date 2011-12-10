@@ -14,35 +14,35 @@
 		<ul>
 
 				<li>
-		<a href="/wow/es/faction/baradins-wardens" data-faction="1177">
+		<a href="<?php echo $this->getWowUrl('faction/baradins-wardens'); ?>" data-faction="1177">
 			Celadores de Baradin
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/dragonmaw-clan" data-faction="1172">
+		<a href="<?php echo $this->getWowUrl('faction/dragonmaw-clan'); ?>" data-faction="1172">
 			Clan Faucedraco
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/wildhammer-clan" data-faction="1174">
+		<a href="<?php echo $this->getWowUrl('faction/wildhammer-clan'); ?>" data-faction="1174">
 			Clan Martillo Salvaje
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/the-earthen-ring" data-faction="1135">
+		<a href="<?php echo $this->getWowUrl('faction/the-earthen-ring'); ?>" data-faction="1135">
 			El Anillo de la Tierra
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/guardians-of-hyjal" data-faction="1158">
+		<a href="<?php echo $this->getWowUrl('faction/guardians-of-hyjal'); ?>" data-faction="1158">
 			Guardianes de Hyjal
 			
 		</a>
@@ -53,28 +53,28 @@
 		<ul>
 
 				<li>
-		<a href="/wow/es/faction/hellscreams-reach" data-faction="1178">
+		<a href="<?php echo $this->getWowUrl('faction/hellscreams-reach'); ?>" data-faction="1178">
 			Mando Grito Infernal
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/ramkahen" data-faction="1173">
+		<a href="<?php echo $this->getWowUrl('faction/ramkahen'); ?>" data-faction="1173">
 			Ramkahen
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/therazane" data-faction="1171">
+		<a href="<?php echo $this->getWowUrl('faction/therazane'); ?>" data-faction="1171">
 			Therazane
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/avengers-of-hyjal" data-faction="1204">
+		<a href="<?php echo $this->getWowUrl('faction/avengers-of-hyjal'); ?>" data-faction="1204">
 			Vengadores de Hyjal
 			
 		</a>
@@ -96,49 +96,49 @@
 		<ul>
 
 				<li>
-		<a href="/wow/es/faction/knights-of-the-ebon-blade" data-faction="1098">
+		<a href="<?php echo $this->getWowUrl('faction/knights-of-the-ebon-blade'); ?>" data-faction="1098">
 			Caballeros de la Espada de Ébano
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/argent-crusade" data-faction="1106">
+		<a href="<?php echo $this->getWowUrl('faction/argent-crusade'); ?>" data-faction="1106">
 			Cruzada Argenta
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/the-wyrmrest-accord" data-faction="1091">
+		<a href="<?php echo $this->getWowUrl('faction/the-wyrmrest-accord'); ?>" data-faction="1091">
 			El Acuerdo del Reposo del Dragón
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/the-ashen-verdict" data-faction="1156">
+		<a href="<?php echo $this->getWowUrl('faction/the-ashen-verdict'); ?>" data-faction="1156">
 			El Veredicto Cinéreo
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/kirin-tor" data-faction="1090">
+		<a href="<?php echo $this->getWowUrl('faction/kirin-tor'); ?>" data-faction="1090">
 			Kirin Tor
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/the-sons-of-hodir" data-faction="1119">
+		<a href="<?php echo $this->getWowUrl('faction/the-sons-of-hodir'); ?>" data-faction="1119">
 			Los Hijos de Hodir
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/the-kaluak" data-faction="1073">
+		<a href="<?php echo $this->getWowUrl('faction/the-kaluak'); ?>" data-faction="1073">
 			Los Kalu&#39;ak
 			
 		</a>
@@ -155,14 +155,14 @@
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-oracles" data-faction="1105">
+		<a href="<?php echo $this->getWowUrl('faction/the-oracles'); ?>" data-faction="1105">
 			Los Oráculos
 			
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/frenzyheart-tribe" data-faction="1104">
+		<a href="<?php echo $this->getWowUrl('faction/frenzyheart-tribe'); ?>" data-faction="1104">
 			Tribu Corazón Frenético
 			
 		</a>
@@ -170,7 +170,7 @@
 
 				<li>
 			<span class="separator">
-		<a href="/wow/es/faction/horde-expedition" data-faction="1052">
+		<a href="<?php echo $this->getWowUrl('faction/horde-expedition'); ?>" data-faction="1052">
 			Expedición de la Horda
 			<span class="icon-faction-1"></span>
 		</a>
@@ -178,28 +178,28 @@
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-hand-of-vengeance" data-faction="1067">
+		<a href="<?php echo $this->getWowUrl('faction/the-hand-of-vengeance'); ?>" data-faction="1067">
 			La Mano de la Venganza
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-sunreavers" data-faction="1124">
+		<a href="<?php echo $this->getWowUrl('faction/the-sunreavers'); ?>" data-faction="1124">
 			Los Atracasol
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-taunka" data-faction="1064">
+		<a href="<?php echo $this->getWowUrl('faction/the-taunka'); ?>" data-faction="1064">
 			Los taunka
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/warsong-offensive" data-faction="1085">
+		<a href="<?php echo $this->getWowUrl('faction/warsong-offensive'); ?>" data-faction="1085">
 			Ofensiva Grito de Guerra
 			<span class="icon-faction-1"></span>
 		</a>
@@ -207,7 +207,7 @@
 
 				<li>
 			<span class="separator">
-		<a href="/wow/es/faction/alliance-vanguard" data-faction="1037">
+		<a href="<?php echo $this->getWowUrl('faction/alliance-vanguard'); ?>" data-faction="1037">
 			Vanguardia de la Alianza
 			<span class="icon-faction-0"></span>
 		</a>
@@ -215,28 +215,28 @@
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-silver-covenant" data-faction="1094">
+		<a href="<?php echo $this->getWowUrl('faction/the-silver-covenant'); ?>" data-faction="1094">
 			El Pacto de Plata
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/valiance-expedition" data-faction="1050">
+		<a href="<?php echo $this->getWowUrl('faction/valiance-expedition'); ?>" data-faction="1050">
 			Expedición de Denuedo
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/explorers-league" data-faction="1068">
+		<a href="<?php echo $this->getWowUrl('faction/explorers-league'); ?>" data-faction="1068">
 			Liga de Expedicionarios
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-frostborn" data-faction="1126">
+		<a href="<?php echo $this->getWowUrl('faction/the-frostborn'); ?>" data-faction="1126">
 			Los Natoescarcha
 			<span class="icon-faction-0"></span>
 		</a>
@@ -257,98 +257,98 @@
 		<ul>
 
 				<li>
-		<a href="/wow/es/faction/netherwing" data-faction="1015">
+		<a href="<?php echo $this->getWowUrl('faction/netherwing'); ?>" data-faction="1015">
 			Ala Abisal
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/honor-hold" data-faction="946">
+		<a href="<?php echo $this->getWowUrl('faction/honor-hold'); ?>" data-faction="946">
 			Bastión del Honor
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/the-consortium" data-faction="933">
+		<a href="<?php echo $this->getWowUrl('faction/the-consortium'); ?>" data-faction="933">
 			El Consorcio
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/the-violet-eye" data-faction="967">
+		<a href="<?php echo $this->getWowUrl('faction/the-violet-eye'); ?>" data-faction="967">
 			El Ojo Violeta
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/sporeggar" data-faction="970">
+		<a href="<?php echo $this->getWowUrl('faction/sporeggar'); ?>" data-faction="970">
 			Esporaggar
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/cenarion-expedition" data-faction="942">
+		<a href="<?php echo $this->getWowUrl('faction/cenarion-expedition'); ?>" data-faction="942">
 			Expedición Cenarion
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/ashtongue-deathsworn" data-faction="1012">
+		<a href="<?php echo $this->getWowUrl('faction/ashtongue-deathsworn'); ?>" data-faction="1012">
 			Juramorte Lengua de ceniza
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/kurenai" data-faction="978">
+		<a href="<?php echo $this->getWowUrl('faction/kurenai'); ?>" data-faction="978">
 			Kurenai
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/the-scale-of-the-sands" data-faction="990">
+		<a href="<?php echo $this->getWowUrl('faction/the-scale-of-the-sands'); ?>" data-faction="990">
 			La Escama de las Arenas
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/the-maghar" data-faction="941">
+		<a href="<?php echo $this->getWowUrl('faction/the-maghar'); ?>" data-faction="941">
 			Los Mag&#39;har
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/ogrila" data-faction="1038">
+		<a href="<?php echo $this->getWowUrl('faction/ogrila'); ?>" data-faction="1038">
 			Ogri&#39;la
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/thrallmar" data-faction="947">
+		<a href="<?php echo $this->getWowUrl('faction/thrallmar'); ?>" data-faction="947">
 			Thrallmar
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/tranquillien" data-faction="922">
+		<a href="<?php echo $this->getWowUrl('faction/tranquillien'); ?>" data-faction="922">
 			Tranquillien
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/keepers-of-time" data-faction="989">
+		<a href="<?php echo $this->getWowUrl('faction/keepers-of-time'); ?>" data-faction="989">
 			Vigilantes del Tiempo
 			
 		</a>
@@ -365,42 +365,42 @@
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/lower-city" data-faction="1011">
+		<a href="<?php echo $this->getWowUrl('faction/lower-city'); ?>" data-faction="1011">
 			Bajo Arrabal
 			
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/shatari-skyguard" data-faction="1031">
+		<a href="<?php echo $this->getWowUrl('faction/shatari-skyguard'); ?>" data-faction="1031">
 			Guardia del cielo Sha&#39;tari
 			
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-aldor" data-faction="932">
+		<a href="<?php echo $this->getWowUrl('faction/the-aldor'); ?>" data-faction="932">
 			Los Aldor
 			
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-scryers" data-faction="934">
+		<a href="<?php echo $this->getWowUrl('faction/the-scryers'); ?>" data-faction="934">
 			Los Arúspices
 			
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-shatar" data-faction="935">
+		<a href="<?php echo $this->getWowUrl('faction/the-shatar'); ?>" data-faction="935">
 			Los Sha&#39;tar
 			
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/shattered-sun-offensive" data-faction="1077">
+		<a href="<?php echo $this->getWowUrl('faction/shattered-sun-offensive'); ?>" data-faction="1077">
 			Ofensiva Sol Devastado
 			
 		</a>
@@ -425,105 +425,105 @@
 		<ul>
 
 				<li>
-		<a href="/wow/es/faction/timbermaw-hold" data-faction="576">
+		<a href="<?php echo $this->getWowUrl('faction/timbermaw-hold'); ?>" data-faction="576">
 			Bastión Fauces de Madera
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/bloodsail-buccaneers" data-faction="87">
+		<a href="<?php echo $this->getWowUrl('faction/bloodsail-buccaneers'); ?>" data-faction="87">
 			Bucaneros Velasangre
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/gelkis-clan-centaur" data-faction="92">
+		<a href="<?php echo $this->getWowUrl('faction/gelkis-clan-centaur'); ?>" data-faction="92">
 			Centauros del clan Gelkis
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/magram-clan-centaur" data-faction="93">
+		<a href="<?php echo $this->getWowUrl('faction/magram-clan-centaur'); ?>" data-faction="93">
 			Centauros del clan Magram
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/cenarion-circle" data-faction="609">
+		<a href="<?php echo $this->getWowUrl('faction/cenarion-circle'); ?>" data-faction="609">
 			Círculo Cenarion
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/argent-dawn" data-faction="529">
+		<a href="<?php echo $this->getWowUrl('faction/argent-dawn'); ?>" data-faction="529">
 			El Alba Argenta
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/darkmoon-faire" data-faction="909">
+		<a href="<?php echo $this->getWowUrl('faction/darkmoon-faire'); ?>" data-faction="909">
 			Feria de la Luna Negra
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/thorium-brotherhood" data-faction="59">
+		<a href="<?php echo $this->getWowUrl('faction/thorium-brotherhood'); ?>" data-faction="59">
 			Hermandad del Torio
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/wintersaber-trainers" data-faction="589">
+		<a href="<?php echo $this->getWowUrl('faction/wintersaber-trainers'); ?>" data-faction="589">
 			Instructores de sableinvernales
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/syndicate" data-faction="70">
+		<a href="<?php echo $this->getWowUrl('faction/syndicate'); ?>" data-faction="70">
 			La Hermandad
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/brood-of-nozdormu" data-faction="910">
+		<a href="<?php echo $this->getWowUrl('faction/brood-of-nozdormu'); ?>" data-faction="910">
 			Linaje de Nozdormu
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/ravenholdt" data-faction="349">
+		<a href="<?php echo $this->getWowUrl('faction/ravenholdt'); ?>" data-faction="349">
 			Ravenholdt
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/shendralar" data-faction="809">
+		<a href="<?php echo $this->getWowUrl('faction/shendralar'); ?>" data-faction="809">
 			Shen&#39;dralar
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/hydraxian-waterlords" data-faction="749">
+		<a href="<?php echo $this->getWowUrl('faction/hydraxian-waterlords'); ?>" data-faction="749">
 			Srs. del Agua de Hydraxis
 			
 		</a>
 				</li>
 
 				<li>
-		<a href="/wow/es/faction/zandalar-tribe" data-faction="270">
+		<a href="<?php echo $this->getWowUrl('faction/zandalar-tribe'); ?>" data-faction="270">
 			Tribu Zandalar
 			
 		</a>
@@ -540,42 +540,42 @@
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/darnassus" data-faction="69">
+		<a href="<?php echo $this->getWowUrl('faction/darnassus'); ?>" data-faction="69">
 			Darnassus
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/exodar" data-faction="930">
+		<a href="<?php echo $this->getWowUrl('faction/exodar'); ?>" data-faction="930">
 			El Exodar
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/ironforge" data-faction="47">
+		<a href="<?php echo $this->getWowUrl('faction/ironforge'); ?>" data-faction="47">
 			Forjaz
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/gilneas" data-faction="1134">
+		<a href="<?php echo $this->getWowUrl('faction/gilneas'); ?>" data-faction="1134">
 			Gilneas
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/gnomeregan" data-faction="54">
+		<a href="<?php echo $this->getWowUrl('faction/gnomeregan'); ?>" data-faction="54">
 			Gnomeregan
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/stormwind" data-faction="72">
+		<a href="<?php echo $this->getWowUrl('faction/stormwind'); ?>" data-faction="72">
 			Ventormenta
 			<span class="icon-faction-0"></span>
 		</a>
@@ -588,28 +588,28 @@
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/booty-bay" data-faction="21">
+		<a href="<?php echo $this->getWowUrl('faction/booty-bay'); ?>" data-faction="21">
 			Bahía del Botín
 			
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/gadgetzan" data-faction="369">
+		<a href="<?php echo $this->getWowUrl('faction/gadgetzan'); ?>" data-faction="369">
 			Gadgetzan
 			
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/ratchet" data-faction="470">
+		<a href="<?php echo $this->getWowUrl('faction/ratchet'); ?>" data-faction="470">
 			Trinquete
 			
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/everlook" data-faction="577">
+		<a href="<?php echo $this->getWowUrl('faction/everlook'); ?>" data-faction="577">
 			Vista Eterna
 			
 		</a>
@@ -622,21 +622,21 @@
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/silverwing-sentinels" data-faction="890">
+		<a href="<?php echo $this->getWowUrl('faction/silverwing-sentinels'); ?>" data-faction="890">
 			Centinelas Ala de Plata
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/stormpike-guard" data-faction="730">
+		<a href="<?php echo $this->getWowUrl('faction/stormpike-guard'); ?>" data-faction="730">
 			Guardia Pico Tormenta
 			<span class="icon-faction-0"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-league-of-arathor" data-faction="509">
+		<a href="<?php echo $this->getWowUrl('faction/the-league-of-arathor'); ?>" data-faction="509">
 			Liga de Arathor
 			<span class="icon-faction-0"></span>
 		</a>
@@ -649,21 +649,21 @@
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/frostwolf-clan" data-faction="729">
+		<a href="<?php echo $this->getWowUrl('faction/frostwolf-clan'); ?>" data-faction="729">
 			Clan Lobo Gélido
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/warsong-outriders" data-faction="889">
+		<a href="<?php echo $this->getWowUrl('faction/warsong-outriders'); ?>" data-faction="889">
 			Escoltas Grito de Guerra
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/the-defilers" data-faction="510">
+		<a href="<?php echo $this->getWowUrl('faction/the-defilers'); ?>" data-faction="510">
 			Los Rapiñadores
 			<span class="icon-faction-1"></span>
 		</a>
@@ -676,42 +676,42 @@
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/thunder-bluff" data-faction="81">
+		<a href="<?php echo $this->getWowUrl('faction/thunder-bluff'); ?>" data-faction="81">
 			Cima del Trueno
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/silvermoon-city" data-faction="911">
+		<a href="<?php echo $this->getWowUrl('faction/silvermoon-city'); ?>" data-faction="911">
 			Ciudad de Lunargenta
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/bilgewater-cartel" data-faction="1133">
+		<a href="<?php echo $this->getWowUrl('faction/bilgewater-cartel'); ?>" data-faction="1133">
 			Cártel Pantoque
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/undercity" data-faction="68">
+		<a href="<?php echo $this->getWowUrl('faction/undercity'); ?>" data-faction="68">
 			Entrañas
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/orgrimmar" data-faction="76">
+		<a href="<?php echo $this->getWowUrl('faction/orgrimmar'); ?>" data-faction="76">
 			Orgrimmar
 			<span class="icon-faction-1"></span>
 		</a>
 				</li>
 
 				<li class="child">
-		<a href="/wow/es/faction/darkspear-trolls" data-faction="530">
+		<a href="<?php echo $this->getWowUrl('faction/darkspear-trolls'); ?>" data-faction="530">
 			Trols Lanza Negra
 			<span class="icon-faction-1"></span>
 		</a>

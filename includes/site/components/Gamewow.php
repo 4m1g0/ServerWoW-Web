@@ -480,5 +480,269 @@ class GameWoW_Component extends Component
 
 		return $this;
 	}
+
+	public function getFaction($key)
+	{
+		if (!$key)
+			return false;
+
+		$q = $this->c('QueryResult', 'Db')
+			->model('WowFactions');
+		$id = intval($key);
+		if (is_integer($key) || $id > 0)
+			$q->fieldCondition('id', ' = ' . $key);
+		else
+			$q->fieldCondition('key', ' = \'' . $key . '\'');
+
+		$faction = $q->loadItem();
+
+		if (!$faction)
+			return false;
+
+		$faction['creatures'] = $this->c('QueryResult', 'Db')
+			->model('WowFactionNpcs')
+			->fieldCondition('faction_id', ' = ' . $faction['id'])
+			->loadItems();
+
+		return $faction;
+	}
+
+	public function getFactionTab(&$faction, $tab)
+	{
+		if (!$faction || !isset($faction['id'])|| !$faction['id'])
+			return false;
+
+		$contents = array();
+
+		switch ($tab)
+		{
+			case 'rewards':
+				$rewards_ids = $this->c('QueryResult', 'Db')
+					->model('ItemTemplate')
+					->fields(array('ItemTemplate' => array('entry')))
+					->fieldCondition('RequiredReputationFaction', ' = ' . $faction['id'])
+					->keyIndex('entry')
+					->loadItems();
+				if (!$rewards_ids)
+					return false;
+
+				$contents = $this->c('Item')->getItemsInfo($rewards_ids);
+
+				if (!$contents)
+					return false;
+				break;
+			case 'quests':
+				$quests_ids = $this->c('QueryResult', 'Db')
+					->model('QuestTemplate')
+					->fields(array('QuestTemplate' => array('entry')))
+					->fieldCondition('RewRepFaction1', ' = ' . $faction['id'], 'OR')
+					->fieldCondition('RewRepFaction2', ' = ' . $faction['id'], 'OR')
+					->fieldCondition('RewRepFaction3', ' = ' . $faction['id'], 'OR')
+					->fieldCondition('RewRepFaction4', ' = ' . $faction['id'], 'OR')
+					->loadItems();
+
+				if (!$quests_ids)
+					return false;
+
+				$quests = $this->c('Quest')->getQuestsInfo($quests_ids);
+
+				if (!$quests)
+					return false;
+
+				$contents = array(
+					'daily' => 0,
+					'normal' => 0,
+					'quests' => array()
+				);
+
+				foreach ($quests as $q)
+				{
+					if ($q['QuestFlags'] & 4096)
+						$contents['daily']++;
+					else
+						$contents['normal']++;
+				}
+
+				$contents['quests'] = $quests;
+				unset($quests);
+
+				break;
+			case 'npcs':
+				$factions_ids = $this->c('QueryResult', 'Db')
+					->model('WowFactionTemplate')
+					->fields(array('WowFactionTemplate' => array('factiontemplateID')))
+					->keyIndex('factiontemplateID')
+					->fieldCondition('factionID', ' = ' . $faction['id'])
+					->loadItems();
+
+				if (!$factions_ids)
+					return false;
+
+				$contents = $this->c('QueryResult', 'Db')
+					->model('CreatureTemplate')
+					->addModel('LocalesCreature')
+					->join('left', 'LocalesCreature', 'CreatureTemplate', 'entry', 'entry')
+					->fieldCondition('faction_A', array_keys($factions_ids))
+					->keyIndex('entry')
+					->loadItems();
+
+				if (!$contents)
+					return false;
+
+				break;
+			case 'achievements':
+				$achievements_ids = $this->c('QueryResult', 'Db')
+					->model('WowAchievementCriteria')
+					->fields(array('WowAchievementCriteria' => array('referredAchievement')))
+					->keyIndex('referredAchievement')
+					->fieldCondition('requiredType', ' = 46')
+					->fieldCondition('data', ' = ' . $faction['id'])
+					->loadItems();
+
+				if (!$achievements_ids)
+					return false;
+
+				$contents = $this->c('QueryResult', 'Db')
+					->model('WowAchievement')
+					->addModel('WowAchievementCategory')
+					->join('left', 'WowAchievementCategory', 'WowAchievement', 'categoryId', 'id')
+					->fieldCondition('wow_achievement.id', array_keys($achievements_ids))
+					->setAlias('WowAchievementCategory', 'name_es', 'catTitle')
+					->setAlias('WowAchievementCategory', 'id', 'catId')
+					->loadItems();
+
+				if (!$contents)
+					return false;
+
+				break;
+		}
+
+		return $contents;
+	}
+
+	public function getFactionTabs(&$faction, &$allowed)
+	{
+		$allowed = false;
+		if (!$faction || !isset($faction['id']))
+			return false;
+
+		$tabs = array(
+			'rewards' => 0,
+			'quests' => 0,
+			'npcs' => 0,
+			'achievements' => 0
+		);
+
+		// Rewards (items)
+		$rewards_ids = $this->c('QueryResult', 'Db')
+			->model('ItemTemplate')
+			->fields(array('ItemTemplate' => array('entry')))
+			->fieldCondition('RequiredReputationFaction', ' = ' . $faction['id'])
+			->keyIndex('entry')
+			->loadItems();
+
+		if ($rewards_ids)
+		{
+			$tabs['rewards'] = sizeof($rewards_ids);
+			$allowed = true;
+		}
+
+		unset($rewards_ids);
+
+		// NPCs
+		$factions_ids = $this->c('QueryResult', 'Db')
+			->model('WowFactionTemplate')
+			->fields(array('WowFactionTemplate' => array('factiontemplateID')))
+			->keyIndex('factiontemplateID')
+			->fieldCondition('factionID', ' = ' . $faction['id'])
+			->loadItems();
+
+		if ($factions_ids)
+		{
+			$npcs_ids = $this->c('QueryResult', 'Db')
+				->model('CreatureTemplate')
+				->fields(array('CreatureTemplate' => array('entry')))
+				->fieldCondition('faction_A', array_keys($factions_ids))
+				->keyIndex('entry')
+				->loadItems();
+
+			if ($npcs_ids)
+			{
+				$tabs['npcs'] = sizeof($npcs_ids);
+				$allowed = true;
+			}
+
+			unset($npcs_ids);
+		}
+
+		// Quest
+		$quests_ids = $this->c('QueryResult', 'Db')
+			->model('QuestTemplate')
+			->fields(array('QuestTemplate' => array('entry')))
+			->fieldCondition('RewRepFaction1', ' = ' . $faction['id'], 'OR')
+			->fieldCondition('RewRepFaction2', ' = ' . $faction['id'], 'OR')
+			->fieldCondition('RewRepFaction3', ' = ' . $faction['id'], 'OR')
+			->fieldCondition('RewRepFaction4', ' = ' . $faction['id'], 'OR')
+			->loadItems();
+
+		if ($quests_ids)
+		{
+			$tabs['quests'] = sizeof($quests_ids);
+			$allowed = true;
+		}
+
+		unset($quests_ids);
+
+		// Achievements
+		$achievements_ids = $this->c('QueryResult', 'Db')
+			->model('WowAchievementCriteria')
+			->fields(array('WowAchievementCriteria' => array('referredAchievement')))
+			->keyIndex('referredAchievement')
+			->fieldCondition('requiredType', ' = 46')
+			->fieldCondition('data', ' = ' . $faction['id'])
+			->loadItems();
+
+		if ($achievements_ids)
+		{
+			$tabs['achievements'] = sizeof($achievements_ids);
+			$allowed = true;
+		}
+
+		unset($achievements_ids);
+
+		return $tabs;
+	}
+
+	public function getProfession($key)
+	{
+		if (!$key)
+			return false;
+
+		$profession = array(
+			'related' => array(),
+			'bonuses' => array(),
+			'info' => array()
+		);
+
+		$profession['info'] = $this->c('QueryResult', 'Db')
+			->model('WowProfessionData')
+			->fieldCondition('key', ' = \'' . $key . '\'')
+			->loadItem();
+
+		if (!$profession['info'])
+			return false;
+
+		$profession['related'] = $this->c('QueryResult', 'Db')
+			->model('WowProfessionRelated')
+			->fieldCondition('profession_id', ' = ' . $profession['info']['id'])
+			->loadItems();
+
+		$profession['bonuses'] = $this->c('QueryResult', 'Db')
+			->model('WowProfessionBonuses')
+			->fieldCondition('profession_id', ' = ' . $profession['info']['id'])
+			->loadItems();
+
+		return $profession;
+	}
 }
 ?>

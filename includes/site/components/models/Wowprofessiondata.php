@@ -18,30 +18,19 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-class Wow_Controller_Component extends Controller_Component
+class WowProfessionData_Model_Component extends Model_Db_Component
 {
-	protected $m_skipBuild = true;
-	protected $m_allowedControllers = array(
-		'home', 'character', 'guild', 'game', 'item', 'sidebar', 'community', 'media', 'forum', 'services',
-		'blog', 'data', 'spell', 'achievement', 'zone', 'faction', 'account-status', 'search', 'pvp', 'arena',
-		'pref', 'store', 'status', 'bugtracker', 'discussion', 'profession'
+	public $m_model = 'WowProfessionData';
+	public $m_table = 'wow_profession_data';
+	public $m_dbType = 'wow';
+	public $m_fields = array(
+		'key' => array('type' => 'string'),
+		'id' => 'Id',
+		'name' => 'Locale',
+		'intro' => 'Locale',
+		'desc' => 'Locale',
+		'howto' => 'Locale',
+		'icon' => array('type' => 'string')
 	);
-
-	public function build($core)
-	{
-		if (!$core->getUrlAction(1))
-			$action = 'Home';
-		else
-			$action = ucfirst(strtolower($core->getUrlAction(1)));
-
-		if (!in_array(strtolower($action), $this->m_allowedControllers))
-			$com = 'Error_WoW';
-		else
-			$com = $action . '_WoW';
-
-		$this->c($com, 'Controller');
-
-		return $this;
-	}
 }
 ?>

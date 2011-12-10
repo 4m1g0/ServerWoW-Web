@@ -379,15 +379,15 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 
 				<ul>
-						<li><a href="<?php echo $this->getWowUrl('game/faction/'); ?>#expansion=3">Cataclysm</a></li>
-						<li><a href="<?php echo $this->getWowUrl('game/faction/'); ?>#expansion=2">Wrath of the Lich King</a></li>
-						<li><a href="<?php echo $this->getWowUrl('game/faction/'); ?>#expansion=1">The Burning Crusade</a></li>
-						<li><a href="<?php echo $this->getWowUrl('game/faction/'); ?>#expansion=0">Clásico</a></li>
+						<li><a href="<?php echo $this->getWowUrl('faction/'); ?>#expansion=3">Cataclysm</a></li>
+						<li><a href="<?php echo $this->getWowUrl('faction/'); ?>#expansion=2">Wrath of the Lich King</a></li>
+						<li><a href="<?php echo $this->getWowUrl('faction/'); ?>#expansion=1">The Burning Crusade</a></li>
+						<li><a href="<?php echo $this->getWowUrl('faction/'); ?>#expansion=0">Clásico</a></li>
 				</ul>
 				</div>
 
 
-			<div class="box">
+			<!--<div class="box">
 					<h2 class="header "><a href="lore/">Historia</a></h2>
 
 
@@ -396,14 +396,14 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 						<li><a href="lore/#latest-short-story">Relatos cortos</a></li>
 						<li><a href="lore/#leader-story">Historia de los líderes</a></li>
 				</ul>
-			</div>
+			</div>-->
 
 	</div>
 	
 
 	<div class="column" style="width: 315px;">
 			<div class="box first-child">
-					<h2 class="header "><a href="<?php echo $this->getWowUrl('game/profession/'); ?>">Profesiones</a></h2>
+					<h2 class="header "><a href="<?php echo $this->getWowUrl('profession/'); ?>">Profesiones</a></h2>
 
 
 					<h4 class="subcategory ">Primaria</h4>
@@ -411,7 +411,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 		<ul class="double">
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>alchemy">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>alchemy">
 
 
 
@@ -423,7 +423,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>skinning">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>skinning">
 
 
 
@@ -435,7 +435,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>enchanting">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>enchanting">
 
 
 
@@ -447,7 +447,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>herbalism">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>herbalism">
 
 
 
@@ -459,7 +459,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>blacksmithing">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>blacksmithing">
 
 
 
@@ -471,7 +471,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>engineering">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>engineering">
 
 
 
@@ -485,7 +485,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</ul>
 		<ul class="double">
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>inscription">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>inscription">
 
 
 
@@ -497,7 +497,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>jewelcrafting">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>jewelcrafting">
 
 
 
@@ -509,7 +509,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>mining">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>mining">
 
 
 
@@ -521,7 +521,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>leatherworking">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>leatherworking">
 
 
 
@@ -533,7 +533,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>tailoring">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>tailoring">
 
 
 
@@ -554,7 +554,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 		<ul class="double">
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>archaeology">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>archaeology">
 
 
 
@@ -566,7 +566,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>cooking">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>cooking">
 
 
 
@@ -580,7 +580,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</ul>
 		<ul class="double">
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>fishing">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>fishing">
 
 
 
@@ -592,7 +592,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</a>
 								</li>
 								<li>
-					<a href="<?php echo $this->getWowUrl('game/profession/'); ?>first-aid">
+					<a href="<?php echo $this->getWowUrl('profession/'); ?>first-aid">
 
 
 

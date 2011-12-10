@@ -401,6 +401,23 @@ $ClientCSS = array(
 			)
 		)
 	),
+	'profession' => array(
+		'header' => array(
+			array(
+				'file' => '/wow/static/css/wiki/wiki.css',
+				'version' => 15
+			),
+			array(
+				'file' => '/wow/static/css/wiki/wiki-ie.css',
+				'version' => 15,
+				'browser' => 'IE'
+			),
+			array(
+				'file' => '/wow/static/css/wiki/profession.css',
+				'version' => 19
+			)
+		)
+	),
 	'zone' => array(
 		'header' => array(
 			array(
