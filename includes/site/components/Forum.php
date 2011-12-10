@@ -284,7 +284,8 @@ class Forum_Component extends Component
 			->order(array('WowForumThreads' => array('last_update')), 'DESC')
 			->loadItems();
 
-		$this->m_categoryTopics = $this->c('QueryResult', 'Db')
+		
+		$q = $this->c('QueryResult', 'Db')
 			->model('WowForumThreads')
 			->addModel('WowForumPosts')
 			->addModel('WowUserCharacters')
@@ -293,10 +294,15 @@ class Forum_Component extends Component
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
 			->join('left', 'WowAccounts', 'WowForumPosts', 'account_id', 'id')
-			->fieldCondition('wow_forum_threads.cat_id', ' = ' . $this->m_categoryId)
-			->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_pinnedTopics)) . ')')
-			->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_featuredTopics)) . ')')
-			->fieldCondition('wow_forum_posts.post_num', ' = 1')
+			->fieldCondition('wow_forum_threads.cat_id', ' = ' . $this->m_categoryId);
+
+		if (is_array($this->m_pinnedTopics))
+			$q->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_pinnedTopics)) . ')');
+
+		if (is_array($this->m_featuredTopics))
+			$q->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_featuredTopics)) . ')');
+
+		$this->m_categoryTopics = $q->fieldCondition('wow_forum_posts.post_num', ' = 1')
 			->limit(($this->getDisplayLimit('topics') * $this->getPage()), $this->getPage(true))
 			->order(array('WowForumThreads' => array('last_update')), 'DESC')
 			->loadItems();
