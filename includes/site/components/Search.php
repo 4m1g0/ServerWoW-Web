@@ -36,7 +36,7 @@ class Search_Component extends Component
 		if (mb_strlen($query) < 2)
 			return $this;
 
-		$this->m_query = $query;
+		$this->m_query = urldecode($query);
 
 		return $this;
 	}

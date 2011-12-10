@@ -305,7 +305,7 @@ class Database_Component extends Component
 			$this->delayedConnect(); // Try to perform delayed connection
 
 		// funcArgs[0] - SQL query text (with placeholders)
-		$funcArgs[0] = urldecode($funcArgs[0]);
+		$funcArgs[0] = $funcArgs[0];
 
 		if ($query_type != SQL_RAW_QUERY)
 		{
@@ -317,8 +317,9 @@ class Database_Component extends Component
 					$funcArgs[$i] = $this->ConvertArray($funcArgs[$i]);
 			}
 		}
-		
+
 		$safe_sql = call_user_func_array('sprintf', $funcArgs);
+
 		if (!$safe_sql)
 			$this->c('Log')->writeError('%s : unable to execute sql query, dump:("%s")!', __METHOD__, print_r($funcArgs, true));
 
@@ -329,6 +330,7 @@ class Database_Component extends Component
 				$this->c('Log')->writeError('%s : fatal error: database prefix was not defined, unable to execute SQL query (%s)!',	__method__, $safe_sql);
 				return false;
 			}
+
 			$safe_sql = str_replace('DBPREFIX', $this->db_prefix, $safe_sql);
 		}
 
