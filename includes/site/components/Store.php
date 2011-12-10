@@ -38,6 +38,7 @@ class Store_Component extends Component
 	protected $m_apiData = array();
 	protected $m_apiMethodResult = array();
 	protected $m_menuItems = array();
+	protected $m_errorMessages = array();
 
 	public function initStore($catId, $itemId)
 	{
@@ -112,6 +113,11 @@ class Store_Component extends Component
 		$this->m_apiMethodResult = $rData;
 
 		return $this;
+	}
+
+	public function getErrorMessages()
+	{
+		return $this->m_errorMessages;
 	}
 
 	public function getApiMethodResult()
@@ -836,11 +842,17 @@ class Store_Component extends Component
 				break;
 			case SERVICE_POWERLEVEL:
 				if ($levels >= STORE_POWERLEVEL_MAX || $levels < 1)
-					return $this;
+				{
+					$this->addErrorMessage('Unable to add levels: can\'t handle more than ' . STORE_POWERLEVEL_MAX . ' levels!');
+					return $op_result;
+				}
 
 				$curr = $this->c('Db')->characters()->selectRow("SELECT level FROM characters WHERE guid = %d", $guid);
 				if (($curr['level'] + $levels) > STORE_POWERLEVEL_MAX)
-					$setlevel = STORE_POWERLEVEL_MAX;
+				{
+					$this->addErrorMessage('Unable to add levels: overcap!');
+					return $op_result;
+				}
 				else
 					$setlevel = $curr['level'] + $levels;
 				$this->c('Db')->characters()->query("UPDATE characters SET level = %d WHERE guid = %d", $setlevel, $guid);
@@ -856,7 +868,7 @@ class Store_Component extends Component
 
 		$op_result = true;
 
-		return $this;
+		return $op_result;
 	}
 
 	public function buyout()
@@ -870,7 +882,10 @@ class Store_Component extends Component
 			return $this;
 
 		if ($this->getCartPrice() > $this->c('AccountManager')->user('amount'))
+		{
+			$this->addErrorMessage('Unable to perform buyout - not enough points for buyout!');
 			return $this;
+		}
 
 		foreach ($b as $item)
 		{
@@ -883,17 +898,24 @@ class Store_Component extends Component
 				continue;
 
 			if ($this->c('AccountManager')->isCharacterOnline($item['realm'], $item['guid']))
+			{
+				$this->addErrorMessage('Unable to perform buyout for item #' . $it['id'] . ' - character is online!');
 				continue; // online
+			}
 
 			if ($this->c('AccountManager')->user('amount') < ($it['price'] * $it['quantity']))
+			{
+				$this->addErrorMessage('Unable to perform buyout for item #' . $it['id'] . ' - not enough points!');
 				continue; // Not enough money
+			}
 
+			$op_result = false;
 			if ($it['service_type'] > 0)
-				$this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm'], null, $it['quantity']);
+				$op_result = $this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm'], null, $it['quantity']);
 			else
 			{
 				if (!trim($it['itemset_pieces']))
-					$this->sendItemMail($it['item_id'], $it['quantity'], $item['guid'], $item['realm']);
+					$op_result = $this->sendItemMail($it['item_id'], $it['quantity'], $item['guid'], $item['realm']);
 				else
 				{
 					$pieces = explode(' ', trim($it['itemset_pieces']));
@@ -902,11 +924,13 @@ class Store_Component extends Component
 					{
 						foreach ($pieces as $p)
 							$this->sendItemMail(intval(str_replace(' ', '', $p)), 1, $item['guid'], $item['realm']);
+						$op_result = true;
 					}
 				}
 			}
 			
-			$this->c('AccountManager')->changeBonus(($it['price'] * $it['quantity']), -1);
+			if ($op_result)
+				$this->c('AccountManager')->changeBonus(($it['price'] * $it['quantity']), -1);
 
 			$this->writeOperationLog($it, $item['guid'], $item['realm']);
 		}
@@ -933,6 +957,13 @@ class Store_Component extends Component
 		$edt->realm_id = $realm;
 
 		$edt->save()->clearValues();
+
+		return $this;
+	}
+
+	protected function addErrorMessage($message)
+	{
+		$this->m_errorMessages[] = $message;
 
 		return $this;
 	}

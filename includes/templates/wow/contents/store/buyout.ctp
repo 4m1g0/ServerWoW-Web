@@ -114,7 +114,17 @@ function buyout()
 		type: 'POST',
 		data: {'buyout': postdata},
 		success: function(data) {
-			location.href = '<?php echo $this->getWowUrl('store/cart'); ?>';
+			data = $.parseJSON(data);
+			if (data.length)
+			{
+				$('#error').html('<strong>Some errors appeared:</strong><ul>');
+				$.each(data, function(idx, val) {
+					$('#error').html($('#error').html() + '<li>' + val + '</li>');
+				});
+				$('#error').html($('#error').html() + '</ul>');
+			}
+			else
+				location.href = '<?php echo $this->getWowUrl('store/cart'); ?>';
 		}
 	});
 }

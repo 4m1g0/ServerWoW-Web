@@ -109,6 +109,7 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 			$this->ajaxPage();
 			define('AJAX_PAGE', true);
 			$this->c('Store')->buyout();
+			echo json_encode($this->c('Store')->getErrorMessages());
 
 			return $this;
 		}
