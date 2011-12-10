@@ -885,6 +885,9 @@ class Store_Component extends Component
 			if ($this->c('AccountManager')->isCharacterOnline($item['realm'], $item['guid']))
 				continue; // online
 
+			if ($this->c('AccountManager')->user('amount') < ($it['price'] * $it['quantity']))
+				continue; // Not enough money
+
 			if ($it['service_type'] > 0)
 				$this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm'], null, $it['quantity']);
 			else
@@ -902,7 +905,7 @@ class Store_Component extends Component
 					}
 				}
 			}
-
+			
 			$this->c('AccountManager')->changeBonus(($it['price'] * $it['quantity']), -1);
 
 			$this->writeOperationLog($it, $item['guid'], $item['realm']);
