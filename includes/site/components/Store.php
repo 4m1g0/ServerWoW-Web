@@ -746,7 +746,7 @@ class Store_Component extends Component
 
 		foreach ($this->m_cart as $item)
 		{
-			if ($this->c('AccountManager')->changeBonus($item['price'], -1))
+			if ($this->c('AccountManager')->changeBonus(($item['price'] * $quantity), -1))
 			{
 				if ($item['service_type'] > 0)
 					$this->performCharacterOperation($item['service_type'], intval($_POST['guid']), intval($_POST['realmId']), $_POST['service_data'], $item['quantity']);
