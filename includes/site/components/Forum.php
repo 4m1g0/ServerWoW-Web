@@ -36,6 +36,8 @@ class Forum_Component extends Component
 	protected $m_indexCategories = array();
 	protected $m_forumCounters = array();
 	protected $m_rawPostMessages = array();
+	protected $m_pinnedTopics = array();
+	protected $m_featuredTopics = array();
 
 	public function initForums($categoryId, $topicId)
 	{
@@ -230,7 +232,7 @@ class Forum_Component extends Component
 
 		$this->m_categoryData = $this->c('QueryResult', 'Db')
 			->model('WowForumCategory')
-			->fieldCondition('gmlevel', ' <= ' . $this->c('AccountManager')->user('gmlevel'))
+			->fieldCondition('gmlevel', ' <= ' . intval($this->c('AccountManager')->user('gmlevel')))
 			->fieldCondition('cat_id', ' = ' . $this->m_categoryId)
 			->loadItem();
 
@@ -246,14 +248,41 @@ class Forum_Component extends Component
 		}
 
 		// Count
-		$this->m_forumCounters['topics'] = $this->c('QueryResult', 'Db')
-			->model('WowForumThreads')
-			->fields(array('WowForumThreads' => array('thread_id')))
-			->runFunction('COUNT', 'thread_id')
-			->fieldCondition('cat_id', ' = ' . $this->m_categoryId)
-			->loadItem();
+		$this->m_forumCounters['topics'] = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_forum_threads WHERE cat_id = %d AND (NOT (flags & %d) AND NOT (flags & %d))", $this->m_categoryId, THREAD_FLAG_PINNED, THREAD_FLAG_FEATURED);
 
 		$this->m_forumCounters['topics'] = $this->m_forumCounters['topics']['thread_id'];
+
+		$this->m_pinnedTopics = $this->c('QueryResult', 'Db')
+			->model('WowForumThreads')
+			->addModel('WowForumPosts')
+			->addModel('WowUserCharacters')
+			->addModel('WowAccounts')
+			->join('left', 'WowForumPosts', 'WowForumThreads', 'thread_id', 'thread_id')
+			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
+			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
+			->join('left', 'WowAccounts', 'WowForumPosts', 'account_id', 'id')
+			->fieldCondition('wow_forum_threads.cat_id', ' = ' . $this->m_categoryId)
+			->fieldCondition('wow_forum_threads.flags', ' & ' . THREAD_FLAG_PINNED)
+			->fieldCondition('wow_forum_posts.post_num', ' = 1')
+			->keyIndex('thread_id')
+			->order(array('WowForumThreads' => array('last_update')), 'DESC')
+			->loadItems();
+
+		$this->m_featuredTopics = $this->c('QueryResult', 'Db')
+			->model('WowForumThreads')
+			->addModel('WowForumPosts')
+			->addModel('WowUserCharacters')
+			->addModel('WowAccounts')
+			->join('left', 'WowForumPosts', 'WowForumThreads', 'thread_id', 'thread_id')
+			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
+			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
+			->join('left', 'WowAccounts', 'WowForumPosts', 'account_id', 'id')
+			->fieldCondition('wow_forum_threads.cat_id', ' = ' . $this->m_categoryId)
+			->fieldCondition('wow_forum_threads.flags', ' & ' . THREAD_FLAG_FEATURED)
+			->fieldCondition('wow_forum_posts.post_num', ' = 1')
+			->keyIndex('thread_id')
+			->order(array('WowForumThreads' => array('last_update')), 'DESC')
+			->loadItems();
 
 		$this->m_categoryTopics = $this->c('QueryResult', 'Db')
 			->model('WowForumThreads')
@@ -265,10 +294,25 @@ class Forum_Component extends Component
 			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
 			->join('left', 'WowAccounts', 'WowForumPosts', 'account_id', 'id')
 			->fieldCondition('wow_forum_threads.cat_id', ' = ' . $this->m_categoryId)
+			->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_pinnedTopics)) . ')')
+			->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_featuredTopics)) . ')')
 			->fieldCondition('wow_forum_posts.post_num', ' = 1')
 			->limit(($this->getDisplayLimit('topics') * $this->getPage()), $this->getPage(true))
 			->order(array('WowForumThreads' => array('last_update')), 'DESC')
 			->loadItems();
+
+		$topics = $this->m_categoryTopics;
+		if (!$topics)
+			return $this;
+
+		if ($this->m_featuredTopics)
+			$topics = array_merge($this->m_featuredTopics, $topics);
+		if ($this->m_pinnedTopics)
+			$topics = array_merge($this->m_pinnedTopics, $topics);
+
+		$this->m_categoryTopics = $topics;
+
+		unset($topics);
 
 		return $this;
 	}
@@ -411,7 +455,7 @@ class Forum_Component extends Component
 			->setAlias('WowForumCategory', 'desc_' . $this->c('Locale')->GetLocale(), 'categoryDesc')
 			->setAlias('WowForumCategory', 'cat_id', 'categoryId')
 			->fieldCondition('wow_forum_threads.thread_id', ' = ' . $this->m_topicId)
-			->fieldCondition('wow_forum_category.gmlevel', ' <= ' . $this->c('AccountManager')->user('gmlevel'))
+			->fieldCondition('wow_forum_category.gmlevel', ' <= ' . intval($this->c('AccountManager')->user('gmlevel')))
 			->loadItem();
 
 		if (!$this->m_topicData)

@@ -903,7 +903,7 @@ class Store_Component extends Component
 				}
 			}
 
-			$this->c('AccountManager')->changeBonus($it['price'], -1);
+			$this->c('AccountManager')->changeBonus(($it['price'] * $it['quantity']), -1);
 
 			$this->writeOperationLog($it, $item['guid'], $item['realm']);
 		}

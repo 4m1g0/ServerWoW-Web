@@ -51,7 +51,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			<span class="clear"><!-- --></span>
         </div>
 
-        <?php echo $this->region('pager'); ?>
+        <?php echo $this->region('pagination'); ?>
 
 	<span class="clear"><!-- --></span>
     </div>
@@ -110,6 +110,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 								<div class="tt_info">
 									<?php echo $topic['views']; ?> Views / <?php echo $topic['posts']; ?> Replies<br />
 										Last Post by <?php echo $topic['last_poster'] . ' (' . date('d/m/Y', $topic['last_update']) . ')'; ?>
+									</div>
 								</div>
 							</div>
 							<a href="<?php echo $this->getWowUrl('forum/topic/' . $topic['thread_id']); ?>" data-tooltip="#thread_tt_<?php echo $topic['thread_id']; ?>" data-tooltip-options='{"location": "mouse"}'>
@@ -158,7 +159,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
     <div class="forum-actions topic-bottom">
 		<div class="actions-panel">
-			<?php echo $this->region('pager'); ?>
+			<?php echo $this->region('pagination'); ?>
 
 	<a class="ui-button button1 <?php if (!$this->c('AccountManager')->isAllowedToForums()) echo 'disabled'; ?>" href="<?php if ($this->c('AccountManager')->isAllowedToForums()) echo $this->getWowUrl('forum/' . $forum->getCategoryId() . '/topic'); else echo 'javascript:;'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
 				<span>
