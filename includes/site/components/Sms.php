@@ -89,12 +89,31 @@ class Sms_Component extends Controller_Component
 
 		$edt->save()->clearValues();
 
-		$query = $this->c('Db')->realm()->selectRow("SELECT account_id FROM account_points WHERE account_id = %d", $this->c('AccountManager')->user('id'));
+		$isExists = $this->c('QueryResult', 'Db')
+			->model('AccountPoints')
+			->fields(array('AccountPoints' => array('account_id')))
+			->fieldCondition('account_id', ' = ' . $this->c('AccountManager')->user('id'))
+			->loadItem();
 
-		if ($query)
-			$this->c('Db')->realm()->query("UPDATE account_points SET amount = %d WHERE account_id = %d LIMIT 1", ($this->c('AccountManager')->user('amount') + STORE_SMS_POINTS), $this->c('AccountManager')->user('id'));
+		if (!$isExists)
+		{
+			$edt->setModel('AccountPoints')
+				->setType('insert');
+
+			$edt->account_id = $this->c('AccountManager')->user('id');
+			$edt->amount = STORE_SMS_POINTS;
+			$edt->save()->clearValues();
+		}
 		else
-			$this->c('Db')->realm()->query("INSERT INTO account_points (account_id, amount) VALUES ('%d', '%d')", $this->c('AccountManager')->user('id'), STORE_SMS_POINTS);
+		{
+			$edt->setModel('AccountPoints')
+				->setType('update')
+				->setId($this->c('AccountManager')->user('id'))
+				->load();
+
+			$edt->amount = $edt->amount + STORE_SMS_POINTS;
+			$edt->save()->clearValues();
+		}
 
 		return true;
 	}
