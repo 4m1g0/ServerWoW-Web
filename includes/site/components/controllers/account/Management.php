@@ -68,6 +68,8 @@ class Management_Account_Controller_Component extends Controller_Component
 					$this->buildBlock('paypal_cancel');
 					break;
 				case 'success':
+					if (isset($_POST['txn_id']) && isset($_POST['payment_status']) && strtolower($_POST['payment_status']) == 'completed')
+						$this->c('Paypal')->handleSuccessedPayment();
 					$this->buildBlock('paypal_success');
 					break;
 			}

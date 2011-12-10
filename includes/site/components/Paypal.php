@@ -130,6 +130,7 @@ class Paypal_Component extends Component
 
 		if ($response != 'VERIFIED')
 		{
+			$this->c('Log')->writeDebug('%s : unable to verify transaction, response: "%s"', __METHOD__, $response);
 			$this->handleFailedPayment();
 			return array('errno' => 1, 'error' => 'Unable to verify payment status!', 'time' => time());
 		}
@@ -151,7 +152,7 @@ class Paypal_Component extends Component
 		return array('errno' => 0, 'error' => 'none');
 	}
 
-	private function handleSuccessedPayment()
+	public function handleSuccessedPayment()
 	{
 		$this->loadPointsAmount();
 
@@ -186,6 +187,8 @@ class Paypal_Component extends Component
 			$edt->amount = $points_amount;
 			$edt->save()->clearValues();
 		}
+
+		$this->c('Db')->realm()->query("DELETE FROM paypal_history WHERE verify_sign = '%s'", $_POST['verify_sign']);
 
 		$edt->clearValues()
 			->setModel('PaypalHistory')

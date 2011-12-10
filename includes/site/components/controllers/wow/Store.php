@@ -152,6 +152,14 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 		return $this->block()
 			->setTemplate('main', 'wow' . DS . 'contents' . DS . 'store')
 			->setVar('store', $this->c('Store'))
+			->setVar('items', $this->c('Store')->getItemsInCategory())
+			->setVar('pagination', $this->c('Pager')->generatePagination(
+				'/' . $this->core->getRawUrl(),
+				$this->c('Store')->getCategoryItemsCount(),
+				15,
+				$this->c('Forum')->getPage(false) * 15
+				)
+			)
 			->setRegion('pagecontent');
 	}
 

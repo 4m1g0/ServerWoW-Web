@@ -36,7 +36,6 @@ class Paypal_Controller_Component extends Controller_Component
 				{
 					if (isset($_POST['txn_id']))
 					{
-						file_put_contents('pp_post.txt', print_r($_POST, true));
 						$this->c('Paypal')->verifyPayment();
 					}
 					else

@@ -1284,18 +1284,26 @@ class Item_Component extends Component
 			{
 				foreach($items_info as &$item)
 				{
+
 					$item['icon'] = $icons[$item['displayid']]['icon'];
 
 					$item['allowable_classes'] = array();
 					$item['allowable_races'] = array();
 
-					$item['sell_price'] = $this->c('Wow')->GetMoneyFormat($item['SellPrice']);
+					if (isset($item['SellPrice']))
+						$item['sell_price'] = $this->c('Wow')->GetMoneyFormat($item['SellPrice']);
 
-					if ($item['AllowableClass'] > 0)
-						$item['allowable_classes'] = $this->AllowableClasses($item['AllowableClass']);
+					if (isset($item['AllowableClass']))
+					{
+						if ($item['AllowableClass'] > 0)
+							$item['allowable_classes'] = $this->AllowableClasses($item['AllowableClass']);
+					}
 
-					if ($item['AllowableRace'] > 0)
-						$item['allowable_races'] = $this->AllowableRaces($item['AllowableRace']);
+					if (isset($item['AllowableRace']))
+					{
+						if ($item['AllowableRace'] > 0)
+							$item['allowable_races'] = $this->AllowableRaces($item['AllowableRace']);
+					}
 				}
 			}
 

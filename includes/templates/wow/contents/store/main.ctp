@@ -19,8 +19,8 @@
 
 <div style="min-height:900px;">
 <div style="padding:20px;width:720px;float:right;margin-top:-65px;">
+<?php if ($pagination) echo '<ul class="ui-pagination">' . $pagination . '</ul>'; ?><br />
 <div class="item-results" id="item-results">
-	<?php echo $this->region('pagination'); ?>
 			<div class="table full-width">
 				<table>
 					<thead>
@@ -34,7 +34,7 @@
 					</thead>
 					<tbody>
 					<?php
-					$items = $store->getItemsInCategory();
+					
 					if ($items) :
 						$toggleStyle = 2;
 						foreach ($items as &$i) :
@@ -91,8 +91,8 @@
 					</tbody>
 				</table>
 			</div>
-	<?php echo $this->region('pagination'); ?>
-		</div>
+		</div><br/>
+	<?php if ($pagination) echo '<ul class="ui-pagination">' . $pagination . '</ul>'; ?>
 	<span class="clear"><!-- --></span>
 
 	</div>

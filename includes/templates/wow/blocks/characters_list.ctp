@@ -4,6 +4,13 @@ if (!$this->c('AccountManager')->isLoggedIn())
 
 $character = $this->c('AccountManager')->getActiveCharacter();
 $characters = $this->c('AccountManager')->getCharacters();
+if (!$character)
+{
+	if ($characters)
+		$character = $characters[0];
+	else
+		return;
+}
 ?>
 <div class="avatar">
 	<div class="avatar-interior">

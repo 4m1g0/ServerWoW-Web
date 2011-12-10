@@ -39,6 +39,7 @@ class Store_Component extends Component
 	protected $m_apiMethodResult = array();
 	protected $m_menuItems = array();
 	protected $m_errorMessages = array();
+	protected $m_itemsCount = 0;
 
 	public function initStore($catId, $itemId)
 	{
@@ -177,6 +178,11 @@ class Store_Component extends Component
 		return $this;
 	}
 
+	public function getCategoryItemsCount()
+	{
+		return $this->m_itemsCount;
+	}
+
 	protected function loadCategory($catId)
 	{
 		$this->m_category = $this->c('QueryResult', 'Db')
@@ -188,10 +194,13 @@ class Store_Component extends Component
 			->model('WowStoreItems')
 			->fieldCondition('cat_id', ' = ' . $catId)
 			->keyIndex('item_id')
+			->limit(15, (15 * $this->getPage(true)))
 			->loadItems();
 
 		if (!$items)
 			return $this;
+
+		$this->m_itemsCount = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_store_items WHERE cat_id = %d", $catId);
 
 		$ids = array_keys($items);
 		$data = $this->c('Item')->getItemsInfo($ids, true);
@@ -592,6 +601,7 @@ class Store_Component extends Component
 			->addModel('WowStoreCategories')
 			->join('left', 'WowStoreCategories', 'WowStoreItems', 'cat_id', 'cat_id');
 
+		$sql = "SELECT COUNT(*) FROM wow_store_items ";
 		if ($this->m_categoryId > 0)
 		{
 			$cat_ids = array();
@@ -614,9 +624,10 @@ class Store_Component extends Component
 			$cond = $cat_ids ? $cat_ids : ' = ' . $this->m_categoryId;
 
 			$q->fieldCondition('wow_store_items.cat_id', $cond);
+			$sql .= ' WHERE cat_id ' . $cond;
 		}
-
-		$ids = $q->limit(20, 20 * $this->getPage(true))
+		$this->m_itemsCount = $this->c('Db')->wow()->selectCell("%s", $sql);
+		$ids = $q->limit(15, 15 * $this->getPage(true))
 			->keyIndex('item_id')
 			->setAlias('WowStoreCategories', 'title', 'catTitle')
 			->loadItems();
