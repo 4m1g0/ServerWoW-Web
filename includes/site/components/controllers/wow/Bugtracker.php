@@ -150,6 +150,13 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 		return $this->block()
 			->setTemplate('index', 'wow' . DS . 'contents' . DS . 'bugtracker')
 			->setRegion('pagecontent')
+			->setVar('pagination', $this->c('Pager')->generatePagination(
+				'/' . $this->core->getRawUrl(),
+				$this->c('Bugtracker')->getTotalCount(),
+				15,
+				$this->c('Forum')->getPage(false) * 15
+				)
+			)
 			->setVar('bt', $this->c('Bugtracker'));
 	}
 

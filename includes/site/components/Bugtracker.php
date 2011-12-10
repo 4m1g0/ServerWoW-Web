@@ -27,6 +27,7 @@ class Bugtracker_Component extends Component
 	protected $m_isCategory = true;
 	protected $m_isApi = false;
 	protected $m_apiResponse = array('type' => 'unknown', 'error' => 'Unknown type', 'errno' => 1);
+	protected $m_totalCount = 0;
 
 	public function isCorrect()
 	{
@@ -36,6 +37,11 @@ class Bugtracker_Component extends Component
 	public function isCategory()
 	{
 		return $this->m_isCategory;
+	}
+
+	public function getTotalCount()
+	{
+		return $this->m_totalCount;
 	}
 
 	public function initialize()
@@ -365,7 +371,19 @@ class Bugtracker_Component extends Component
 
 		$this->m_items = $q
 			->order(array('WowBugtrackerItems' => array('post_date')), 'DESC')
+			->limit(15, ($this->getPage(true) * 15))
 			->loadItems();
+
+		$q->model('WowBugtrackerItems')
+			->fields(array('WowBugtrackerItems' => array('id')));
+
+		$this->applyFilters($q);
+
+		$count = $q->loadItems();
+
+		$this->m_totalCount = sizeof($count);
+
+		unset($count, $q);
 
 		return $this;
 	}
@@ -386,7 +404,20 @@ class Bugtracker_Component extends Component
 		$this->m_items = $q
 			->order(array('WowBugtrackerItems' => array('post_date')), 'DESC')
 			->fieldCondition('wow_bugtracker_items.type', ' = ' . $this->getCategoryId())
+			->limit(15, ($this->getPage(true) * 15))
 			->loadItems();
+
+		$q->model('WowBugtrackerItems')
+			->fields(array('WowBugtrackerItems' => array('id')));
+
+		$this->applyFilters($q);
+
+		$count = $q->fieldCondition('wow_bugtracker_items.type', ' = ' . $this->getCategoryId())
+			->loadItems();
+
+		$this->m_totalCount = sizeof($count);
+
+		unset($count, $q);
 
 		return $this;
 	}

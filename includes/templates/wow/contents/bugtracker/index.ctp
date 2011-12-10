@@ -95,6 +95,10 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				</table>
 			</div>
 		</div>
+	<span class="clear"><!-- --></span><br />
+			<ul class="ui-pagination">
+				<?php echo $pagination; ?>
+			</ul>
 	<span class="clear"><!-- --></span>
 
 	</div>
