@@ -230,6 +230,7 @@ class Forum_Component extends Component
 
 		$this->m_categoryData = $this->c('QueryResult', 'Db')
 			->model('WowForumCategory')
+			->fieldCondition('gmlevel', ' <= ' . $this->c('AccountManager')->user('gmlevel'))
 			->fieldCondition('cat_id', ' = ' . $this->m_categoryId)
 			->loadItem();
 
@@ -410,6 +411,7 @@ class Forum_Component extends Component
 			->setAlias('WowForumCategory', 'desc_' . $this->c('Locale')->GetLocale(), 'categoryDesc')
 			->setAlias('WowForumCategory', 'cat_id', 'categoryId')
 			->fieldCondition('wow_forum_threads.thread_id', ' = ' . $this->m_topicId)
+			->fieldCondition('wow_forum_category.gmlevel', ' <= ' . $this->c('AccountManager')->user('gmlevel'))
 			->loadItem();
 
 		if (!$this->m_topicData)
@@ -1078,7 +1080,13 @@ class Forum_Component extends Component
 	{
 		$topics = $this->c('QueryResult', 'Db')
 			->model('WowForumThreads')
-			->fields(array('WowForumThreads' => array('thread_id', 'title', 'cat_id', 'posts', 'last_update')))
+			->addModel('WowForumCategory')
+			->join('left', 'WowForumCategory', 'WowForumThreads', 'cat_id', 'cat_id')
+			->fields(array(
+				'WowForumThreads' => array('thread_id', 'title', 'cat_id', 'posts', 'last_update'),
+				'WowForumCategory' => array('gmlevel')
+			))
+			->fieldCondition('wow_forum_category.gmlevel', ' <= ' . intval($this->c('AccountManager')->user('gmlevel')))
 			->order(array('WowForumThreads' => array('posts')), 'desc')
 			->limit(10)
 			->keyIndex('thread_id')
