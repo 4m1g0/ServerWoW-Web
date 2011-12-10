@@ -19,6 +19,7 @@ define('SERVICE_CHANGE_RACE', 3);
 define('SERVICE_CHARACTER_CHANGE_GENDER', 5);
 define('SERVICE_RENAME_CHARACTER', 6);
 define('SERVICE_POWERLEVEL', 7);
+define('SERVICE_GOLD', 8);
 
 define('STORE_POWERLEVEL_MAX', 80); // Max level user can reach with bought levels
 
@@ -37,6 +38,7 @@ $GLOBALS['_STORE_SERVICES'] = array(
 	//array(SERVICE_CHANGE_PASSWORD, 'Cambiar Contraseña'),
 	array(SERVICE_CHARACTER_CHANGE_GENDER, 'Cambiar Genero'),
 	array(SERVICE_RENAME_CHARACTER, 'Renombrar Personaje'),
-	array(SERVICE_POWERLEVEL, 'Comprar niveles')
+	array(SERVICE_POWERLEVEL, 'Comprar niveles'),
+	array(SERVICE_GOLD, 'Buy gold')
 );
 ?>

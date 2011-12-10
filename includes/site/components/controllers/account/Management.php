@@ -44,6 +44,13 @@ class Management_Account_Controller_Component extends Controller_Component
 			$this->c('AccountManager')->updateForumsSettings();
 			$this->buildBlock('forumsSettings');
 		}
+		elseif (strtolower($this->core->getUrlAction(2)) == 'settings' && strtolower($this->core->getUrlAction(3)) == 'unstuck.html')
+		{
+			if ($this->c('AccountManager')->unstuckCharacter())
+				$this->buildBlock('unstuckSuccess');
+			else
+				$this->buildBlock('unstuck');
+		}
 		elseif (strtolower($core->getUrlAction(2)) == 'payments')
 		{
 			$action = $core->getUrlAction(3);
@@ -130,6 +137,22 @@ class Management_Account_Controller_Component extends Controller_Component
 	{
 		return $this->block()
 			->setTemplate('forums_settings', 'account' . DS . 'contents')
+			->setVar('account', $this->c('AccountManager'))
+			->setRegion('pagecontent');
+	}
+
+	protected function block_unstuck()
+	{
+		return $this->block()
+			->setTemplate('unstuck', 'account' . DS . 'contents')
+			->setVar('account', $this->c('AccountManager'))
+			->setRegion('pagecontent');
+	}
+
+	protected function block_unstuckSuccess()
+	{
+		return $this->block()
+			->setTemplate('unstucksuccess', 'account' . DS . 'contents')
 			->setVar('account', $this->c('AccountManager'))
 			->setRegion('pagecontent');
 	}

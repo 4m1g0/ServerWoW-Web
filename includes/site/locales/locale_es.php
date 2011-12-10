@@ -1895,5 +1895,10 @@ El equipo de cuentas de ServerWoW <br />
 	'template_password_recovery_failed_back' => 'Atras',
 	'template_management_menu_payments' => 'Ingresar Puntos',
 	'template_charlist_points_amount' => '[t] %.2f points',
+	'template_store_service_powerlevel_caption' => '[t] Levels Count',
+	'template_store_service_gold_caption' => '[t] Gold Amount',
+	'template_management_menu_parameters_unstuck' => '[t] Unstuck character',
+	'template_account_unstuck_success_title' => '[t] Success!',
+	'template_account_sms_success_text' => '[t] Selected character were unstucked!',
 );
 ?>

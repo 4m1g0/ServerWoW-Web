@@ -695,7 +695,7 @@ class Store_Component extends Component
 		if (!$this->isCorrect())
 			return false;
 
-		$this->c('Session')->setSession('wowstoreitems', $this->c('Session')->getSession('wowstoreitems') . $itemId . ':' . $quantity . ' ');
+		$this->c('Session')->setSession('wowstoreitems', $this->c('Session')->getSession('wowstoreitems') . $itemId . ':' . abs($quantity) . ' ');
 
 		$this->initCart();
 
@@ -845,6 +845,11 @@ class Store_Component extends Component
 					$setlevel = $curr['level'] + $levels;
 				$this->c('Db')->characters()->query("UPDATE characters SET level = %d WHERE guid = %d", $setlevel, $guid);
 				break;
+			case SERVICE_GOLD:
+				// Convert money
+				$levels *= 10000; // 50 gold 00 silver 00 copper
+				$this->c('Db')->characters()->query("UPDATE characters SET money = money + %d WHERE guid = %d", $levels, $guid);
+				break;
 			default:
 				return $this;
 		}
@@ -876,6 +881,9 @@ class Store_Component extends Component
 
 			if (!$it)
 				continue;
+
+			if ($this->c('AccountManager')->isCharacterOnline($item['realm'], $item['guid']))
+				continue; // online
 
 			if ($it['service_type'] > 0)
 				$this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm'], null, $it['quantity']);
