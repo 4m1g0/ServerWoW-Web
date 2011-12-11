@@ -636,7 +636,7 @@ class Store_Component extends Component
 				if (!$found)
 					break;
 			}
-			$cond = $cat_ids ? $cat_ids : ' = ' . $this->m_categoryId;
+			$cond = is_array($cat_ids) ? $cat_ids : ' = ' . $this->m_categoryId;
 
 			$q->fieldCondition('wow_store_items.cat_id', $cond);
 			if (is_array($cond))

@@ -528,7 +528,7 @@ class Item_Component extends Component
 		{
 			$rep_faction = $this->c('QueryResult', 'Db')
 				->model('WowFaction')
-				->fields(array('WowFaction' => array('name')))
+				->fields(array('WowFaction' => array('name_es')))
 				->setItemId($this->item('RequiredReputationFaction'))
 				->loadItem();
 
