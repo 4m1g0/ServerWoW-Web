@@ -303,7 +303,7 @@ class Forum_Component extends Component
 			$q->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_featuredTopics)) . ')');
 
 		$this->m_categoryTopics = $q->fieldCondition('wow_forum_posts.post_num', ' = 1')
-			->limit(($this->getDisplayLimit('topics') * $this->getPage()), $this->getPage(true))
+			->limit($this->getDisplayLimit('topics'), ($this->getPage(true) * $this->getDisplayLimit('topics')))
 			->order(array('WowForumThreads' => array('last_update')), 'DESC')
 			->loadItems();
 
