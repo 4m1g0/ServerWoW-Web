@@ -21,7 +21,7 @@
 class Forum_Component extends Component
 {
 	// Limits
-	const TOPICS_PER_PAGE = 50;
+	const TOPICS_PER_PAGE = 25;
 	const POSTS_PER_PAGE = 20;
 
 	protected $m_topicId = 0;
