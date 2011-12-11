@@ -46,6 +46,7 @@ class Editing_Component extends Component
 				$value = (int) $value;
 				break;
 			default:
+				$value = str_replace('%', '%%', $value);
 				break;
 		}
 

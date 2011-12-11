@@ -2739,7 +2739,7 @@ class CharacterProfile_Component extends Component
 		$glyphs = $this->c('QueryResult', 'Db')
 			->model('CharacterGlyphs')
 			->fieldCondition('guid', ' = ' . $this->getGuid())
-			->fieldCondition('spec', ' = ' . $this->getField('activeSpec'))
+			->fieldCondition('spec', ' = ' . intval($this->getField('activeSpec')))
 			->loadItems();
 
 		if ($glyphs)

@@ -99,12 +99,10 @@ class AccountManager_Component extends Component
 		if (!$save_date)
 		{
 			$needSave = true;
-			$this->c('Log')->writeDebug('%s : save required: save_date was not found', __METHOD__);
 		}
 		elseif ($save_date['chars_save'] < time())
 		{
 			$needSave = true; // Rebuild cache
-			$this->c('Log')->writeDebug('%s : save required: save_date expired', __METHOD__);
 		}
 
 		if ($needSave)

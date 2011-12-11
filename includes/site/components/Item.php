@@ -584,7 +584,7 @@ class Item_Component extends Component
 			{
 				$itemset = $this->c('QueryResult', 'Db')
 					->model('WowItemsetinfo')
-					->fieldCondition('id', ' = ', $this->item('itemset'))
+					->fieldCondition('id', ' = ', intval($this->item('itemset')))
 					->loadItem();
 				
 				if ($itemset)

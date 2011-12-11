@@ -640,7 +640,7 @@ class Store_Component extends Component
 
 			$q->fieldCondition('wow_store_items.cat_id', $cond);
 			if (is_array($cond))
-				$sq .= ' WHERE cat_id IN (' . implode(',', $cond) . ')';
+				$sql .= ' WHERE cat_id IN (' . implode(',', $cond) . ')';
 			else
 				$sql .= ' WHERE cat_id ' . $cond;
 		}
