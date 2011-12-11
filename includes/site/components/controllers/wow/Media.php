@@ -114,6 +114,13 @@ class Media_Wow_Controller_Component extends Groupwow_Controller_Component
 		return $this->block()
 			->setTemplate('video-list', 'wow' . DS . 'contents' . DS . 'media')
 			->setVar('media', $this->c('Media'))
+			->setVar('pagination', $this->c('Pager')->generatePagination(
+				'/' . $this->core->getRawUrl(),
+				$this->c('Media')->getTotalCount(),
+				15,
+				$this->c('Forum')->getPage(false) * 15
+				)
+			)
 			->setRegion('pagecontent');
 	}
 
@@ -130,6 +137,13 @@ class Media_Wow_Controller_Component extends Groupwow_Controller_Component
 		return $this->block()
 			->setTemplate('screenshots-list', 'wow' . DS . 'contents' . DS . 'media')
 			->setVar('media', $this->c('Media'))
+			->setVar('pagination', $this->c('Pager')->generatePagination(
+				'/' . $this->core->getRawUrl(),
+				$this->c('Media')->getTotalCount(),
+				15,
+				$this->c('Forum')->getPage(false) * 15
+				)
+			)
 			->setRegion('pagecontent');
 	}
 

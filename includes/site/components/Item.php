@@ -92,8 +92,6 @@ class Item_Component extends Component
 			$this->c('Error_WoW', 'Controller');
 			return $this;
 		}
-
-		$this->c('Log')->writeDebug('%s : item loaded', __METHOD__);
 	
 		unset($query);
 

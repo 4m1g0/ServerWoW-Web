@@ -573,6 +573,9 @@ class Search_Component extends Component
 
 		foreach ($results as &$p)
 		{
+			if (!$p || !isset($p['thread_id']) || !$p['thread_id'])
+				continue;
+
 			$p['url'] = $this->getWowUrl('forum/topic/' . $p['thread_id']);
 			$p['cat_url'] = $this->getWowUrl('forum/' . $p['cat_id']);
 
@@ -583,7 +586,7 @@ class Search_Component extends Component
 				->model('WowForumPosts')
 				->fields(array('WowForumPosts' => array('post_id')))
 				->runFunction('COUNT', 'post_id')
-				->fieldCondition('thread_id', ' = ' . $p['thread_id'])
+				->fieldCondition('thread_id', ' = ' . intval($p['thread_id']))
 				->loadItem();
 
 			if ($replies)

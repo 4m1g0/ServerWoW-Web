@@ -269,6 +269,7 @@ class Admin_Component extends Component
 		$edt->price = intval($_POST['item']['price']);
 		$edt->in_store = isset($_POST['item']['in_store']) ? 1 : '0';
 		$edt->service_type = isset($_POST['item']['service']) ? intval($_POST['item']['service']) : 0;
+		$edt->discount = isset($_POST['item']['discount']) ? intval($_POST['item']['discount']) : 0;
 
 		if (isset($_POST['item']['itemset']) && $_POST['item']['itemset_pieces'])
 		{
@@ -354,6 +355,8 @@ class Admin_Component extends Component
 		}
 		elseif (!isset($_POST['item']['itemset']))
 			$edt->itemset_pieces = '';
+
+		$edt->discount = isset($_POST['item']['discount']) ? intval($_POST['item']['discount']) : '0';
 
 		$edt->save()->clearValues();
 

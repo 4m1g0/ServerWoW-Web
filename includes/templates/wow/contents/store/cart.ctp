@@ -70,7 +70,15 @@
 							<td class="align-center"><a href="<?php echo $this->getWowUrl('store/' . $i['storeInfo']['cat_id']); ?>"><?php echo $i['storeInfo']['catTitle']; ?></a>
 							</td>
 							<td>
-							<?php echo $i['storeInfo']['price']; ?> puntos
+							<?php
+							$total_price = $i['storeInfo']['price'];
+							if ($i['storeInfo']['discount'] > 0 && $i['storeInfo']['discount'] <= 100)
+							{
+								$total_price = floor($total_price - ($total_price / 100 * $i['storeInfo']['discount']));
+								echo '<span style="color:red;">' . $total_price . '</span>';
+							}
+							else
+								echo $total_price; ?> puntos
 							</td>
 							<td>
 							<?php echo $i['storeInfo']['quantity']; ?>

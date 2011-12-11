@@ -51,6 +51,10 @@ Itemset pieces ("32458 32459 32460", for example)
 <input type="text" name="item[itemset_pieces]" value="<?php if (isset($_POST['item']['itemset_pieces'])) echo $_POST['item']['itemset_pieces']; else echo ''; ?>" size=50 />
 </div>
 <div class="input text long">
+Price Discount (%; left 0 to disable discounts):
+<input type="text" name="item[discount]" value="<?php if (isset($_POST['item']['discount'])) echo $_POST['item']['discount']; else echo ''; ?>" />
+</div>
+<div class="input text long">
 <input type="submit" value="Save" size=50 />
 </div>
 </form>

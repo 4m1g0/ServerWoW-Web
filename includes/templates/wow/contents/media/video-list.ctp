@@ -119,5 +119,6 @@ if ($videos) :
 <span class="clear"><!-- --></span>
 </div>
 </div>
+<div style="margin-left:20px"><?php if ($pagination) echo '<ul class="ui-pagination">' . $pagination . '</ul>'; ?></div>
 </div>
 <div style="display:none" id="media-preload-container"></div>

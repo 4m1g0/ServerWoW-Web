@@ -83,7 +83,7 @@ class Sms_Component extends Controller_Component
 
 		$edt->account = $this->c('AccountManager')->user('id');
 		$edt->code = $code;
-		$edt->cel = '';
+		$edt->cel = '0';
 		$edt->timestamp = time();
 		$edt->type = $type;
 

@@ -25,6 +25,7 @@ class Media_Component extends Component
 	protected $m_keys = array();
 	protected $m_apiResponse = array();
 	protected $m_quickView = array('videos' => array(), 'ss' => array());
+	protected $m_totalCount = 0;
 
 	public function initMedia($action, $item = '')
 	{
@@ -34,9 +35,11 @@ class Media_Component extends Component
 		{
 			case 'videos':
 				$this->initVideos($item);
+				$this->m_totalCount = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_media_videos");
 				break;
 			case 'screenshots':
 				$this->initScreenshots($item);
+				$this->m_totalCount = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_media_screenshots");
 				break;
 			default:
 				$this->initDefault();
@@ -44,6 +47,11 @@ class Media_Component extends Component
 		}
 
 		return $this;
+	}
+
+	public function getTotalCount()
+	{
+		return $this->m_totalCount;
 	}
 
 	protected function initDefault()
@@ -129,6 +137,7 @@ class Media_Component extends Component
 			->model('WowMediaVideos')
 			->fieldCondition('approved', ' = 1')
 			->order(array('WowMediaVideos' => array('post_date')), 'DESC')
+			->limit(15, ($this->getPage(true) * 15))
 			->loadItems();
 
 		if ($item)
@@ -183,6 +192,7 @@ class Media_Component extends Component
 			->model('WowMediaScreenshots')
 			->fieldCondition('approved', ' = 1')
 			->order(array('WowMediaScreenshots' => array('post_date')), 'DESC')
+			->limit(15, ($this->getPage(true) * 15))
 			->loadItems();
 
 		if ($item)

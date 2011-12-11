@@ -495,8 +495,15 @@ class Store_Component extends Component
 			return 0;
 
 		$price = 0;
+
 		foreach ($this->m_cart as $it)
-			$price += $it['price'];
+		{
+			$tprice = $it['price'];
+			if ($it['discount'] > 0 && $it['discount'] <= 100)
+				$tprice = floor($it['price'] - ($it['price'] / 100 * $it['discount']));
+
+			$price += $tprice * $it['quantity'];
+		}
 
 		return $price;
 	}
@@ -588,8 +595,16 @@ class Store_Component extends Component
 			return 0;
 
 		$price = 0;
+
 		foreach ($this->m_cart as $i)
-			$price += ($i['price'] * $i['quantity']);
+		{
+			$tprice = $i['price'];
+
+			if ($i['discount'] > 0 && $i['discount'] <= 100)
+				$tprice = floor($tprice - ($tprice / 100 * $i['discount']));
+
+			$price += ($tprice * $i['quantity']);
+		}
 
 		return $price;
 	}
@@ -624,7 +639,10 @@ class Store_Component extends Component
 			$cond = $cat_ids ? $cat_ids : ' = ' . $this->m_categoryId;
 
 			$q->fieldCondition('wow_store_items.cat_id', $cond);
-			$sql .= ' WHERE cat_id ' . $cond;
+			if (is_array($cond))
+				$sq .= ' WHERE cat_id IN (' . implode(',', $cond) . ')';
+			else
+				$sql .= ' WHERE cat_id ' . $cond;
 		}
 		$this->m_itemsCount = $this->c('Db')->wow()->selectCell("%s", $sql);
 		$ids = $q->limit(15, 15 * $this->getPage(true))
@@ -914,7 +932,15 @@ class Store_Component extends Component
 				continue; // online
 			}
 
-			if ($this->c('AccountManager')->user('amount') < ($it['price'] * $it['quantity']))
+			$total_price = ($it['price'] * $it['quantity']);
+
+			if ($it['discount'] > 0 && $it['discount'] <= 100)
+			{
+				// allow only [1..100] interval
+				$total_price = floor($total_price - ($total_price / 100 * $it['discount']));
+			}
+
+			if ($this->c('AccountManager')->user('amount') < $total_price)
 			{
 				$this->addErrorMessage('Unable to perform buyout for item #' . $item['item'] . ' - not enough points!');
 				continue; // Not enough money
@@ -941,7 +967,7 @@ class Store_Component extends Component
 			}
 			
 			if ($op_result)
-				$this->c('AccountManager')->changeBonus(($it['price'] * $it['quantity']), -1);
+				$this->c('AccountManager')->changeBonus($total_price, -1);
 
 			$this->writeOperationLog($it, $item['guid'], $item['realm']);
 		}
