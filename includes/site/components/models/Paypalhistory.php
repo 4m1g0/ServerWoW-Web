@@ -25,7 +25,7 @@ class PaypalHistory_Model_Component extends Model_Db_Component
 	public $m_dbType = 'realm';
 	public $m_fields = array(
 		'id' => 'Id',
-		'txn_id' => array('type' => 'integer'),
+		'txn_id' => array('type' => 'string'),
 		'payment_date' => array('type' => 'string'),
 		'verify_sign' => array('type' => 'string'),
 		'payer_email' => array('type' => 'string'),
