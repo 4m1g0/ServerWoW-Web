@@ -1005,9 +1005,7 @@ class AccountManager_Component extends Component
 
 				$this->c('Db')->characters()->query("DELETE FROM character_aura WHERE guid = %d", $guid);
 				$this->c('Db')->characters()->query("INSERT INTO `character_aura` (`guid`, `caster_guid`, `item_guid`, `spell`, `effect_mask`, `recalculate_mask`, `stackcount`, `amount0`, `amount1`, `amount2`, `base_amount0`, `base_amount1`, `base_amount2`, `maxduration`, `remaintime`, `remaincharges`) values ('%d','%d','0','15007','7','7','1','-75','-75','0','-76','-76','-1','600000','600000','0')", $guid, $guid);
-				$this->c('Db')->characters()->query("UPDATE `characters`, `character_homebind` SET `characters`.`position_x`=`character_homebind`.`position_x`, `characters`.`position_y`=`character_homebind`.`position_y`, `characters`.`position_z`=`character_homebind`.`position_z`, `characters`.`map`=`character_homebind`.`map` WHERE `characters`.`guid`=%d AND `characters`.`guid`=`character_homebind`.`guid`", $guid);
-			// What query is correct?
-			//	$this->c('Db')->characters()->query("UPDATE `characters`, `character_homebind` SET `characters`.`position_x`=`character_homebind`.`posX`, `characters`.`position_y`=`character_homebind`.`posY`, `characters`.`position_z`=`character_homebind`.`posZ`, `characters`.`map`=`character_homebind`.`mapId` WHERE `characters`.`guid`=%d AND `characters`.`guid`=`character_homebind`.`guid`", $guid);
+				$this->c('Db')->characters()->query("UPDATE `characters`, `character_homebind` SET `characters`.`position_x`=`character_homebind`.`posX`, `characters`.`position_y`=`character_homebind`.`posY`, `characters`.`position_z`=`character_homebind`.`posZ`, `characters`.`map`=`character_homebind`.`mapId` WHERE `characters`.`guid`=%d AND `characters`.`guid`=`character_homebind`.`guid`", $guid);
 			}
 		}
 
