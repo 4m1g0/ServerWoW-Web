@@ -39,6 +39,16 @@ class Forum_Component extends Component
 	protected $m_pinnedTopics = array();
 	protected $m_featuredTopics = array();
 
+	public function getTopicsPerPageCount()
+	{
+		return self::TOPICS_PER_PAGE;
+	}
+
+	public function getPostsPerPageCount()
+	{
+		return self::POSTS_PER_PAGE;
+	}
+
 	public function initForums($categoryId, $topicId)
 	{
 		$redirect = false;
@@ -250,7 +260,7 @@ class Forum_Component extends Component
 		// Count
 		$this->m_forumCounters['topics'] = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_forum_threads WHERE cat_id = %d AND (NOT (flags & %d) AND NOT (flags & %d))", $this->m_categoryId, THREAD_FLAG_PINNED, THREAD_FLAG_FEATURED);
 
-		$this->m_forumCounters['topics'] = $this->m_forumCounters['topics']['thread_id'];
+		//$this->m_forumCounters['topics'] = $this->m_forumCounters['topics']['thread_id'];
 
 		$this->m_pinnedTopics = $this->c('QueryResult', 'Db')
 			->model('WowForumThreads')
@@ -303,7 +313,7 @@ class Forum_Component extends Component
 			$q->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_featuredTopics)) . ')');
 
 		$this->m_categoryTopics = $q->fieldCondition('wow_forum_posts.post_num', ' = 1')
-			->limit($this->getDisplayLimit('topics'), ($this->getPage(true) * $this->getDisplayLimit('topics')))
+			->limit(self::TOPICS_PER_PAGE, ($this->getPage(true) * self::TOPICS_PER_PAGE))
 			->order(array('WowForumThreads' => array('last_update')), 'DESC')
 			->loadItems();
 

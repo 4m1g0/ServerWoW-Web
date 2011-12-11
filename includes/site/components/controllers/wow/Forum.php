@@ -347,14 +347,10 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 		return $this->block()
 			->setVar('forum', $this->c('Forum'))
 			->setVar('pagination', $this->c('Pager')->generatePagination(
-				'/' . $this->core->getRawUrl(),
-				$this->m_pagerLimits,
-				$this->c('Forum')->getDisplayLimit(
-					'topics'
-				),
-				$this->c('Forum')->getPage(false) * ($this->c('Forum')->getDisplayLimit(
-					'topics'
-				))
+					'/' . $this->core->getRawUrl(),
+					$this->m_pagerLimits,
+					$this->c('Forum')->getTopicsPerPageCount(),
+					($this->c('Forum')->getPage(false) * ($this->c('Forum')->getTopicsPerPageCount()))
 				)
 			)
 			->setTemplate('category', 'wow' . DS . 'contents' . DS . 'forum')
@@ -383,14 +379,14 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 	{
 		return $this->block()
 			->setVar('pagination', $this->c('Pager')->generatePagination(
-				'/' . $this->core->getRawUrl(),
-				$this->m_pagerLimits,
-				$this->c('Forum')->getDisplayLimit(
-					($this->c('Forum')->getType() == FORUM_TYPE_CATEGORY ? 'topics' : 'posts')
-				),
-				$this->c('Forum')->getPage(false) * ($this->c('Forum')->getDisplayLimit(
-					($this->c('Forum')->getType() == FORUM_TYPE_CATEGORY ? 'topics' : 'posts')
-				))
+					'/' . $this->core->getRawUrl(),
+					$this->m_pagerLimits,
+					$this->c('Forum')->getDisplayLimit(
+						($this->c('Forum')->getType() == FORUM_TYPE_CATEGORY ? 'topics' : 'posts')
+					),
+					$this->c('Forum')->getPage(false) * ($this->c('Forum')->getDisplayLimit(
+						($this->c('Forum')->getType() == FORUM_TYPE_CATEGORY ? 'topics' : 'posts')
+					))
 				)
 			)
 			->setVar('onlyPagination', true)
