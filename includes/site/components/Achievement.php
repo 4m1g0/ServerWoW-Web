@@ -588,14 +588,22 @@ class Achievement_Component extends Component
 
 		foreach ($achievements as &$ach)
 		{
-			if (!isset($this->m_achCriterias[$ach['id']]))
-				$ach['quantity'] = '--';
-			elseif (!isset($this->m_achProgress[$this->m_achCriterias[$ach['id']]]))
-				$ach['quantity'] = '--';
+			if (!$ach || !isset($ach['id']) || !$ach['id'])
+				continue;
+
+			if (isset($this->m_achCriterias[$ach['id']]))
+			{
+				if (isset($this->m_achProgress[$this->m_achCriterias[$ach['id']]]))
+					$ach['quantity'] = $this->m_achProgress[$this->m_achCriterias[$ach['id']]];
+				else
+					$ach['quantity'] = '--';
+			}
 			else
-				$ach['quantity'] = $this->m_achProgress[$this->m_achCriterias[$ach['id']]];
+				$ach['quantity'] = '--';
 		}
+
 		unset($this->m_achCriterias, $this->m_achProgress);
+
 		return $achievements;
 	}
 

@@ -115,7 +115,7 @@ $icons_server = $this->c('Config')->getValue('site.icons_server');
 		if ($weapon_ench || $head_gems) :
 		?>
 		<div class="other">
-			<?php if (is_array($weapon_ench)) : ?>
+			<?php if (is_array($weapon_ench) && isset($weapon_ench['item'])) : ?>
 				<span class="name"><a href="<?php echo $this->getWowUrl('item/' . $weapon_ench['item']['entry']); ?>"><?php echo $weapon_ench['item']['name']; ?></a></span>
 				<?php if ($head_gems) : ?><span class="comma">,</span><?php endif; ?>
 			<?php endif;
