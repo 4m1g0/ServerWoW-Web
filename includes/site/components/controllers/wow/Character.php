@@ -102,7 +102,7 @@ class Character_WoW_Controller_Component extends Groupwow_Controller_Component
 					->setLoadingFlag(CHARACTER_LOADING_FLAG_SKIP_DATA)
 					->setLoadingFlag(CHARACTER_LOADING_FLAG_SKIP_GUILD)
 					->setLoadingFlag(CHARACTER_LOADING_FLAG_SKIP_RAID_INFO)
-						->setLoadingFlag(CHARACTER_LOADING_FLAG_SKIP_SPELLS)
+					->setLoadingFlag(CHARACTER_LOADING_FLAG_SKIP_SPELLS)
 					->buildCharacter($this->m_realm, $this->m_name, $this->m_action);
 				define('AJAX_PAGE', true);
 				$this->m_isAjax = true;

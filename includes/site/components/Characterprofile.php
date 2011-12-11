@@ -462,6 +462,8 @@ class CharacterProfile_Component extends Component
 	{
 		$action = strtolower($action);
 
+		$this->initCharacter($realmName);
+
 		$this->setLoadingFlag(CHARACTER_LOADING_FLAG_SKIP_DATA)
 			->setLoadingFlag(CHARACTER_LOADING_FLAG_SKIP_ITEMS)
 			->setLoadingFlag(CHARACTER_LOADING_FLAG_SKIP_RAID_INFO)
