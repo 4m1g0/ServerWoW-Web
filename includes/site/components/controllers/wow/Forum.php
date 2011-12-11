@@ -225,7 +225,7 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 			{
 				case FORUM_TYPE_CATEGORY:
 					$this->m_pagerLimits = $this->c('Forum')->getTopicsInCategoryCount();
-					$this->buildBlocks(array('pagination', 'category'));
+					$this->buildBlock('category');
 					$this->m_pageTitle = $this->c('Forum')->getCategoryTitle();
 					break;
 				case FORUM_TYPE_TOPIC:
@@ -346,6 +346,17 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 	{
 		return $this->block()
 			->setVar('forum', $this->c('Forum'))
+			->setVar('pagination', $this->c('Pager')->generatePagination(
+				'/' . $this->core->getRawUrl(),
+				$this->m_pagerLimits,
+				$this->c('Forum')->getDisplayLimit(
+					'topics'
+				),
+				$this->c('Forum')->getPage(false) * ($this->c('Forum')->getDisplayLimit(
+					'topics'
+				))
+				)
+			)
 			->setTemplate('category', 'wow' . DS . 'contents' . DS . 'forum')
 			->setRegion('pagecontent');
 	}

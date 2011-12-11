@@ -175,10 +175,16 @@ class QueryResult_Db_Component extends Component
 			return $items; // Nothing to do
 
 		// Parse fields
-		foreach ($items as &$item)
+		$data = array();
+		foreach ($items as $key => $item)
+		{
 			$this->parseResults($item, $fields);
+			$data[$key] = $item;
+		}
 
-		return $items;
+		unset($items);
+
+		return $data;
 	}
 
 	public function addModel($model_name)

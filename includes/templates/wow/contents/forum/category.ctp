@@ -51,7 +51,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			<span class="clear"><!-- --></span>
         </div>
 
-        <?php echo $this->region('pagination'); ?>
+        <?php if ($pagination) echo '<ul class="ui-pagination">' . $pagination . '</ul>'; ?>
 
 	<span class="clear"><!-- --></span>
     </div>
@@ -159,7 +159,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
     <div class="forum-actions topic-bottom">
 		<div class="actions-panel">
-			<?php echo $this->region('pagination'); ?>
+			<?php if ($pagination) echo '<ul class="ui-pagination">' . $pagination . '</ul>'; ?>
 
 	<a class="ui-button button1 <?php if (!$this->c('AccountManager')->isAllowedToForums()) echo 'disabled'; ?>" href="<?php if ($this->c('AccountManager')->isAllowedToForums()) echo $this->getWowUrl('forum/' . $forum->getCategoryId() . '/topic'); else echo 'javascript:;'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
 				<span>
