@@ -328,7 +328,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</div>
 		<div class="forum-actions bottom">
 			<div class="actions-panel">
-				<?php echo $this->region('pager'); ?>
+				<?php echo $this->region('pagination'); ?>
 				<ol class="ui-breadcrumb">
 					<?php echo $this->c('Breadcrumb')->getCrumb(); ?>
 				</ol>
