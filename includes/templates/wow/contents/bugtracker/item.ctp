@@ -5,7 +5,7 @@ if (!$item) return;
 <script type="text/javascript" language="JavaScript">
 	Bt.setXsToken('<?php echo $this->c('Cookie')->read('xstoken'); ?>');
 	Bt.setId(<?php echo $item['id']; ?>);
-	Bt.setItemInfo({priority: <?php echo $item['priority']; ?>, status: <?php echo $item['status']; ?>, closed: <?php echo $item['closed']; ?>, desc: '<?php echo str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['description']); ?>', response: '<?php echo str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['admin_response']); ?>'});
+	Bt.setItemInfo({priority: <?php echo $item['priority']; ?>, status: <?php echo $item['status']; ?>, closed: <?php echo $item['closed']; ?>, desc: '<?php echo nl2br(htmlentities(str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['description']), ENT_QUOTES)); ?>', response: '<?php echo nl2br(htmlentities(str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['admin_response']), ENT_QUOTES)); ?>'});
 	$(document).ready(function() {
 	//	$('#content').attr('style', 'height:1024px');
 	});
@@ -39,7 +39,7 @@ if (!$item) return;
 			case BT_SPELL:
 				echo $item['info']['SpellName'];
 			default:
-				echo $item['title'];
+				echo htmlentities(stripslashes($item['title']), ENT_QUOTES);
 		}
 		?></h1>
 		Tipo: <strong><a href="<?php echo $this->getWowUrl('bugtracker/' . $item['type_str']); ?>"><span id="bugtype"><?php echo $item['categoryName']; ?></span></a></strong>
@@ -54,7 +54,7 @@ if (!$item) return;
 		<br />
 		Prioridad: <strong><?php echo '<span id="bugpriority" style="color: ' . $item['prColor'] . ';">' . $item['prName']; ?></span></strong>
 		<br />
-		Descripción: <strong><span id="bugdescription"><?php echo $item['description']; ?></span></strong>
+		Descripción: <strong><span id="bugdescription"><?php echo nl2br(htmlentities(stripslashes($item['description']), ENT_QUOTES)); ?></span></strong>
 		<?php if (!in_array($item['type'], array(BT_DEFAULT, BT_WEB, BT_OTHER, BT_STORE))) : ?>
 		<br />
 		Enlace interno: <strong><a href="http://es.wowhead.com/<?php echo strtolower(substr($item['type_str'], 0, -1)) . '=' . $item['item_id']; ?>" target="_blank">Wowhead.com</a></strong>
@@ -64,7 +64,7 @@ if (!$item) return;
 		if ($item['admin_response']) :
 		?>
 		<br />
-		<b style="color: #00ff00;">Respuesta de <?php echo $item['admin_name'] ? $item['admin_name'] : 'Admin'; ?>:</b> <strong><?php echo $item['admin_response']; ?></strong> <i>(<?php echo date('d/m/Y', $item['response_date']); ?>)</i>
+		<b style="color: #00ff00;">Respuesta de <?php echo $item['admin_name'] ? $item['admin_name'] : 'Admin'; ?>:</b> <strong><?php echo nl2br(htmlentities(stripslashes($item['admin_response']), ENT_QUOTES)); ?></strong> <i>(<?php echo date('d/m/Y', $item['response_date']); ?>)</i>
 		<?php endif; ?>
 		</span>
 		<br />
@@ -164,7 +164,7 @@ if (!$item) return;
 				<?php 
 				if (($this->c('AccountManager')->isAllowedToModerate() && !$c['blizzard'] && (!$c['mvp'] || ($c['account_id'] == $this->c('AccountManager')->user('id')))) || ($this->c('AccountManager')->isAdmin())) : 
 				?>
-				<small><a href="javascript:;" onclick="deleteComment(<?php echo $c['comment_id']; ?>);">Borrar comentario</a></small>
+				<small><a href="javascript:;" onclick="deleteComment(<?php echo nl2br(htmlentities(stripslashes($c['comment_id']), ENT_QUOTES)); ?>);">Borrar comentario</a></small>
 				<?php endif; ?>
 				<br />
 				<br />
