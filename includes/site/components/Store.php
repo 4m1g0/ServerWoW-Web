@@ -883,7 +883,12 @@ class Store_Component extends Component
 					return $op_result;
 				}
 				else
-					$setlevel = $curr['level'] + $levels;
+				{
+					if ($curr['level'] >= 69)
+						$setlevel = ($curr['level'] + $levels);
+					else
+						$setlevel = min(($curr['level'] + ($levels * 2)), STORE_POWERLEVEL_MAX);
+				}
 				$this->c('Db')->characters()->query("UPDATE characters SET level = %d WHERE guid = %d", $setlevel, $guid);
 				break;
 			case SERVICE_GOLD:
