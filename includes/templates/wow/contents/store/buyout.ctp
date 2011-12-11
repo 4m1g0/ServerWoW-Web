@@ -7,9 +7,10 @@ $char_realms = array();
 
 if (!$chars)
 	return;
-dump($chars);
 foreach ($chars as $c)
 {
+	if (!$c)
+		continue;
 	$char_realms[$c['realmId']][] = $c;
 }
 
