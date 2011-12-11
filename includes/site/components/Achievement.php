@@ -54,7 +54,7 @@ class Achievement_Component extends Component
 		if ($this->m_categoryId > 0)
 			return $this;
 
-		if ($this->m_wowAchievements || !$this->m_achievements)
+		if ($this->m_wowAchievements || !$this->m_achievements || !isset($this->m_achievements['ids']) || !is_array($this->m_achievements['ids']))
 			return $this;
 
 		$this->m_wowAchievements = $this->c('QueryResult', 'Db')
@@ -206,11 +206,17 @@ class Achievement_Component extends Component
 	{
 		$achievements = array();
 		$count = 0;
+
+		if (!isset($this->m_achievements['ids']) || !is_array($this->m_achievements['ids']))
+			return false;
+
 		foreach ($this->m_achievements['ids'] as &$ach)
 		{
 			if ($count > 4)
 				break;
+
 			$achievements[] = $this->findAchievement($ach['achievement']);
+
 			++$count;
 		}
 
@@ -219,6 +225,9 @@ class Achievement_Component extends Component
 
 	protected function findAchievement($id)
 	{
+		if (!$this->m_wowAchievements)
+			return false;
+
 		foreach ($this->m_wowAchievements as &$cat)
 			foreach ($cat['achievements'] as $ach_id => $ach)
 				if ($ach_id == $id)

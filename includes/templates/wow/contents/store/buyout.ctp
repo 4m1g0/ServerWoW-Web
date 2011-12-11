@@ -5,6 +5,9 @@ $chars = $this->c('AccountManager')->getCharacters();
 $chars[] = $this->c('AccountManager')->getActiveCharacter();
 $char_realms = array();
 
+if (!$chars)
+	return;
+
 foreach ($chars as $c)
 	$char_realms[$c['realmId']][] = $c;
 

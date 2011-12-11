@@ -91,36 +91,20 @@ class AccountManager_Component extends Component
 				$rids[] = $r['db_id'];
 		}
 
-		$count_realm_characters = $this->c('QueryResult', 'Db')
-			->model('Realmcharacters')
-			->fields(array('Realmcharacters' => array('numchars')))
-			->fieldCondition('acctid', ' = ' . $this->user('id'))
-			->fieldCondition('realmid', $rids)
-			->runFunction('SUM', 'numchars')
+		$save_date = $this->c('QueryResult', 'Db')
+			->model('WowUsers')
+			->fieldCondition('id', ' = ' . $this->user('id'))
 			->loadItem();
 
-		if ($count_realm_characters['numchars'] != sizeof($characters))
+		if (!$save_date)
 		{
 			$needSave = true;
-			$this->c('Log')->writeDebug('%s : save required: realmcharacters count is not equal (%d and %d)', __METHOD__, $count_realm_characters['numchars'], sizeof($characters));
+			$this->c('Log')->writeDebug('%s : save required: save_date was not found', __METHOD__);
 		}
-		else
+		elseif ($save_date['chars_save'] < time())
 		{
-			$save_date = $this->c('QueryResult', 'Db')
-				->model('WowUsers')
-				->fieldCondition('id', ' = ' . $this->user('id'))
-				->loadItem();
-
-			if (!$save_date)
-			{
-				$needSave = true;
-				$this->c('Log')->writeDebug('%s : save required: save_date was not found', __METHOD__);
-			}
-			elseif ($save_date['chars_save'] < time())
-			{
-				$needSave = true; // Rebuild cache
-				$this->c('Log')->writeDebug('%s : save required: save_date expired', __METHOD__);
-			}
+			$needSave = true; // Rebuild cache
+			$this->c('Log')->writeDebug('%s : save required: save_date expired', __METHOD__);
 		}
 
 		if ($needSave)

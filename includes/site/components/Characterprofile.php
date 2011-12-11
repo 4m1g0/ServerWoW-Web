@@ -1708,7 +1708,7 @@ class CharacterProfile_Component extends Component
 
 		foreach ($glyphs as &$glyph)
 		{
-			if ($this->m_serverType == SERVER_TRINITY)
+			if ($this->m_serverType == SERVER_TRINITY || $this->m_serverType == 'SERVER_TRINITY')
 			{
 				for ($i = 1; $i < 7; ++$i)
 				{
@@ -1725,7 +1725,7 @@ class CharacterProfile_Component extends Component
 			}
 			else
 			{
-				if ($glyph['glyph'] == $glyph_id)
+				if (isset($glyph['glyph']) && $glyph['glyph'] == $glyph_id)
 				{
 					if ($active_spec && $glyph['spec'] == $this->getActiveSpec())
 						return true;
@@ -3218,7 +3218,7 @@ class CharacterProfile_Component extends Component
 					$mount['add_style'] .= ' aquatic';
 			}
 
-			if (in_array($mount['spell'], $this->m_spells))
+			if (is_array($this->m_spells) && in_array($mount['spell'], $this->m_spells))
 			{
 				++$this->m_mountsCount['collected'];
 				$mount['add_style'] .= ' collected';

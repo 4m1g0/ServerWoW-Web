@@ -157,8 +157,11 @@ class Pvp_Component extends Component
 				->order(array('ArenaTeam' => array('rank', 'rating')), 'DESC')
 				->loadItems();
 
-			foreach ($ladder as &$l)
-				$l['realmName'] = $realms[$useRealm]['name'];
+			if ($ladder)
+			{
+				foreach ($ladder as &$l)
+					$l['realmName'] = $realms[$useRealm]['name'];
+			}
 		}
 		else
 		{

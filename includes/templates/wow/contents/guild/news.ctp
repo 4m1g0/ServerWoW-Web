@@ -97,7 +97,7 @@
 <?php elseif ($f['type'] == TYPE_ACHIEVEMENT_FEED) : ?>
 <a href="<?php echo $char_url . '/achievement#' . $f['achData']['categoryId'] . ':a' . $f['data']; ?>" rel="np" data-achievement="<?php echo $f['data']; ?>">
 
-		<span  class="icon-frame frame-18 " style='background-image: url("<?php echo $icons_server; ?>/18/<?php echo $f['achData']['iconName']; ?>.jpg");'>
+		<span  class="icon-frame frame-18 " style='background-image: url("<?php echo $icons_server; ?>/18/<?php echo $f['achData']['iconname']; ?>.jpg");'>
 		</span>
 </a>
 

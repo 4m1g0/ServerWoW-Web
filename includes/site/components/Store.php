@@ -910,13 +910,13 @@ class Store_Component extends Component
 
 			if ($this->c('AccountManager')->isCharacterOnline($item['realm'], $item['guid']))
 			{
-				$this->addErrorMessage('Unable to perform buyout for item #' . $it['id'] . ' - character is online!');
+				$this->addErrorMessage('Unable to perform buyout for item #' . $item['item'] . ' - character is online!');
 				continue; // online
 			}
 
 			if ($this->c('AccountManager')->user('amount') < ($it['price'] * $it['quantity']))
 			{
-				$this->addErrorMessage('Unable to perform buyout for item #' . $it['id'] . ' - not enough points!');
+				$this->addErrorMessage('Unable to perform buyout for item #' . $item['item'] . ' - not enough points!');
 				continue; // Not enough money
 			}
 
