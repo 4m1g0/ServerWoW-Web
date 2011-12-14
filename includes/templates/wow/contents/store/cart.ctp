@@ -93,6 +93,7 @@
 
 					</tbody>
 				</table>
+				<br><center><a href="<?php echo $this->getWowUrl('store/cart/buyout'); ?>"><b>COMPRAR!</b></a></center>
 			</div>
 	<?php echo $this->region('pagination'); ?>
 		</div>
@@ -111,15 +112,14 @@
 </ul><span style="padding:20px;float:left"><?php
 $cart = $store->getCart();
 if (!$cart) : ?>
-<h1 class="color-q3">Tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a> esta vacio
+<h1 class="">Tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a> esta vacio
 <br /><br />Puntos Disponibles: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/'); ?>"><u>COMPRAR MAS</u></a>)</h1>
 <?php else : 
 $price = $store->getTotalPrice();
 ?>
-<h1 class="color-q2">Tienes <?php echo sizeof($cart); ?> item(s) en tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a><br />(Precio Total: <?php echo $price; ?> puntos)
+<h1 class="">Tienes <?php echo sizeof($cart); ?> item(s) en tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a><br />(Precio Total: <?php echo $price; ?> puntos)
 <br /><br />Puntos Disponibles: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/'); ?>"><u>COMPRAR MAS</u></a>)</h1>
 <br />
-<a href="<?php echo $this->getWowUrl('store/cart/buyout'); ?>"><u>COMPRAR</u></a>
 <?php endif; ?></span>
 	</div>
 </div>

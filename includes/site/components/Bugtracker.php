@@ -371,7 +371,7 @@ class Bugtracker_Component extends Component
 
 		$this->m_items = $q
 			->order(array('WowBugtrackerItems' => array('post_date')), 'DESC')
-			->limit(15, ($this->getPage(true) * 15))
+			->limit(12, ($this->getPage(true) * 12))
 			->loadItems();
 
 		$q->model('WowBugtrackerItems')
@@ -404,7 +404,7 @@ class Bugtracker_Component extends Component
 		$this->m_items = $q
 			->order(array('WowBugtrackerItems' => array('post_date')), 'DESC')
 			->fieldCondition('wow_bugtracker_items.type', ' = ' . $this->getCategoryId())
-			->limit(15, ($this->getPage(true) * 15))
+			->limit(12, ($this->getPage(true) * 12))
 			->loadItems();
 
 		$q->model('WowBugtrackerItems')

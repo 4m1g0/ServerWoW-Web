@@ -3,16 +3,25 @@
 
 <div class="currently-viewing">
 <div>
-<h1>ServerWoW Tienda & Servicios</h1>
-
 <div class="filter-details">
 
-<span class="clear"><!-- --></span>
+	<div style="float:left;width:230px;position:relative;">
+	<span style="padding:0px;float:left">
+<?php
+$cart = $store->getCart();
+if (!$cart) : ?>
+<h1 class="">Tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a> esta vacio
+<?php else : 
+$price = $store->getTotalPrice();
+?>
+<h1 class="">Tienes <?php echo sizeof($cart); ?> item(s) en tu Carro de Compras <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><B><u>Ir al Carro de Compras!</u></B></a>
+<?php endif; ?>
+<br /><br />Puntos Disponibles: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/'); ?>"><u>COMPRAR MAS</u></a>)</h1>
+</span>
+<br><br><br>
+<br><br><br>
+	</div>
 
-<h1>Items en la categoria seleccionada:</h1>
-<br>
-<a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u><b>Ir al Carro de compras</b></u></a>
-<br>
 </div>
 </div>
 </div>
@@ -121,17 +130,7 @@
 				<a href="<?php echo $this->getWowUrl('store/' . $cat['cat_id']); ?>"><span class="arrow"><?php echo $cat['title']; ?></span></a>
 			</li>
 		<?php endforeach; ?>
-	</ul><span style="padding:20px;float:left"><?php
-$cart = $store->getCart();
-if (!$cart) : ?>
-<h1 class="color-q3">Tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><u>CARRO DE COMPRAS</u></a> esta vacio
-<?php else : 
-$price = $store->getTotalPrice();
-?>
-<h1 class="color-q2">Tienes <?php echo sizeof($cart); ?> item(s) en tu <a href="<?php echo $this->getWowUrl('store/cart'); ?>"><B><u>CARRO DE COMPRAS</u></B></a><br />(Precio Total: <?php echo $price; ?> puntos)
-<?php endif; ?>
-<br /><br />Puntos Disponibles: <?php echo $this->c('AccountManager')->user('amount'); ?> (<a href="<?php echo $this->core->getCoreUrl('account/management/'); ?>"><u>COMPRAR MAS</u></a>)</h1>
-</span>
+	</ul>
 	</div>
 </div>
 	</div>

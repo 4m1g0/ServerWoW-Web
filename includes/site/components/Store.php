@@ -884,7 +884,7 @@ class Store_Component extends Component
 				}
 				else
 				{
-					if ($curr['level'] >= 69)
+					if ($curr['level'] > 69)
 						$setlevel = ($curr['level'] + $levels);
 					else
 						$setlevel = min(($curr['level'] + ($levels * 2)), STORE_POWERLEVEL_MAX);
