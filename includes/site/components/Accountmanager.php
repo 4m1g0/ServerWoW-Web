@@ -531,8 +531,8 @@ class AccountManager_Component extends Component
 				$this->updateLoginError();
 				return false;
 			}
-			
 		}
+
 		$user = $this->c('QueryResult', 'Db')
 			->model('Account')
 			->fieldCondition('username', ' = \'' . $username . '\'')
@@ -706,6 +706,16 @@ class AccountManager_Component extends Component
 	{
 		if ((!$user || !$pass || !$confirm || !$email) || $pass != $confirm || strlen($user) < 2 | strlen($pass) < 6)
 			return false;
+
+		require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
+		$privatekey = "6LcZjsoSAAAAAHcliYKVqU5DI4naoEmsvc0UYA80";
+		$resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+
+		if (!$resp->is_valid)
+		{
+			$this->m_loginError |= ERROR_RECAPTCHA_FAILED;
+			return false;
+		}
 
 		$sha = sha1(strtoupper($user). ':' . strtoupper($pass));
 

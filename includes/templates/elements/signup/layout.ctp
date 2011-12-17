@@ -186,7 +186,6 @@
 		</td>
 		<td class="rightCol">
     <input type="password" id="password" name="password" value="" class='text validate required password' onkeyup='FormValidation.validateField(this, event);' onblur='FormValidation.validateField(this, event);' maxlength='16'    />
-
 			<div class="validField"><!-- --></div>
 			<div class="clear"><!-- --></div>
 			<div id="passwordValidation" class="messageBox" style="display:none">
@@ -225,8 +224,16 @@
 
 
 		<div class="clear"><!-- --></div>
-		<div id="captchaExtension">
+		<div id="captchaExtension" style="margin-left:22px;">
+			<?php if ($this->c('AccountManager')->getErrorCode() & ERROR_RECAPTCHA_FAILED) echo '<li>' . $l->getString('login_error_invalid_captcha') . '</li>';
+
+				require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
+				$publickey = "6LcZjsoSAAAAAPYGkJOTrHl_j_4zS6S9Chcyh2m6"; // you got this from the signup page
+				echo recaptcha_get_html($publickey);
+			?>
+		<br>	
 		<table class="accountInfo">
+		
 	<tr id="touAgreeRow">
 		<td valign="top" class="leftCol">
 			<div class="checkboxBorder">
