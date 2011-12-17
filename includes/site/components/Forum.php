@@ -260,62 +260,56 @@ class Forum_Component extends Component
 		// Count
 		$this->m_forumCounters['topics'] = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_forum_threads WHERE cat_id = %d AND (NOT (flags & %d) AND NOT (flags & %d))", $this->m_categoryId, THREAD_FLAG_PINNED, THREAD_FLAG_FEATURED);
 
-		//$this->m_forumCounters['topics'] = $this->m_forumCounters['topics']['thread_id'];
+		$this->m_pinnedTopics = $this->c('Db')->wow()->select("
+			SELECT
+			`t1`.*, `t2`.*, `t3`.*, `t4`.*
+			FROM `wow_forum_threads` AS `t1`, `wow_forum_posts` AS `t2`, `wow_user_characters` AS `t3`, `wow_accounts` AS `t4`
+			WHERE `t1`.`cat_id` = %d
+			AND `t2`.`post_num` = 1
+			AND `t1`.`flags` & %d
+			AND `t2`.`thread_id` = `t1`.`thread_id`
+			AND `t3`.`guid` = `t2`.`character_guid`
+			AND `t3`.`realmId` = `t2`.`character_realm`
+			AND `t4`.`id` = `t2`.`account_id`
+			ORDER BY `t1`.`last_update` DESC
+			LIMIT %d, %d
+			", $this->m_categoryId, THREAD_FLAG_PINNED, ($this->getPage(true) * self::TOPICS_PER_PAGE), (self::TOPICS_PER_PAGE)
+		);
 
-		$this->m_pinnedTopics = $this->c('QueryResult', 'Db')
-			->model('WowForumThreads')
-			->addModel('WowForumPosts')
-			->addModel('WowUserCharacters')
-			->addModel('WowAccounts')
-			->join('left', 'WowForumPosts', 'WowForumThreads', 'thread_id', 'thread_id')
-			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
-			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
-			->join('left', 'WowAccounts', 'WowForumPosts', 'account_id', 'id')
-			->fieldCondition('wow_forum_threads.cat_id', ' = ' . $this->m_categoryId)
-			->fieldCondition('wow_forum_threads.flags', ' & ' . THREAD_FLAG_PINNED)
-			->fieldCondition('wow_forum_posts.post_num', ' = 1')
-			->keyIndex('thread_id')
-			->order(array('WowForumThreads' => array('last_update')), 'DESC')
-			->loadItems();
+		$this->m_featuredTopics = $this->c('Db')->wow()->select("
+			SELECT
+			`t1`.*, `t2`.*, `t3`.*, `t4`.*
+			FROM `wow_forum_threads` AS `t1`, `wow_forum_posts` AS `t2`, `wow_user_characters` AS `t3`, `wow_accounts` AS `t4`
+			WHERE `t1`.`cat_id` = %d
+			AND `t2`.`post_num` = 1
+			AND `t1`.`flags` & %d
+			AND `t2`.`thread_id` = `t1`.`thread_id`
+			AND `t3`.`guid` = `t2`.`character_guid`
+			AND `t3`.`realmId` = `t2`.`character_realm`
+			AND `t4`.`id` = `t2`.`account_id`
+			ORDER BY `t1`.`last_update` DESC
+			LIMIT %d, %d
+			", $this->m_categoryId, THREAD_FLAG_FEATURED, ($this->getPage(true) * self::TOPICS_PER_PAGE), (self::TOPICS_PER_PAGE)
+		);
 
-		$this->m_featuredTopics = $this->c('QueryResult', 'Db')
-			->model('WowForumThreads')
-			->addModel('WowForumPosts')
-			->addModel('WowUserCharacters')
-			->addModel('WowAccounts')
-			->join('left', 'WowForumPosts', 'WowForumThreads', 'thread_id', 'thread_id')
-			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
-			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
-			->join('left', 'WowAccounts', 'WowForumPosts', 'account_id', 'id')
-			->fieldCondition('wow_forum_threads.cat_id', ' = ' . $this->m_categoryId)
-			->fieldCondition('wow_forum_threads.flags', ' & ' . THREAD_FLAG_FEATURED)
-			->fieldCondition('wow_forum_posts.post_num', ' = 1')
-			->keyIndex('thread_id')
-			->order(array('WowForumThreads' => array('last_update')), 'DESC')
-			->loadItems();
+		$sql = 'SELECT  `t1` . * ,  `t2` . * ,  `t3` . * , `t4`. *
+		FROM  `wow_forum_threads` AS  `t1` 
+		LEFT JOIN  `wow_forum_posts` AS  `t2` ON  `t2`.`thread_id` =  `t1`.`thread_id` 
+		LEFT JOIN  `wow_user_characters` AS  `t3` ON  `t3`.`guid` =  `t2`.`character_guid` 
+		AND  `t3`.`realmId` =  `t2`.`character_realm` 
+		LEFT JOIN  `wow_accounts` AS  `t4` ON  `t4`.`id` =  `t2`.`account_id` 
+		WHERE  `t1`.`cat_id` =' . $this->m_categoryId . '
+		AND  `t2`.`post_num` =1 ';
 
-		
-		$q = $this->c('QueryResult', 'Db')
-			->model('WowForumThreads')
-			->addModel('WowForumPosts')
-			->addModel('WowUserCharacters')
-			->addModel('WowAccounts')
-			->join('left', 'WowForumPosts', 'WowForumThreads', 'thread_id', 'thread_id')
-			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_guid', 'guid')
-			->join('left', 'WowUserCharacters', 'WowForumPosts', 'character_realm', 'realmId')
-			->join('left', 'WowAccounts', 'WowForumPosts', 'account_id', 'id')
-			->fieldCondition('wow_forum_threads.cat_id', ' = ' . $this->m_categoryId);
+		if (is_array($this->m_pinnedTopics) && sizeof(array_keys($this->m_pinnedTopics)) > 0)
+			$sql .= ' AND `t1`.`thread_id` NOT IN (' . implode(', ', array_keys($this->m_pinnedTopics)) . ')';
 
-		if (is_array($this->m_pinnedTopics))
-			$q->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_pinnedTopics)) . ')');
+		if (is_array($this->m_featuredTopics) && sizeof(array_keys($this->m_featuredTopics)) > 0)
+			$sql .= ' AND `t1`.`thread_id` NOT IN (' . implode(', ', array_keys($this->m_featuredTopics)) . ')';
 
-		if (is_array($this->m_featuredTopics))
-			$q->fieldCondition('wow_forum_threads.thread_id', ' NOT IN (' . implode(', ', array_keys($this->m_featuredTopics)) . ')');
-
-		$this->m_categoryTopics = $q->fieldCondition('wow_forum_posts.post_num', ' = 1')
-			->limit(self::TOPICS_PER_PAGE, ($this->getPage(true) * self::TOPICS_PER_PAGE))
-			->order(array('WowForumThreads' => array('last_update')), 'DESC')
-			->loadItems();
+		$sql .= ' ORDER BY  `t1`.`last_update` DESC 
+		LIMIT ' . ($this->getPage(true) * self::TOPICS_PER_PAGE) . ' , ' . (self::TOPICS_PER_PAGE);
+		$this->m_categoryTopics = $this->c('Db')->wow()->select($sql);
 
 		$topics = $this->m_categoryTopics;
 
@@ -467,6 +461,7 @@ class Forum_Component extends Component
 
 		// Update topic views
 		$edt = $this->c('Editing')
+			->clearValues()
 			->setModel('WowForumThreads')
 			->setType('update')
 			->setId($this->m_topicId)
@@ -475,16 +470,21 @@ class Forum_Component extends Component
 		$edt->views = $edt->views + 1;
 		$edt->save()->clearValues();
 
-		$this->m_topicData = $this->c('QueryResult', 'Db')
-			->model('WowForumThreads')
-			->addModel('WowForumCategory')
-			->join('left', 'WowForumCategory', 'WowForumThreads', 'cat_id', 'cat_id')
-			->setAlias('WowForumCategory', 'title_' . $this->c('Locale')->GetLocale(), 'categoryTitle')
-			->setAlias('WowForumCategory', 'desc_' . $this->c('Locale')->GetLocale(), 'categoryDesc')
-			->setAlias('WowForumCategory', 'cat_id', 'categoryId')
-			->fieldCondition('wow_forum_threads.thread_id', ' = ' . $this->m_topicId)
-			->fieldCondition('wow_forum_category.gmlevel', ' <= ' . intval($this->c('AccountManager')->user('gmlevel')))
-			->loadItem();
+		$this->m_topicData = $this->c('Db')->wow()->selectRow("SELECT
+		`t1`.*,
+		`t2`.`cat_id` AS `categoryId`,
+		`t2`.`header` AS `header`,
+		`t2`.`parent_cat` AS `parent_cat`,
+		`t2`.`short` AS `short`,
+		`t2`.`realm_cat` AS `realm_cat`,
+		`t2`.`gmlevel` AS `gmlevel`,
+		`t2`.`icon` AS `icon`,
+		`t2`.`title_es` AS `categoryTitle`,
+		`t2`.`desc_es` AS `categoryDesc`
+		FROM `wow_forum_threads` AS `t1`, `wow_forum_category` AS `t2`
+		WHERE `t1`.`thread_id` = %d
+		AND `t2`.`gmlevel` <= %d
+		AND `t2`.`cat_id` = `t1`.`cat_id`", $this->m_topicId, intval($this->c('AccountManager')->user('gmlevel')));
 
 		if (!$this->m_topicData)
 			return $this;
