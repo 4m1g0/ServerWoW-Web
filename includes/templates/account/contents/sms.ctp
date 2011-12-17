@@ -1,6 +1,6 @@
 <div id="page-header">
-<h2 class="subcategory">Payments</h2>
-<h3 class="headline">Earn World of Warcraft Bonus Points!</h3>
+<h2 class="subcategory">SMS Puntos</h2>
+<h3 class="headline">Compra puntos para Gastar en la Tienda!</h3>
 </div>
 <div id="page-content" class="page-content">
 <form method="post" action="" id="change-settings">

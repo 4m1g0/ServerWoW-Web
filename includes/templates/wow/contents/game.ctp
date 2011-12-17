@@ -47,7 +47,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 							<a href="<?php echo $this->getWowUrl('bugtracker/'); ?>">
 								<span class="icon"></span>
 								Bugtracker<br />
-								<span>Report about any bug you've found in game!</span>
+								<span>Reporta cualquier bug que encuentres en el juego, en la tienda, en la web!</span>
 							</a>
 							</li>
 					</ul>

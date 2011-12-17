@@ -1,11 +1,11 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru-ru">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
 <head>
 <title><?php echo $l->getString('template_management_main_title'); ?></title>
+<meta name="description" content="<?php echo $l->getString('template_management_main_description'); ?>">
+<meta name="keywords" content="<?php echo $l->getString('template_management_main_keywords'); ?>">
 <meta content="false" http-equiv="imagetoolbar" />
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
 <link rel="shortcut icon" href="<?php echo CLIENT_FILES_PATH; ?>/account/local-common/images/favicons/bam.ico" type="image/x-icon"/>
-<link rel="search" type="application/opensearchdescription+xml" href="http://eu.battle.net/ru-ru/data/opensearch" title="<?php echo $l->getString('template_search_site'); ?>" />
 <link rel="stylesheet" type="text/css" media="all" href="/account/local-common/css/common.css?v35" />
 <!--[if IE]> <link rel="stylesheet" type="text/css" media="all" href="<?php echo CLIENT_FILES_PATH; ?>/account/local-common/css/common-ie.css?v35" />
 <![endif]-->
@@ -40,25 +40,22 @@ try { document.execCommand('BackgroundImageCache', false, true) } catch(e) {}
 <![endif]-->
 <script type="text/javascript">
 //<![CDATA[
-Core.staticUrl = '<?php echo CLIENT_FILES_PATH; ?>/account';
-Core.sharedStaticUrl= '<?php echo CLIENT_FILES_PATH; ?>/account/local-common';
-Core.baseUrl = '<?php echo CLIENT_FILES_PATH; ?>/account';
-Core.projectUrl = '<?php echo CLIENT_FILES_PATH; ?>/account';
-Core.cdnUrl = 'http://eu.media.blizzard.com';
-Core.supportUrl = 'http://eu.battle.net/support/';
-Core.secureSupportUrl= 'https://eu.battle.net/support/';
-Core.project = 'bam';
+Core.staticUrl = '<?php echo CLIENT_FILES_PATH; ?>/wow/static';
+Core.sharedStaticUrl= '<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common';
+Core.baseUrl = '<?php echo $this->localeWowUrl(); ?>';
+Core.cdnUrl = 'http://serverwow.com';
+Core.supportUrl = 'http://serverwow.com/wow/forum/9/';
+Core.secureSupportUrl= 'https://serverwow.com/wow/forum/9/';
+Core.project = 'wow';
 Core.locale = '<?php echo $l->getLocale(LOCALE_DOUBLE); ?>';
-Core.language = '<?php echo $l->getLocale(); ?>';
 Core.buildRegion = 'eu';
-Core.region = 'eu';
 Core.shortDateFormat= 'dd/MM/yyyy';
 Core.dateTimeFormat = 'dd/MM/yyyy HH:mm';
-Core.loggedIn = true;
-Flash.videoPlayer = 'http://eu.media.blizzard.com/global-video-player/themes/bam/video-player.swf';
-Flash.videoBase = 'http://eu.media.blizzard.com/bam/media/videos';
-Flash.ratingImage = 'http://eu.media.blizzard.com/global-video-player/ratings/bam/rating-pegi.jpg';
-Flash.expressInstall= 'http://eu.media.blizzard.com/global-video-player/expressInstall.swf';
+Core.loggedIn = false;
+Flash.videoPlayer = '<?php echo CLIENT_FILES_PATH; ?>/wow/player/video-player.swf';
+Flash.videoBase = '<?php echo CLIENT_FILES_PATH; ?>/wow/media/videos';
+Flash.ratingImage = '<?php echo CLIENT_FILES_PATH; ?>/wow/player/rating-pegi.jpg';
+Flash.expressInstall= '<?php echo CLIENT_FILES_PATH; ?>/wow/player/video-player.swf';
 //]]>
 </script>
 </head>

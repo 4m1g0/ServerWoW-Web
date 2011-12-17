@@ -39,14 +39,14 @@
 	});
 </script>
 <div id="page-header">
-<h2 class="subcategory">Payments</h2>
-<h3 class="headline">Earn World of Warcraft Bonus Points!</h3>
+<h2 class="subcategory">PayPal Puntos</h2>
+<h3 class="headline">Compra puntos para Gastar en la Tienda!</h3>
 </div>
 <div id="page-content" class="page-content">
 <form method="post" action="<?php echo $this->c('Paypal')->getGatewayUrl(); ?>" id="paypal_form">
 <div class="form-row required">
 <label for="amount_" class="label-full ">
-<strong> Bonus Points Amount
+<strong> Puntos a Comprar
 </strong>
 <span class="form-required">*</span>
 </label>
@@ -54,7 +54,7 @@
 </div>
 <div class="form-row required">
 <label for="price" class="label-full ">
-<strong> Price:
+<strong> Precio:
 </strong>
 </label>
 <input type="text" id="price" name="price" value="" class=" input border-5 glow-shadow-2 disabled" disabled="disabled" tabindex="1" />
@@ -62,7 +62,7 @@
 <div class="form-row" id="confirmation" style="display:none;">
 <input type="checkbox" id="confirmed" name="confirmed" value=""  tabindex="1" class="input"/>
 <label for="confirmed" >
-I agree to pay <?php echo CURRENCY_CHAR; ?><span id="price_val">0</span> to earn <span id="points_val"></span> WoW points!
+Acepto pagar <?php echo CURRENCY_CHAR; ?><span id="price_val">0</span> EUR a cambio de <span id="points_val"></span> puntos!
 </label>
 </div>
 <fieldset class="ui-controls " >

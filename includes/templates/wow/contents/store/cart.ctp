@@ -3,13 +3,9 @@
 
 <div class="currently-viewing">
 <div>
-<h1>ServerWoW Tienda & Servicios</h1>
-
 <div class="filter-details">
 
 <span class="clear"><!-- --></span>
-
-<h1>Items en tu carro:</h1>
 </div>
 </div>
 </div>

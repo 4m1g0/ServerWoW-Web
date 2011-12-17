@@ -1,7 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Inicia sesión en tu cuenta de Battle.net</title>
+<title>ServerWoW : Inicia sesión con tu cuenta de WoW</title>
+<meta name="description" content="ServerWoW Ingresa con tu Cuenta de World of Warcraft, y personaliza tu Cuenta">
+<meta name="keywords" content="wow, juegos, multijugador masivo, world of warcraft, blizzlike, cataclysm, wotlk, server, privado">
 <meta http-equiv="imagetoolbar" content="false"/>
 <link rel="stylesheet" type="text/css" href="<?php echo CLIENT_FILES_PATH; ?>/login/static/local-common/css/common.css?v22"/>
 <!--[if IE]><link rel="stylesheet" type="text/css" href="<?php echo CLIENT_FILES_PATH; ?>/login/static/local-common/css/common-ie.css?v22"/><![endif]-->
@@ -20,7 +22,7 @@ Core.baseUrl = '<?php echo $this->getCoreUrl('login/'); ?>';
 </head>
 <body class="es-es">
 <div id="wrapper">
-<h1 id="logo"><a href="<?php echo $this->getCoreUrl(); ?>">Battle.net</a></h1>
+<h1 id="logo"><a href="<?php echo $this->getCoreUrl(); ?>">ServerWoW.com</a></h1>
 <div id="content" class="login">
 <?php
 $loginError = $this->c('AccountManager')->getErrorCode();
@@ -84,7 +86,7 @@ Más información sobre cómo <a href="">proteger tu cuenta</a>.
 </div>
 <div id="right">
 <h2>¿Necesitas una cuenta?</h2>
-<h3>Crear una cuenta de Battle.net es rápido, sencillo y gratis.</h3>
+<h3>Crear una cuenta de ServerWoW.com es rápido, sencillo y gratis.</h3>
 <a
 class="ui-button button1 "
 href="<?php echo $this->getCoreUrl('account/creation/'); ?>"

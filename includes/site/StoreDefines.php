@@ -39,6 +39,6 @@ $GLOBALS['_STORE_SERVICES'] = array(
 	array(SERVICE_CHARACTER_CHANGE_GENDER, 'Cambiar Genero'),
 	array(SERVICE_RENAME_CHARACTER, 'Renombrar Personaje'),
 	array(SERVICE_POWERLEVEL, 'Comprar niveles'),
-	array(SERVICE_GOLD, 'Buy gold')
+	array(SERVICE_GOLD, 'Comprar Oro')
 );
 ?>

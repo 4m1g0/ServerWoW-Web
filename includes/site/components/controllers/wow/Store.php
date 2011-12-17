@@ -64,18 +64,18 @@ class Store_Wow_Controller_Component extends Groupwow_Controller_Component
 				),
 				array(
 					'link' => 'store/',
-					'caption' => 'Store'
+					'caption' => 'Tienda & Servicios'
 				),
 				array(
 					'link' => 'store/cart',
-					'caption' => 'My Cart'
+					'caption' => 'Carro de Compras'
 				)
 			);
 
 			if ($this->m_isBuyout)
 				$this->m_breadcrumb[] = array(
 					'link' => 'store/cart/buyout',
-					'caption' => 'Buyout'
+					'caption' => 'Compra'
 				);
 		}
 		else

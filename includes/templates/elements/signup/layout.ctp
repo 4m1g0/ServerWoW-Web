@@ -1,11 +1,9 @@
-
-
-
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Crear Cuenta Gratis en ServerWoW</title>
-		<meta name="description" content="Regístrate para probar World of Warcraft gratis"/>
+		<title>Crear Cuenta Gratis en ServerWoW - World of Warcraft</title>
+		<meta name="description" content="ServerWoW Crea tu Cuenta para jugar World of Warcraft gratis, Version Cataclysm 4.0.6a y Wrath of The lich king 3.3.5a">
+		<meta name="keywords" content="wow, juegos, multijugador masivo, world of warcraft, blizzlike, cataclysm, wotlk, server, privado">
 		<link rel="shortcut icon" href="/account/images/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="/account/css/lightweight-account-creation/signup.css"/>
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="/account/css/lightweight-account-creation/signup-footer.css"/>
