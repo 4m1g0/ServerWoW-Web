@@ -793,7 +793,15 @@ class Store_Component extends Component
 				if ($item['service_type'] > 0)
 					$this->performCharacterOperation($item['service_type'], intval($_POST['guid']), intval($_POST['realmId']), $_POST['service_data'], $item['quantity']);
 				else
-					$this->sendItemMail($item['item_id'], $item['quantity'], intval($_POST['guid']), intval($_POST['realmId']));
+				{
+					if ($item['quantity'] > 1)
+					{
+						for ($i = 0; $i < $item['quantity']; ++$i)
+							$this->sendItemMail($item['item_id'], 1, intval($_POST['guid']), intval($_POST['realmId']));
+					}
+					else
+						$this->sendItemMail($item['item_id'], $item['quantity'], intval($_POST['guid']), intval($_POST['realmId']));
+				}
 
 				$performed[] = $item;
 			}
