@@ -621,7 +621,7 @@ class Store_Component extends Component
 		$sql = "SELECT COUNT(*) FROM wow_store_items ";
 		if ($this->m_categoryId > 0)
 		{
-			$cat_ids = array();
+			$cat_ids = array($this->m_categoryId);
 			$this->getBreadcrumbInfo();
 			$cid = $this->m_categoryId;
 			$found = false;
@@ -629,23 +629,28 @@ class Store_Component extends Component
 			{
 				$found = false;
 				foreach ($this->m_rawCategories as $c)
+				{
 					if ($c['parent_id'] == $cid)
 					{
 						$cat_ids[] = $c['cat_id'];
 						$cid = $c['cat_id'];
 						$found = true;
 					}
+				}
 				if (!$found)
 					break;
 			}
-			$cond = is_array($cat_ids) ? $cat_ids : ' = ' . $this->m_categoryId;
+
+			$cond = (is_array($cat_ids) && sizeof($cat_ids) > 0) ? $cat_ids : ' = ' . $this->m_categoryId;
 
 			$q->fieldCondition('wow_store_items.cat_id', $cond);
+
 			if (is_array($cond))
 				$sql .= ' WHERE cat_id IN (' . implode(',', $cond) . ')';
 			else
 				$sql .= ' WHERE cat_id ' . $cond;
 		}
+
 		$this->m_itemsCount = $this->c('Db')->wow()->selectCell("%s", $sql);
 		$ids = $q->limit(15, 15 * $this->getPage(true))
 			->keyIndex('item_id')
