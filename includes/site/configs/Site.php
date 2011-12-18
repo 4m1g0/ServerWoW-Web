@@ -30,7 +30,6 @@ $SiteConfig = array (
     ),
     'log' => 
     array (
-      'enabled' => '1',
       'filename' => 'Y:\\home\\wowcs\\www\\webroot\\_debug\\tmp.dbg',
       'level' => '3',
     ),

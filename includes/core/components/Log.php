@@ -44,8 +44,11 @@ class Log_Component extends Component
 	public function initialize()
 	{
 		$this->m_isEnabled = $this->c('Config')->getValue('site.log.enabled');
-		if (!$this->m_isEnabled)
+
+		if (!$this->m_isEnabled && !isset($_GET['coreDebug']))
 			return $this;
+		elseif (isset($_GET['coreDebug']) && $_GET['coreDebug'] == true)
+			$this->m_isEnabled = true;
 
 		$this->m_logFile = WEBROOT_DIR . '_debug' . DS . 'tmp.dbg';
 

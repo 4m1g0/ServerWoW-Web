@@ -216,6 +216,8 @@ class Store_Component extends Component
 				'store' => $items[$i['entry']]
 			);
 
+		unset($data, $i);
+
 		return $this;
 	}
 
