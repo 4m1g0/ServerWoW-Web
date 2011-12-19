@@ -25,6 +25,7 @@ session_start();
 error_reporting(E_ALL);
 
 $debug = true;
+$use_lag_reports = true;
 
 $tstart = array_sum(explode(' ', microtime()));
 
@@ -95,21 +96,22 @@ try {
 	$totaltime = sprintf('%.2f', ($tend - $tstart));
 	$reportLag = false;
 	$debug_output .=sprintf('<p>Page generated in ~%.2f sec.<br />Memory usage: ~%.2f mbytes.<br />Memory usage peak: ~%.2f mbytes.</p>', $totaltime, $memory_usage , $memory_peak_usage);
+
 	if ($totaltime > 1)
 	{
 		$reportLag = true;
 		$debug_output .= '<h1 style="color:#ff0000;">WARNING: seems that your page generation time is too large, please, contact with developer</h1>';
 	}
+
 	if (memory_get_usage(true) > 9500000)
 	{
 		$debug_output .= '<h1 style="color:#ff0000;">WARNING: seems that your page takes a lot of memory, please, contact with developer</h1>';
 		$reportLag = true;
 	}
 
-	if ($reportLag)
-	{
+	if ($reportLag && $use_lag_reports)
 		$core->reportWebLag(($tend - $tstart), $memory_usage, $memory_peak_usage, $mysql_statistics); // Report about slow page generation
-	}
+
 	foreach ($mysql_statistics as $type => $stat)
 		$debug_output .= sprintf('MySQL queries count for %s DB: %d, approx. time: %.2f ms.<br />', $type, $stat['queryCount'], $stat['queryTimeGeneration']);
 
