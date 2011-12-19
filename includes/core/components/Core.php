@@ -336,5 +336,20 @@ class Core_Component extends Component
 	{
 		return $this->m_dataVars;
 	}
+
+	public function reportWebLag($time, $memory, $memory_peak, &$mysql)
+	{
+		if ($this->c('Session')->getSession('lag_report') == implode('/', $this->getActions()))
+			return;
+
+		$timers = 'Page generated in ' . $time . ' sec., memory: ' . $memory . 'MB, peak: ' . $memory_peak . 'MB, MySQL:<br/ >';
+		foreach ($mysql as $type => $stat)
+		{
+			$timers .= '<b>[mysql-' . $type . ']</b>: count: ' . $stat['queryCount'] . ', time: ' . $stat['queryTimeGeneration'] . '<br />';
+		}
+		$this->c('Db')->wow()->query("INSERT INTO wow_lag_reports (user_ip, page_url, timers, date_time) VALUES ('%s', '%s', '%s', %d)", $_SERVER['REMOTE_ADDR'], implode('/', $this->getActions()), str_replace('%', '%%', $timers), time());
+		$this->c('Session')->setSession('lag_report', implode('/', $this->getActions()));
+		
+	}
 }
 ?>

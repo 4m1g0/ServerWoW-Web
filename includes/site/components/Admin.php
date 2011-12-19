@@ -845,5 +845,34 @@ class Admin_Component extends Component
 
 		return true;
 	}
+
+	public function getLagReportsPagination()
+	{
+		$count = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_lag_reports");
+		return $this->c('Pager')->generatePagination(
+			'/' . $this->core->getRawUrl(),
+			$count,
+			30,
+			$this->getPage(false) * 30
+		);
+	}
+
+	public function getLagReports()
+	{
+		return $this->c('QueryResult')
+			->model('WowLagReports')
+			->limit(30, ($this->getPage(true) * 30))
+			->order(array('WowLagReports' => array('date_time')), 'DESC')
+			->loadItems();
+	}
+
+	public function getLag()
+	{
+		$id = $this->core->getUrlAction(2);
+		return $this->c('QueryResult')
+			->model('WowLagReports')
+			->setItemId($id)
+			->loadItem();
+	}
 }
 ?>

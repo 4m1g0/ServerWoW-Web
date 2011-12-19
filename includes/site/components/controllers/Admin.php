@@ -51,6 +51,18 @@ class Admin_Controller_Component extends Controller_Component
 
 		switch ($this->m_action)
 		{
+			case 'lags':
+				if (isset($this->m_subaction[0]) && $this->m_subaction[0])
+				{
+					$id = intval($this->m_subaction[0]);
+					if ($id > 0)
+						$this->buildBlock('showLagReport');
+					else
+						$this->buildBlock('showLags');
+				}
+				else
+					$this->buildBlock('showLags');
+				break;
 			case 'news':
 				if (isset($this->m_subaction[0]) && $this->m_subaction[0])
 				{
@@ -263,6 +275,22 @@ class Admin_Controller_Component extends Controller_Component
 		$this->buildBlock('main');
 
 		return $this;
+	}
+
+	protected function block_showLags()
+	{
+		return $this->block()
+			->setTemplate('showlags', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
+	}
+
+	protected function block_showLagReport()
+	{
+		return $this->block()
+			->setTemplate('showlagreport', 'admin' . DS . 'contents')
+			->setVar('admin', $this->c('Admin'))
+			->setRegion('adminpage');
 	}
 
 	protected function block_editusergroup()

@@ -87,7 +87,37 @@ try {
 		$totalStat['count'] += $mysql_statistics[$type]['queryCount'];
 		$totalStat['time'] += $mysql_statistics[$type]['queryTimeGeneration'];
 	}
+	$tend = array_sum(explode(' ', microtime()));
+	$memory_usage = ((memory_get_usage(true)/1048576 * 100000)/100000);
+	$memory_peak_usage = ((memory_get_peak_usage(true) / 1048576 * 100000)/100000);
+	$debug_output = '';
+	$debug_output .= '<div class="debug">';
+	$totaltime = sprintf('%.2f', ($tend - $tstart));
+	$reportLag = false;
+	$debug_output .=sprintf('<p>Page generated in ~%.2f sec.<br />Memory usage: ~%.2f mbytes.<br />Memory usage peak: ~%.2f mbytes.</p>', $totaltime, $memory_usage , $memory_peak_usage);
+	if ($totaltime > 1)
+	{
+		$reportLag = true;
+		$debug_output .= '<h1 style="color:#ff0000;">WARNING: seems that your page generation time is too large, please, contact with developer</h1>';
+	}
+	if (memory_get_usage(true) > 9500000)
+	{
+		$debug_output .= '<h1 style="color:#ff0000;">WARNING: seems that your page takes a lot of memory, please, contact with developer</h1>';
+		$reportLag = true;
+	}
 
+	if ($reportLag)
+	{
+		$core->reportWebLag(($tend - $tstart), $memory_usage, $memory_peak_usage, $mysql_statistics); // Report about slow page generation
+	}
+	foreach ($mysql_statistics as $type => $stat)
+		$debug_output .= sprintf('MySQL queries count for %s DB: %d, approx. time: %.2f ms.<br />', $type, $stat['queryCount'], $stat['queryTimeGeneration']);
+
+	$debug_output .= sprintf('Total MySQL queries count: %d, total approx. time: %.2f ms.<br />', $totalStat['count'], $totalStat['time']);
+	$debug_output .= '</div>';
+
+	
+	
 	if (!defined('SKIP_SHUTDOWN'))
 		$core->shutdown(); // Shutdown application
 }
@@ -105,19 +135,6 @@ catch(Exception $e) {
 
 if ($debug && !defined('AJAX_PAGE'))
 {
-	echo '<div class="debug">';
-	$totaltime = sprintf('%.2f', (array_sum(explode(' ', microtime())) - $tstart));
-	printf('<p>Page generated in ~%.2f sec.<br />Memory usage: ~%.2f mbytes.<br />Memory usage peak: ~%.2f mbytes.</p>', $totaltime, ((memory_get_usage(true)/1048576 * 100000)/100000) , ((memory_get_peak_usage(true) / 1048576 * 100000)/100000));
-	if ($totaltime > 1)
-		echo '<h1 style="color:#ff0000;">WARNING: seems that your page generation time is too large, please, contact with developer</h1>';
-
-	if (memory_get_usage(true) > 7500000)
-		echo '<h1 style="color:#ff0000;">WARNING: seems that your page takes a lot of memory, please, contact with developer</h1>';
-
-	foreach ($mysql_statistics as $type => $stat)
-		printf('MySQL queries count for %s DB: %d, approx. time: %.2f ms.<br />', $type, $stat['queryCount'], $stat['queryTimeGeneration']);
-
-	printf('Total MySQL queries count: %d, total approx. time: %.2f ms.<br />', $totalStat['count'], $totalStat['time']);
-	echo '</div>';
+	echo $debug_output;
 }
 ?>

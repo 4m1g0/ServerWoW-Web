@@ -25,6 +25,7 @@
 			<a href="/admin/forums">Manage Forums</a>
 			<a href="/admin/users">Manage Users</a>
 			<a href="/admin/store">Manage Store</a>
+			<strong><a style="color:#ff0000;" href="/admin/lags">WEB LAGS</a></strong>
 		</div>
 		<div class="info-col">
 			<div class="contents">
