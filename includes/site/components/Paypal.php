@@ -173,7 +173,6 @@ class Paypal_Component extends Component
 					return $this;
 				}
 			}
-			return $this;
 		}
 		else
 			$account_id = intval($_POST['custom']);
