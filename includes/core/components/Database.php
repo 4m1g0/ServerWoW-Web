@@ -267,7 +267,7 @@ class Database_Component extends Component
 		$queryTime = round($query_end - $query_start, 4);
 		$this->c('Log')->writeSql('[%s ms]: %s', $queryTime, $safe_sql);
 
-		if ($queryTime > 0.3)
+		if ($queryTime > 0.5)
 			$this->c('Log')->writeError('%s : warning: seems that query "%s" takes a lot of time: %.2f', __METHOD__, $safe_sql, $queryTime);
 
 		$this->queryTimeGeneration += $queryTime;
