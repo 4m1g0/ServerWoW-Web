@@ -29,7 +29,40 @@ Price
 </div>
 <div class="input select">
 Service Type
-<select name="item[service]">
+<script language="javascript">
+	$(document).ready(function() {
+		hideServiceFields();
+		showFields();
+		<?php if (isset($_POST['item']['itemset_pieces']) && $_POST['item']['itemset_pieces'] != '') echo '$(\'#isetpieces\').show();'; ?>
+	});
+
+	function showFields()
+	{
+		var serviceType = parseInt($('#servicetype').val(), 10);
+
+		hideServiceFields();
+		if (!serviceType || serviceType < 0)
+			return;
+
+		switch (serviceType)
+		{
+			case 8:
+				$('#goldamount').show();
+				break;
+			case 9:
+				$('#profskill').show();
+				break;
+		}
+	}
+
+	function hideServiceFields()
+	{
+		$('#isetpieces').hide();
+		$('#goldamount').hide();
+		$('#profskill').hide();
+	}
+</script>
+<select id="servicetype" name="item[service]" onchange="showFields();">
 <option value="0"<?php if (!isset($_POST['item']['service']) || (isset($_POST['item']['service']) && $_POST['item']['service'] == 0)) echo ' selected="selected"'; ?>>-- No Service --</option>
 <?php
 foreach ($GLOBALS['_STORE_SERVICES'] as $c) :
@@ -40,14 +73,11 @@ foreach ($GLOBALS['_STORE_SERVICES'] as $c) :
 </div>
 <br />
 <div class="input checkbox">
-<input type="checkbox" name="item[in_store]" value="1" <?php if (isset($_POST['item']['in_store'])) echo ' checked="checked"'; ?> id="instore" /><label for="instore">Available in store</label>
+<input type="checkbox" name="item[in_store]" value="1" <?php if (isset($_POST['item']) && isset($_POST['item']['in_store'])) echo ' checked="checked"'; elseif (!isset($_POST['item'])) echo ' checked="checked"'; ?> id="instore" /><label for="instore">Available in store</label>
 </div>
 <br />
 <div class="input checkbox">
 <script language="javascript">
-	$(document).ready(function() {
-		<?php if (isset($_POST['item']['itemset_pieces']) && $_POST['item']['itemset_pieces'] != '') echo '$(\'#isetpieces\').show();'; ?>
-	});
 </script>
 <input type="checkbox" onclick="if ($(this).attr('checked')) $('#isetpieces').fadeIn(); else $('#isetpieces').fadeOut();" name="item[itemset]" value="1" <?php if (isset($_POST['item']['itemset'])) echo ' checked="checked"'; ?> id="itemset" /><label for="itemset">Itemset</label>
 </div><br />
@@ -59,11 +89,11 @@ Itemset pieces ("32458 32459 32460", for example)
 Price Discount (%; left 0 to disable discounts):
 <input type="text" name="item[discount]" value="<?php if (isset($_POST['item']['discount'])) echo $_POST['item']['discount']; else echo ''; ?>" />
 </div>
-<div class="input text long">
+<div class="input text long" id="goldamount" style="display:none;">
 Gold Amount (GOLD_ITEM is enabled if value > 0):
 <input type="text" name="item[gold_amount]" value="<?php if (isset($_POST['item']['gold_amount'])) echo $_POST['item']['gold_amount']; else echo ''; ?>" />
 </div>
-<div class="input select">
+<div class="input select" id="profskill" style="display:none;">
 Profession SKILL ID:
 <select name="item[prof_skill_id]">
 <option value="0"<?php if (!isset($_POST['item']['prof_skill_id']) || (isset($_POST['item']['prof_skill_id']) && $_POST['item']['prof_skill_id'] == 0)) echo ' selected="selected"'; ?>>-- No Profession --</option>
