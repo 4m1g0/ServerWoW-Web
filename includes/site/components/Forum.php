@@ -38,6 +38,83 @@ class Forum_Component extends Component
 	protected $m_rawPostMessages = array();
 	protected $m_pinnedTopics = array();
 	protected $m_featuredTopics = array();
+	protected $m_userVisitedThreads = array();
+
+	public function initVisitedThreads()
+	{
+		// Battle.net forums using the same system - they're storing "visitedThread" cookie with this structure:
+		// "threadID//visitTimestamp//lastViewedPage", delimiter is ",".
+		// When user opens any category cookie is transformed into exploded array and with last post timestamp check
+		// we can detect if some posts were posted after user's last visit.
+
+		$this->m_userVisitedThreads = array();
+
+		$threads = $this->c('Cookie')->read('visitedThread');
+
+		if (!$threads)
+			return $this;
+
+		$data = explode(',', $threads);
+
+		$stamp = (string) time();
+
+		if (is_array($data) && sizeof($data) >= 1)
+		{
+			foreach ($data as $thread)
+			{
+				// Explode each thread again
+				$thread_info = explode('//', $thread);
+				if (is_array($thread_info) && sizeof($thread_info) == 3)
+				{
+					if (!$thread_info[0] || !$thread_info[1] || !$thread_info[2])
+						continue;
+
+					if (strlen($thread_info[1]) != strlen($stamp))
+						$thread_info[1] = substr($thread_info[1], 0, strlen($stamp));
+
+					$this->m_userVisitedThreads[intval($thread_info[0])] = array(
+						'thread_id' => $thread_info[0],
+						'visit_tstamp' => $thread_info[1],
+						'visited_page' => $thread_info[2]
+					);
+				}
+			}
+		}
+
+		return $this;
+	}
+
+	public function updateTopicCookie()
+	{
+		if (!$this->m_topicId)
+			return $this;
+
+		$stamp = time();
+		$this->m_userVisitedThreads[$this->m_topicId] = array(
+			'thread_id' => $this->m_topicId,
+			'visit_tstamp' => $stamp,
+			'visited_page' => intval($this->getPage())
+		);
+
+		return $this->rebuildForumCookie();
+	}
+
+	protected function rebuildForumCookie()
+	{
+		$cookie = '';
+
+		if ($this->m_userVisitedThreads)
+		{
+			foreach ($this->m_userVisitedThreads as $thread)
+			{
+				$cookie .= $thread['thread_id'] . '//' . $thread['visit_tstamp'] . '//' . $thread['visited_page'] . ',';
+			}
+		}
+
+		$this->c('Cookie')->write('visitedThread', $cookie);
+
+		return $this;
+	}
 
 	public function getTopicsPerPageCount()
 	{
@@ -54,6 +131,9 @@ class Forum_Component extends Component
 		$redirect = false;
 
 		// Load category or topic (include redirect if nothing found)
+
+		// Init cookie
+		$this->initVisitedThreads();
 
 		if (!$categoryId && !$topicId)
 			$this->initIndexCategories();
@@ -231,6 +311,8 @@ class Forum_Component extends Component
 			return $this;
 
 		$this->m_topicId = $topicId;
+
+		$this->updateTopicCookie();
 
 		return $this->loadTopic()->handleTopic();
 	}
@@ -440,6 +522,17 @@ class Forum_Component extends Component
 
 			if (mb_strlen($topic['message'], 'UTF-8') > 240)
 				$topic['short_content'] .= '…';
+
+			// read/new
+			$topic['read'] = false;
+			if (isset($this->m_userVisitedThreads[$topic['thread_id']]))
+			{
+				if ($this->m_userVisitedThreads[$topic['thread_id']]['thread_id'] == $topic['thread_id'])
+				{
+					if ($topic['last_update'] < $this->m_userVisitedThreads[$topic['thread_id']]['visit_tstamp'])
+						$topic['read'] = true;
+				}
+			}
 
 			if ($topic['flags'] & THREAD_FLAG_FEATURED)
 				$topics['featured'][$topic['thread_id']] = $topic;

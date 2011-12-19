@@ -86,7 +86,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 						foreach ($topics[$type] as $topic) :
 				?>
 
-				<tr id="postRow<?php echo $topic['thread_id']; ?>" class="<?php echo ' ' . $typeInfo['class']; ?>">
+				<tr id="postRow<?php echo $topic['thread_id']; ?>" class="<?php echo ' ' . $typeInfo['class']; if ($topic['read']) echo ' read'; ?>">
 					<td class="post-icon">
 						<div class="forum-post-icon">
 							<?php if ($topic['flags'] & THREAD_FLAG_BLIZZ_ANSWERED) : ?>
