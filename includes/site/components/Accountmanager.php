@@ -1014,5 +1014,139 @@ class AccountManager_Component extends Component
 		$this->c('Db')->switchTo('characters', $realmId);
 		return $this->c('Db')->characters()->selectCell("SELECT online FROM characters WHERE guid = %d", $guid);
 	}
+
+	public function getUnreadMessagesCount()
+	{
+		return $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_private_messages WHERE receiver_id = %d AND `read` = 0", $this->user('id'));
+	}
+
+	public function sendMessage()
+	{
+		if (!$this->isAllowedToSendMsg())
+			return false;
+
+		if (!isset($_POST['csrftoken']))
+			return false;
+
+		$fields = array('receiver' => 1, 'title' => 2, 'messagebody' => 3);
+
+		foreach ($fields as $f => $v)
+		{
+			if (!isset($_POST[$f]) || !$_POST[$f])
+			{
+				$this->m_lastErrorIdx = 'template_new_msg_err' . $v;
+				$this->m_success = false;
+				return false;
+			}
+		}
+
+		$rcv_name = $_POST['receiver'];
+		if ($rcv_name == $this->user('username'))
+		{
+			$this->m_lastErrorIdx = 'template_new_msg_err6';
+			$this->m_success = false;
+			return false;
+		}
+		$title = $_POST['title'];
+		$msg = $_POST['messagebody'];
+
+		$rcv = $this->c('QueryResult', 'Db')
+			->model('Account')
+			->fields(array('Account' => array('id', 'username')))
+			->fieldCondition('username', ' =\'' . $rcv_name . '\'')
+			->loadItem();
+
+		if (!$rcv)
+		{
+			$this->m_lastErrorIdx = 'template_new_msg_err4';
+			$this->m_success = false;
+			return false;
+		}
+
+		// Is user allowed to receive message?
+		$rcv_data = $this->c('Db')->wow()->selectRow("
+		SELECT t1.id, t1.group_id, t2.group_mask FROM wow_accounts AS t1, wow_user_groups AS t2
+		WHERE t1.game_id = %d AND t2.group_id = t1.group_id LIMIT 1", $rcv['id']);
+
+		if (!$rcv_data || !isset($rcv_data['group_mask']) || !($rcv_data['group_mask'] & ADMIN_GROUP_RCV_MSG))
+		{
+			$this->m_lastErrorIdx = 'template_new_msg_err5';
+			$this->m_success = false;
+			return false;
+		}
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowPrivateMessages')
+			->setType('insert');
+
+		$edt->sender_id = $this->user('id');
+		$edt->receiver_id = $rcv['id'];
+		$edt->send_date = time();
+		$edt->title = $title;
+		$edt->text = $msg;
+		$edt->read = '0';
+
+		$edt->save()->clearValues();
+
+		unset($edt);
+
+		return true;
+	}
+
+	public function isAllowedToReceiveMsg()
+	{
+		if (!$this->isLoggedIn())
+			return false;
+
+		return ($this->admin('group_mask') & ADMIN_GROUP_RCV_MSG);
+	}
+
+	public function isAllowedToSendMsg()
+	{
+		if (!$this->isLoggedIn())
+			return false;
+
+		return ($this->admin('group_mask') & ADMIN_GROUP_SEND_MSG);
+	}
+
+	public function getPrivateMessages($sent = true)
+	{
+		return $this->c('QueryResult', 'Db')
+			->model('WowPrivateMessages')
+			->addModel('WowAccounts')
+			->join('left', 'WowAccounts', 'WowPrivateMessages', 'sender_id', 'game_id')
+			->fieldCondition('wow_private_messages.' . ($sent ? 'sender_id' : 'receiver_id'), ' = ' . $this->user('id'))
+			->limit(15, ($this->getPage(true) * 15))
+			->loadItems();
+	}
+
+	public function getPrivateMessage()
+	{
+		$id = intval($this->core->getUrlAction(3));
+
+		if (!$id)
+			return $this->core->redirectApp('/account/management/inbox');
+
+		$msg = $this->c('QueryResult', 'Db')
+			->model('WowPrivateMessages')
+			->addModel('WowAccounts')
+			->join('left', 'WowAccounts', 'WowPrivateMessages', 'sender_id', 'game_id')
+			->fieldCondition('wow_private_messages.msg_id', ' = ' . $id)
+			->loadItem();
+
+		if (!$msg)
+			return $this->core->redirectApp('/account/management/inbox');
+
+		if ($msg['sender_id'] != $this->user('id') && $msg['receiver_id'] != $this->user('id'))
+			return $this->core->redirectApp('/account/management/inbox');
+			
+		$msg['username'] = $this->c('Db')->realm()->selectCell("SELECT username FROM account WHERE id = %d LIMIT 1", $msg['game_id']);
+
+		if ($msg['read'] == 0)
+			$this->c('Db')->wow()->query("UPDATE wow_private_messages SET `read` = 1 WHERE msg_id = %d", $msg['msg_id']);
+
+		return $msg;
+	}
 }
 ?>

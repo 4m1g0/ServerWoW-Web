@@ -53,6 +53,16 @@ class Admin_Component extends Component
 				'mask' => ADMIN_GROUP_ADD_VIDEO,
 				'id' => 'grvideos'
 			),
+			array(
+				'label' => 'Allow to receive PMs',
+				'mask' => ADMIN_GROUP_RCV_MSG,
+				'id' => 'grmsgrcv'
+			),
+			array(
+				'label' => 'Allow to send PMs',
+				'mask' => ADMIN_GROUP_SEND_MSG,
+				'id' => 'grmsgsnd'
+			),
 		);
 	}
 
@@ -100,6 +110,10 @@ class Admin_Component extends Component
 			$edt->group_mask |= ADMIN_GROUP_EXTRA_FORUM_COLOR;
 		if (isset($_POST['group']['mask']['grvideos']))
 			$edt->group_mask |= ADMIN_GROUP_ADD_VIDEO;
+		if (isset($_POST['group']['mask']['grmsgrcv']))
+			$edt->group_mask |= ADMIN_GROUP_RCV_MSG;
+		if (isset($_POST['group']['mask']['grmsgsnd']))
+			$edt->group_mask |= ADMIN_GROUP_SEND_MSG;
 			
 
 		$edt->save()->clearValues();
@@ -145,6 +159,10 @@ class Admin_Component extends Component
 			$edt->group_mask |= ADMIN_GROUP_EXTRA_FORUM_COLOR;
 		if (isset($_POST['group']['mask']['grvideos']))
 			$edt->group_mask |= ADMIN_GROUP_ADD_VIDEO;
+		if (isset($_POST['group']['mask']['grmsgrcv']))
+			$edt->group_mask |= ADMIN_GROUP_RCV_MSG;
+		if (isset($_POST['group']['mask']['grmsgsnd']))
+			$edt->group_mask |= ADMIN_GROUP_SEND_MSG;
 
 		$edt->save()->clearValues();
 

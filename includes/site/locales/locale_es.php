@@ -1888,7 +1888,7 @@ El equipo de cuentas de ServerWoW <br />
 
 	'template_password_recovery_email_title' => 'Recuperacion de Contraseña',
 	// allowable placeholders: {username} -> account name, {password} -> temporary generated password, {url} -> account management page URL, requires domain first
-	'template_password_recovery_email_body' => 'HOla, {username}!<br />Esta es una contraseña temporal para tu cuenta en <a href="http://serverwow.com/">ServerWoW</a>: {password}.<br />Por favor, cambiala desde <a href="http://serverwow.com/{url}" target="_blank">La pagina de Cuentas</a> una vez que te loguees en la Web.<br />Gracias!',
+	'template_password_recovery_email_body' => 'Hola, {username}!<br />Esta es una contraseña temporal para tu cuenta en <a href="http://serverwow.com/">ServerWoW</a>: {password}.<br />Por favor, cambiala desde <a href="http://serverwow.com/{url}" target="_blank">La pagina de Cuentas</a> una vez que te loguees en la Web.<br />Gracias!',
 
 	'template_password_recovery_success_title' => 'Correcto!',
 	'template_password_recovery_failed_title' => 'Fallo!',
@@ -1919,5 +1919,30 @@ El equipo de cuentas de ServerWoW <br />
 	'profession_185' => 'Cocina',
 	'profession_356' => 'Pesca',
 	'profession_129' => 'Primeros auxilios',
+
+	'template_unread_messages' => '[t] Unread Messages',
+	'template_sent_messages' => '[t] Sent Messages',
+	'template_show_message' => '[t] Show Message',
+	'template_no_unread_messages' => '[t] No',
+	'template_management_menu_mail_caption' => '[t] Mailbox',
+	'template_create_new_message' => '[t] Send New Message',
+	'template_inbox_messages' => '[t] Inbox',
+	'template_new_msg_receiver' => '[t] Receiver (username)',
+	'template_new_msg_title' => '[t] Title',
+	'template_new_msg_text' => '[t] Message',
+	'template_new_msg_send' => '[t] Send',
+	'template_new_msg_err1' => '[t] Empty receiver',
+	'template_new_msg_err2' => '[t] Empty title',
+	'template_new_msg_err3' => '[t] Empty message',
+	'template_new_msg_err4' => '[t] User was not found',
+	'template_new_msg_err5' => '[t] User can not receive messages',
+	'template_new_msg_err6' => '[t] You can not send message to yourself',
+
+	'template_msg_sender' => '[t] Sender',
+	'template_msg_receiver' => '[t] Receiver',
+	'template_msg_date' => '[t] Date',
+	'template_msg_title' => '[t] Title',
+	'template_msg_status' => '[t] Status',
+	'template_msg_text' => '[t] Text',
 );
 ?>

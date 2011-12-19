@@ -102,6 +102,22 @@ Flash.expressInstall= '<?php echo CLIENT_FILES_PATH; ?>/wow/player/video-player.
 </ul>
 </div>
 </li>
+<?php
+if ($this->c('AccountManager')->isAllowedToReceiveMsg() || $this->c('AccountManager')->isAllowedToSendMsg()) : ?>
+<li>
+<a href="#" class="border-3 menu-arrow" onclick="openAccountDropdown(this, 'mailbox'); return false;"><?php echo $l->getString('template_management_menu_mail_caption'); ?></a>
+<span></span>
+<div class="flyout-menu" id="mailbox-menu" style="display: none">
+<ul>
+<?php if ($this->c('AccountManager')->isAllowedToReceiveMsg()) : ?><li><a href="<?php echo $this->getAppUrl('account/management/inbox'); ?>"><?php echo $l->getString('template_inbox_messages'); ?></a></li><?php endif; ?>
+<?php if ($this->c('AccountManager')->isAllowedToSendMsg()) : ?>
+<li><a href="<?php echo $this->getAppUrl('account/management/newmessage'); ?>"><?php echo $l->getString('template_create_new_message'); ?></a></li>
+<li><a href="<?php echo $this->getAppUrl('account/management/sent'); ?>"><?php echo $l->getString('template_sent_messages'); ?></a></li>
+<?php endif; ?>
+</ul>
+</div>
+</li>
+<?php endif; ?>
 </ul>
 <span class="clear"><!-- --></span>
 </div>

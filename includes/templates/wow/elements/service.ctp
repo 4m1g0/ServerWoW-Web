@@ -4,15 +4,17 @@
 <?php if (!$this->c('AccountManager')->isLoggedIn()) echo $l->format('template_servicebar_auth_caption', $this->getAppUrl('login/login.frag'), $this->getAppUrl('account/creation/tos.html')); else echo $l->format('template_servicebar_welcome_caption', $this->c('AccountManager')->user('username')); ?>
 </li>
 <li class="service-cell service-account"><a href="<?php echo $this->getAppUrl('account/management/'); ?>" class="service-link" tabindex="50" accesskey="3"><?php echo $l->getString('template_servicebar_account'); ?></a></li>
-
+<?php if ($this->c('AccountManager')->isLoggedIn() && $this->c('AccountManager')->isAllowedToReceiveMsg()) : ?><li class="service-cell service-account"><a href="<?php echo $this->getAppUrl('account/management/inbox'); ?>" class="service-link"><?php
+$unread = $this->c('AccountManager')->getUnreadMessagesCount();
+if ($unread > 0) echo $unread; else echo $l->getString('template_no_unread_messages'); ?> <?php echo $l->getString('template_unread_messages'); ?></a></li>
+<?php endif; ?>
 <li class="service-cell service-explore" style="background-position:-140px -200px;">
             <a href="#explore" tabindex="50" accesskey="6" class="dropdown" id="vote-link" style="cursor: pointer; " rel="javascript">Votar</a>
             <div class="explore-menu" id="vote-menu" style="display:none;width:350px;">
                 <div class="explore-primary">
                     <div class="explore-links" style="float:left;">
                         <ul>
-
-                            <li><a href="http://serversprivados.com/?in=33" target="_blank" tabindex="55"><img src="http://serversprivados.com/vote.jpg" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://www.wowtop.es/" target="_blank" tabindex="55"><img src="http://www.wowtop.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://100ranking.com/" target="_blank" tabindex="55"><img src="http://100ranking.com/button.php?u=nache" width="142" height="52" border="0" alt="Servidor privado"></a></li><li>                       
+							<li><a href="http://serversprivados.com/?in=33" target="_blank" tabindex="55"><img src="http://serversprivados.com/vote.jpg" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://www.wowtop.es/" target="_blank" tabindex="55"><img src="http://www.wowtop.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://100ranking.com/" target="_blank" tabindex="55"><img src="http://100ranking.com/button.php?u=nache" width="142" height="52" border="0" alt="Servidor privado"></a></li><li>                       
                         </ul>
                     </div>
                     <div class="explore-links" style="margin-right:20px;">

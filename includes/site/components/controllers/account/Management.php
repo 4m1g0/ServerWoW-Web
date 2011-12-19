@@ -51,6 +51,40 @@ class Management_Account_Controller_Component extends Controller_Component
 			else
 				$this->buildBlock('unstuck');
 		}
+		elseif (strtolower($this->core->getUrlAction(2)) == 'newmessage')
+		{
+			if ($this->c('AccountManager')->isAllowedToSendMsg())
+			{
+				if ($this->c('AccountManager')->sendMessage())
+					$core->redirectApp('/account/management');
+
+				$this->buildBlock('newmessage');
+			}
+		}
+		elseif (strtolower($this->core->getUrlAction(2)) == 'inbox')
+		{
+			if ($this->c('AccountManager')->isAllowedToReceiveMsg())
+			{
+				$id = intval($core->getUrlAction(3));
+
+				if ($id > 0)
+					$this->buildBlock('viewmsg');
+				else
+					$this->buildBlock('inbox');
+			}
+		}
+		elseif (strtolower($this->core->getUrlAction(2)) == 'sent')
+		{
+			if ($this->c('AccountManager')->isAllowedToSendMsg())
+			{
+				$id = intval($core->getUrlAction(3));
+
+				if ($id > 0)
+					$this->buildBlock('viewmsg');
+				else
+					$this->buildBlock('outbox');
+			}
+		}
 		elseif (strtolower($core->getUrlAction(2)) == 'payments')
 		{
 			$action = $core->getUrlAction(3);
@@ -102,7 +136,36 @@ class Management_Account_Controller_Component extends Controller_Component
 			$this->buildBlock('lobby');
 
 		$this->buildBlocks(array('service', 'footer'));
+
 		return $this;
+	}
+
+	protected function block_inbox()
+	{
+		return $this->block()
+			->setTemplate('inbox', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_outbox()
+	{
+		return $this->block()
+			->setTemplate('outbox', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_viewmsg()
+	{
+		return $this->block()
+			->setTemplate('viewmsg', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_newmessage()
+	{
+		return $this->block()
+			->setTemplate('writemessage', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
 	}
 
 	protected function block_sms()

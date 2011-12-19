@@ -6,7 +6,7 @@
 <p class="error.password.incorrect"><?php echo $l->getString($account->lastMessageIndex()); ?></p>
 </div>
 </div>
-<a class="alert-close" href="#" onclick="$(this).parent().fadeOut(250, function() { $(this).css({opacity:0}).animate({height: 0}, 100, function() { $(this).remove(); }); }); return false;">Закрыть</a>
+<a class="alert-close" href="#" onclick="$(this).parent().fadeOut(250, function() { $(this).css({opacity:0}).animate({height: 0}, 100, function() { $(this).remove(); }); }); return false;">Close</a>
 <span class="clear"><!-- --></span>
 </div>
 <?php endif; ?>
