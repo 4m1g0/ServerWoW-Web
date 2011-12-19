@@ -25,6 +25,7 @@ class StoreSession_Model_Component extends Model_Db_Component
 	public $m_dbType = 'realm';
 	public $m_fields = array(
 		'id' => 'Id',
+		'account_id' => array('type' => 'integer'),
 		'session_id' => array('type' => 'string'),
 		'amount' => array('type' => 'integer'),
 		'date_time' => array('type' => 'integer'),

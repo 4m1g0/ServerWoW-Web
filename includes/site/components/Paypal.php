@@ -35,6 +35,7 @@ class Paypal_Component extends Component
 			->setType('insert');
 
 		$edt->session_id = $item_number;
+		$edt->account_id = $this->c('AccountManager')->user('id');
 		$edt->amount = $amount;
 		$edt->date_time = time();
 		$edt->used = 0;
@@ -154,13 +155,36 @@ class Paypal_Component extends Component
 
 	public function handleSuccessedPayment()
 	{
+		$account_id = 0;
+		if (!isset($_POST['custom']) || intval($_POST['custom']) == 0)
+		{
+			// Try to identify user by item_number
+			if (!isset($_POST['item_number']))
+			{
+				$this->c('Log')->writeError('%s : no PayPal data found (possibly hacking attempt, user IP: %s), unable to continue!', __METHOD__, $_SERVER['REMOTE_ADDR']);
+				return $this;
+			}
+			else
+			{
+				$account_id = $this->c('Db')->realm()->selectCell("SELECT account_id FROM store_session WHERE session_id = '%s' LIMIT 1", $_POST['item_number']);
+				if (!$account_id)
+				{
+					$this->c('Log')->writeError('%s : unable to complete transaction: account_id for item_numer "%s" was not found!', __METHOD__, $_POST['item_number']);
+					return $this;
+				}
+			}
+			return $this;
+		}
+		else
+			$account_id = intval($_POST['custom']);
+
 		$this->loadPointsAmount();
 
 		$points_amount = $this->m_points;
 
 		$account_points = $this->c('QueryResult', 'Db')
 			->model('AccountPoints')
-			->fieldCondition('account_id', ' = ' . intval($_POST['custom']))
+			->fieldCondition('account_id', ' = ' . $account_id)
 			->loadItem();
 
 		$edt = $this->c('Editing');
@@ -172,7 +196,7 @@ class Paypal_Component extends Component
 			$edt->clearValues()
 				->setModel('AccountPoints')
 				->setType('update')
-				->setId(intval($_POST['custom']));
+				->setId($account_id);
 			$edt->amount = $points_amount;
 
 			$edt->save()->clearValues();
@@ -183,7 +207,7 @@ class Paypal_Component extends Component
 				->setModel('AccountPoints')
 				->setType('insert');
 
-			$edt->account_id = intval($_POST['custom']);
+			$edt->account_id = $account_id;
 			$edt->amount = $points_amount;
 			$edt->save()->clearValues();
 		}
