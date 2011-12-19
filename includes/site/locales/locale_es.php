@@ -1903,5 +1903,21 @@ El equipo de cuentas de ServerWoW <br />
 	'template_account_unstuck_success_title' => 'Hecho!',
 	'template_account_unstuck_success_text' => '[t] Selected character were unstucked!',
 	'template_account_paypal_success_text' => 'Tu peticion fue hecha satisfactoriamente!',
+
+	'profession_171' => 'Alquimia',
+	'profession_393' => 'Desuello',
+	'profession_333' => 'Encantamiento',
+	'profession_182' => 'Herboristería',
+	'profession_164' => 'Herrería',
+	'profession_202' => 'Ingeniería',
+	'profession_773' => 'Inscripción',
+	'profession_755' => 'Joyería',
+	'profession_186' => 'Minería',
+	'profession_165' => 'Peletería',
+	'profession_197' => 'Sastrería',
+	'profession_794' => 'Arqueología',
+	'profession_185' => 'Cocina',
+	'profession_356' => 'Pesca',
+	'profession_129' => 'Primeros auxilios',
 );
 ?>

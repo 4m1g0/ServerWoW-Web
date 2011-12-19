@@ -34,6 +34,8 @@ class WowStoreItems_Model_Component extends Model_Db_Component
 		'service_type' => array('type' => 'integer'),
 		'itemset_pieces' => array('type' => 'string'),
 		'discount' => array('type' => 'integer'),
+		'gold_amount' => array('type' => 'integer'),
+		'prof_skill_id' => array('type' => 'integer'),
 	);
 }
 ?>

@@ -270,6 +270,8 @@ class Admin_Component extends Component
 		$edt->in_store = isset($_POST['item']['in_store']) ? 1 : '0';
 		$edt->service_type = isset($_POST['item']['service']) ? intval($_POST['item']['service']) : 0;
 		$edt->discount = isset($_POST['item']['discount']) ? intval($_POST['item']['discount']) : 0;
+		$edt->gold_amount = isset($_POST['item']['gold_amount']) ? intval($_POST['item']['gold_amount']) : 0;
+		$edt->prof_skill_id = isset($_POST['item']['prof_skill_id']) ? intval($_POST['item']['prof_skill_id']) : 0;
 
 		if (isset($_POST['item']['itemset']) && $_POST['item']['itemset_pieces'])
 		{
@@ -357,6 +359,8 @@ class Admin_Component extends Component
 			$edt->itemset_pieces = '';
 
 		$edt->discount = isset($_POST['item']['discount']) ? intval($_POST['item']['discount']) : '0';
+		$edt->gold_amount = isset($_POST['item']['gold_amount']) ? intval($_POST['item']['gold_amount']) : '0';
+		$edt->prof_skill_id = isset($_POST['item']['prof_skill_id']) ? intval($_POST['item']['prof_skill_id']) : '0';
 
 		$edt->save()->clearValues();
 

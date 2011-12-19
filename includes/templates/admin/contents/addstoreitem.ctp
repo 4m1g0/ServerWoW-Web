@@ -44,15 +44,36 @@ foreach ($GLOBALS['_STORE_SERVICES'] as $c) :
 </div>
 <br />
 <div class="input checkbox">
-<input type="checkbox" name="item[itemset]" value="1" <?php if (isset($_POST['item']['itemset'])) echo ' checked="checked"'; ?> id="itemset" /><label for="itemset">Itemset</label>
+<script language="javascript">
+	$(document).ready(function() {
+		<?php if (isset($_POST['item']['itemset_pieces']) && $_POST['item']['itemset_pieces'] != '') echo '$(\'#isetpieces\').show();'; ?>
+	});
+</script>
+<input type="checkbox" onclick="if ($(this).attr('checked')) $('#isetpieces').fadeIn(); else $('#isetpieces').fadeOut();" name="item[itemset]" value="1" <?php if (isset($_POST['item']['itemset'])) echo ' checked="checked"'; ?> id="itemset" /><label for="itemset">Itemset</label>
 </div><br />
-<div class="input text long">
+<div class="input text long" id="isetpieces" style="display:none;">
 Itemset pieces ("32458 32459 32460", for example)
 <input type="text" name="item[itemset_pieces]" value="<?php if (isset($_POST['item']['itemset_pieces'])) echo $_POST['item']['itemset_pieces']; else echo ''; ?>" size=50 />
 </div>
 <div class="input text long">
 Price Discount (%; left 0 to disable discounts):
 <input type="text" name="item[discount]" value="<?php if (isset($_POST['item']['discount'])) echo $_POST['item']['discount']; else echo ''; ?>" />
+</div>
+<div class="input text long">
+Gold Amount (GOLD_ITEM is enabled if value > 0):
+<input type="text" name="item[gold_amount]" value="<?php if (isset($_POST['item']['gold_amount'])) echo $_POST['item']['gold_amount']; else echo ''; ?>" />
+</div>
+<div class="input select">
+Profession SKILL ID:
+<select name="item[prof_skill_id]">
+<option value="0"<?php if (!isset($_POST['item']['prof_skill_id']) || (isset($_POST['item']['prof_skill_id']) && $_POST['item']['prof_skill_id'] == 0)) echo ' selected="selected"'; ?>>-- No Profession --</option>
+<?php
+
+foreach ($GLOBALS['_STORE_PROFESSIONS'] as $c) :
+?>
+	<option value="<?php echo $c; ?>"<?php if (isset($_POST['item']['prof_skill_id']) && $_POST['item']['prof_skill_id'] == $c) echo ' selected="selected"'; ?>><?php echo $l->getString('profession_' . $c); ?></option>
+<?php endforeach; ?>
+</select>
 </div>
 <div class="input text long">
 <input type="submit" value="Save" size=50 />

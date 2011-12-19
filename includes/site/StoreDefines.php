@@ -20,6 +20,7 @@ define('SERVICE_CHARACTER_CHANGE_GENDER', 5);
 define('SERVICE_RENAME_CHARACTER', 6);
 define('SERVICE_POWERLEVEL', 7);
 define('SERVICE_GOLD', 8);
+define('SERVICE_PROFESSION', 9);
 
 define('STORE_POWERLEVEL_MAX', 80); // Max level user can reach with bought levels
 
@@ -39,6 +40,11 @@ $GLOBALS['_STORE_SERVICES'] = array(
 	array(SERVICE_CHARACTER_CHANGE_GENDER, 'Cambiar Genero'),
 	array(SERVICE_RENAME_CHARACTER, 'Renombrar Personaje'),
 	array(SERVICE_POWERLEVEL, 'Comprar niveles'),
-	array(SERVICE_GOLD, 'Comprar Oro')
+	array(SERVICE_GOLD, 'Comprar Oro'),
+	array(SERVICE_PROFESSION, 'Level up Profession Skill')
+);
+$GLOBALS['_STORE_PROFESSIONS'] = array(
+	// only IDs
+	171, 393, 333, 182, 164, 202, 773, 755, 186, 165, 197, 794, 185, 356, 129
 );
 ?>

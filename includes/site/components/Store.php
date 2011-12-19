@@ -911,6 +911,31 @@ class Store_Component extends Component
 				$levels *= 10000; // 50 gold 00 silver 00 copper
 				$this->c('Db')->characters()->query("UPDATE characters SET money = money + %d WHERE guid = %d", $levels, $guid);
 				break;
+			case SERVICE_PROFESSION:
+				$lvl = $this->c('Db')->characters()->selectCell("SELECT level FROM characters WHERE guid = %d", $guid);
+				if (!$lvl)
+				{
+					$this->addErrorMessage('Character was not found!');
+					return $op_result;
+				}
+				elseif ($lvl != 80)
+				{
+					$this->addErrorMessage('Character must be at level 80 to perform this action!');
+					return $op_result;
+				}
+				$skill_val = $this->c('Db')->characters()->selectRow("SELECT * FROM character_skills WHERE guid = %d AND skill = %d LIMIT 1", $guid, $levels);
+				if (!$skill_val)
+				{
+					$this->addErrorMessage('Character must have the profession skill he wants to level up!');
+					return $op_result;
+				}
+				elseif ($skill_val['value'] >= 450)
+				{
+					$this->addErrorMessage('Character already have max skill level!');
+					return $op_result;
+				}
+				$this->c('Db')->characters()->query("UPDATE character_skills SET value = 450, max = 450 WHERE guid = %d AND skill = %d LIMIT 1", $guid, $levels);
+				break;
 			default:
 				return $this;
 		}
@@ -968,7 +993,20 @@ class Store_Component extends Component
 
 			$op_result = false;
 			if ($it['service_type'] > 0)
-				$op_result = $this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm'], null, $it['quantity']);
+			{
+				// re-check gold amount to prevent hacking
+				if ($it['service_type'] == SERVICE_GOLD)
+				{
+					if ($it['quantity'] != $it['gold_amount'])
+						$it['quantity'] = $it['gold_amount'];
+					// And set price without *quanitity multiply.
+					$total_price = $it['price'];
+				}
+				if ($it['service_type'] == SERVICE_PROFESSION)
+					$op_result = $this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm'], null, $it['prof_skill_id']);
+				else
+					$op_result = $this->performCharacterOperation($it['service_type'], $item['guid'], $item['realm'], null, $it['quantity']);
+			}
 			else
 			{
 				if (!trim($it['itemset_pieces']))

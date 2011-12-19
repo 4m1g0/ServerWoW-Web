@@ -69,7 +69,12 @@ $price = $store->getTotalPrice();
 </span>
 									<strong><?php echo $i['name']; ?></strong>
 								</a>
-								<?php else : echo $i['name']; ?>
+								<?php else : echo $i['name'];
+								if ($i['storeInfo']['service_type'] == SERVICE_GOLD)
+									echo ' (' . $i['storeInfo']['gold_amount'] . ' gold)';
+								elseif ($i['storeInfo']['service_type'] == SERVICE_PROFESSION)
+									echo ' (' . $l->getString('profession_' . $i['storeInfo']['prof_skill_id']) . ')';
+								?>
 								<?php endif; ?>
 							</td>
 						<?php endif; ?>

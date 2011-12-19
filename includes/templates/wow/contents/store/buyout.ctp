@@ -172,7 +172,12 @@ function buyout()
 									<strong><?php echo $i['name']; ?></strong>
 								</a>
 							<?php else : ?>
-							<strong><?php echo $i['name']; ?></strong><?php endif; ?>
+							<strong><?php echo $i['name'];
+							if ($i['storeInfo']['service_type'] == SERVICE_GOLD)
+								echo ' (' . $i['storeInfo']['gold_amount'] . ' gold)';
+							elseif ($i['storeInfo']['service_type'] == SERVICE_PROFESSION)
+								echo ' (' . $l->getString('profession_' . $i['storeInfo']['prof_skill_id']) . ')';
+							?></strong><?php endif; ?>
 							</td>
 							<?php endif; ?>
 							<td class="align-center">
@@ -192,7 +197,7 @@ function buyout()
 					</tbody>
 				</table>
 			</div>
-			<center><button onclick="buyout();"><b>COMPRAR!</b></button></center>
+			<center><span onclick="buyout();" class="ui-button button2"><span><span>COMPRAR!</span></span></span>
 			<div id="error"></div>
 	<?php echo $this->region('pagination'); ?>
 		</div>

@@ -66,9 +66,8 @@ else
 	<?php
 	$store_actions = array(
 		SERVICE_POWERLEVEL => 'template_store_service_powerlevel_caption',
-		SERVICE_GOLD => 'template_store_service_gold_caption',
 	);
-	if (in_array($store_item['store']['service_type'], array(SERVICE_POWERLEVEL, SERVICE_GOLD))) : ?>
+	if (in_array($store_item['store']['service_type'], array(SERVICE_POWERLEVEL))) : ?>
 	<br/><?php echo $l->getString($store_actions[$store_item['store']['service_type']]); ?>: <input type="text" id="item-<?php echo $store_item['store']['item_id']; ?>-quantity" value="1" /><br />
 	<?php else : ?>
 	<input type="hidden" id="item-<?php echo $store_item['store']['item_id']; ?>-quantity" value="1" /><br />
