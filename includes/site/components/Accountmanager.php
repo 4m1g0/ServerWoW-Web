@@ -708,8 +708,13 @@ class AccountManager_Component extends Component
 			return false;
 
 		require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
+
 		$privatekey = "6LcZjsoSAAAAAHcliYKVqU5DI4naoEmsvc0UYA80";
-		$resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+
+		$challenge_field = isset($_POST['recaptcha_challenge_field']) ? $_POST['recaptcha_challenge_field'] : '';
+		$response_field = isset($_POST['recaptcha_response_field']) ? $_POST['recaptcha_response_field'] : '';
+
+		$resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $challenge_field, $response_field);
 
 		if (!$resp->is_valid)
 		{

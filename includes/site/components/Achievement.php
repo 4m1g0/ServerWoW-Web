@@ -591,7 +591,7 @@ class Achievement_Component extends Component
 			if (!$ach || !isset($ach['id']) || !$ach['id'])
 				continue;
 
-			if (isset($this->m_achCriterias[$ach['id']]))
+			if (isset($this->m_achCriterias[$ach['id']]) && $this->m_achCriterias[$ach['id']])
 			{
 				if (isset($this->m_achProgress[$this->m_achCriterias[$ach['id']]]))
 					$ach['quantity'] = $this->m_achProgress[$this->m_achCriterias[$ach['id']]];

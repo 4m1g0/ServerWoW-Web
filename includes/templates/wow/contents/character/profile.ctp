@@ -133,7 +133,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		$(document).ready(function() {
 			new Summary.Inventory({ view: "simple" }, {
 <?php
-if (isset($items)) :
+if (isset($items) && $items) :
 foreach ($items as &$item) :
 ?>
 				
