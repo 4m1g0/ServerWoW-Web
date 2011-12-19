@@ -54,7 +54,7 @@ class Admin_Component extends Component
 				'id' => 'grvideos'
 			),
 			array(
-				'label' => 'Allow to receive PMs',
+				'label' => 'Disallow to receive PMs',
 				'mask' => ADMIN_GROUP_RCV_MSG,
 				'id' => 'grmsgrcv'
 			),

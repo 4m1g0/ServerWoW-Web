@@ -1099,7 +1099,7 @@ class AccountManager_Component extends Component
 		if (!$this->isLoggedIn())
 			return false;
 
-		return ($this->admin('group_mask') & ADMIN_GROUP_RCV_MSG);
+		return !($this->admin('group_mask') & ADMIN_GROUP_RCV_MSG);
 	}
 
 	public function isAllowedToSendMsg()
