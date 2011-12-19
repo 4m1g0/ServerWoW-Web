@@ -310,8 +310,12 @@ class Admin_Component extends Component
 		$items = $this->c('Item')->getItemsInfo($ids);
 
 		if ($items)
+		{
 			foreach ($ids as &$id)
-				$id['template'] = $items[$id['item_id']];
+			{
+				$id['template'] = isset($items[$id['item_id']]) ? $items[$id['item_id']] : null;
+			}
+		}
 
 		return $ids;
 	}
