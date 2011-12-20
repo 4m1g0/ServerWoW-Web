@@ -353,8 +353,8 @@ class Store_Component extends Component
 
 		// Generate BC
 		$bc = array();
-		$bc[] = array('link' => '', 'caption' => 'World of Warcraft');
-		$bc[] = array('link' => 'store/', 'caption' => 'Store');
+		$bc[] = array('link' => '', 'caption' => 'ServerWoW');
+		$bc[] = array('link' => 'store/', 'caption' => 'Tienda & Servicios');
 
 		foreach ($this->m_bcData as $catId)
 		{
@@ -796,11 +796,15 @@ class Store_Component extends Component
 				{
 					if ($item['quantity'] > 1)
 					{
-						for ($i = 0; $i < $item['quantity']; ++$i)
+						for ($i = 0; $i < $item['quantity']; $i++)
+						{
 							$this->sendItemMail($item['item_id'], 1, intval($_POST['guid']), intval($_POST['realmId']));
+						}
 					}
 					else
+					{
 						$this->sendItemMail($item['item_id'], $item['quantity'], intval($_POST['guid']), intval($_POST['realmId']));
+					}
 				}
 
 				$performed[] = $item;
@@ -918,20 +922,20 @@ class Store_Component extends Component
 					$this->addErrorMessage('Character was not found!');
 					return $op_result;
 				}
-				elseif ($lvl != 80)
+				elseif ($lvl <= 69)
 				{
-					$this->addErrorMessage('Character must be at level 80 to perform this action!');
+					$this->addErrorMessage('El Personaje debe tener minimo level 70 para completar esta accion!');
 					return $op_result;
 				}
 				$skill_val = $this->c('Db')->characters()->selectRow("SELECT * FROM character_skills WHERE guid = %d AND skill = %d LIMIT 1", $guid, $levels);
 				if (!$skill_val)
 				{
-					$this->addErrorMessage('Character must have the profession skill he wants to level up!');
+					$this->addErrorMessage('El personaje debe aprender previamente la profesion que desea aprender!');
 					return $op_result;
 				}
 				elseif ($skill_val['value'] >= 450)
 				{
-					$this->addErrorMessage('Character already have max skill level!');
+					$this->addErrorMessage('El Personaje ya tiene el nivel maximo de profesion!');
 					return $op_result;
 				}
 				$this->c('Db')->characters()->query("UPDATE character_skills SET value = 450, max = 450 WHERE guid = %d AND skill = %d LIMIT 1", $guid, $levels);
@@ -1010,7 +1014,21 @@ class Store_Component extends Component
 			else
 			{
 				if (!trim($it['itemset_pieces']))
-					$op_result = $this->sendItemMail($it['item_id'], $it['quantity'], $item['guid'], $item['realm']);
+				{
+					if ($it['quantity'] > 1)
+					{
+						for ($i = 0; $i < $it['quantity']; $i++)
+						{
+							$this->sendItemMail($it['item_id'], 1, $item['guid'], $item['realm']);
+						}
+						
+						$op_result = true;
+					}
+					else
+					{
+						$op_result = $this->sendItemMail($it['item_id'], $it['quantity'], $item['guid'], $item['realm']);
+					}
+				}
 				else
 				{
 					$pieces = explode(' ', trim($it['itemset_pieces']));
@@ -1018,16 +1036,20 @@ class Store_Component extends Component
 					if ($pieces)
 					{
 						foreach ($pieces as $p)
+						{
 							$this->sendItemMail(intval(str_replace(' ', '', $p)), 1, $item['guid'], $item['realm']);
+						}
+						
 						$op_result = true;
 					}
 				}
 			}
 			
 			if ($op_result)
+			{
 				$this->c('AccountManager')->changeBonus($total_price, -1);
-
-			$this->writeOperationLog($it, $item['guid'], $item['realm']);
+				$this->writeOperationLog($it, $item['guid'], $item['realm']);
+			}
 		}
 
 		$this->dropCart();

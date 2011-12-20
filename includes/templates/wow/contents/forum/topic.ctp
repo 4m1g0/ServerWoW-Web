@@ -425,6 +425,19 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				<div class="talkback-code-interior">
 					<div class="talkback-icon">
 						<?php echo $l->getString('template_forum_conduct'); ?>
+											<center>
+<br><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Foro-general 728&#42;90) */
+google_ad_slot = "5762382137";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
 					</div>
 				</div>
 			</div>

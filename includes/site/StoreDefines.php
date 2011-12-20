@@ -9,7 +9,7 @@ define('CURRENCY_CHAR',"$"); // Symbol representing your currency code.
 define('PAYPAL_URL',"www.paypal.com"); // Only change this for sandbox testing. // Dead const?
 define('PAYPAL_EMAIL',"loscaballerosvengadores@live.com"); // The account that donations will go to.
 
-define('PP_DESCRIPTION', 'World of Warcraft Services'); // Description for item_name POST field
+define('PP_DESCRIPTION', 'ServerWoW Tienda & Servicios'); // Description for item_name POST field
 define('POINT_PRICE', 1); // Price for one point (PayPal)
 
 define('SERVICE_CUSTOMIZE_CHARACTER', 1);
@@ -41,7 +41,7 @@ $GLOBALS['_STORE_SERVICES'] = array(
 	array(SERVICE_RENAME_CHARACTER, 'Renombrar Personaje'),
 	array(SERVICE_POWERLEVEL, 'Comprar niveles'),
 	array(SERVICE_GOLD, 'Comprar Oro'),
-	array(SERVICE_PROFESSION, 'Level up Profession Skill')
+	array(SERVICE_PROFESSION, 'Maximo nivel de profesion')
 );
 $GLOBALS['_STORE_PROFESSIONS'] = array(
 	// only IDs

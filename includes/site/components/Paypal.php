@@ -34,8 +34,8 @@ class Paypal_Component extends Component
 			->setModel('StoreSession')
 			->setType('insert');
 
-		$edt->session_id = $item_number;
 		$edt->account_id = $this->c('AccountManager')->user('id');
+		$edt->session_id = $item_number;
 		$edt->amount = $amount;
 		$edt->date_time = time();
 		$edt->used = 0;
@@ -50,7 +50,6 @@ class Paypal_Component extends Component
 	public function initPayPal($amount, $price)
 	{
 		$this->generateOrderId();
-
 		$this->m_amount = $amount;
 
 		return $this;
@@ -156,6 +155,7 @@ class Paypal_Component extends Component
 	public function handleSuccessedPayment()
 	{
 		$account_id = 0;
+		
 		if (!isset($_POST['custom']) || intval($_POST['custom']) == 0)
 		{
 			// Try to identify user by item_number
@@ -175,32 +175,22 @@ class Paypal_Component extends Component
 			}
 		}
 		else
+		{
 			$account_id = intval($_POST['custom']);
+		}
 
 		$this->loadPointsAmount();
-
 		$points_amount = $this->m_points;
-
-		$account_points = $this->c('QueryResult', 'Db')
+		
+		$isExists = $this->c('QueryResult', 'Db')
 			->model('AccountPoints')
+			->fields(array('AccountPoints' => array('account_id')))
 			->fieldCondition('account_id', ' = ' . $account_id)
 			->loadItem();
-
+			
 		$edt = $this->c('Editing');
 
-		if ($account_points)
-		{
-			$points_amount += $account_points['amount'];
-
-			$edt->clearValues()
-				->setModel('AccountPoints')
-				->setType('update')
-				->setId($account_id);
-			$edt->amount = $points_amount;
-
-			$edt->save()->clearValues();
-		}
-		else
+		if (!$isExists)
 		{
 			$edt->clearValues()
 				->setModel('AccountPoints')
@@ -210,9 +200,21 @@ class Paypal_Component extends Component
 			$edt->amount = $points_amount;
 			$edt->save()->clearValues();
 		}
+		else
+		{
+			$edt->clearValues()
+				->setModel('AccountPoints')
+				->setType('update')
+				->setId($account_id)
+				->load();
 
+			$edt->amount = $edt->amount + $points_amount;
+			$edt->save()->clearValues();
+		}
+
+		// for what is this?
 		$this->c('Db')->realm()->query("DELETE FROM paypal_history WHERE verify_sign = '%s'", $_POST['verify_sign']);
-
+		
 		$edt->clearValues()
 			->setModel('PaypalHistory')
 			->setType('insert');
@@ -228,8 +230,8 @@ class Paypal_Component extends Component
 
 		$edt->save()->clearValues();
 
-		$this->c('Db')->realm()->query("UPDATE store_session SET used = 1 WHERE session_id = '%s'", $_POST['item_number']);
-
+		$query = $this->c('Db')->realm()->query("UPDATE store_session SET used = 1 WHERE session_id = '%s'", $_POST['item_number']);
+			
 		return $this;
 	}
 
@@ -252,12 +254,10 @@ class Paypal_Component extends Component
 		if (!$amount)
 		{
 			$this->m_points = 0;
-
 			return false;
 		}
 
 		$this->m_points = $amount['amount'];
-
 		return true;
 	}
 }

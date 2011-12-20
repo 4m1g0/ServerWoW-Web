@@ -119,9 +119,19 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</div>
 								</div>
 							<?php endif; endforeach; endif; ?>
+							<br><center><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Foro 468&#42;60) */
+google_ad_slot = "9580528937";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center>
 						</div>
 					</div>
-
 				<div class="right-column">
 				
 				<div id="popular-topics">
