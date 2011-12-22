@@ -26,6 +26,7 @@ class AccountPoints_Model_Component extends Model_Db_Component
 	public $m_fields = array(
 		'account_id' => 'Id',
 		'amount' => array('type' => 'integer'),
+		'amount_used' => array('type' => 'integer'),
 	);
 }
 ?>

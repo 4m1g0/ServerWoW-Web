@@ -155,6 +155,7 @@ class Paypal_Component extends Component
 	public function handleSuccessedPayment()
 	{
 		$account_id = 0;
+		$amount = intval($_POST['amount']);
 		
 		if (!isset($_POST['custom']) || intval($_POST['custom']) == 0)
 		{
@@ -178,9 +179,57 @@ class Paypal_Component extends Component
 		{
 			$account_id = intval($_POST['custom']);
 		}
+		
+		// By enabling IPN in Paypal, is possible two same transactions
+		$isTransacctionExists = $this->c('QueryResult', 'Db')
+			->model('PaypalHistory')
+			->fields(array('PaypalHistory' => array('item_number')))
+			->fieldCondition('item_number', ' = ' . $_POST['item_number'])
+			->loadItem();
+			
+		if ($isTransacctionExists)
+		{
+			$this->c('Log')->writeError('%s : unable to complete transaction: item_number "%s" was already in database!', __METHOD__, $_POST['item_number']);
+			return $this;
+		}
+
+		// Why sometimes the function triggerPayment() dont work propertly ¿?
+		$isStoreExists = $this->c('QueryResult', 'Db')
+			->model('StoreSession')
+			->fields(array('StoreSession' => array('session_id')))
+			->fieldCondition('session_id', ' = ' . $_POST['item_number'])
+			->loadItem();
+			
+		if (!$isStoreExists)
+		{
+			$this->c('Log')->writeError('%s : unable to complete transaction: item_number "%s" for the account_id %s, was not store in store_session ¿Why?, added again!', __METHOD__, $_POST['item_number'], $account_id);
+			
+			$item_number = $_POST['item_number'];
+
+			$edt = $this->c('Editing')
+				->clearValues()
+				->setModel('StoreSession')
+				->setType('insert');
+
+			$edt->account_id = $account_id;
+			$edt->session_id = $item_number;
+			$edt->amount = $amount;
+			$edt->date_time = time();
+			$edt->used = 0;
+
+			$edt->save()->clearValues();
+		}
 
 		$this->loadPointsAmount();
 		$points_amount = $this->m_points;
+		
+		// if triggerPayment() dont work before do the payments, when the paypal do the postback, the amount = 0 because dont appear in store_session
+		// so "aparently" the transaction is correct, but the user dont receive his payment points (line #306)
+		if ($points_amount != $amount)
+		{
+			$this->c('Log')->writeError('%s : unable to complete transaction for account_id %s: item_number "%s", amount doesnt Match (%s != %s)!', __METHOD__, $account_id, $_POST['item_number'], $points_amount, $amount);
+			return $this;
+		}
 		
 		$isExists = $this->c('QueryResult', 'Db')
 			->model('AccountPoints')
@@ -198,6 +247,7 @@ class Paypal_Component extends Component
 
 			$edt->account_id = $account_id;
 			$edt->amount = $points_amount;
+			$edt->amount_used = $points_amount;
 			$edt->save()->clearValues();
 		}
 		else
@@ -209,11 +259,12 @@ class Paypal_Component extends Component
 				->load();
 
 			$edt->amount = $edt->amount + $points_amount;
+			$edt->amount_used = $edt->amount_used + $points_amount;
 			$edt->save()->clearValues();
 		}
 
 		// for what is this?
-		$this->c('Db')->realm()->query("DELETE FROM paypal_history WHERE verify_sign = '%s'", $_POST['verify_sign']);
+		//$this->c('Db')->realm()->query("DELETE FROM paypal_history WHERE verify_sign = '%s'", $_POST['verify_sign']);
 		
 		$edt->clearValues()
 			->setModel('PaypalHistory')
@@ -227,6 +278,7 @@ class Paypal_Component extends Component
 		$edt->payer_id = $_POST['payer_id'];
 		$edt->receiver_id = $_POST['receiver_id'];
 		$edt->item_number = $_POST['item_number'];
+		$edt->amount = $_POST['amount'];
 
 		$edt->save()->clearValues();
 

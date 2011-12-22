@@ -2,6 +2,7 @@
 <h2 class="subcategory">SMS Puntos</h2>
 <h3 class="headline">Compra puntos para Gastar en la Tienda!</h3>
 </div>
+Te recordamos que los SMS tienen un maximo de duracion de 2 Dias, asi que te recomendamos que los ingreses lo mas rapido posible.
 <div id="page-content" class="page-content">
 <form method="post" action="" id="change-settings">
 <input type="hidden" name="csrftoken" value="9c55345b-f40d-4903-82b6-fd1a4b7d250f" />
@@ -21,11 +22,11 @@ $countries = array(
 	array('id' => 'colombia', 'type' => 'allopass', 'code' => 'ALL', 'number' => 3911, 'info' => '*Servicio válido para Movistar, Tigo y Comcel.<br>Precio del mensaje $3.596 IVA. Inc.'),
 	array('id' => 'costarica', 'type' => 'allopass', 'code' => 'CODE', 'number' => 2224, 'info' => '*Servicio disponible en ICE.<br>Precio del mensaje: C.700 impuestos incluídos'),
 	array('id' => 'ecuador', 'type' => 'allopass', 'code' => 'CODE', 'number' => 7722, 'info' => '*Servicio válido para Alegro y Movistar a $1,25 + Imp.<br>Porta con precio por mensaje al 7722 de $1,30 + Imp.'),
-	array('id' => 'spain', 'type' => 'allopass', 'code' => 'CODE', 'number' => 25065, 'info' => '*1,42€ IVA incluido.', 'info2' => 'Llama al <b>905 40 31 23</b> para obtener tu Codigo', 'info3' => '*1,42€/llamada IVA incluído desde un teléfono de la red fija.<br>1,95€/llamada IVA incluído desde red móvil'),
+	array('id' => 'spain', 'type' => 'allopass', 'code' => 'CODE', 'number' => 25065, 'info' => '*1,42€ IVA incluido.', 'info2' => '- (Telefono Fijo)Llama al <b>905 40 31 23</b> para obtener tu Codigo', 'info3' => '*(Telefono Fijo) 1,42€/llamada IVA incluído desde un teléfono de la red fija.<br> 1,95€/llamada IVA incluído desde red móvil'),
 	array('id' => 'elsalvador', 'type' => 'allopass', 'code' => 'CODE', 'number' => 2580, 'info' => '*Servicio disponible para Claro, Digicel, Movistar y Tigo<br>Precio del mensaje $3.00 USD + impuestos'),
 	array('id' => 'guatemala', 'type' => 'allopass', 'code' => 'CODE', 'number' => 1255, 'info' => '*Claro y Movistar $ 1,69 + Impuestos.<br>Tigo 15 Qzt + impuestos.'),
 	array('id' => 'honduras', 'type' => 'allopass', 'code' => 'CODE', 'number' => 55255, 'info' => '*Precio del mensaje 1,73 + impuestos.'),
-	array('id' => 'mexico', 'type' => 'allopass', 'code' => 'CODE', 'number' => 28000, 'info' => '*Servicio disponible para usuarios Telcel, Movistar, Iusacell, Unefon, Nextel.<br>$23.20 pesos IVA incluido por SMS.<br>$22.20 pesos en ciudades fronterizas en donde aplica el 11% de IVA<br>El servicio Allopass tiene un limite mensual de 50 SMS', 'info2' => 'Llama al <b>01 900 849 77 23</b> para obtener tu Codigo', 'info3' => '*$23.20 por minuto (incluye iva) Duración máxima de la llamada 1 minuto<br>Servicio para mayores de 18 años.'),
+	array('id' => 'mexico', 'type' => 'allopass', 'code' => 'CODE', 'number' => 28000, 'info' => '*Servicio disponible para usuarios Telcel, Movistar, Iusacell, Unefon, Nextel.<br>$23.20 pesos IVA incluido por SMS.<br>$22.20 pesos en ciudades fronterizas en donde aplica el 11% de IVA<br>El servicio Allopass tiene un limite mensual de 50 SMS', 'info2' => '- (Telefono Fijo)Llama al <b>01 900 849 77 23</b> para obtener tu Codigo', 'info3' => '*(Telefono Fijo) $23.20 por minuto (incluye iva) Duración máxima de la llamada 1 minuto'),
 	array('id' => 'nicaragua', 'type' => '123ticket', 'code' => 'CODE', 'number' => 95100, 'info' => '*$1,00 USD + impuestos <br>Servicio disponible en Claro y Movistar.'),
 	array('id' => 'panama', 'type' => '123ticket', 'code' => 'CODE', 'number' => 1255, 'info' => '*$2 SMS IVA incluido.<br>Servicio disponible en Movistar.'),
 	array('id' => 'peru', 'type' => 'allopass', 'code' => 'CODE', 'number' => 7766, 'info' => '*Servicio válido para Claro, precio del mensaje al 7766, S./3,47 IGV incluido.<br>Movistar, precio del mensaje al 7766 es de USD1,19 IGV incluido.<br>Servicio limitado a 60 sms/mes.'),
@@ -148,23 +149,34 @@ function hideAllCountries()
 foreach ($countries as $country) : ?>
 <div id="<?php echo $country['id']; ?>" style="display:none;" data-optype="<?php echo $country['type']; ?>">
 		<?php if (!isset($country['number2'])) : ?>
-		<strong>Envia <b><?php echo $country['code']; ?></b> al <b><?php echo $country['number']; ?></b> para obtener tu Codigo</strong>
+		<center>
+		<br><br><br>
+		- Envia <strong><?php echo $country['code']; ?></strong> desde tu Celular al <strong><?php echo $country['number']; ?></strong> para obtener tu Codigo
+		</center>
 		<?php else : ?>
-			<strong>Envia <b><?php echo $country['code']; ?></b> al <b><?php echo $country['number']; ?></b> para obtener tu Codigo (<?php echo $country['op1']; ?>)</strong>
-			<strong>Envia <b><?php echo $country['code']; ?></b> al <b><?php echo $country['number2']; ?></b> para obtener tu Codigo (<?php echo $country['op2']; ?>)</strong>
-		<?php endif; ?>
+			<center>
+			<br><br><br>
+			- Envia <strong><?php echo $country['code']; ?></strong> desde tu Celular al <strong><?php echo $country['number']; ?></strong> para obtener tu Codigo (<?php echo $country['op1']; ?>)<br>
+			- Envia <strong><?php echo $country['code']; ?></strong> desde tu Celular al <strong><?php echo $country['number2']; ?></strong> para obtener tu Codigo (<?php echo $country['op2']; ?>)
+			</center>
+		<?php endif;
+				if (isset($country['info2']))
+			echo '<center>' . $country['info2'] . '</center>';
+		?>
+		<br>
+		<div class="form-row" align="center">
+		<?php
+		if (isset($country['info3']))
+			echo '<center>' . $country['info3'] . '</center>';
+		echo $country['info'];
+		?>
+	</div>
+	<br><br><br>
 	<div class="form-row">
 		<label for="code<?php echo $country['id']; ?>" class="label-full ">
 			<strong>Introduce El Codigo Recibido Via SMS ó Telefono.<strong>
 		</label>
 		<input type="text" name="code<?php echo $country['id']; ?>" id="code<?php echo $country['id']; ?>" />
-	</div>
-	<div class="form-row">
-		<?php
-		echo $country['info'];
-		if (isset($country['info2']))
-			echo '<br />' . $country['info2'];
-		?>
 	</div>
 </div>
 <?php endforeach; ?>

@@ -1,4 +1,4 @@
-ALTER TABLE  `wow_achievement` ADD INDEX (  `id` )
+ALTER TABLE  `wow_achievement` ADD INDEX (  `id` );
 ALTER TABLE  `wow_accounts` ADD INDEX (  `id` );
 ALTER TABLE  `wow_accounts` ADD INDEX (  `game_id` );
 ALTER TABLE  `wow_achievement_category` ADD INDEX (  `id` ,  `parentCategory` );
@@ -24,7 +24,7 @@ ALTER TABLE  `wow_gemproperties` ADD INDEX (  `id` ,  `spellitemenchantement` );
 ALTER TABLE  `wow_glyphproperties` ADD INDEX (  `type` );
 ALTER TABLE  `wow_icons` ADD INDEX (  `displayid` );
 ALTER TABLE  `wow_item_equivalents` ADD INDEX (  `item_horde` ,  `item_alliance` );
-ALTER TABLE  `wow_item_sources` ADD INDEX (  `item` )
+ALTER TABLE  `wow_item_sources` ADD INDEX (  `item` );
 ALTER TABLE  `wow_item_sources` ADD INDEX (  `source` );
 ALTER TABLE  `wow_item_sources` ADD INDEX (  `source_entry` );
 ALTER TABLE  `wow_item_subclass` ADD INDEX (  `class` );

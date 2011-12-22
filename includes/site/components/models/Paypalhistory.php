@@ -33,6 +33,7 @@ class PaypalHistory_Model_Component extends Model_Db_Component
 		'payer_id' => array('type' => 'string'),
 		'receiver_id' => array('type' => 'string'),
 		'item_number' => array('type' => 'string'),
+		'amount' => array('type' => 'integer'),
 	);
 }
 ?>

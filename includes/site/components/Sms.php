@@ -102,6 +102,7 @@ class Sms_Component extends Controller_Component
 
 			$edt->account_id = $this->c('AccountManager')->user('id');
 			$edt->amount = STORE_SMS_POINTS;
+			$edt->amount_used = STORE_SMS_POINTS;
 			$edt->save()->clearValues();
 		}
 		else
@@ -112,6 +113,7 @@ class Sms_Component extends Controller_Component
 				->load();
 
 			$edt->amount = $edt->amount + STORE_SMS_POINTS;
+			$edt->amount_used = $edt->amount_used + STORE_SMS_POINTS;
 			$edt->save()->clearValues();
 		}
 
