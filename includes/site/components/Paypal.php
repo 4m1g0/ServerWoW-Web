@@ -27,15 +27,21 @@ class Paypal_Component extends Component
 	public function triggerPayment()
 	{
 		$amount = intval($_POST['amount']);
-		$item_number = $_POST['item_number'];
+		
+		$isInfo = explode(".",$_POST['item_number']);
+		$isItem_number = $isInfo[0];
+		$isAccount_id = (int)$isInfo[1];
+		
+		if (!$isAccount_id)
+			$isAccount_id = $this->c('AccountManager')->user('id');
 
 		$edt = $this->c('Editing')
 			->clearValues()
 			->setModel('StoreSession')
 			->setType('insert');
 
-		$edt->account_id = $this->c('AccountManager')->user('id');
-		$edt->session_id = $item_number;
+		$edt->account_id = $isAccount_id;
+		$edt->session_id = $isItem_number;
 		$edt->amount = $amount;
 		$edt->date_time = time();
 		$edt->used = 0;
@@ -43,7 +49,13 @@ class Paypal_Component extends Component
 		$edt->save()->clearValues();
 
 		$this->c('Session')->setSession('clear_order_id', true);
-
+		
+		if (!$isAccount_id || !$isItem_number)
+		{
+			$this->c('Log')->writeError('%s : some error here (Aparently Cookie), item_number %s account_id %s|%s amount %s user IP: %s), unable to continue!', __METHOD__, $isItem_number, $this->c('AccountManager')->user('id'), $amount, $_SERVER['REMOTE_ADDR']);
+			return $this;
+		}
+		
 		return $this;
 	}
 
@@ -89,14 +101,14 @@ class Paypal_Component extends Component
 			'pp_business' => PAYPAL_EMAIL,
 			'pp_cmd' => '_xclick',
 			'pp_item_name' => PP_DESCRIPTION,
-			'pp_item_number' => $this->m_orderId,
+			'pp_item_number' => $this->m_orderId . '.' . $this->c('AccountManager')->user('id'),
 			'pp_amount' => $this->m_amount,
 			'pp_return' => $this->core->getApplicationUrl('account/management/payments/success'),
 			'pp_cancel_return' => $this->core->getApplicationUrl('account/management/payments/cancelled'),
 			'pp_notify_url' => $this->core->getApplicationUrl('paypal/transaction?_paypal=true&notify=true'),
 			'pp_currency_code' => CURRENCY_CODE,
 			'pp_no_shipping' => 1,
-			'pp_custom' => $this->c('AccountManager')->user('id'),
+			'pp_custom' => $this->m_amount,
 			'pp_rm' => 2, // use POST redirection method!
 		);
 	}
@@ -154,42 +166,30 @@ class Paypal_Component extends Component
 
 	public function handleSuccessedPayment()
 	{
+		// Check for hacks
+		if (!isset($_POST['item_number']))
+		{
+			$this->c('Log')->writeError('%s : no PayPal data found (possibly hacking attempt, user IP: %s), unable to continue!', __METHOD__, $_SERVER['REMOTE_ADDR']);
+			return $this;
+		}
+
 		$account_id = 0;
-		$amount = intval($_POST['amount']);
+		$amount = intval($_POST['custom']);
 		
-		if (!isset($_POST['custom']) || intval($_POST['custom']) == 0)
-		{
-			// Try to identify user by item_number
-			if (!isset($_POST['item_number']))
-			{
-				$this->c('Log')->writeError('%s : no PayPal data found (possibly hacking attempt, user IP: %s), unable to continue!', __METHOD__, $_SERVER['REMOTE_ADDR']);
-				return $this;
-			}
-			else
-			{
-				$account_id = $this->c('Db')->realm()->selectCell("SELECT account_id FROM store_session WHERE session_id = '%s' LIMIT 1", $_POST['item_number']);
-				if (!$account_id)
-				{
-					$this->c('Log')->writeError('%s : unable to complete transaction: account_id for item_numer "%s" was not found!', __METHOD__, $_POST['item_number']);
-					return $this;
-				}
-			}
-		}
-		else
-		{
-			$account_id = intval($_POST['custom']);
-		}
+		$info = explode(".",$_POST['item_number']);
+		$item_number = $info[0];
+		$account_id = (int)$info[1];
 		
 		// By enabling IPN in Paypal, is possible two same transactions
 		$isTransacctionExists = $this->c('QueryResult', 'Db')
 			->model('PaypalHistory')
 			->fields(array('PaypalHistory' => array('item_number')))
-			->fieldCondition('item_number', ' = ' . $_POST['item_number'])
+			->fieldCondition('item_number', ' = ' . $item_number)
 			->loadItem();
 			
 		if ($isTransacctionExists)
 		{
-			$this->c('Log')->writeError('%s : unable to complete transaction: item_number "%s" was already in database!', __METHOD__, $_POST['item_number']);
+			$this->c('Log')->writeError('%s : unable to complete transaction: item_number "%s" was already in database!', __METHOD__, $item_number);
 			return $this;
 		}
 
@@ -197,15 +197,13 @@ class Paypal_Component extends Component
 		$isStoreExists = $this->c('QueryResult', 'Db')
 			->model('StoreSession')
 			->fields(array('StoreSession' => array('session_id')))
-			->fieldCondition('session_id', ' = ' . $_POST['item_number'])
+			->fieldCondition('session_id', ' = ' . $item_number)
 			->loadItem();
 			
 		if (!$isStoreExists)
 		{
-			$this->c('Log')->writeError('%s : unable to complete transaction: item_number "%s" for the account_id %s, was not store in store_session ¿Why?, added again!', __METHOD__, $_POST['item_number'], $account_id);
+			$this->c('Log')->writeError('%s : unable to complete transaction: item_number "%s"  amount %s, for the account_id %s, was not store in store_session ¿Why?, added again!', __METHOD__, $item_number, $amount, $account_id);
 			
-			$item_number = $_POST['item_number'];
-
 			$edt = $this->c('Editing')
 				->clearValues()
 				->setModel('StoreSession')
@@ -225,9 +223,15 @@ class Paypal_Component extends Component
 		
 		// if triggerPayment() dont work before do the payments, when the paypal do the postback, the amount = 0 because dont appear in store_session
 		// so "aparently" the transaction is correct, but the user dont receive his payment points (line #306)
-		if ($points_amount != $amount)
+		if ($amount != $points_amount)
 		{
-			$this->c('Log')->writeError('%s : unable to complete transaction for account_id %s: item_number "%s", amount doesnt Match (%s != %s)!', __METHOD__, $account_id, $_POST['item_number'], $points_amount, $amount);
+			$this->c('Log')->writeError('%s : unable to complete transaction for account_id %s: item_number "%s", amount must match with the points to add (%s < %s)!', __METHOD__, $account_id, $item_number, $amount, $points_amount);
+			return $this;
+		}
+		
+		if (intval($_POST['mc_gross']) < $points_amount)
+		{
+			$this->c('Log')->writeError('%s : unable to complete transaction for account_id %s: item_number "%s", amount cannot be less than points to add (%s < %s)!', __METHOD__, $account_id, $item_number, $_POST['mc_gross'], $points_amount);
 			return $this;
 		}
 		
@@ -270,6 +274,7 @@ class Paypal_Component extends Component
 			->setModel('PaypalHistory')
 			->setType('insert');
 
+		$edt->account_id = $account_id;		
 		$edt->txn_id = $_POST['txn_id'];
 		$edt->payment_date = $_POST['payment_date'];
 		$edt->verify_sign = $_POST['verify_sign'];
@@ -277,12 +282,13 @@ class Paypal_Component extends Component
 		$edt->receiver_email = $_POST['receiver_email'];
 		$edt->payer_id = $_POST['payer_id'];
 		$edt->receiver_id = $_POST['receiver_id'];
-		$edt->item_number = $_POST['item_number'];
-		$edt->amount = $_POST['amount'];
+		$edt->item_number = $item_number;
+		$edt->amount = $amount;
+		$edt->gross = intval($_POST['mc_gross']);
 
 		$edt->save()->clearValues();
 
-		$query = $this->c('Db')->realm()->query("UPDATE store_session SET used = 1 WHERE session_id = '%s'", $_POST['item_number']);
+		$this->c('Db')->realm()->query("UPDATE store_session SET used = 1 WHERE session_id = '%s'", $item_number);
 			
 		return $this;
 	}
@@ -296,20 +302,23 @@ class Paypal_Component extends Component
 	{
 		if (!isset($_POST['item_number']) || !$_POST['item_number'])
 			return false;
+			
+		$isInfo = explode(".",$_POST['item_number']);
+		$isItem_number = $isInfo[0];
 
-		$amount = $this->c('QueryResult', 'Db')
+		$isAmount = $this->c('QueryResult', 'Db')
 			->model('StoreSession')
-			->fieldCondition('session_id', ' = \'' . $_POST['item_number'] . '\'')
+			->fieldCondition('session_id', ' = \'' . $isItem_number . '\'')
 			->fieldCondition('used', ' = 0')
 			->loadItem();
 
-		if (!$amount)
+		if (!$isAmount)
 		{
 			$this->m_points = 0;
 			return false;
 		}
 
-		$this->m_points = $amount['amount'];
+		$this->m_points = $isAmount['amount'];
 		return true;
 	}
 }

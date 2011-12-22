@@ -25,6 +25,7 @@ class PaypalHistory_Model_Component extends Model_Db_Component
 	public $m_dbType = 'realm';
 	public $m_fields = array(
 		'id' => 'Id',
+		'account_id' => array('type' => 'integer'),
 		'txn_id' => array('type' => 'string'),
 		'payment_date' => array('type' => 'string'),
 		'verify_sign' => array('type' => 'string'),
@@ -34,6 +35,7 @@ class PaypalHistory_Model_Component extends Model_Db_Component
 		'receiver_id' => array('type' => 'string'),
 		'item_number' => array('type' => 'string'),
 		'amount' => array('type' => 'integer'),
+		'gross' => array('type' => 'integer'),
 	);
 }
 ?>
