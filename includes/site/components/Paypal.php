@@ -52,7 +52,7 @@ class Paypal_Component extends Component
 		
 		if (!$isAccount_id || !$isItem_number)
 		{
-			$this->c('Log')->writeError('%s : some error here (Aparently Cookie), item_number %s account_id %s|%s amount %s user IP: %s), unable to continue!', __METHOD__, $isItem_number, $this->c('AccountManager')->user('id'), $amount, $_SERVER['REMOTE_ADDR']);
+			$this->c('Log')->writeError('%s : some error here (Aparently Cookie), item_number %s account_id %s|%s amount %s user IP: %s), unable to continue!', __METHOD__, $isItem_number, $isAccount_id, $this->c('AccountManager')->user('id'), $amount, $_SERVER['REMOTE_ADDR']);
 			return $this;
 		}
 		
