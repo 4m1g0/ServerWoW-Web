@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) 2009-2011 Shadez <https://github.com/Shadez>
  *
@@ -34,6 +33,25 @@ class Paypal_Component extends Component
 		
 		if (!$isAccount_id)
 			$isAccount_id = $this->c('AccountManager')->user('id');
+			
+		// What happen if the system add two same session_id, is possible ¿?
+		$ifSessionExists = $this->c('QueryResult', 'Db')
+			->model('StoreSession')
+			->fieldCondition('session_id', ' = \'' . $isItem_number . '\'')
+			->fieldCondition('used', ' = 0')
+			->loadItem();
+			
+		if ($ifSessionExists)
+		{
+			$this->c('Log')->writeError('%s : unable to complete transaction correctly (Cookie problem) for the account_id %s: session "%s" was already in database (Delete)!', __METHOD__, $isAccount_id, $isItem_number);
+			$this->c('Db')->realm()->query("DELETE FROM store_session WHERE session_id = '%s'", $isItem_number);
+		}
+		
+		if (!$isAccount_id || !$isItem_number)
+		{
+			$this->c('Log')->writeError('%s : some error here (Aparently Cookie), item_number %s account_id %s|%s amount %s user IP: %s), unable to continue!', __METHOD__, $isItem_number, $isAccount_id, $this->c('AccountManager')->user('id'), $amount, $_SERVER['REMOTE_ADDR']);
+			return $this;
+		}
 
 		$edt = $this->c('Editing')
 			->clearValues()
@@ -49,12 +67,6 @@ class Paypal_Component extends Component
 		$edt->save()->clearValues();
 
 		$this->c('Session')->setSession('clear_order_id', true);
-		
-		if (!$isAccount_id || !$isItem_number)
-		{
-			$this->c('Log')->writeError('%s : some error here (Aparently Cookie), item_number %s account_id %s|%s amount %s user IP: %s), unable to continue!', __METHOD__, $isItem_number, $isAccount_id, $this->c('AccountManager')->user('id'), $amount, $_SERVER['REMOTE_ADDR']);
-			return $this;
-		}
 		
 		return $this;
 	}
@@ -108,7 +120,7 @@ class Paypal_Component extends Component
 			'pp_notify_url' => $this->core->getApplicationUrl('paypal/transaction?_paypal=true&notify=true'),
 			'pp_currency_code' => CURRENCY_CODE,
 			'pp_no_shipping' => 1,
-			'pp_custom' => $this->m_amount,
+			'pp_custom' => $this->m_amount, // this is not working, $this->m_amount = 0 in all cases - How fix?
 			'pp_rm' => 2, // use POST redirection method!
 		);
 	}
@@ -174,20 +186,20 @@ class Paypal_Component extends Component
 		}
 
 		$account_id = 0;
-		$amount = intval($_POST['custom']);
+		//$amount = intval($_POST['custom']);
+		$amount = intval($_POST['mc_gross']);
 		
 		$info = explode(".",$_POST['item_number']);
 		$item_number = $info[0];
 		$account_id = (int)$info[1];
 		
 		// By enabling IPN in Paypal, is possible two same transactions
-		$isTransacctionExists = $this->c('QueryResult', 'Db')
+		$ifTransacctionExists = $this->c('QueryResult', 'Db')
 			->model('PaypalHistory')
-			->fields(array('PaypalHistory' => array('item_number')))
-			->fieldCondition('item_number', ' = ' . $item_number)
+			->fieldCondition('item_number', ' = \'' . $item_number . '\'')
 			->loadItem();
 			
-		if ($isTransacctionExists)
+		if ($ifTransacctionExists)
 		{
 			$this->c('Log')->writeError('%s : unable to complete transaction: item_number "%s" was already in database!', __METHOD__, $item_number);
 			return $this;
@@ -196,8 +208,7 @@ class Paypal_Component extends Component
 		// Why sometimes the function triggerPayment() dont work propertly ¿?
 		$isStoreExists = $this->c('QueryResult', 'Db')
 			->model('StoreSession')
-			->fields(array('StoreSession' => array('session_id')))
-			->fieldCondition('session_id', ' = ' . $item_number)
+			->fieldCondition('session_id', ' = \'' . $item_number . '\'')
 			->loadItem();
 			
 		if (!$isStoreExists)
@@ -217,15 +228,19 @@ class Paypal_Component extends Component
 
 			$edt->save()->clearValues();
 		}
+		else
+		{
+			$amount = $this->c('Db')->realm()->selectCell("SELECT amount FROM store_session WHERE session_id = '%s' LIMIT 1", $item_number);
+		}
 
 		$this->loadPointsAmount();
 		$points_amount = $this->m_points;
 		
 		// if triggerPayment() dont work before do the payments, when the paypal do the postback, the amount = 0 because dont appear in store_session
-		// so "aparently" the transaction is correct, but the user dont receive his payment points (line #306)
+		// so "aparently" the transaction is correct, but the user dont receive his payment points (line #316)
 		if ($amount != $points_amount)
 		{
-			$this->c('Log')->writeError('%s : unable to complete transaction for account_id %s: item_number "%s", amount must match with the points to add (%s < %s)!', __METHOD__, $account_id, $item_number, $amount, $points_amount);
+			$this->c('Log')->writeError('%s : unable to complete transaction for account_id %s: item_number "%s", amount must match with the points to add (amount %s < points_amount %s)!', __METHOD__, $account_id, $item_number, $amount, $points_amount);
 			return $this;
 		}
 		
@@ -269,7 +284,7 @@ class Paypal_Component extends Component
 
 		// for what is this?
 		//$this->c('Db')->realm()->query("DELETE FROM paypal_history WHERE verify_sign = '%s'", $_POST['verify_sign']);
-		
+	
 		$edt->clearValues()
 			->setModel('PaypalHistory')
 			->setType('insert');
