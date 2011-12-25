@@ -462,6 +462,9 @@ class Store_Component extends Component
 
 		unset($items[sizeof($items) - 1]); // Remove empty key
 
+		if (!$ids || !is_array($ids) || sizeof($ids) == 0)
+			return $this;
+
 		$store_items = $this->c('QueryResult', 'Db')
 			->model('WowStoreItems')
 			->addModel('WowStoreCategories')
