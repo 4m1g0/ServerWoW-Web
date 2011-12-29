@@ -959,7 +959,7 @@ class Store_Component extends Component
 
 		$b = $_POST['buyout'];
 
-		if (!$b)
+		if (!$b || !is_array($b))
 			return $this;
 
 		if ($this->getCartPrice() > $this->c('AccountManager')->user('amount'))

@@ -12,6 +12,7 @@
 $store_item = $store->getItem();
 if (!$store_item) return;
 $item = $store_item['template'];
+if (!$item) return;
 ?>
 <script><?php $xstoken = $this->c('Cookie')->read('xstoken'); ?>Store.init(<?php echo $xstoken; ?>);</script>
 <?php if ($store_item['store']['service_type'] == 0) : ?>

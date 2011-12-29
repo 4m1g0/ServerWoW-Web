@@ -1012,6 +1012,10 @@ class AccountManager_Component extends Component
 	public function isCharacterOnline($realmId, $guid)
 	{
 		$this->c('Db')->switchTo('characters', $realmId);
+
+		if (!$this->c('Db')->isDatabaseAvailable('characters', $realmId))
+			return false;
+
 		return $this->c('Db')->characters()->selectCell("SELECT online FROM characters WHERE guid = %d", $guid);
 	}
 

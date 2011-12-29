@@ -448,6 +448,9 @@ class Guild_Component extends Component
 
 		foreach ($this->m_members as &$member)
 		{
+			if (!isset($member[$field]))
+				return false;
+
 			if ($member[$field] == $value)
 			{
 				if (!$multiply)

@@ -535,7 +535,7 @@ class Query_Component extends Component
 
 			foreach ($this->m_sql['where'] as $cond)
 			{
-				if (!isset($cond['table']) || !isset($cond['field']) || !isset($cond['condition']))
+				if (!isset($cond['table']) || !isset($cond['field']) || !isset($cond['condition']) || !isset($table_aliases[$cond['table']]))
 					continue;
 
 				$alias = $table_aliases[$cond['table']];
