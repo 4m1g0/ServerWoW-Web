@@ -25,15 +25,31 @@ class Paypal_Component extends Component
 
 	public function triggerPayment()
 	{
-		$amount = intval($_POST['amount']);
+		if (!isset($_POST['item_number']) || !$_POST['item_number'])
+		{
+			$this->c('Log')->writeError('%s : unable to complete transaction for the account_id "%s" correctly: _POST "%s" is empty, Why¿?', __METHOD__, $this->c('AccountManager')->user('id'), $_POST['item_number']);
+			return $this;
+		}
+		else
+		{
+			$amount = intval($_POST['amount']);
+			$isInfo = explode(".",$_POST['item_number']);
+			
+			$isItem_number = $isInfo[0];
+			
+			if (isset($isInfo[1]))
+				$isAccount_id = (int)$isInfo[1]; 
+		}
 		
-		$isInfo = explode(".",$_POST['item_number']);
-		$isItem_number = $isInfo[0];
-		$isAccount_id = (int)$isInfo[1];
-		
-		if (!$isAccount_id)
+		if (!isset($isAccount_id) || !$isAccount_id)
 			$isAccount_id = $this->c('AccountManager')->user('id');
 			
+		if (!$isAccount_id || !$isItem_number)
+		{
+			$this->c('Log')->writeError('%s : some error here (Aparently Cookie), item_number (%s|%s) account_id %s|%s amount %s user IP: %s), unable to continue!', __METHOD__, $_POST['item_number'], $isItem_number, $isAccount_id, $this->c('AccountManager')->user('id'), $amount, $_SERVER['REMOTE_ADDR']);
+			return $this;
+		}
+
 		// What happen if the system add two same session_id, is possible ¿?
 		$ifSessionExists = $this->c('QueryResult', 'Db')
 			->model('StoreSession')
@@ -47,12 +63,6 @@ class Paypal_Component extends Component
 			$this->c('Db')->realm()->query("DELETE FROM store_session WHERE session_id = '%s'", $isItem_number);
 		}
 		
-		if (!$isAccount_id || !$isItem_number)
-		{
-			$this->c('Log')->writeError('%s : some error here (Aparently Cookie), item_number %s account_id %s|%s amount %s user IP: %s), unable to continue!', __METHOD__, $isItem_number, $isAccount_id, $this->c('AccountManager')->user('id'), $amount, $_SERVER['REMOTE_ADDR']);
-			return $this;
-		}
-
 		$edt = $this->c('Editing')
 			->clearValues()
 			->setModel('StoreSession')
@@ -165,7 +175,7 @@ class Paypal_Component extends Component
 			return array('errno' => 2, 'error' => 'Wrong receiver email!', 'time' => time());
 		}
 
-		if ($_POST['txn_type'] != 'web_accept')
+		if (isset($_POST['txn_type']) != 'web_accept')
 		{
 			$this->handleFailedPayment();
 			return array('errno' => 2, 'error' => 'Invalid transaction type!', 'time' => time());
@@ -179,7 +189,7 @@ class Paypal_Component extends Component
 	public function handleSuccessedPayment()
 	{
 		// Check for hacks
-		if (!isset($_POST['item_number']))
+		if (!isset($_POST['item_number']) || !$_POST['item_number'])
 		{
 			$this->c('Log')->writeError('%s : no PayPal data found (possibly hacking attempt, user IP: %s), unable to continue!', __METHOD__, $_SERVER['REMOTE_ADDR']);
 			return $this;
@@ -191,7 +201,15 @@ class Paypal_Component extends Component
 		
 		$info = explode(".",$_POST['item_number']);
 		$item_number = $info[0];
-		$account_id = (int)$info[1];
+		
+		if (isset($info[1]))
+			$account_id = (int)$info[1];
+			
+		if (!isset($account_id) || !$account_id)
+		{
+			$this->c('Log')->writeError('%s : unable to complete transaction: item_number "%s", account_id "%s" is NULL, why?!', __METHOD__, $item_number, $account_id);
+			return $this;
+		}
 		
 		// By enabling IPN in Paypal, is possible two same transactions
 		$ifTransacctionExists = $this->c('QueryResult', 'Db')
@@ -237,7 +255,7 @@ class Paypal_Component extends Component
 		$points_amount = $this->m_points;
 		
 		// if triggerPayment() dont work before do the payments, when the paypal do the postback, the amount = 0 because dont appear in store_session
-		// so "aparently" the transaction is correct, but the user dont receive his payment points (line #316)
+		// so "aparently" the transaction is correct, but the user dont receive his payment points (line #332)
 		if ($amount != $points_amount)
 		{
 			$this->c('Log')->writeError('%s : unable to complete transaction for account_id %s: item_number "%s", amount must match with the points to add (amount %s < points_amount %s)!', __METHOD__, $account_id, $item_number, $amount, $points_amount);

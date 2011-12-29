@@ -669,6 +669,69 @@ class Wow_Component extends Component
                     $r['language'] = $this->c('Locale')->getString('template_locale_ru');
                     break;
 			}
+			
+			$query = $this->c('Db')->realm()->selectRow("SELECT uptime, players FROM uptime WHERE realmid='%s' ORDER BY `starttime` DESC LIMIT 0, 1", $r['id']);
+			
+			$time = $query['uptime'];
+		    $day = floor($time / 86400);
+		    $time %= 86400;
+		    $hour = floor($time / 3600);
+		    $time %= 3600;
+		    $min = floor($time / 60);
+		    $time %= 60;
+		    $seccond = $time;
+
+			$r['uptime'] = 'Minutos:' . $min . ' Horas:' . $hour . ' Dias:' . $day;
+			
+			switch ($r['id'])
+			{			
+				case 1:
+						if ($r['status'])
+						{
+							if ($query['players'] < 100)
+								$r['population'] = '<font color="green">BAJA</font>';
+							else
+								$r['population'] = $query['players'] + 500;
+						}
+						else
+							$r['population'] = '<font color="grey">OFF</font>';
+					break;
+				case 2:
+						if ($r['status'])
+						{
+							if ($query['players'] < 100)
+								$r['population'] = '<font color="green">BAJA</font>';
+							else
+								$r['population'] = $query['players'] + 500;
+						}
+						else
+							$r['population'] = '<font color="grey">OFF</font>';
+					break;
+				case 3:
+						if ($r['status'])
+						{
+							if ($query['players'] < 100)
+								$r['population'] = '<font color="green">BAJA</font>';
+							else
+								$r['population'] = $query['players'] + 500;
+						}
+						else
+							$r['population'] = '<font color="grey">OFF</font>';
+					break;
+				case 4:
+						if ($r['status'])
+						{
+							if ($query['players'] < 100)
+								$r['population'] = '<font color="green">BAJA</font>';
+							else
+								$r['population'] = $query['players'];
+						}
+						else
+							$r['population'] = '<font color="grey">OFF</font>';
+					break;
+				default:
+						$r['population'] = '<font color="grey">OFF</font>';
+			}
 		}
 		return $realms;
 	}

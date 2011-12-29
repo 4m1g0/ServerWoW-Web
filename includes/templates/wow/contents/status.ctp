@@ -2,7 +2,7 @@
 				<h2 class="header ">Estado de los reinos</h2>
 
 
-		<div class="desc">Esta página muestra todos los reinos de World of Warcraft disponibles, así como su estado actual. Un reino puede aparecer como ACTIVO o NO ACTIVO. Los mensajes sobre el estado del reino y los horarios de mantenimiento se publicarán en los foros del <a href="http://eu.battle.net/wow/es/forum/1028283/">Estado del servicio</a>. Queremos pedir disculpas de antemano si tu reino aparece como “no activo”. Lo más probable es que ya estemos trabajando para reactivarlo lo antes posible.</div>
+		<div class="desc">Esta página muestra todos los reinos de World of Warcraft disponibles, así como su estado actual. Un reino puede aparecer como ACTIVO o NO ACTIVO. Los mensajes sobre el estado del reino y los horarios de mantenimiento se publicarán en los foros del <a href="http://serverwow.com/wow/forum/8/">Estado del servicio</a>. Queremos pedir disculpas de antemano si tu reino aparece como “no activo”. Lo más probable es que ya estemos trabajando para reactivarlo lo antes posible.</div>
 	<span class="clear"><!-- --></span>
 	</div>
 
@@ -133,8 +133,10 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				<tr>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Estado</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Nombre del reino</span></a></th>
+					<th><a href="javascript:;" class="sort-link"><span class="arrow">Version</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Tipo</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Población</span></a></th>
+					<th><a href="javascript:;" class="sort-link"><span class="arrow">Uptime</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Local</span></a></th>
 				</tr>
 			</thead>
@@ -153,6 +155,9 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 						<td class="name">
 							<?php echo $r['name']; ?>
 						</td>
+						<td class="name">
+							<?php echo $r['gamebuild']; ?>
+						</td>
 						<td data-raw="<?php echo strtolower($r['type']); ?>" class="type">
 							<span class="<?php echo strtolower($r['type']); ?>">
 									(<?php echo $r['type']; ?>)
@@ -160,7 +165,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 						</td>
 						<td class="population" data-raw="medium">
 							<span class="medium">
-									<?php echo $l->getString('template_realm_status_popul_medium'); ?>
+									<?php echo $r['population']; ?>
+							</span>
+						</td>
+						<td class="population" data-raw="medium">
+							<span class="medium">
+									<?php echo $r['uptime']; ?>
 							</span>
 						</td>
 						<td class="locale">

@@ -28,8 +28,9 @@ class Uptime_Model_Component extends Model_Db_Component
 		'starttime' => array('type' => 'integer'),
 		'startstring' => array('type' => 'string'),
 		'uptime' => array('type' => 'integer'),
-		'maxplayers' => array('type' => 'integer'),
-		'revision' => array('type' => 'string'),
+		'players' => array('type' => 'integer'),
+		'queued' => array('type' => 'integer'),
+		//'revision' => array('type' => 'string'),
 	);
 }
 ?>

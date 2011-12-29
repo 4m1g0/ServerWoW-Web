@@ -27,7 +27,7 @@ class Community_Wow_Controller_Component extends Groupwow_Controller_Component
 		$this->m_breadcrumb = array(
 			array(
 				'link' => '',
-				'caption' => 'World of Warcraft'
+				'caption' => 'ServerWoW'
 			),
 			array(
 				'link' => 'community/',
