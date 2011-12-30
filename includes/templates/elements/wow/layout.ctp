@@ -71,7 +71,7 @@ $(document).ready(function() {
 });
 </script>
 <?php endif; ?>
-<meta name="title" content="Server WoW - Server de World of Warcraft, Server de WoW" />
+<meta name="title" content="Server WoW : Server de World of Warcraft, Server de WoW" />
 <link rel="image_src" href="<?php echo CLIENT_FILES_PATH; ?>/wow/static/images/icons/facebook/game.jpg" />
 
 <?php

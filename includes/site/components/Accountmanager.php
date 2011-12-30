@@ -1071,8 +1071,10 @@ class AccountManager_Component extends Component
 		$rcv_data = $this->c('Db')->wow()->selectRow("
 		SELECT t1.id, t1.group_id, t2.group_mask FROM wow_accounts AS t1, wow_user_groups AS t2
 		WHERE t1.game_id = %d AND t2.group_id = t1.group_id LIMIT 1", $rcv['id']);
+		
+		$this->c('Log')->writeError('%s : unable to complete transaction: username: %s group_mask: %s admin: %s', __METHOD__, $rcv_name, $rcv_data['group_mask'], ADMIN_GROUP_RCV_MSG);
 
-		if (!$rcv_data || !isset($rcv_data['group_mask']) || !($rcv_data['group_mask'] & ADMIN_GROUP_RCV_MSG))
+		if (!$rcv_data || !isset($rcv_data['group_mask']) || !ADMIN_GROUP_RCV_MSG)
 		{
 			$this->m_lastErrorIdx = 'template_new_msg_err5';
 			$this->m_success = false;
@@ -1114,7 +1116,7 @@ class AccountManager_Component extends Component
 		return ($this->admin('group_mask') & ADMIN_GROUP_SEND_MSG);
 	}
 
-	public function getPrivateMessages($sent = true)
+	public function getPrivateMessages($sent = false)
 	{
 		return $this->c('QueryResult', 'Db')
 			->model('WowPrivateMessages')

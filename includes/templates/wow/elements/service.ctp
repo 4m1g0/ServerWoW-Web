@@ -6,7 +6,7 @@
 <li class="service-cell service-account"><a href="<?php echo $this->getAppUrl('account/management/'); ?>" class="service-link" tabindex="50" accesskey="3"><?php echo $l->getString('template_servicebar_account'); ?></a></li>
 <?php if ($this->c('AccountManager')->isLoggedIn() && $this->c('AccountManager')->isAllowedToReceiveMsg()) : ?><li class="service-cell service-account"><a href="<?php echo $this->getAppUrl('account/management/inbox'); ?>" class="service-link"><?php
 $unread = $this->c('AccountManager')->getUnreadMessagesCount();
-if ($unread > 0) echo $unread; else echo $l->getString('template_no_unread_messages'); ?> <?php echo $l->getString('template_unread_messages'); ?></a></li>
+echo "(".$unread.")".$l->getString('template_messages');?></a></li>
 <?php endif; ?>
 <li class="service-cell service-explore" style="background-position:-140px -200px;">
             <a href="#explore" tabindex="50" accesskey="6" class="dropdown" id="vote-link" style="cursor: pointer; " rel="javascript">Votar</a>

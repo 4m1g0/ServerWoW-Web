@@ -308,7 +308,7 @@
 	<div class="clear"><!-- --></div>
 	<br><br>
 	
-	<div id="footer">
+<div id="footer">
 </div>
 <div id="copyright">
 <?php echo $l->getString('copyright_bottom_title'); ?>
@@ -328,9 +328,18 @@
 <span id="cdSiteSeal2"><script type="text/javascript" src="//tracedseals.starfieldtech.com/siteseal/get?scriptId=cdSiteSeal2&amp;cdSealType=Seal2&amp;sealId=55e4ye7y7mb73baeb3016453fcaa57x90cy7mb7355e4ye7d39bdb92695749257"></script></span>
 </div>
 </div>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21791001-6']);
+  _gaq.push(['_trackPageview']);
 
-	</div>
-
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 	<script type="text/javascript">
 		FormValidation.initialize("signUpForm", true);
 

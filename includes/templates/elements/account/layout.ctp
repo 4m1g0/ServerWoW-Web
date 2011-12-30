@@ -71,7 +71,7 @@ Flash.expressInstall= '<?php echo CLIENT_FILES_PATH; ?>/wow/player/video-player.
 </div>
 </form>
 </div>
-<h1 id="logo"><a href="<?php echo $this->getAppUrl(); ?>" tabindex="50" accesskey="h">Battle.net</a></h1>
+<h1 id="logo"><a href="<?php echo $this->getAppUrl(); ?>" tabindex="50" accesskey="h">Server WoW</a></h1>
 <div id="navigation">
 <div id="page-menu" class="large">
 <h2><a href="<?php echo $this->getAppUrl('account/management/'); ?>"> <?php echo $l->getString('template_management_account_management'); ?>
