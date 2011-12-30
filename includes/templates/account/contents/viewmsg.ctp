@@ -5,7 +5,7 @@
 </div>
 <div id="page-content" class="page-content">
 <div align="center">
-Message from <b><?php echo $msg['forums_name']; ?></b> (sent: <?php echo date('d/m/Y H:i:s', $msg['send_date']); ?>)<br />
+Message from <b><?php echo $msg['sender']; ?></b> (sent: <?php echo date('d/m/Y H:i:s', $msg['send_date']); ?>)<br />
 <b>Title:</b> <?php echo $msg['title']; ?><br />
 <b>Message:</b> <blockquote><?php echo $msg['text']; ?></blockquote>
 </div>
@@ -17,7 +17,17 @@ Message from <b><?php echo $msg['forums_name']; ?></b> (sent: <?php echo date('d
 <label for="receiver" class="label-full ">
 <strong> <?php echo $l->getString('template_new_msg_receiver'); ?></strong>
 </label>
-<input type="text" id="receiver" name="receiver" value="<?php echo $msg['username']; ?>" class=" input border-5 glow-shadow-2" maxlength="16" tabindex="1" />
+<input type="text" id="receiver" name="receiver" value="<?php echo mb_substr($msg['sender'], 0, mb_strpos($msg['sender'], '@', 0, 'UTF-8')-1, 'UTF-8'); ?>" class=" input border-5 glow-shadow-2" maxlength="16" tabindex="1" />
+</div>
+<div class="form-row">
+<label for="receiver" class="label-full ">
+<strong> <?php echo $l->getString('template_new_msg_receiver_realm'); ?></strong>
+</label>
+<select name="realmId">
+<?php foreach ($this->c('Config')->getValue('realms') as $realm) : ?>
+	<option value="<?php echo $realm['id']; ?>"<?php if ($realm['id'] == $msg['receiver_realmId']) echo ' selected="selected"'; ?>><?php echo $realm['name']; ?></option>
+<?php endforeach; ?>
+</select>
 </div>
 <div class="form-row">
 <label for="msgtitle" class="label-full ">

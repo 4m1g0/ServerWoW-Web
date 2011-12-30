@@ -31,6 +31,10 @@ class WowPrivateMessages_Model_Component extends Model_Db_Component
 		'title' => array('type' => 'string'),
 		'text' => array('type' => 'string'),
 		'read' => array('type' => 'integer'),
+		'sender_guid' => array('type' => 'integer'),
+		'sender_realmId' => array('type' => 'integer'),
+		'receiver_guid' => array('type' => 'integer'),
+		'receiver_realmId' => array('type' => 'integer'),
 	);
 }
 ?>

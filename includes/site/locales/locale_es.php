@@ -1945,5 +1945,11 @@ El equipo de cuentas de ServerWoW <br />
 	'template_msg_title' => 'Titulo',
 	'template_msg_status' => 'Estado',
 	'template_msg_text' => 'Mensaje',
+
+	'template_new_msg_receiver_realm' => '[t] Realm Name',
+	'template_new_msg_err7' => '[t] Character was not found!',
+	'template_new_msg_err8' => '[t] Realm Name required',
+	'template_new_msg_err9' => '[t] Realm was not found',
+	'template_new_msg_err10' => '[t] Unable to perform this action',
 );
 ?>

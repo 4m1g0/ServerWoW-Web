@@ -26,7 +26,7 @@
 				?>
 				<tr>
 					<td><?php echo $msg['read'] ? 'Read' : 'Unread'; ?></td>
-					<td><?php echo $msg['forums_name']; ?></td>
+					<td><?php echo $msg['receiver']; ?></td>
 					<td><?php echo date('d/m/Y H:i', $msg['send_date']); ?></td>
 					<td><a href="/account/management/inbox/<?php echo $msg['msg_id']; ?>"><?php echo $msg['title']; ?></a></td>
 				</tr>
