@@ -67,6 +67,7 @@
 
 </div>
 <!-- END: Footer -->
+<script type="text/javascript" language="javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-21791001-6']);
   _gaq.push(['_trackPageview']);
