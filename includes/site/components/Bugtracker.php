@@ -713,6 +713,11 @@ class Bugtracker_Component extends Component
 		if ($_POST['type'] != $this->getCategoryId())
 			return $this;
 
+		$char = $this->c('AccountManager')->getActiveCharacter();
+
+		if (!$char)
+			return $this;
+
 		if (!in_array($_POST['type'], array(BT_WEB, BT_OTHER, BT_DEFAULT, BT_STORE)))
 		{
 			$item = $this->c('QueryResult', 'Db')

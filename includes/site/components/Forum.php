@@ -811,6 +811,14 @@ class Forum_Component extends Component
 		if (!$this->c('AccountManager')->isAllowedToForums())
 			return $this->core->redirectUrl('account-status');
 
+		$char = $this->c('AccountManager')->getActiveCharacter();
+
+		if (!$char)
+		{
+			$this->c('Log')->writeDebug('%s : user %d (%s) tried to create topic without any character on account', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'));
+			return $this;
+		}
+
 		$rq_fields = array('xstoken' => 'notNull', 'sessionPersist' => 'forum.topic.form', 'detail' => 'notNull', 'subject' => 'notNull');
 
 		foreach ($rq_fields as $field => $value)
