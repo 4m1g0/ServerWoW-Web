@@ -177,19 +177,19 @@ class QueryResult_Db_Component extends Component
 		// Parse fields
 		$data = array();
 		// Sometime there's memory exhaust error appears. Trying to use for loop instead of foreach.
-		/*$keys = array_keys($items);
+		$keys = array_keys($items);
 		$size = sizeof($keys);
 		for ($i = 0; $i < $size; ++$i)
 		{
-			$this->parseResults($items[$i], $fields);
-			$data[$keys[$i]] = $items[$i];
-		}*/
-		
+			$this->parseResults($items[$keys[$i]], $fields);
+			$data[$keys[$i]] = $items[$keys[$i]];
+		}
+		/*
 		foreach ($items as $key => $item)
 		{
 			$this->parseResults($item, $fields);
 			$data[$key] = $item;
-		}
+		}*/
 
 		unset($items);
 

@@ -1144,11 +1144,15 @@ class AccountManager_Component extends Component
 
 		if ($msg['sender_id'] != $this->user('id') && $msg['receiver_id'] != $this->user('id'))
 			return $this->core->redirectApp('/account/management/inbox');
-			
+
 		$msg['username'] = $this->c('Db')->realm()->selectCell("SELECT username FROM account WHERE id = %d LIMIT 1", $msg['game_id']);
 
 		if ($msg['read'] == 0)
 			$this->c('Db')->wow()->query("UPDATE wow_private_messages SET `read` = 1 WHERE msg_id = %d", $msg['msg_id']);
+
+		// bbcodes
+		$msg['text'] = preg_replace('/\[url\=(.+?)\](.+?)\[\/url\]/six', '<a href="$1" target="_blank">$2</a>', $msg['text']);
+		$msg['text'] = preg_replace('/\[img](.+?)\[\/img\]/six', '<img src="$1" />', $msg['text']);
 
 		return $msg;
 	}
