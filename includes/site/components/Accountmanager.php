@@ -1072,8 +1072,6 @@ class AccountManager_Component extends Component
 		SELECT t1.id, t1.group_id, t2.group_mask FROM wow_accounts AS t1, wow_user_groups AS t2
 		WHERE t1.game_id = %d AND t2.group_id = t1.group_id LIMIT 1", $rcv['id']);
 		
-		$this->c('Log')->writeError('%s : unable to complete transaction: username: %s group_mask: %s admin: %s', __METHOD__, $rcv_name, $rcv_data['group_mask'], ADMIN_GROUP_RCV_MSG);
-
 		if (!$rcv_data || !isset($rcv_data['group_mask']) || !ADMIN_GROUP_RCV_MSG)
 		{
 			$this->m_lastErrorIdx = 'template_new_msg_err5';
