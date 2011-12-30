@@ -1119,7 +1119,7 @@ class AccountManager_Component extends Component
 		return $this->c('QueryResult', 'Db')
 			->model('WowPrivateMessages')
 			->addModel('WowAccounts')
-			->join('left', 'WowAccounts', 'WowPrivateMessages', 'sender_id', 'game_id')
+			->join('left', 'WowAccounts', 'WowPrivateMessages', ($sent ? 'receiver_id' : 'sender_id'), 'game_id')
 			->fieldCondition('wow_private_messages.' . ($sent ? 'sender_id' : 'receiver_id'), ' = ' . $this->user('id'))
 			->limit(15, ($this->getPage(true) * 15))
 			->loadItems();
