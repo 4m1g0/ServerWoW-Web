@@ -93,8 +93,6 @@ $format = $pvp->getLadderType() . 'v' . $pvp->getLadderType();
 
 		<div id="ladders">
 
-	<?php echo $this->region('pagination'); ?>
-
 <center>
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-5286168753620257";
@@ -109,6 +107,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 </center>
 
+	<?php echo $this->region('pagination'); ?>
 	<div class="table ">
 		<table>
 				<thead>
@@ -218,6 +217,19 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</div>
 
 	<?php echo $this->region('pagination'); ?>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Juego-PvP 728&#42;90) */
+google_ad_slot = "3035081840";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>	
 			</div>
 		</div>
 
@@ -238,7 +250,20 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</a>
 				</li>
 				<?php endforeach; ?>
-
+				<li>
+			<center><br>
+			<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (PvP 160&#42;600) */
+google_ad_slot = "7998550133";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center></li>
 			</ul>
 		</div>
 

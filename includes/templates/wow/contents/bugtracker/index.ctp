@@ -100,7 +100,18 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				<?php echo $pagination; ?>
 			</ul>
 	<span class="clear"><!-- --></span>
-
+	<br>
+<center><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Bugtracker 728&#42;90) */
+google_ad_slot = "5141927827";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center>
 	</div>
 
 	<div style="float:left;width:230px;position:relative;">

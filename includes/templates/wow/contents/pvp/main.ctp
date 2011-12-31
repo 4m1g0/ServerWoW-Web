@@ -88,9 +88,22 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</a>
 				</li>
 				<?php endforeach; ?>
-
+				<li>
+			<center><br>
+			<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (PvP 200&#42;200) */
+google_ad_slot = "3061949748";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+</li>
 			</ul>
 		</div>
-
 <span class="clear"><!-- --></span>
 </div>

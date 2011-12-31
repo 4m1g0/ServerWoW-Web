@@ -6,6 +6,20 @@
 	<span class="clear"><!-- --></span>
 	</div>
 
+	
+	<center>
+	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Estado 728&#42;90) */
+google_ad_slot = "2183527149";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center>
+
 	<div id="realm-status">
 	<ul class="tab-menu ">
 				<li>
@@ -113,19 +127,29 @@
 			</form>
 		</div>
 	</div>
-<center>
-	<script type="text/javascript"><!--
+
+<center><script type="text/javascript"><!--
 google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Estado 728&#42;90) */
-google_ad_slot = "2183527149";
-google_ad_width = 728;
-google_ad_height = 90;
+/* ServerWoW.com (Estado 300&#42;250) */
+google_ad_slot = "3702053257";
+google_ad_width = 300;
+google_ad_height = 250;
 //-->
 </script>
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
-
+</script><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Estado 300&#42;250) */
+google_ad_slot = "3702053257";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
 		<div id="all-realms">
 	<div class="table full-width">
 		<table>
@@ -142,7 +166,9 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			</thead>
 			<tbody>
 				<?php
-				if ($realms):
+				if ($this->c('AccountManager')->isLoggedIn())
+				{
+					if ($realms):
 					$toggleStyle = 2;
 					foreach ($realms as &$r) :
 				?>
@@ -177,13 +203,21 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 							<?php echo $r['language']; ?>
 						</td>
 					</tr>
-				<?php endforeach; endif; ?>
+				<?php
+					endforeach;
+					endif;
+				}
+				else
+				{				
+				?>
 				<tr class="no-results" style="display: none">
-					<td colspan="6">Ningún resultado coincide con los filtros seleccionados.</td>
+					<td colspan="6">Ningún resultado coincide con los filtros seleccionados o <b>No</b> has iniciado Sesion.</td>
 				</tr>
+				<?php
+				}
+				?>
 			</tbody>
 		</table>
 	</div>
 		</div>
-
 	<span class="clear"><!-- --></span>

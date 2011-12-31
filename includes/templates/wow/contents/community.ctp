@@ -121,6 +121,17 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			</script>
 			<? */ ?>
 
+<center><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Comunidad 468&#42;60) */
+google_ad_slot = "7125709149";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center>
 	<span class="clear"><!-- --></span>
 					</div>	
 				</div>

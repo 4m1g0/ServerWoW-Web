@@ -1940,7 +1940,7 @@ El equipo de cuentas de ServerWoW <br />
 	'template_new_msg_err6' => 'No puedes enviarte un mensaje a ti mismo',
 
 	'template_msg_sender' => 'De',
-	'template_msg_receiver' => 'De',
+	'template_msg_receiver' => 'Para',
 	'template_msg_date' => 'Fecha',
 	'template_msg_title' => 'Titulo',
 	'template_msg_status' => 'Estado',

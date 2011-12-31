@@ -29,18 +29,6 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		        	<div id="news-updates-inner">
     <?php if ($this->issetRegion('news')) echo $this->region('news'); ?>
 	<div class="blog-paging">
-	
-<center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Home 468&#42;60) */
-google_ad_slot = "2668940216";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>	
 	<?php
 	if ($this->core->getDataVar('nextPage') > 0) :
 	?>
@@ -68,14 +56,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
         </div>
 
 		<div id="right" class="ajax-update">
-			<div id="sidebar-promo" class="sidebar-module">
- 
 
-
-
-
-
-
+	<div id="sidebar-promo" class="sidebar-module">
 	<div class="bnet-offer">
 		<!--  -->
 		            		<div class="sidebar-title">
@@ -103,9 +85,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			//]]>
 		</script>
 	</div>
-			</div>
-
-
+	</div>
 
 	<div class="sidebar-module" id="sidebar-sotd">
 		<div class="sidebar-title">
@@ -120,6 +100,36 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</div>
 
 		<div class="sidebar-content loading"></div>
+	</div>
+
+	<div id="sidebar-promo" class="sidebar-module">
+	<div class="bnet-offer">
+		<!--  -->
+		            		<div class="sidebar-title">
+			            <h3 class="title-bnet-ads">PUBLICIDAD</h3>
+		            </div>		
+		<div class="bnet-offer-bg">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW 300&#42;250 */
+google_ad_slot = "5710665508";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+		</div>
+		<script type="text/javascript">
+			//<![CDATA[
+				if(typeof (BnetAds.addEvent) != "undefined" )
+					BnetAds.addEvent(window, 'load', function(){ BnetAds.trackEvent('2555187', 'Trial-EU', 'wow'); } );
+				else
+					BnetAds.trackEvent('2555187', 'Trial-EU', 'wow');
+			//]]>
+		</script>
+	</div>
 	</div>
 
         <script type="text/javascript">

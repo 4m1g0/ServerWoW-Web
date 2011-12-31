@@ -24,5 +24,20 @@
 				</a>
 			</li>
 			<?php endforeach; ?>
+			<li>
+			<center><br>
+			<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Bugtracker 200&#42;200) */
+google_ad_slot = "1165232208";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+			</center>
+			</li>
 
 		</ul>

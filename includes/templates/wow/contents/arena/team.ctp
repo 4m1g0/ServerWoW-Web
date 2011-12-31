@@ -73,6 +73,21 @@
 		</a>
 
 			</li>
+			<li>
+			<center><br>
+			<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Arena 160&#42;600) */
+google_ad_slot = "8011449342";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+			</li>
 
 		
 	</ul>
@@ -143,17 +158,29 @@
 
 				<div class="summary-roster">
 				
-<center><script type="text/javascript"><!--
+<center>
+<script type="text/javascript"><!--
 google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Arena 728&#42;90) */
-google_ad_slot = "0686925155";
-google_ad_width = 728;
-google_ad_height = 90;
+/* ServerWoW.com (Arena 300&#42;250) */
+google_ad_slot = "9777950991";
+google_ad_width = 300;
+google_ad_height = 250;
 //-->
 </script>
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center><br>
+</script><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Arena 300&#42;250) */
+google_ad_slot = "9777950991";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center><br>
 				
 					<div class="ui-dropdown" id="filter-timeframe">
 						<select>
@@ -293,3 +320,4 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			<?php echo $l->getString('template_guild_js_strings'); ?>
         //]]>
         </script>
+<br><br><br><br><br><br>

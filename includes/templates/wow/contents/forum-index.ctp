@@ -119,17 +119,6 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 									</div>
 								</div>
 							<?php endif; endforeach; endif; ?>
-							<br><center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Foro 468&#42;60) */
-google_ad_slot = "9580528937";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
 						</div>
 					</div>
 				<div class="right-column">
@@ -157,6 +146,24 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</div>
 					<div id="popular-topics-inner"></div>
 				</div>
+
+				<div id="popular-topics">
+					<div class="readmore">
+						Publicidad
+					</div>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Foro Home 300&#42;250) */
+google_ad_slot = "1246992851";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+                    </div><br>
+	
 					
 	   			<div class="coc">
 	   					<a href="http://battle.net/community/conduct"><?php echo $l->getString('template_forums_forum_rules'); ?></a>.
