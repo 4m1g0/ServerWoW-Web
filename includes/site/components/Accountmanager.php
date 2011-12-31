@@ -1032,7 +1032,7 @@ class AccountManager_Component extends Component
 		if (!isset($_POST['csrftoken']))
 			return false;
 
-		$fields = array('receiver' => 1, 'title' => 2, 'messagebody' => 3);
+		$fields = array('receiver' => 1, 'title' => 2, 'messagebody' => 3, 'realmId' => 4);
 
 		foreach ($fields as $f => $v)
 		{
@@ -1044,34 +1044,54 @@ class AccountManager_Component extends Component
 			}
 		}
 
-		$rcv_name = $_POST['receiver'];
-		if ($rcv_name == $this->user('username'))
+		$realmId = intval($_POST['realmId']);
+		if ($realmId != $this->c('Config')->getValue('realms.' . $realmId . '.id'))
+		{
+			$this->m_lastErrorIdx = 'template_new_msg_err9';
+			$this->m_success = false;
+			return false;
+		}
+
+		// try to find character guid and account ID
+		$this->c('Db')->switchTo('characters', $realmId);
+		if (!$this->c('Db')->isDatabaseAvailable('characters', $realmId))
+		{
+			// realm's characters DB is not available
+			$this->m_lastErrorIdx = 'template_new_msg_err10';
+			$this->m_success = false;
+			return false;
+		}
+
+		$rcv_name = addslashes($_POST['receiver']);
+		$char = $this->c('QueryResult', 'Db')
+			->model('Characters')
+			->fields(array('Characters' => array('guid', 'name', 'account')))
+			->fieldCondition('name', ' = \'' . $rcv_name . '\'', true)
+			->loadItem();
+
+		if (!$char)
+		{
+			// realm's characters DB is not available
+			$this->m_lastErrorIdx = 'template_new_msg_err7';
+			$this->m_success = false;
+			return false;
+		}
+
+		if ($char['account'] == $this->user('id'))
 		{
 			$this->m_lastErrorIdx = 'template_new_msg_err6';
 			$this->m_success = false;
 			return false;
 		}
-		$title = $_POST['title'];
-		$msg = $_POST['messagebody'];
 
-		$rcv = $this->c('QueryResult', 'Db')
-			->model('Account')
-			->fields(array('Account' => array('id', 'username')))
-			->fieldCondition('username', ' =\'' . $rcv_name . '\'')
-			->loadItem();
-
-		if (!$rcv)
-		{
-			$this->m_lastErrorIdx = 'template_new_msg_err4';
-			$this->m_success = false;
-			return false;
-		}
+		$title = addslashes($_POST['title']);
+		$msg = addslashes($_POST['messagebody']);
 
 		// Is user allowed to receive message?
 		$rcv_data = $this->c('Db')->wow()->selectRow("
 		SELECT t1.id, t1.group_id, t2.group_mask FROM wow_accounts AS t1, wow_user_groups AS t2
-		WHERE t1.game_id = %d AND t2.group_id = t1.group_id LIMIT 1", $rcv['id']);
-		
+		WHERE t1.game_id = %d AND t2.group_id = t1.group_id LIMIT 1", $char['account']);
+
 		if (!$rcv_data || !isset($rcv_data['group_mask']) || !ADMIN_GROUP_RCV_MSG)
 		{
 			$this->m_lastErrorIdx = 'template_new_msg_err5';
@@ -1085,11 +1105,15 @@ class AccountManager_Component extends Component
 			->setType('insert');
 
 		$edt->sender_id = $this->user('id');
-		$edt->receiver_id = $rcv['id'];
+		$edt->receiver_id = $char['account'];
 		$edt->send_date = time();
 		$edt->title = $title;
 		$edt->text = $msg;
 		$edt->read = '0';
+		$edt->sender_guid = $this->charInfo('guid');
+		$edt->sender_realmId = $this->charInfo('realmId');
+		$edt->receiver_guid = $char['guid'];
+		$edt->receiver_realmId = $realmId;
 
 		$edt->save()->clearValues();
 
@@ -1116,13 +1140,44 @@ class AccountManager_Component extends Component
 
 	public function getPrivateMessages($sent = false)
 	{
-		return $this->c('QueryResult', 'Db')
+		$msgs = $this->c('QueryResult', 'Db')
 			->model('WowPrivateMessages')
-			->addModel('WowAccounts')
-			->join('left', 'WowAccounts', 'WowPrivateMessages', ($sent ? 'receiver_id' : 'sender_id'), 'game_id')
 			->fieldCondition('wow_private_messages.' . ($sent ? 'sender_id' : 'receiver_id'), ' = ' . $this->user('id'))
 			->limit(15, ($this->getPage(true) * 15))
+			->order(array('WowPrivateMessages' => array('send_date')), 'DESC')
 			->loadItems();
+
+		if (!$msgs)
+			return false;
+
+		$types = array('sender', 'receiver');
+		foreach ($msgs as &$msg)
+		{
+			foreach ($types as $type)
+			{
+				$this->c('Db')->switchTo('characters', $msg[$type . '_realmId']);
+				if (!$this->c('Db')->isDatabaseAvailable('characters', $msg[$type . '_realmId']))
+				{
+					$msg[$type] = 'Unknown';
+					continue;
+				}
+
+				$char = $this->c('QueryResult', 'Db')
+					->model('Characters')
+					->fields(array('Characters' => array('guid', 'name')))
+					->fieldCondition('guid', ' = ' . intval($msg[$type . '_guid']))
+					->loadItem();
+
+				if (!$char)
+				{
+					$msg[$type] = 'Unknown';
+					continue;
+				}
+				$msg[$type] = $char['name'] . ' @ ' . $this->c('Config')->getValue('realms.' . $msg[$type . '_realmId'] . '.name');
+			}
+		}
+
+		return $msgs;
 	}
 
 	public function getPrivateMessage()
@@ -1134,8 +1189,6 @@ class AccountManager_Component extends Component
 
 		$msg = $this->c('QueryResult', 'Db')
 			->model('WowPrivateMessages')
-			->addModel('WowAccounts')
-			->join('left', 'WowAccounts', 'WowPrivateMessages', 'sender_id', 'game_id')
 			->fieldCondition('wow_private_messages.msg_id', ' = ' . $id)
 			->loadItem();
 
@@ -1145,9 +1198,29 @@ class AccountManager_Component extends Component
 		if ($msg['sender_id'] != $this->user('id') && $msg['receiver_id'] != $this->user('id'))
 			return $this->core->redirectApp('/account/management/inbox');
 
-		$msg['username'] = $this->c('Db')->realm()->selectCell("SELECT username FROM account WHERE id = %d LIMIT 1", $msg['game_id']);
+		// Try to find sender character
+		$this->c('Db')->switchTo('characters', $msg['sender_realmId']);
+		$char_sender = $this->c('QueryResult', 'Db')
+			->model('Characters')
+			->fields(array('Characters' => array('guid', 'name')))
+			->fieldCondition('guid', ' = ' . intval($msg['sender_guid']))
+			->loadItem();
 
-		if ($msg['read'] == 0)
+		// Try to find receiver character
+		$this->c('Db')->switchTo('characters', $msg['receiver_realmId']);
+		$char_receiver = $this->c('QueryResult', 'Db')
+			->model('Characters')
+			->fields(array('Characters' => array('guid', 'name')))
+			->fieldCondition('guid', ' = ' . intval($msg['receiver_guid']))
+			->loadItem();
+
+		if (!$char_receiver || !$char_sender)
+			return $this->core->redirectApp('/account/management/inbox');
+
+		$msg['sender'] = $char_sender['name'] . ' @ ' . $this->c('Config')->getValue('realms.' . $msg['sender_realmId'] . '.name');
+		$msg['receiver'] = $char_receiver['name'] . ' @ ' . $this->c('Config')->getValue('realms.' . $msg['receiver_realmId'] . '.name');
+
+		if ($msg['read'] == 0 && $msg['receiver_id'] == $this->user('id'))
 			$this->c('Db')->wow()->query("UPDATE wow_private_messages SET `read` = 1 WHERE msg_id = %d", $msg['msg_id']);
 
 		// bbcodes

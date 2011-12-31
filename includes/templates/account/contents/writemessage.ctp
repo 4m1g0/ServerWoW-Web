@@ -24,6 +24,16 @@
 <input type="text" id="receiver" name="receiver" value="<?php if (isset($_POST['receiver'])) echo $_POST['receiver']; ?>" class=" input border-5 glow-shadow-2" maxlength="16" tabindex="1" />
 </div>
 <div class="form-row">
+<label for="receiver" class="label-full ">
+<strong> <?php echo $l->getString('template_new_msg_receiver_realm'); ?></strong>
+</label>
+<select name="realmId">
+<?php foreach ($this->c('Config')->getValue('realms') as $realm) : ?>
+	<option value="<?php echo $realm['id']; ?>"<?php if (isset($_POST['realmId']) && $_POST['realmId'] == $realm['id']) echo ' selected="selected"'; ?>><?php echo $realm['name']; ?></option>
+<?php endforeach; ?>
+</select>
+</div>
+<div class="form-row">
 <label for="msgtitle" class="label-full ">
 <strong> <?php echo $l->getString('template_new_msg_title'); ?></strong>
 </label>
