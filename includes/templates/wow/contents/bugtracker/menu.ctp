@@ -24,6 +24,7 @@
 				</a>
 			</li>
 			<?php endforeach; ?>
+			<li<?php if ($this->core->getUrlAction(2) == 'changelog') echo ' class="item-active"'; ?>><a href="<?php echo $this->getWowUrl('bugtracker/changelog'); ?>"><span class="arrow">Changelog</span></a></li>
 			<li>
 			<center><br>
 			<script type="text/javascript"><!--

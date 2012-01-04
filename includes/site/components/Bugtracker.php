@@ -772,5 +772,48 @@ class Bugtracker_Component extends Component
 
 		return $this;
 	}
+
+	public function addChangelogRevision()
+	{
+		$fields = array('revid', 'fixid', 'commiter', 'description', 'post_date');
+		foreach ($fields as $f)
+		{
+			if (!isset($_POST['changelog'][$f]) || !$_POST['changelog'][$f])
+				return false;
+		}
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowChangelog')
+			->setType('insert');
+
+		$edt->revid = addslashes($_POST['changelog']['revid']);
+		$edt->fixid = addslashes($_POST['changelog']['fixid']);
+		$edt->commiter = addslashes($_POST['changelog']['commiter']);
+		$edt->description = addslashes($_POST['changelog']['description']);
+		$edt->post_date = strtotime($_POST['changelog']['post_date']);
+
+		$edt->save()->clearValues();
+
+		unset($edt);
+
+		$this->core->redirectUrl('bugtracker/changelog/');
+
+		return true;
+	}
+
+	public function getChangelogItems()
+	{
+		return $this->c('QueryResult', 'Db')
+			->model('WowChangelog')
+			->limit(12, ($this->getPage(true) * 12))
+			->order(array('WowChangelog' => array('post_date')), 'DESC')
+			->loadItems();
+	}
+
+	public function getTotalChangelogCount()
+	{
+		return $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_changelog");
+	}
 }
 ?>

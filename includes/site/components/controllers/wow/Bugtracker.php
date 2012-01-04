@@ -25,9 +25,14 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 	protected $m_bugId = 0;
 	protected $m_isApi = false;
 	protected $m_isAdding = false;
+	protected $m_isChangelog = false;
+	protected $m_errChangelog = false;
 
 	public function checkInfo()
 	{
+		if ($this->core->getUrlAction(2) == 'changelog')
+			$this->m_isChangelog = true;
+
 		if ($this->core->getUrlAction(2) == 'bug' && $this->core->getUrlAction(3) > 0)
 		{
 			$this->m_isView = true;
@@ -39,7 +44,10 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 		{
 			if ($this->c('Bugtracker')->getCategoryId() > 0)
 				$this->m_isAdding = true;
+			elseif ($this->m_isChangelog)
+				$this->m_isAdding = true;
 		}
+
 
 		return true;
 	}
@@ -68,10 +76,15 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 					'link' => 'bugtracker/' . $this->core->getUrlAction(2),
 					'caption' => $this->c('Bugtracker')->getCategoryName() . 's'
 				);
-			if ($this->m_isAdding)
+			if ($this->m_isAdding && !$this->m_isChangelog)
 				$this->m_breadcrumb[] = array(
 					'link' => 'bugtracker/' . $this->core->getUrlAction(2) . '/add',
 					'caption' => 'Create Report'
+				);
+			elseif ($this->m_isAdding && $this->m_isChangelog)
+				$this->m_breadcrumb[] = array(
+					'link' => 'bugtracker/changelog/add',
+					'caption' => 'Add Revision to Changelog'
 				);
 		}
 		elseif ($this->c('Bugtracker')->isCorrect())
@@ -93,6 +106,9 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 	{
 		$this->checkInfo();
 
+		$block = '';
+		$this->m_errChangelog = false;
+
 		if (!$this->m_isApi)
 		{
 			$this->buildBreadcrumb();
@@ -101,10 +117,22 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 			{
 				if ($this->m_isAdding)
 				{
-					if (isset($_POST['type']))
-						$this->c('Bugtracker')->createReport();
-					$block = 'add';
+					if (!$this->m_isChangelog)
+					{
+						if (isset($_POST['type']))
+							$this->c('Bugtracker')->createReport();
+						$block = 'add';
+					}
+					else
+					{
+						$block = 'changelog_add';
+
+						if (isset($_POST['changelog']))
+							$this->m_errChangelog = $this->c('Bugtracker')->addChangelogRevision();
+					}
 				}
+				elseif ($this->m_isChangelog)
+					$block = 'changelog';
 				else
 					$block = 'main';
 			}
@@ -153,8 +181,23 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 			->setVar('pagination', $this->c('Pager')->generatePagination(
 				'/' . $this->core->getRawUrl(),
 				$this->c('Bugtracker')->getTotalCount(),
-				15,
-				$this->c('Forum')->getPage(false) * 15
+				12,
+				$this->c('Forum')->getPage(false) * 12
+				)
+			)
+			->setVar('bt', $this->c('Bugtracker'));
+	}
+
+	protected function block_changelog()
+	{
+		return $this->block()
+			->setTemplate('changelog', 'wow' . DS . 'contents' . DS . 'bugtracker')
+			->setRegion('pagecontent')
+			->setVar('pagination', $this->c('Pager')->generatePagination(
+				'/' . $this->core->getRawUrl(),
+				$this->c('Bugtracker')->getTotalChangelogCount(),
+				12,
+				$this->c('Forum')->getPage(false) * 12
 				)
 			)
 			->setVar('bt', $this->c('Bugtracker'));
@@ -165,6 +208,15 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 		return $this->block()
 			->setTemplate('add', 'wow' . DS . 'contents' . DS . 'bugtracker')
 			->setRegion('pagecontent')
+			->setVar('bt', $this->c('Bugtracker'));
+	}
+
+	protected function block_changelog_add()
+	{
+		return $this->block()
+			->setTemplate('changelog_add', 'wow' . DS . 'contents' . DS . 'bugtracker')
+			->setRegion('pagecontent')
+			->setVar('error_add', $this->m_errChangelog)
 			->setVar('bt', $this->c('Bugtracker'));
 	}
 
