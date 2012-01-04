@@ -297,7 +297,7 @@ class Bugtracker_Component extends Component
 					'type' => $action,
 					'error' => 'none',
 					'success' => true,
-					'editedFields' => array('response' => $_POST['message'], 'date' => date('d/m/Y', time()), 'admin' => $this->c('AccountManager')->settings('forums_username', 'forums'))
+					'editedFields' => array('response' => str_replace(array("\n", "\n\r"), '<br />', addslashes($_POST['message'])), 'date' => date('d/m/Y', time()), 'admin' => $this->c('AccountManager')->settings('forums_username', 'forums'))
 				);
 				break;
 			case 'delete':
@@ -496,6 +496,8 @@ class Bugtracker_Component extends Component
 		if (!$text)
 			return $this;
 
+		$text = str_replace(array("\n", "\n\r"), '<br />', $text);
+
 		$char = $this->c('AccountManager')->getActiveCharacter();
 
 		if (!$char)
@@ -511,7 +513,7 @@ class Bugtracker_Component extends Component
 		$edt->character_guid = $char['guid'];
 		$edt->character_realm = $char['realmId'];
 		$edt->post_date = time();
-		$edt->comment = $text;
+		$edt->comment = addslashes($text);
 
 		if ($this->c('AccountManager')->isAdmin())
 			$edt->blizzard = 1;
@@ -739,6 +741,8 @@ class Bugtracker_Component extends Component
 			->setModel('WowBugtrackerItems')
 			->setType('insert');
 
+		$msg = addslashes($_POST['desc']);
+		$msg = str_replace(array("\n", "\n\r"), '<br />', $msg);
 		$edt->type = $this->getCategoryId();
 		$edt->item_id = isset($_POST['item']) ? intval($_POST['item']) : rand();
 		$edt->account_id = $this->c('AccountManager')->user('id');
@@ -747,7 +751,7 @@ class Bugtracker_Component extends Component
 		$edt->post_date = time();
 		$edt->status = '0';
 		$edt->priority = max(min(1, intval($_POST['priority'])), intval($_POST['priority']));
-		$edt->description = $_POST['desc'];
+		$edt->description = $msg;
 		$edt->closed = '0';
 		$edt->admin_response = '';
 		$edt->response_date = '0';

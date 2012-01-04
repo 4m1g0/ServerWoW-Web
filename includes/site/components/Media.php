@@ -335,6 +335,9 @@ class Media_Component extends Component
 
 	public function getMetaDataItem()
 	{
+		if (!isset($_GET['id']))
+			return false;
+
 		return $this->c('QueryResult', 'Db')
 			->model('WowMediaScreenshots')
 			->fieldCondition('id', ' = ' . intval($_GET['id']))

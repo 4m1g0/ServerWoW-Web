@@ -1086,6 +1086,7 @@ class AccountManager_Component extends Component
 
 		$title = addslashes($_POST['title']);
 		$msg = addslashes($_POST['messagebody']);
+		$msg = str_replace(array("\n", "\n\r"), '<br />', $msg);
 
 		// Is user allowed to receive message?
 		$rcv_data = $this->c('Db')->wow()->selectRow("

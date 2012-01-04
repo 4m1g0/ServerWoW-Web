@@ -866,6 +866,13 @@ class Store_Component extends Component
 
 		$this->c('Db')->switchTo('characters', $realmId);
 
+		if (!$this->c('Db')->isDatabaseAvailable('characters', $realmId))
+		{
+			// Check database
+			$this->addErrorMessage('Unable to perform this action: database is not ready!');
+			return false;
+		}
+
 		$op_result = false;
 
 		switch ($operation_type)

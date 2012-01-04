@@ -23,7 +23,7 @@ class Pref_Wow_Controller_Component extends Groupwow_Controller_Component
 	public function build($core)
 	{
 		if (!$this->c('AccountManager')->isLoggedIn())
-			return $this->redirectUrl();
+			return $this->core->redirectUrl();
 
 		$this->ajaxPage();
 
