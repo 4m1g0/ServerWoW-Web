@@ -15,11 +15,6 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 </div>
 		<div class="sidebar">
-	
-	<?php if (in_array($item->item('class'), array(ITEM_CLASS_ARMOR, ITEM_CLASS_WEAPON))) :
-		if (!in_array($item->item('InventoryType'), array(INV_TYPE_FINGER, INV_TYPE_NECK, INV_TYPE_RANGED, INV_TYPE_RELIC, INV_TYPE_TRINKET))) :
-	?>
-	
 	<script type="text/javascript"><!--
 google_ad_client = "ca-pub-5286168753620257";
 /* ServerWoW.com (Armeria-items 300&#42;250) */
@@ -30,7 +25,10 @@ google_ad_height = 250;
 </script>
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</script>	
+	<?php if (in_array($item->item('class'), array(ITEM_CLASS_ARMOR, ITEM_CLASS_WEAPON))) :
+		if (!in_array($item->item('InventoryType'), array(INV_TYPE_FINGER, INV_TYPE_NECK, INV_TYPE_RANGED, INV_TYPE_RELIC, INV_TYPE_TRINKET))) :
+	?>
 	<div class="snippet">
 		<div class="model-viewer">
 				<div class="model" id="model-<?php echo $item->item('entry'); ?>">
@@ -85,7 +83,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 						<img src="<?php echo $this->c('Config')->getValue('site.icons_server'); ?>/18/<?php echo $item->item('icon'); ?>.jpg" alt="" width="14" height="14" />
 					</span>
 				</a>
-				<a href="<?php echo $this->getWowUrl('store/' . $item->getStoreCatId() . '/' . $item->item('entry')); ?>">This item is available in Online Store!</span></span></a>
+				<a href="<?php echo $this->getWowUrl('store/' . $item->getStoreCatId() . '/' . $item->item('entry')); ?>">Este item esta disponible en la Tienda!</span></span></a>
 			</li>
 			<?php endif; ?>
 		</ul>

@@ -116,6 +116,18 @@ $price = $store->getTotalPrice();
 		</div><br/>
 	<?php if ($pagination) echo '<ul class="ui-pagination">' . $pagination . '</ul>'; ?>
 	<span class="clear"><!-- --></span>
+	<br>
+	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Tienda 728&#42;90) */
+google_ad_slot = "1645570674";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
 
 	</div>
 	<div style="float:left;width:230px;position:relative;">
@@ -136,6 +148,19 @@ $price = $store->getTotalPrice();
 			</li>
 		<?php endforeach; ?>
 	</ul>
+	<center>
+	<br>
+	<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Tienda */
+google_ad_slot = "2784653425";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center>
 	</div>
 </div>
 	</div>

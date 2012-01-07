@@ -1,6 +1,19 @@
 <!-- START: Footer -->
 <div id="footer">
 <div id="sitemap" class="promotions">
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Cuenta 728&#42;90) */
+google_ad_slot = "1981192807";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center><br>
 <div class="column">
 <h3 class="bnet">
 <a href="<?php echo CLIENT_FILES_PATH; ?>/" tabindex="100"><?php echo $l->getString('template_footer_home_title'); ?></a>
@@ -15,10 +28,10 @@
 <a href="<?php echo CLIENT_FILES_PATH; ?>" tabindex="100"><?php echo $l->getString('template_footer_games_title'); ?></a>
 </h3>
 <ul>
-<li><a href=""><?php echo $l->getString('template_footer_games_link1'); ?></a></li>
-<li><a href=""><?php echo $l->getString('template_footer_games_link2'); ?></a></li>
-<li><a href=""><?php echo $l->getString('template_footer_games_link3'); ?></a></li>
-<li><a href=""><?php echo $l->getString('template_footer_games_link4'); ?></a></li>
+<li><a href="http://serverwow.com/wow/forum/39/"><?php echo $l->getString('template_footer_games_link1'); ?></a></li>
+<li><a href="http://serverwow.com/wow/forum/40/"><?php echo $l->getString('template_footer_games_link2'); ?></a></li>
+<li><a href="http://serverwow.com/wow/forum/43/"><?php echo $l->getString('template_footer_games_link3'); ?></a></li>
+<li><a href="http://serverwow.com/wow/forum/44/"><?php echo $l->getString('template_footer_games_link4'); ?></a></li>
 </ul>
 </div>
 <div class="column">

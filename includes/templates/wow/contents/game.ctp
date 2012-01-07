@@ -1,12 +1,12 @@
 <div id="wiki" class="wiki directory wiki-index">
 
 		<div class="title">
-			<h2>Guía del juego</h2>
+			<h2>Guía de Juego e Instalacion</h2>
 			<p class="desc">Esta sección está dedicada a ayudarte en la épica fantasía de World of Warcraft, desde tus primeras misiones hasta alcanzar la gloria que te aguarda como un auténtico campeón de Azeroth.</p>
 			
 			<a href="guide/" class="beginners-guide">
-				<strong>Guía para principiantes</strong>
-				<span>Esta completa guía para principiantes te enseñará todo lo que necesitas saber para dar los primeros pasos.</span>
+				<strong>Guía de Juego e Instalacion</strong>
+				<span>Esta completa guía para principiantes te enseñará todo lo que necesitas saber para dar los primeros pasos en Server WoW y World of Warcraft.</span>
 			</a>
 		</div>
 
