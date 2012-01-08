@@ -349,18 +349,18 @@ class AccountManager_Component extends Component
 		return $this->saveUser($user)->loadCharacters();
 	}
 
-	private function loadBanInfo($id)
+	public function loadBanInfo($id)
 	{
 		// Check if user is banned (account bans only, do not check IP bans)
-		$ban = $this->c('QueryResult')
+		$ban = $this->c('QueryResult', 'Db')
 			->model('AccountBanned')
+			->fields(array('AccountBanned' => array('id', 'bandate', 'unbandate', 'bannedby', 'banreason', 'active')))
 			->fieldCondition('id', ' = ' . $id, 'AND')
-			->fieldCondition('unbandate', ' > ' . time(), 'AND')
 			->fieldCondition('active', ' = 1')
 			->loadItem();
-
+			
 		if ($ban)
-			return true;
+			return $ban;
 
 		return false;
 	}
@@ -801,6 +801,34 @@ class AccountManager_Component extends Component
 		}
 	}
 
+	public function changeGameVersion()
+	{
+		if (!$this->isLoggedIn())
+			return false;
+			
+		if (isset($_POST['expansion']) || $_POST['expansion'])
+		{
+		    $expansion = intval($_POST['expansion']);
+			
+		    if ($expansion <=4 && $expansion >=0)
+		    {
+				$edt = $this->c('Editing')
+					->clearValues()
+					->setModel('Account')
+					->setType('update')
+					->setId($this->user('id'))
+					->load();
+
+					$edt->expansion = $expansion;
+					$edt->save()->clearValues();
+					
+					return true;
+			}
+		}
+		else
+			return false;
+	}
+
 	public function changeBonus($amount, $type = -1)
 	{
 		if ($amount < 0)
@@ -1088,39 +1116,37 @@ class AccountManager_Component extends Component
 		$msg = addslashes($_POST['messagebody']);
 		$msg = str_replace(array("\n", "\n\r"), '<br />', $msg);
 
-		// Is user allowed to receive message?
-		$rcv_data = $this->c('Db')->wow()->selectRow("
-		SELECT t1.id, t1.group_id, t2.group_mask FROM wow_accounts AS t1, wow_user_groups AS t2
-		WHERE t1.game_id = %d AND t2.group_id = t1.group_id LIMIT 1", $char['account']);
+		// by default, everybody can receive messages
+		if ($this->isAllowedToReceiveMsg())
+		{
+			$edt = $this->c('Editing')
+				->clearValues()
+				->setModel('WowPrivateMessages')
+				->setType('insert');
 
-		if (!$rcv_data || !isset($rcv_data['group_mask']) || !ADMIN_GROUP_RCV_MSG)
+			$edt->sender_id = $this->user('id');
+			$edt->receiver_id = $char['account'];
+			$edt->send_date = time();
+			$edt->title = $title;
+			$edt->text = $msg;
+			$edt->read = '0';
+			$edt->sender_guid = $this->charInfo('guid');
+			$edt->sender_realmId = $this->charInfo('realmId');
+			$edt->receiver_guid = $char['guid'];
+			$edt->receiver_realmId = $realmId;
+
+			$edt->save()->clearValues();
+
+			unset($edt);
+
+			return true;
+		}
+		else
 		{
 			$this->m_lastErrorIdx = 'template_new_msg_err5';
 			$this->m_success = false;
-			return false;
-		}
-
-		$edt = $this->c('Editing')
-			->clearValues()
-			->setModel('WowPrivateMessages')
-			->setType('insert');
-
-		$edt->sender_id = $this->user('id');
-		$edt->receiver_id = $char['account'];
-		$edt->send_date = time();
-		$edt->title = $title;
-		$edt->text = $msg;
-		$edt->read = '0';
-		$edt->sender_guid = $this->charInfo('guid');
-		$edt->sender_realmId = $this->charInfo('realmId');
-		$edt->receiver_guid = $char['guid'];
-		$edt->receiver_realmId = $realmId;
-
-		$edt->save()->clearValues();
-
-		unset($edt);
-
-		return true;
+			return false;			
+		}			
 	}
 
 	public function isAllowedToReceiveMsg()
@@ -1130,7 +1156,7 @@ class AccountManager_Component extends Component
 
 		return !($this->admin('group_mask') & ADMIN_GROUP_RCV_MSG);
 	}
-
+	
 	public function isAllowedToSendMsg()
 	{
 		if (!$this->isLoggedIn())

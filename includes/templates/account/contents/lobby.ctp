@@ -22,9 +22,25 @@
 </span>
 <span class="account-info">
 <span class="account-link">
-<strong><a href="<?php echo $this->getCoreUrl('account/management/wow/dashboard.html?accountName=' . $this->c('AccountManager')->user('username') . '&amp;region=EU'); ?>">World of Warcraft®</a></strong>
+<?php
+$banned = $this->c('AccountManager')->loadBanInfo($this->c('AccountManager')->user('id'));
+if ($banned)
+{
+?>
+<strong><a href="<?php echo $this->getCoreUrl('account/management/wow/dashboard.html?accountName=' . $this->c('AccountManager')->user('username') . '&amp;region=ES'); ?>">World of Warcraft®</a></strong>
 <span class="account-id">[<?php echo $this->c('AccountManager')->user('username'); ?>] </span>
-<span class="account-region">Local</span>
+<span class="account-region">Cuenta <font color="#990000"><?php echo $l->getString('template_wow_dashboard_account_banned'); ?></font></span>
+<?php
+}
+else
+{
+?>
+<strong><a href="<?php echo $this->getCoreUrl('account/management/wow/dashboard.html?accountName=' . $this->c('AccountManager')->user('username') . '&amp;region=ES'); ?>">World of Warcraft®</a></strong>
+<span class="account-id">[<?php echo $this->c('AccountManager')->user('username'); ?>] </span>
+<span class="account-region"><?php echo $l->getString('template_wow_dashboard_account_active'); ?></span>
+<?php
+}
+?>
 </span>
 </span>
 </li>

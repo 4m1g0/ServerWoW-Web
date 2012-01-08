@@ -51,6 +51,13 @@ class Management_Account_Controller_Component extends Controller_Component
 			else
 				$this->buildBlock('unstuck');
 		}
+		elseif (strtolower(strtolower($this->core->getUrlAction(3)) == 'gameversion.html'))
+		{
+			if ($this->c('AccountManager')->changeGameVersion())
+				$this->buildBlock('lobby');
+			else
+				$this->buildBlock('dashboard');
+		}
 		elseif (strtolower($this->core->getUrlAction(2)) == 'newmessage')
 		{
 			if ($this->c('AccountManager')->isAllowedToSendMsg())

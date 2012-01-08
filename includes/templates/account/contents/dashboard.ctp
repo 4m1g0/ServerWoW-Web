@@ -14,10 +14,39 @@
 <dl>
 <dt class="subcategory"><?php echo $l->getString('template_servicebar_account'); ?></dt>
 <dd class="account-name"><?php echo $account->user('username'); ?></dd>
+<?php
+$banned = $account->user('banned');
+if ($banned)
+{
+?>
+<dt class="subcategory"><?php echo $l->getString('template_wow_dashboard_account_status'); ?></dt>
+<dd class="account-status">
+<strong class="active"><font color="#990000"><?php echo $l->getString('template_wow_dashboard_account_banned'); ?></font></strong>
+</dd>
+<dd class="account-status">
+<strong class="active"><font color="#990000"><?php echo $l->getString('template_wow_dashboard_date_banned'); ?>:</font> <?php echo date('d-m-Y G:i', $banned['bandate']); ?></strong>
+</dd>
+<dd class="account-status">
+<strong class="active"><font color="#990000"><?php echo $l->getString('template_wow_dashboard_date_unbanned'); ?>:</font> <?php echo date('d-m-Y G:i', $banned['unbandate']); ?></strong>
+</dd>
+<dd class="account-status">
+<strong class="active"><font color="#990000"><?php echo $l->getString('template_wow_dashboard_bannedby'); ?>:</font> <?php echo $banned['bannedby']; ?></strong>
+</dd>
+<dd class="account-status">
+<strong class="active"><font color="#990000"><?php echo $l->getString('template_wow_dashboard_banreason'); ?>:</font> <?php echo $banned['banreason']; ?></strong>
+</dd>
+<?php
+}
+else
+{
+?>
 <dt class="subcategory"><?php echo $l->getString('template_wow_dashboard_account_status'); ?></dt>
 <dd class="account-status">
 <strong class="active"><?php echo $l->getString('template_wow_dashboard_account_active'); ?></strong>
 </dd>
+<?php
+}
+?>
 <dt class="subcategory"><?php echo $l->getString('template_wow_dashborad_subscribe'); ?></dt>
 <dd class="account-time">Unlimited
 </dd>
@@ -27,16 +56,19 @@
 <em><?php echo $l->getString('template_wow_dashboard_standart_edition'); ?></em>
 </span>
 </dd>
-<?php
-if ($account->user('expansion') > 0) :
-	for ($i = $account->user('expansion')-1; $i >= 0; --$i) :
-?>
-<dd class="account secondary-account"><?php echo $l->getString('template_game_expansion_' . $i); ?>
-<em><?php echo $l->getString('template_wow_dashboard_standart_edition'); ?></em>
+<dd class="account secondary-account">
+<form method="post" action="gameversion.html" id="change-settings">
+<select name="expansion" class="select">
+<option value="0" <?php if($account->user('expansion')==0) echo 'selected="selected"';?>>Clásico</option>
+<option value="1" <?php if($account->user('expansion')==1) echo 'selected="selected"';?>>The Burning Crusade</option>
+<option value="2" <?php if($account->user('expansion')==2) echo 'selected="selected"';?>>Wrath Of The Lich King</option>
+<option value="3" <?php if($account->user('expansion')==3) echo 'selected="selected"';?>>Cataclysm</option></td>
+<input type="submit" class="button" value="Cambiar versión">
+</form>
 </dd>
-<?php endfor; endif; ?>
+<br>
 <dt class="subcategory"><?php echo $l->getString('template_wow_dashboard_region'); ?></dt>
-<dd class="account-region EU">Europe</dd>
+<dd class="account-region EU">Europa && America Latina</dd>
 
 </dl>
 </div>
@@ -45,6 +77,7 @@ if ($account->user('expansion') > 0) :
 </div>
 </div>
 </div>
+Nota: Si la fecha de baneo es igual a la fecha de desbaneo, el Baneo es PERMANENTE
 </div>
 <!-- SECONDARY -->
 </div>
