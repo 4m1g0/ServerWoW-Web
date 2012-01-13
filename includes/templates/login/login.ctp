@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>ServerWoW : Inicia sesión con tu cuenta de WoW</title>
-<meta name="description" content="ServerWoW Ingresa con tu Cuenta de World of Warcraft, y personaliza tu Cuenta">
+<title>Server WoW : Inicia sesión con tu cuenta de WoW</title>
+<meta name="description" content="Server WoW Ingresa con tu Cuenta de World of Warcraft, y personaliza tu Cuenta">
 <meta name="keywords" content="wow, juegos, multijugador masivo, world of warcraft, blizzlike, cataclysm, wotlk, server, privado">
 <meta http-equiv="imagetoolbar" content="false"/>
 <link rel="stylesheet" type="text/css" href="<?php echo CLIENT_FILES_PATH; ?>/login/static/local-common/css/common.css?v22"/>
@@ -123,8 +123,10 @@ $('#accountName').focus();
 <a href="<?php echo CLIENT_FILES_PATH; ?>/" tabindex="100"><?php echo $l->getString('template_footer_home_title'); ?></a>
 </h3>
 <ul>
-<li><a href="<?php echo CLIENT_FILES_PATH; ?>/what-is/"><?php echo $l->getString('template_footer_home_link1'); ?></a></li>
+<li><a href="server-wow"><?php echo $l->getString('template_footer_home_link1'); ?></a></li>
 <li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/"><?php echo $l->getString('template_footer_home_link4'); ?></a></li>
+<li><a href="refund"><?php echo $l->getString('template_footer_home_link5'); ?></a></li>
+<li><a href="privacy"><?php echo $l->getString('template_footer_home_link6'); ?></a></li>
 </ul>
 </div>
 <div class="column">

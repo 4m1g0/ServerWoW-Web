@@ -139,6 +139,10 @@ class Management_Account_Controller_Component extends Controller_Component
 					break;
 			}
 		}
+		elseif (strtolower($core->getUrlAction(2)) == 'otherpayments')
+		{
+			$this->buildBlock('otherpayments');
+		}
 		else
 			$this->buildBlock('lobby');
 
@@ -172,6 +176,13 @@ class Management_Account_Controller_Component extends Controller_Component
 	{
 		return $this->block()
 			->setTemplate('writemessage', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_otherpayments()
+	{
+		return $this->block()
+			->setTemplate('otherpayments', 'account' . DS . 'contents')
 			->setRegion('pagecontent');
 	}
 

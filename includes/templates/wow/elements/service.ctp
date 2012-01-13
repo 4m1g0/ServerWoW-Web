@@ -15,7 +15,7 @@ echo "(".$unread.")".$l->getString('template_messages');?></a></li>
                     <div class="explore-links" style="float:left;">
                         <ul>
 							<li><a href="http://serversprivados.com/?in=33" target="_blank" tabindex="55"><img src="http://serversprivados.com/vote.jpg" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://www.wowtop.es/" target="_blank" tabindex="55"><img src="http://www.wowtop.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://100ranking.com/" target="_blank" tabindex="55"><img src="http://100ranking.com/button.php?u=nache" width="142" height="52" border="0" alt="Servidor privado"></a></li><!-- Start Servers WoW Code --> 
-<li><a href="http://world-of-warcraft.serverswow.net/?p=vote&v=30" target="_blank" alt="Vota por Server WoW | Server de WoW | Mas de 8000 Jugadores Online | Juega Gratis WoW | Server de World of Warcraft privado!"><img src="http://world-of-warcraft.serverswow.net/vote.jpg" width="142px" height="52px" border="0" /></a><!-- End Servers WoW Code --></li><li>                       
+<li><a href="http://world-of-warcraft.serverswow.net/?p=vote&v=30" target="_blank" alt="Vota por Server WoW | Server de WoW | Mas de 8000 Jugadores Online | Juega Gratis WoW | Server de World of Warcraft privado!"><img src="http://serverswow.net/vote.jpg" width="142px" height="52px" border="0" /></a><!-- End Servers WoW Code --></li><li>                       
                         </ul>
                     </div>
                     <div class="explore-links" style="margin-right:20px;">
@@ -30,44 +30,42 @@ echo "(".$unread.")".$l->getString('template_messages');?></a></li>
  </li>
 
 <li class="service-cell service-explore">
-<a href="#explore" tabindex="50" accesskey="5" class="dropdown" id="explore-link" onclick="return false" style="cursor: progress" rel="javascript"><?php echo $l->getString('template_servicebar_twitter'); ?></a>
+<a href="#explore" tabindex="50" accesskey="5" class="dropdown" id="explore-link" onclick="return false" style="cursor: progress" rel="javascript"><?php echo $l->getString('template_servicebar_explore'); ?></a>
 <div class="explore-menu" id="explore-menu" style="display:none;">
 <div class="explore-primary">
-<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fserverwow&amp;width=292&amp;colorscheme=dark&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=false&amp;height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="false"></iframe>
-<br>
---------------------------------------------------------
-                			<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-			<script>
-			new TWTR.Widget({
-			version: 2,
-			type: 'list',
-			rpp: 10,
-			interval: 6000,
-			width: 380,
-			height: 200,
-			theme: {
-	    		shell: {
-			      background: 'transparent',
-	    		  color: '#7c7c85'
-		    		},
-	    		tweets: {
-		    	  background: 'transparent',
-    			  color: '#D1D4DA',
-			      links: '#2897e0'
-		    }
-			},
-			features: {
-			    scrollbar: true,
-		    	loop: false,
-			    live: false,
-			    hashtags: true,
-			    timestamp: true,
-			    avatars: true,
-			    behavior: 'all'
-			  }
-			}).render().setList('n4ch3', 'lcv').start();
-			</script>
 
+<ul class="explore-nav">
+<li>
+<a href="http://serverwow.com/wow/game/guide/" tabindex="55">
+<strong class="explore-caption"><?php echo $l->getString('template_servicebar_explore_menu_home_title'); ?></strong>
+<?php echo $l->getString('template_servicebar_explore_menu_home_description'); ?>
+</a>
+</li>
+<li>
+<a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/" tabindex="55">
+<strong class="explore-caption"><?php echo $l->getString('template_servicebar_explore_menu_account_title'); ?></strong>
+<?php echo $l->getString('template_servicebar_explore_menu_account_description'); ?>
+</a>
+</li>
+<li>
+<a href="<?php echo CLIENT_FILES_PATH; ?>/forum/" tabindex="55">
+<strong class="explore-caption"><?php echo $l->getString('template_servicebar_explore_menu_support_title'); ?></strong>
+<?php echo $l->getString('template_servicebar_explore_menu_support_description'); ?>
+</a>
+</li>
+</ul>
+<div class="explore-links">
+<h2 class="explore-caption"><?php echo $l->getString('template_servicebar_explore_menu_more_title'); ?></h2>
+<ul>
+<li><a href="<?php echo CLIENT_FILES_PATH; ?>/wow/server-wow/" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link1'); ?></a></li>
+<li><a href="http://serverwow.com/wow/forum/topic/21" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link2'); ?></a></li>
+<li><a href="http://serverwow.com/wow/bugtracker/" tabindex="55"><?php echo $l->getString('template_footer_support_link2'); ?></a></li>
+<li><a href="http://serverwow.com/wow/community/" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link3'); ?></a></li>
+<li><a href="http://serverwow.com/wow/forum/7/" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link4'); ?></a></li>
+<li><a href="http://serverwow.com/wow/status/" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link5'); ?></a></li>
+<li><a href="http://serverwow.com/wow/pvp/arena/" tabindex="55"><?php echo $l->getString('template_servicebar_explore_menu_more_link6'); ?></a></li>
+</ul>
+</div>
 <span class="clear"><!-- --></span>
 <!--[if IE 6]> <iframe id="explore-shim" src="javascript:false;" frameborder="0" scrolling="no" style="display: block; position: absolute; top: 0; left: 9px; width: 409px; height: 400px; z-index: -1;"></iframe>
 <script type="text/javascript">
@@ -82,11 +80,17 @@ shim.style.display = 'block';
 </script>
 <![endif]-->
 </div>
-
-
+<ul class="explore-secondary">
+<li class="explore-game explore-facebook">
+<!-- <div class="fb-like-box" data-href="http://www.facebook.com/ServerWoW" data-width="380" data-height="200" data-colorscheme="dark" data-show-faces="false" data-border-color="grey" data-stream="true" data-header="false"></div>-->
+<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FServerWoW&amp;width=380&amp;colorscheme=dark&amp;show_faces=false&amp;border_color=grey&amp;stream=true&amp;header=false&amp;height=200" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:380px; height:200px;" allowTransparency="true"></iframe>
+</li>
+</ul>
 </div>
 </li>
 </ul>
+
+
 <div id="warnings-wrapper">
 <!--[if IE]>
 <div id="browser-warning" class="warning warning-red">

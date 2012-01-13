@@ -19,8 +19,10 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <a href="<?php echo CLIENT_FILES_PATH; ?>/" tabindex="100"><?php echo $l->getString('template_footer_home_title'); ?></a>
 </h3>
 <ul>
-<li><a href="<?php echo CLIENT_FILES_PATH; ?>/what-is/"><?php echo $l->getString('template_footer_home_link1'); ?></a></li>
+<li><a href="server-wow"><?php echo $l->getString('template_footer_home_link1'); ?></a></li>
 <li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/"><?php echo $l->getString('template_footer_home_link4'); ?></a></li>
+<li><a href="http://serverwow.com/wow/refund"><?php echo $l->getString('template_footer_home_link5'); ?></a></li>
+<li><a href="http://serverwow.com/wow/privacy"><?php echo $l->getString('template_footer_home_link6'); ?></a></li>
 </ul>
 </div>
 <div class="column">

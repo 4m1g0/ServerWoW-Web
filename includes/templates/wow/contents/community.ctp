@@ -78,7 +78,7 @@ google_ad_height = 60;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script></center><br>
 											<span class="title">Facebook</span>
-				<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fserverwow&amp;width=600&amp;colorscheme=dark&amp;show_faces=true&amp;border_color=black&amp;stream=true&amp;header=false&amp;height=300" scrolling="yes" frameborder="0" style="border:none; overflow:hidden; width:600px; height:300px;" allowTransparency="true"></iframe>
+				<div class="fb-like-box" data-href="http://www.facebook.com/ServerWoW" data-width="600" data-height="560" data-colorscheme="dark" data-show-faces="true" data-border-color="grey" data-stream="true" data-header="false"></div>
 				<br>				<br>
 										<div class="title-block">
 							<span class="title">_______________________________________</span>
@@ -86,17 +86,41 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 						</div>
 						<div class="content-block">
 						<br><br>
-						<? /* ?>
-							<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+
+<center><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5286168753620257";
+/* ServerWoW.com (Comunidad 468&#42;60) */
+google_ad_slot = "7125709149";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></center>
+	<span class="clear"><!-- --></span>
+					</div>	
+				</div>
+				
+				<div class="outside-col">
+				
+			<div class="outside-section">
+						<div class="title-block">
 							<span class="title">Twitter</span>
+	<span class="clear"><!-- --></span>
+						</div>
+						<div class="content-block">
+
+							<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+					</div>
 			<script>
 			new TWTR.Widget({
 			version: 2,
 			type: 'list',
 			rpp: 10,
 			interval: 6000,
-			width: 600,
-			height: 150,
+			width: 300,
+			height: 200,
 			theme: {
 	    		shell: {
 			      background: 'transparent',
@@ -119,24 +143,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			  }
 			}).render().setList('n4ch3', 'lcv').start();
 			</script>
-			<? */ ?>
-
-<center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Comunidad 468&#42;60) */
-google_ad_slot = "7125709149";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
-	<span class="clear"><!-- --></span>
-					</div>	
-				</div>
-				
-				<div class="outside-col">
+						</div>
+							
 				
 					<div class="outside-section blizzard-community">
 						<div class="title-block">

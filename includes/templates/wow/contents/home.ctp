@@ -56,7 +56,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
         </div>
 
 		<div id="right" class="ajax-update">
-
+		
 	<div id="sidebar-promo" class="sidebar-module">
 	<div class="bnet-offer">
 		<!--  -->
@@ -86,6 +86,49 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</script>
 	</div>
 	</div>
+
+	<div id="sidebar-promo" class="sidebar-module">
+	<div class="bnet-offer">
+		<!--  -->
+		            		<div class="sidebar-title">
+			            <h3 class="title-bnet-ads">Twitter</h3>
+		            </div>		
+		<div class="bnet-offer-bg">
+							<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+			<script>
+			new TWTR.Widget({
+			version: 2,
+			type: 'list',
+			rpp: 10,
+			interval: 6000,
+			width: 300,
+			height: 200,
+			theme: {
+	    		shell: {
+			      background: 'transparent',
+	    		  color: '#7c7c85'
+		    		},
+	    		tweets: {
+		    	  background: 'transparent',
+    			  color: '#575757',
+			      links: '#2897e0'
+		    }
+			},
+			features: {
+			    scrollbar: true,
+		    	loop: false,
+			    live: false,
+			    hashtags: true,
+			    timestamp: true,
+			    avatars: true,
+			    behavior: 'all'
+			  }
+			}).render().setList('n4ch3', 'lcv').start();
+			</script>
+		</div>
+	</div>
+	</div>
+
 
 	<div class="sidebar-module" id="sidebar-sotd">
 		<div class="sidebar-title">

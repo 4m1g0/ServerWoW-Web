@@ -60,6 +60,13 @@ Flash.expressInstall= '<?php echo CLIENT_FILES_PATH; ?>/wow/player/video-player.
 </script>
 </head>
 <body class="<?php echo $l->getLocale(LOCALE_DOUBLE); ?> logged-in">
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=336076233078446";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="layout-top">
 <div class="wrapper">
 <div id="header">
@@ -99,6 +106,7 @@ Flash.expressInstall= '<?php echo CLIENT_FILES_PATH; ?>/wow/player/video-player.
 <ul>
 <li><a href="<?php echo $this->getAppUrl('account/management/payments'); ?>"><?php echo $l->getString('template_management_menu_parameters_payments_pp'); ?></a></li>
 <li><a href="<?php echo $this->getAppUrl('account/management/smspayments'); ?>"><?php echo $l->getString('template_management_menu_parameters_payments_sms'); ?></a></li>
+<li><a href="<?php echo $this->getAppUrl('account/management/otherpayments'); ?>"><?php echo $l->getString('template_management_menu_parameters_payments_other'); ?></a></li>
 </ul>
 </div>
 </li>

@@ -311,7 +311,8 @@ a.ui-button.imgbutton span span span { padding: 0 5px; }
 /* explore menu */
 .explore-menu { position: absolute; z-index: 85; top: 33px; right: 0; width: 425px; text-align: left; }
 .explore-primary { line-height: 1.5; overflow: hidden; padding: 1em 23px 1em 25px; background: url("../images/service-bar/explore-menu.png") repeat-y 0 0; }
-.explore-secondary { line-height: 1.1; overflow: hidden; padding: 0 7px 33px 9px; height: 217px; background: url("../images/service-bar/explore-menu.png") no-repeat -425px 0; }
+.explore-secondary { line-height: 1.5; overflow: hidden; padding: 1em 23px 1em 25px; background: url("../images/service-bar/explore-menu.png") repeat-y 0 0; }
+/*.explore-secondary { line-height: 1.1; overflow: hidden; padding: 0 7px 33px 9px; height: 217px; background: url("../images/service-bar/explore-menu.png") no-repeat -425px 0; }*/
 .explore-caption { font-size: 16px; line-height: 1.333; color: #393939; letter-spacing: -1px; margin: 0 0 .5em 0; font-weight: bold; display: block; color: #E8EBF0; font-weight: normal; line-height: 1.333; margin: 0; }
 .explore-nav { margin: 0; padding: 0; }
 .explore-nav li { list-style: none; }
@@ -331,6 +332,8 @@ a.ui-button.imgbutton span span span { padding: 0 5px; }
 .explore-secondary { margin: 0; }
 .explore-secondary li { list-style: none; }
 .explore-secondary li { width: 136px; float: left; }
+.explore-secondary .explore-facebook { width: 420px; height: 200px;}
+.explore-secondary .explore-twitter { width: 420px; height: 100px;}
 .explore-secondary .explore-game-wow { width: 137px; }
 .explore-secondary .explore-caption { font-size: 15px; display: block; padding-bottom: 4px; }
 .explore-secondary a { display: block; width: 136px; height: 216px; color: #94989F; }

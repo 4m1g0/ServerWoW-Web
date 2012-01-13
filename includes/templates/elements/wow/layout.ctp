@@ -85,6 +85,14 @@ if (isset($character) && $character && $character->getProfilePage() == 'profile_
 
 </head>
 <body class="<?php echo $l->getLocale(LOCALE_DOUBLE) . ' ' . (isset($body_class) ? $body_class : 'homepage'); if (isset($notify)) echo ' has-notify-bar'; ?>">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=336076233078446";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <?php echo $this->region('adminBox'); ?>
 <?php if (isset($notify)) : ?>
 <div class="notify-bar" id="notify-bar">
