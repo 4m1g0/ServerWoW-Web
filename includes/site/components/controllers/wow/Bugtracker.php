@@ -132,7 +132,31 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 					}
 				}
 				elseif ($this->m_isChangelog)
+				{
 					$block = 'changelog';
+
+					$id = (int) $core->getUrlAction(3);
+					$act = $core->getUrlAction(4);
+
+					if ($id > 0 && in_array($act, array('delete', 'edit')))
+					{
+						if ($act == 'delete')
+						{
+							$this->c('Bugtracker')->deleteChangelogItem($id);
+
+							$this->core->redirectUrl('bugtracker/changelog');
+
+							return $this;
+						}
+						elseif ($act == 'edit')
+						{
+							if (isset($_POST['changelog']))
+								$this->m_errChangelog = $this->c('Bugtracker')->editChangelogItem();
+
+							$block = 'changelog_edit';
+						}
+					}
+				}
 				else
 					$block = 'main';
 			}
@@ -218,6 +242,16 @@ class Bugtracker_Wow_Controller_Component extends Groupwow_Controller_Component
 			->setRegion('pagecontent')
 			->setVar('error_add', $this->m_errChangelog)
 			->setVar('bt', $this->c('Bugtracker'));
+	}
+
+	protected function block_changelog_edit()
+	{
+		return $this->block()
+			->setTemplate('changelog_edit', 'wow' . DS . 'contents' . DS . 'bugtracker')
+			->setRegion('pagecontent')
+			->setVar('error_add', $this->m_errChangelog)
+			->setVar('bt', $this->c('Bugtracker'))
+			->setVar('item', $this->c('Bugtracker')->getChangelogItem((int) $this->core->getUrlAction(3)));
 	}
 
 	protected function block_btMenu()

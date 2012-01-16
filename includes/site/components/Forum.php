@@ -901,6 +901,8 @@ class Forum_Component extends Component
 			return $this->core->redirectUrl('account-status');
 		}
 
+		$isGm = $this->c('AccountManager')->isAllowedToModerate();
+
 		if (!$topicId || !$postData)
 		{
 			$this->c('Log')->writeDebug('%s : user %d (%s) tried to write in topic #%d but there\'s no topicId or postData provided', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'), $topicId);
@@ -918,6 +920,13 @@ class Forum_Component extends Component
 		foreach ($rq_fields as $field => $value)
 			if (!isset($postData[$field]) || ($value == 'notNull' && !$postData[$field]) || ($value != 'notNull' && $postData[$field] != $value))
 				return $this;
+
+		// Flood control
+		if ($this->c('Session')->getSession('forumPostTimeCountdown') - time() > 0 && !$isGm)
+		{
+			// 1 post per 60 seconds (blizzlike)
+			return $this;
+		}
 
 		$lastPost = $this->c('QueryResult', 'Db')
 			->model('WowForumPosts')
@@ -953,7 +962,6 @@ class Forum_Component extends Component
 			->setModel('WowForumPosts')
 			->setType('insert');
 
-		$isGm = $this->c('AccountManager')->isAllowedToModerate();
 
 		$isBluePost = false;
 
@@ -973,6 +981,9 @@ class Forum_Component extends Component
 		$edt->post_num = $lastPost['post_num'] + 1;
 		$edt->edit_date = 0;
 		$edt->deleted = 0;
+
+		// Renew session values
+		$this->c('Session')->setSession('forumPostTimeCountdown', time() + 60);
 
 		$post_id = $edt->save()->getInsertId();
 		$edt->clearValues();
@@ -1116,6 +1127,19 @@ class Forum_Component extends Component
 			->load();
 
 		$edt->deleted = 1;
+		$username = '';
+		$poster_delete = true;
+		if ($this->c('AccountManager')->isAllowedToModerate())
+		{
+			$username = $this->c('AccountManager')->getForumsName();
+			$poster_delete = false;
+		}
+		else
+			$username = $this->c('AccountManager')->charInfo('name');
+
+		$edt->deleted_by = $username;
+		$edt->deleted_by_poster = (int) $poster_delete;
+
 		if ($edt->post_num == 1)
 		{
 			// Deleting first post causes deleting whole thread.
@@ -1126,12 +1150,13 @@ class Forum_Component extends Component
 			$edt->save()->clearValues();
 
 		// Remove from blizztracker
-		$this->c('Editing')
-			->clearValues()
+		$edt->clearValues()
 			->setModel('WowBlizztrackerPosts')
 			->setId($postId)
 			->delete()
 			->clearValues();
+
+		unset($edt);
 
 		return $data;
 	}

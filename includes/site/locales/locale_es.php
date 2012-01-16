@@ -1955,5 +1955,7 @@ El equipo de cuentas de ServerWoW <br />
 	'template_new_msg_err8' => 'Nombre de Reino Necesario',
 	'template_new_msg_err9' => 'El Reino NO Fue encontrado',
 	'template_new_msg_err10' => 'Imposible Realizar la Accion',
+
+	'login_error_username_banned' => '[t] Username banned',
 );
 ?>

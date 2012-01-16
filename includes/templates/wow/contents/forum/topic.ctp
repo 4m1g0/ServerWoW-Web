@@ -139,7 +139,8 @@ if ($posts) :
                                 </td>
                                 <td>
                                     <div class="post-detail">
-										<?php echo $l->format('template_forum_post_deleted_by',  $post['name']); ?>
+										<?php
+										echo $l->format('template_forum_post_deleted_by', ($post['deleted_by'] ? $post['deleted_by'] : $post['name'])); ?>
                                     </div>
 								</td>
                                 <td class="post-info">
@@ -402,11 +403,21 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 							<table class="dynamic-center ">
 								<tr>
 									<td>
+										<?php if (!$this->c('AccountManager')->isAllowedToModerate() && $this->c('Session')->getSession('forumPostTimeCountdown') - time() > 0):  ?>
+										
+										<div id="postCountdown">Periodo de tiempo hasta la siguiente publicación: <span class="postTimeCountdown"><?php echo ($this->c('Session')->getSession('forumPostTimeCountdown') - time()); ?></span>
+											<script type="text/javascript">
+												//<![CDATA[
+													$(function(){
+														Cms.Topic.countDownInit('#postCountdown','#submitBtn');
+													});
+												//]]>
+											</script>
+										</div>
+										<?php endif; ?>
 										<div id="submitBtn">
-											<button	class="ui-button button1 " type="submit">
-												<span>
-													<span><?php echo $l->getString('template_blog_send_report'); ?></span>
-												</span>
+											<button class="ui-button button1 " type="submit">
+												<span><span><?php echo $l->getString('template_blog_send_report'); ?></span></span>
 											</button>
 										</div>
 									</td>

@@ -919,6 +919,7 @@ define('ERORR_NEW_PASSWORD_NOT_MATCH', 256);
 define('ERORR_NEW_PASSWORD_FAIL', 512);
 define('ERROR_USERNAME_TAKEN', 1024);
 define('ERROR_RECAPTCHA_FAILED', 2048);
+define('ERROR_USERNAME_BANNED', 4096);
 
 /** Database Types **/
 define('DB_WORLD',      0);

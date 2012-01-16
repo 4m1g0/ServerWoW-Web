@@ -43,6 +43,7 @@
 					<?php if ($loginError & ERROR_WRONG_USERNAME_OR_PASSWORD) echo '<li>' . $l->getString('login_error_wrong_username_or_password_title') . '</li>'; ?>
 					<?php if ($loginError & ERORR_INVALID_PASSWORD_FORMAT) echo '<li>' . $l->getString('login_error_invalid_password_format_title') . '</li>'; ?>
 					<?php if ($loginError & ERROR_RECAPTCHA_FAILED) echo '<li>' . $l->getString('login_error_invalid_captcha') . '</li>'; ?>
+					<?php if ($loginError & ERROR_USERNAME_BANNED) echo '<li>' . $l->getString('login_error_username_banned') . '</li>'; ?>
 				</ul>
 			</div>
 		<?php endif; ?>

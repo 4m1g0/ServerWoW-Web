@@ -25,7 +25,9 @@
 			</script>
 			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
 		</center>
-		<?php if ($this->c('AccountManager')->isAllowedToBugtracker()) : ?>
+		<?php
+		$isBt = $this->c('AccountManager')->isAllowedToBugtracker();
+		if ($isBt) : ?>
 		<a href="<?php echo $this->getWowUrl('bugtracker/changelog/add'); ?>" class="ui-button button2"><span><span>Add revision to changelog</span></span></a>
 		<?php endif; ?>
 		<div class="item-results" id="item-results">
@@ -38,6 +40,7 @@
 							<th><span class="sort-tab">Commiter</span></th>
 							<th><span class="sort-tab">Description</span></th>
 							<th><span class="sort-tab">Date</span></th>
+							<?php if ($isBt) : ?><th><span class="sort-tab">Operations</span></th><?php endif; ?>
 						</tr>
 					</thead>
 					<tbody>
@@ -53,10 +56,11 @@
 							<td><?php echo $item['commiter']; ?></td>
 							<td><?php echo $item['description']; ?></td>
 							<td><?php echo date('d/m/Y', $item['post_date']); ?></td>
+							<?php if ($isBt) : ?><td><a href="/wow/bugtracker/changelog/<?php echo $item['id'];?>/delete">Delete</a> | <a href="/wow/bugtracker/changelog/<?php echo $item['id'];?>/edit">Edit</a></td><?php endif; ?>
 						</tr>
 						<?php ++$toggleStyle; endforeach; else : ?>
 						<tr class="row1">
-							<td colspan="5" class="align-center">No se ha encontrado ningun resultado</td>
+							<td colspan="<?php echo $isBt ? '6' : '5'; ?>" class="align-center">No se ha encontrado ningun resultado</td>
 						</tr>
 						<?php endif; ?>
 					</tbody>

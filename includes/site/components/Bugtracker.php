@@ -815,9 +815,62 @@ class Bugtracker_Component extends Component
 			->loadItems();
 	}
 
+	public function getChangelogItem($id)
+	{
+		$item = $this->c('QueryResult', 'Db')
+			->model('WowChangelog')
+			->fieldCondition('id', ' = ' . intval($id))
+			->loadItem();
+
+		$item['post_date'] = date('d.m.Y', $item['post_date']);
+
+		return $item;
+	}
+
 	public function getTotalChangelogCount()
 	{
 		return $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_changelog");
+	}
+
+	public function deleteChangelogItem($id)
+	{
+		$id = (int) $id;
+
+		$this->c('Editing')->clearValues()->setModel('WowChangelog')->setType('delete')->setId($id)->delete()->clearValues();
+
+		return true;
+	}
+
+	public function editChangelogItem()
+	{
+		if (!isset($_POST['changelog']))
+			return false;
+
+		$fields = array('revid', 'fixid', 'commiter', 'description', 'post_date');
+
+		foreach ($fields as $f)
+			if (!isset($_POST['changelog'][$f]) || !$_POST['changelog'][$f])
+				return false;
+
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowChangelog')
+			->setType('update')
+			->setId((int)$this->core->getUrlAction(3));
+
+		$edt->revid = $_POST['changelog']['revid'];
+		$edt->fixid = $_POST['changelog']['fixid'];
+		$edt->commiter = $_POST['changelog']['commiter'];
+		$edt->description = $_POST['changelog']['description'];
+		$edt->post_date = strtotime($_POST['changelog']['post_date']);
+
+		$edt->save()->clearValues();
+
+		unset($edt);
+
+		$this->core->redirectUrl('bugtracker/changelog');
+
+		return true;
 	}
 }
 ?>
