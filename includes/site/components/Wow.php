@@ -161,7 +161,7 @@ class Wow_Component extends Component
 					->setType('update')
 					->load();
 
-				$edt->comments_count = $edt->comments_count - 1;
+				$edt->comments_count = max(($edt->comments_count - 1), 0);
 
 				$edt->save()->clearValues();
 				break;

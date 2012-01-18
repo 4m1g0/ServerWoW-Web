@@ -10,7 +10,7 @@
 				data: {comment_id: id},
 				type: 'POST',
 				success: function(data) {
-					if (data == 'ok')
+					if (data.substr(0, 2) == 'ok')
 					{
 						$('#c-' + id).fadeOut();
 						var ccount = parseInt($('#comments_count').text(), 10);
@@ -333,6 +333,7 @@ border: 1px solid #CD9000;
 
 		<div class="comment-interior">
 			<div class="character-info user">
+				<?php if ($c['blizzard']) echo '<img src="/wow/static/images/layout/cms/icon_blizzard.gif" alt="" />'; ?>
 				<div class="user-name">
 					<span class="char-name-code" style="display: none"><?php echo $c['name']; ?></span>
 					<a href="<?php echo $c['url']; ?>" class="wow-class-<?php echo $c['class']; ?>" rel="np"><?php echo $c['name']; ?></a>
