@@ -704,7 +704,7 @@ class Bugtracker_Component extends Component
 			
 		if ($this->c('AccountManager')->loadBanInfo($this->c('AccountManager')->user('id')))
 		{
-			$this->c('Log')->writeDebug('%s : user %s tried to add a comment, but user is banned', __METHOD__, $this->c('AccountManager')->user('id'));
+			$this->c('Log')->writeDebug('%s : user %s tried to create a bug report, but user is banned', __METHOD__, $this->c('AccountManager')->user('id'));
 			return $this->core->redirectUrl('account-status');
 		}
 

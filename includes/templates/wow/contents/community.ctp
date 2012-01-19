@@ -78,7 +78,7 @@ google_ad_height = 60;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script></center><br>
 											<span class="title">Facebook</span>
-				<div class="fb-like-box" data-href="http://www.facebook.com/ServerWoW" data-width="600" data-height="560" data-colorscheme="dark" data-show-faces="true" data-border-color="grey" data-stream="true" data-header="false"></div>
+				<div class="fb-like-box" data-href="http://www.facebook.com/ServerWoW" data-width="600" data-height="800" data-colorscheme="dark" data-show-faces="true" data-border-color="grey" data-stream="true" data-header="false"></div>
 				<br>				<br>
 										<div class="title-block">
 							<span class="title">_______________________________________</span>
@@ -143,8 +143,19 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			  }
 			}).render().setList('n4ch3', 'lcv').start();
 			</script>
+						
 						</div>
 							
+							
+			<div class="outside-section">
+						<div class="title-block">
+							<span class="title">Google +</span>
+	<span class="clear"><!-- --></span>
+						</div>
+						<div class="content-block">
+<g:plus href="https://plus.google.com/117818722165936859038" size="badge"></g:plus>
+					</div>
+						</div>
 				
 					<div class="outside-section blizzard-community">
 						<div class="title-block">
