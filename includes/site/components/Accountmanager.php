@@ -551,12 +551,13 @@ class AccountManager_Component extends Component
 
 		$user['banned'] = $this->loadBanInfo($user['id']);
 
-		if ($user['banned'])
+		// This check is not needed
+		/*if ($user['banned'])
 		{
 			$this->m_loginError |= ERROR_WRONG_USERNAME_OR_PASSWORD;
 			$this->updateLoginError();
 			return false;
-		}
+		}*/
 
 		/// WOW STORE
 		$amount = $this->c('QueryResult', 'Db')

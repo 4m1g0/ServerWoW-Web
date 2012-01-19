@@ -83,6 +83,16 @@ if (isset($character) && $character && $character->getProfilePage() == 'profile_
 </style>
 <?php endif; ?>
 
+<link href="https://plus.google.com/117818722165936859038" rel="publisher" />
+<script type="text/javascript">
+window.___gcfg = {lang: 'es'};
+(function() 
+{var po = document.createElement("script");
+po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(po, s);
+})();
+</script>
 </head>
 <body class="<?php echo $l->getLocale(LOCALE_DOUBLE) . ' ' . (isset($body_class) ? $body_class : 'homepage'); if (isset($notify)) echo ' has-notify-bar'; ?>">
 <div id="fb-root"></div>
