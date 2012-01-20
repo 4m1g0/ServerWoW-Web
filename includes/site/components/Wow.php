@@ -55,7 +55,7 @@ class Wow_Component extends Component
 		if (!$this->c('AccountManager')->isLoggedIn() || !$blog_id || !$text)
 			return $this->core->redirectUrl('');
 			
-		if ($this->c('AccountManager')->loadBanInfo($this->c('AccountManager')->user('id')))
+		if ($this->c('AccountManager')->isBanned())
 		{
 			$this->c('Log')->writeDebug('%s : user %s tried to add a comment, but user is banned', __METHOD__, $this->c('AccountManager')->user('id'));
 			return $this->core->redirectUrl('account-status');

@@ -440,7 +440,6 @@ class Item_Component extends Component
 
 			if ($this->item('RequiredSkill') == SKILL_RIDING)
 			{
-				
 				$line_ability = $this->c('QueryResult', 'Db')
 					->model('WowSkillLineAbility')
 					->fieldCondition('skillId', ' = ' . $this->item('RequiredSkill'))
@@ -514,7 +513,7 @@ class Item_Component extends Component
 		{
 			$spell = $this->c('QueryResult', 'Db')
 				->model('WowSpell')
-				->fields(array('WowSpell' => array('SpellName')))
+				->fields(array('WowSpell' => array('SpellName_en')))
 				->setItemId($this->item('requiredspell'))
 				->loadItem();
 

@@ -1958,5 +1958,6 @@ El equipo de cuentas de ServerWoW <br />
 	'template_blizztracker_jump_first' => '[t] Jump to first ServerWoW Post',
 	'template_forum_message' => '[t] Messages',
 	'template_account_unstuck_success_text' => '[t] Selected character were unstucked!',
+	'template_account_status_info_banned' => '[t] This account was banned <b>%s</b> by <b>%s</b> (reason: <b>%s</b>) <br />and not allowed to post any comments or create new topics/reply on forums.',
 );
 ?>

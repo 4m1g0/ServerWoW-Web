@@ -810,17 +810,6 @@ class Forum_Component extends Component
 			
 		if (!$this->c('AccountManager')->isAllowedToForums())
 			return $this->core->redirectUrl('account-status');
-			
-		// Banned User cannot create Topics in All forums
-		if ($this->c('AccountManager')->loadBanInfo($this->c('AccountManager')->user('id')))
-		{
-			// i guess must be a better way to manage this
-			if ($categoryId != "1001")
-			{
-				$this->c('Log')->writeDebug('%s : user %s tried to create thread in category #%d, but user is banned', __METHOD__, $this->c('AccountManager')->user('id'), $categoryId);
-				return $this->core->redirectUrl('account-status');
-			}
-		}
 
 		$char = $this->c('AccountManager')->getActiveCharacter();
 
@@ -923,13 +912,6 @@ class Forum_Component extends Component
 		if (!$this->c('AccountManager')->isAllowedToForums())
 		{
 			$this->c('Log')->writeDebug('%s : user %d (%s) tried to write in topic #%d without permission to perform this action', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'), $topicId);
-			return $this->core->redirectUrl('account-status');
-		}
-		
-		// Banned User cannot create Post in All forums
-		if ($this->c('AccountManager')->loadBanInfo($this->c('AccountManager')->user('id')))
-		{
-			$this->c('Log')->writeDebug('%s : user %s tried to create a post in the topic #%d, but user is banned', __METHOD__, $this->c('AccountManager')->user('id'), $topicId);
 			return $this->core->redirectUrl('account-status');
 		}
 

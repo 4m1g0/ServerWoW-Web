@@ -354,7 +354,13 @@ class AccountManager_Component extends Component
 		// Check if user is banned (account bans only, do not check IP bans)
 		$ban = $this->c('QueryResult', 'Db')
 			->model('AccountBanned')
-			->fields(array('AccountBanned' => array('id', 'bandate', 'unbandate', 'bannedby', 'banreason', 'active')))
+			->addModel('Account')
+			->join('left', 'Account', 'AccountBanned', 'bannedby', 'id')
+			->fields(array(
+					'AccountBanned' => array('id', 'bandate', 'unbandate', 'bannedby', 'banreason', 'active'),
+					'Account' => array('username')
+				)
+			)
 			->fieldCondition('id', ' = ' . $id, 'AND')
 			->fieldCondition('active', ' = 1')
 			->loadItem();

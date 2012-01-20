@@ -21,6 +21,7 @@
 class Accountstatus_Wow_Controller_Component extends Groupwow_Controller_Component
 {
 	protected $m_customErrorMsg = '';
+
 	protected function setBreadcrumb()
 	{
 		$this->m_breadcrumb = array(
@@ -32,13 +33,23 @@ class Accountstatus_Wow_Controller_Component extends Groupwow_Controller_Compone
 		
 		return $this;
 	}
+
 	public function build($core)
 	{
 		if (!$this->c('AccountManager')->isHaveAnyCharacters())
 			$this->m_customErrorMsg = 'template_account_error_no_characters';
+		if ($ban_info = $this->c('AccountManager')->isBanned())
+		{
+			$this->m_customErrorMsg = $this->c('Locale')->format('template_account_status_info_banned',
+				($ban_info['bandate'] == $ban_info['unbandate'] ? 'permamently' : 'from ' . date('d.m.Y H:i', $ban_info['bandate']) . ' till ' . date('d.m.Y H:i', $ban_info['unbandate'])),
+				($ban_info['bannedby'] && $ban_info['username'] ? $ban_info['username'] : '&lt;unknown user&gt;'),
+				($ban_info['banreason'] ? $ban_info['banreason'] : 'unknown')
+			);
+		}
 
 		$this->buildBlock('status');
 		$this->buildBreadcrumb();
+
 		return $this;
 	}
 

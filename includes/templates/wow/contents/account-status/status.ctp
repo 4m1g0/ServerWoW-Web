@@ -3,7 +3,7 @@
 		<div class="banned-int">
 			<div class="center">
 				<?php if (isset($errorMsg) && $errorMsg)
-					echo $l->getString($errorMsg);
+					echo $errorMsg;
 				else
 					echo $l->getString('template_account_status_info_success');
 				?>
