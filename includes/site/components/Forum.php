@@ -317,16 +317,48 @@ class Forum_Component extends Component
 		return $this->loadTopic()->handleTopic();
 	}
 
-	protected function loadCategory()
+	protected function loadCategoryData($catId = 0, $topicId = 0)
 	{
-		if (($this->m_categoryData && $this->m_categoryTopics) && !$this->m_categoryId)
+		if ($topicId == 0)
+		{
+			if ($catId == 0 && $this->m_categoryId == 0)
+				return $this;
+			elseif ($this->m_categoryId > 0)
+				$catId = $this->m_categoryId;
+		}
+		else
+		{
+			// Find catId by topicId
+			$topic = $this->c('QueryResult')
+				->model('WowForumThreads')
+				->fields(array('WowForumThreads' => array('cat_id')))
+				->fieldCondition('thread_id', ' = ' . intval($topicId))
+				->loadItem();
+
+			if (!$topic)
+				return $this;
+
+			$catId = $topic['cat_id'];
+		}
+
+		if ($catId == 0) // last check
 			return $this;
 
 		$this->m_categoryData = $this->c('QueryResult', 'Db')
 			->model('WowForumCategory')
 			->fieldCondition('gmlevel', ' <= ' . intval($this->c('AccountManager')->user('gmlevel')))
-			->fieldCondition('cat_id', ' = ' . $this->m_categoryId)
+			->fieldCondition('cat_id', ' = ' . $catId)
 			->loadItem();
+
+		return $this;
+	}
+
+	protected function loadCategory()
+	{
+		if (($this->m_categoryData && $this->m_categoryTopics) && !$this->m_categoryId)
+			return $this;
+
+		$this->loadCategoryData();
 
 		if (!$this->m_categoryData)
 			return $this;
@@ -807,9 +839,20 @@ class Forum_Component extends Component
 
 		if (!$categoryId || !$topicData)
 			return $this;
-			
+
+		$this->loadCategoryData($categoryId);
+		if (!$this->m_categoryData)
+		{
+			$this->c('Log')->writeDebug('%s : user %s (ID: %d) tried to create topic in unknown category (#%d)!', __METHOD__, $this->c('AccountManager')->user('username'), $this->c('AccountManager')->user('id'), $categoryId);
+			return $this->core->redirectUrl('forum');
+		}
+
 		if (!$this->c('AccountManager')->isAllowedToForums())
-			return $this->core->redirectUrl('account-status');
+		{
+			// Need to check banned_flag value (if user was banned but category have BANNED_FLAG_ALLOW_TOPICS let him create new thread)
+			if (!($this->m_categoryData['banned_flag'] & BANNED_FLAG_ALLOW_TOPICS))
+				return $this->core->redirectUrl('account-status');
+		}
 
 		$char = $this->c('AccountManager')->getActiveCharacter();
 
@@ -900,6 +943,15 @@ class Forum_Component extends Component
 			$this->c('Log')->writeDebug('%s : anonymous user tried to create post in thread #%d', __METHOD__, $topicId);
 			return $this->core->redirectUrl('account-status');
 		}
+
+		$this->loadCategoryData(0, $topicId);
+
+		if (!$this->m_categoryData)
+		{
+			$this->c('Log')->writeDebug('%s : user %s (ID: %d) tried to answer to topic that placed in unknown category (topicId: %d)!', __METHOD__, $this->c('AccountManager')->user('username'), $this->c('AccountManager')->user('id'), $topicId);
+
+			return $this;
+		}
 		
 		$isGm = $this->c('AccountManager')->isAllowedToModerate();
 
@@ -911,8 +963,12 @@ class Forum_Component extends Component
 
 		if (!$this->c('AccountManager')->isAllowedToForums())
 		{
-			$this->c('Log')->writeDebug('%s : user %d (%s) tried to write in topic #%d without permission to perform this action', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'), $topicId);
-			return $this->core->redirectUrl('account-status');
+			// Check banned_flag value
+			if (!($this->m_categoryData['banned_flag'] & BANNED_FLAG_ALLOW_POSTS))
+			{
+				$this->c('Log')->writeDebug('%s : user %d (%s) tried to write in topic #%d without permission to perform this action', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'), $topicId);
+				return $this->core->redirectUrl('account-status');
+			}
 		}
 
 		$rq_fields = array('xstoken' => 'notNull', 'sessionPersist' => 'forum.topic.post', 'detail' => 'notNull');
@@ -1509,6 +1565,31 @@ class Forum_Component extends Component
 			$this->c('Db')->wow()->query("UPDATE wow_forum_posts SET deleted = 1 WHERE account_id = %d", $account_id);
 
 		return $this->core->redirectUrl('forum/');
+	}
+
+	public function isAllowedToAction($type, $flag, $catId = 0, $topicId = 0)
+	{
+		if ($this->c('AccountManager')->isAllowedToForums())
+			return true; // No additional checks requried
+
+		if (!$this->m_categoryData)
+		{
+			if ($this->m_categoryId > 0)
+				$this->loadCategoryData($this->m_categoryId);
+			elseif ($this->m_topicId > 0)
+				$this->loadCategoryData(0, $this->m_topicId);
+			elseif ($catId > 0)
+				$this->loadCategoryData($catId);
+			elseif ($topicId > 0)
+				$this->loadCategoryData(0, $topicId);
+			else
+				return false;
+		}
+
+		if (isset($this->m_categoryData['banned_flag']) && ($this->m_categoryData['banned_flag'] & $flag))
+			return true;
+
+		return false;
 	}
 }
 ?>

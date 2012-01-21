@@ -25,6 +25,12 @@ Parent Category
 <div class="input checkbox">
 <input type="checkbox" name="cat[realm_cat]" id="realm_cat" value="1" /> <label for="realm_cat">Realm Category</label><br/><br/>
 </div>
+<div class="input checkbox">
+<input type="checkbox" name="cat[banned_flag_allow_topics]" id="banned_flag_allow_topics" value="1" /> <label for="banned_flag_allow_topics">Allow banned users start new topics</label><br/><br/>
+</div>
+<div class="input checkbox">
+<input type="checkbox" name="cat[banned_flag_allow_posts]" id="banned_flag_allow_posts" value="1" /> <label for="banned_flag_allow_posts">Allow banned users answer to created topics</label><br/><br/>
+</div>
 <div class="input text long">
 GM Level Access:
 <input type="text" name="cat[gmlevel]" value="0" size=50 />

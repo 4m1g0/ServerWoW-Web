@@ -30,6 +30,7 @@ class WowForumCategory_Model_Component extends Model_Db_Component
 		'short' => array('type' => 'integer'),
 		'realm_cat' => array('type' => 'integer'),
 		'gmlevel' => array('type' => 'integer'),
+		'banned_flag' => array('type' => 'integer'),
 		'title' => 'Locale',
 		'desc' => 'Locale',
 		'icon' => array('type' => 'string'),

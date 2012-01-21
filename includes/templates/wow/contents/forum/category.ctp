@@ -41,7 +41,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			//]]>
 			</script>
 
-			<a class="ui-button button1 <?php if (!$this->c('AccountManager')->isAllowedToForums()) echo 'disabled'; ?>" href="<?php if ($this->c('AccountManager')->isAllowedToForums()) echo $this->getWowUrl('forum/' . $forum->getCategoryId() . '/topic'); else echo 'javascript:;'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
+			<a class="ui-button button1 <?php if (!$this->c('Forum')->isAllowedToAction('category', BANNED_FLAG_ALLOW_TOPICS)) echo 'disabled'; ?>" href="<?php if ($this->c('Forum')->isAllowedToAction('category', BANNED_FLAG_ALLOW_TOPICS)) echo $this->getWowUrl('forum/' . $forum->getCategoryId() . '/topic'); else echo 'javascript:;'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
 				<span>
 					<span><?php echo $l->getString('template_forums_create_thread'); ?></span>
 				</span>
@@ -161,8 +161,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		<div class="actions-panel">
 			<?php if ($pagination) echo '<ul class="ui-pagination">' . $pagination . '</ul>'; ?>
 
-	<a class="ui-button button1 <?php if (!$this->c('AccountManager')->isAllowedToForums()) echo 'disabled'; ?>" href="<?php if ($this->c('AccountManager')->isAllowedToForums()) echo $this->getWowUrl('forum/' . $forum->getCategoryId() . '/topic'); else echo 'javascript:;'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
-				<span>
+	<a class="ui-button button1 <?php if (!$this->c('Forum')->isAllowedToAction('category', BANNED_FLAG_ALLOW_TOPICS)) echo 'disabled'; ?>" href="<?php if ($this->c('Forum')->isAllowedToAction('category', BANNED_FLAG_ALLOW_TOPICS)) echo $this->getWowUrl('forum/' . $forum->getCategoryId() . '/topic'); else echo 'javascript:;'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
+		<span>
 			<span><?php echo $l->getString('template_forums_create_thread'); ?></span>
 		</span>
 	</a>

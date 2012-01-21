@@ -199,7 +199,7 @@ class Forum_Wow_Controller_Component extends Groupwow_Controller_Component
 			$this->buildBlocks(array('tracker', 'pagination_bt'));
 			$this->buildBreadcrumb();
 		}
-		elseif (strtolower($core->getUrlAction(3)) == 'topic' && $this->c('AccountManager')->isAllowedToForums())
+		elseif (strtolower($core->getUrlAction(3)) == 'topic' && $this->c('Forum')->isAllowedToAction('category', BANNED_FLAG_ALLOW_TOPICS, ((int) $core->getUrlAction(2))))
 		{
 			$category_id = (int) $core->getUrlAction(2);
 			$this->m_isEditing = false;

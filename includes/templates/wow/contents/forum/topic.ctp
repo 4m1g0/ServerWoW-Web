@@ -59,7 +59,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		<div class="forum-actions top">
 			<div class="actions-panel">
 				<?php echo $this->region('pagination'); ?>
-				<a class="ui-button button1<?php if (($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) || !$this->c('AccountManager')->isAllowedToForums()) echo ' disabled'; ?>" href="<?php echo (($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) || !$this->c('AccountManager')->isAllowedToForums()) ? 'javascript:;' : '#new-post'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
+				<a class="ui-button button1<?php if (($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) || !$this->c('Forum')->isAllowedToAction('topic', BANNED_FLAG_ALLOW_POSTS)) echo ' disabled'; ?>" href="<?php echo (($flags & THREAD_FLAG_CLOSED && !$this->c('AccountManager')->isAllowedToModerate()) || !$this->c('Forum')->isAllowedToAction('topic', BANNED_FLAG_ALLOW_POSTS)) ? 'javascript:;' : '#new-post'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
 					<span>
 						<span><?php echo $l->getString('template_blog_add_post'); ?></span>
 					</span>
@@ -354,7 +354,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</div>
 				</div>
 			</form>
-			<?php elseif ($this->c('AccountManager')->isAllowedToForums()) : ?>
+			<?php elseif ($this->c('Forum')->isAllowedToAction('topic', BANNED_FLAG_ALLOW_POSTS)) : ?>
 		<form method="post" onsubmit="return Cms.Topic.postValidate(this);" action="#new-post">
 			<div>
 				<input type="hidden" name="xstoken" value="52df612a-c1dc-4537-98c1-f053f739302e"/>

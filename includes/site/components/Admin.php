@@ -720,9 +720,15 @@ class Admin_Component extends Component
 			->setType('update')
 			->setId($_POST['cat']['id']);
 
+		$banned_flags = array('banned_flag_allow_topics' => BANNED_FLAG_ALLOW_TOPICS, 'banned_flag_allow_posts' => BANNED_FLAG_ALLOW_POSTS);
+		$edt->banned_flag = 0;
 		foreach ($_POST['cat'] as $k => $v)
-			if ($k != 'id' && $k != 'isNew')
+		{
+			if (isset($banned_flags[$k]))
+				$edt->banned_flag |= $banned_flags[$k];
+			elseif ($k != 'id' && $k != 'isNew')
 				$edt->{$k} = $v;
+		}
 
 		if (!isset($_POST['cat']['short']))
 			$edt->short = '0';
@@ -749,9 +755,15 @@ class Admin_Component extends Component
 			->setModel('WowForumCategory')
 			->setType('insert');
 
+		$banned_flags = array('banned_flag_allow_topics' => BANNED_FLAG_ALLOW_TOPICS, 'banned_flag_allow_posts' => BANNED_FLAG_ALLOW_POSTS);
+		$edt->banned_flag = 0;
 		foreach ($_POST['cat'] as $k => $v)
-			if (!in_array($k, array('id', 'isNew', 'title', 'desc')))
+		{
+			if (isset($banned_flags[$k]))
+				$edt->banned_flag |= $banned_flags[$k];
+			elseif (!in_array($k, array('id', 'isNew', 'title', 'desc')))
 				$edt->{$k} = $v;
+		}
 
 		$edt->title_es = $_POST['cat']['title'];
 		$edt->desc_es = $_POST['cat']['desc'];
