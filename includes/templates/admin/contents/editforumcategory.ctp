@@ -20,7 +20,7 @@ Parent Category
 <select name="cat[parent_cat]">
 <option value="0">-None-</option>
 <?php foreach ($cats as $c) : ?>
-<option value="<?php echo $c['cat_id']; ?>"><?php echo $c['title']; ?></option>
+<option value="<?php echo $c['cat_id']; ?>"<?php if ($c['cat_id'] == $cat['cat_id']) echo ' selected="selected"'; ?>><?php echo $c['title']; ?></option>
 <?php endforeach; ?>
 </select>
 </div>

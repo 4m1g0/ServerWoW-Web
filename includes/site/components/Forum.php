@@ -557,15 +557,19 @@ class Forum_Component extends Component
 
 			// read/new
 			$topic['read'] = false;
+			$topic['visited_page'] = 0;
+
 			if (isset($this->m_userVisitedThreads[$topic['thread_id']]))
 			{
 				if ($this->m_userVisitedThreads[$topic['thread_id']]['thread_id'] == $topic['thread_id'])
 				{
 					if ($topic['last_update'] < $this->m_userVisitedThreads[$topic['thread_id']]['visit_tstamp'])
 						$topic['read'] = true;
+
+					$topic['visited_page'] = $this->m_userVisitedThreads[$topic['thread_id']]['visited_page'];
 				}
 			}
-
+			
 			if ($topic['flags'] & THREAD_FLAG_FEATURED)
 				$topics['featured'][$topic['thread_id']] = $topic;
 			elseif ($topic['flags'] & THREAD_FLAG_PINNED)

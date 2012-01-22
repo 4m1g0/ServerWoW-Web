@@ -118,9 +118,13 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 								<?php if ($topic['flags'] & THREAD_FLAG_CLOSED) echo '<img src="' . CLIENT_FILES_PATH . '/wow/static/images/layout/cms/post_locked.gif" alt="" />'; ?>
 							</a>
 					</td>
-					<td class="post-pageNav">
-						&#160;
+					<?php if ($topic['visited_page'] > 0) : ?>
+					<td class="post-pages">
+						<a class="last-read" data-tooltip="Jump to your last read page" href="<?php echo $this->getWowUrl('forum/topic/' . $topic['thread_id'] . '?page=' . $topic['visited_page']); ?>"></a>
+						<!-- comment for ie6 -->
+						<span> </span>
 					</td>
+					<?php endif; ?>
 					<td class="post-author">
 							<?php if ($topic['blizzpost'] == 1):  ?>
 							<span class="type-blizzard">
