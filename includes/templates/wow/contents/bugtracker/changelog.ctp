@@ -54,7 +54,7 @@
 							<td><?php echo $item['revid']; ?></td>
 							<td><?php echo $item['fixid']; ?></td>
 							<td><?php echo $item['commiter']; ?></td>
-							<td><?php echo $item['description']; ?></td>
+							<td><?php echo striptslashes($item['description']); ?></td>
 							<td><?php echo date('d/m/Y', $item['post_date']); ?></td>
 							<?php if ($isBt) : ?><td><a href="/wow/bugtracker/changelog/<?php echo $item['id'];?>/delete">Delete</a> | <a href="/wow/bugtracker/changelog/<?php echo $item['id'];?>/edit">Edit</a></td><?php endif; ?>
 						</tr>
