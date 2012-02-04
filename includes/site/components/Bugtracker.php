@@ -823,7 +823,7 @@ class Bugtracker_Component extends Component
 		return $this->c('QueryResult', 'Db')
 			->model('WowChangelog')
 			->limit(12, ($this->getPage(true) * 12))
-			->order(array('WowChangelog' => array('post_date')), 'DESC')
+			->order(array('WowChangelog' => array('fixid')), 'DESC')  // Date is order in format dd/mm/aaaa so it order first 1/2/2012 than 3/1/2012
 			->loadItems();
 	}
 
