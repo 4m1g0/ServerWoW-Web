@@ -5,7 +5,7 @@ if (!$item) return;
 <script type="text/javascript" language="JavaScript">
 	Bt.setXsToken('<?php echo $this->c('Cookie')->read('xstoken'); ?>');
 	Bt.setId(<?php echo $item['id']; ?>);
-	Bt.setItemInfo({priority: <?php echo $item['priority']; ?>, status: <?php echo $item['status']; ?>, closed: <?php echo $item['closed']; ?>, desc: '<?php echo str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['description']); ?>', response: '<?php echo str_replace(array("\'", "\n", "\r", "\t"), array('\'', '', '', ''), $item['admin_response']); ?>'});
+	Bt.setItemInfo({priority: <?php echo $item['priority']; ?>, status: <?php echo $item['status']; ?>, closed: <?php echo $item['closed']; ?>, desc: '<?php echo str_replace(array("\n", "\r", "\t"), array('', '', ''), $item['description']); ?>', response: '<?php echo str_replace(array("\n", "\r", "\t"), array('', '', ''), $item['admin_response']); ?>'});
 	$(document).ready(function() {
 	//	$('#content').attr('style', 'height:1024px');
 	});

@@ -671,7 +671,8 @@ class Bugtracker_Component extends Component
 			{
 				$comment['date'] = date('d/m/Y H:i', $comment['post_date']);
 				$comment['url'] = $this->getWowUrl('character/' . $comment['realmName'] . '/' . $comment['name']);
-				$comment['comment'] = str_replace(array('<', '>'), array('&lt;', '&gt;'), $comment['comment']);
+				// $comment['comment'] = str_replace(array('<', '>'), array('&lt;', '&gt;'), $comment['comment']); DUPLICATE CODE in addComment method
+				$comment['comment'] = stripslashes($comment['comment']);
 				$comment['comment'] = str_replace(array('[code]', '[/code]'), array('<code style="border-color:#48230b;background:#21130b;color:#fae5cf;display:block;white-space:pre;overflow:auto;border:1px solid black;max-height:1000px;margin:5px 0;padding:10px;-webkit-border-radius:5px; border-radius:5px;font-family:monospace;">', '</code>'), $comment['comment']);
 
 				$comment['comment'] = preg_replace('/\[url\=(.+?)\](.+?)\[\/url\]/six', '<a href="$1" target="_blank">$2</a>', $comment['comment']);
