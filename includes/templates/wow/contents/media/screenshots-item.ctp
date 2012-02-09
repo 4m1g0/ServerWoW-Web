@@ -25,7 +25,7 @@ $("#filter-options").show().hide();
 var galleryType = "images";
 var dataKey = "screenshots:mop";
 var viewType = "film-strip";
-var discussionSigs = ["31389ed691fdb7ef4d62020c6814537f", "c4234abf90c7b9759acbd7cda6eba6ad", "e9b3974a93064cecab76d9cbbd1bdfbd", "1ca986087809f7bf4fd8f2e4e099cc47", "c263db6b43718e29f3609b83f54eeca3", "0ab6bd6bb2f918a6d3d586f2b78c5e62", "3505d6221e1e2c9a46a1d47d3ee9ee46", "50133444dd4a38a93398293407a4a008", "0aecab5054997f7559bf0d9bb17562c1", "ef33e815535084628705b8189a391542", "435e2db87cd86afc54424908d10774d6", "36a2d8225e50d5028384c7a22a314311", "de93aaf58d1c562dab69d043f7b45a54", "0375a2fb57e69780b81808624707970f", "5bfc1a3cc723516c3a1b678de68af104", "5c1086003e50794f92838c90b8cbb4e2", "75670e69564bb8e5a145e56872c7e0b3", "17be98af8372f3f69982bb5b7f0fbdc7", "d3058a89e80f8a562e545ecafaf5669e", "df9005b5f34c942e2d99f812112a5b23", "717dafe67fbca43d4783f9312216a16a", "18f524d44f235800cfc99d71d5ff4557", "93c5e0ca5a0790f7787f36845dc91015", "0a3234f3c0740b2909bbc7eb1e2a84ca", "d6a69324243e01547623fcc136397995", "996bd4058201a1fc3dc36f19602092f9", "ccdff28b2f23e6ddfc5d473374bbbfdd", "1229c99b7ed9de763f64c229803b7607", "0b3eb48d3553207740bd934c3aa04ce0"];
+var discussionSigs = [""];
 <?php
 $items = $media->getVideos();
 if ($items) :
@@ -90,6 +90,21 @@ href="#/<?php echo $i['id']; ?>" onclick="GalleryViewer.loadItem('<?php echo $i[
 <a class="format" href="<?php echo CLIENT_FILES_PATH . '/uploads/screenshots/' . $media->ss('id') . '.jpg'; ?>" onclick="window.open(this.href);return false;">Formato original</a> </dd>
 </dl>
 <span class="clear"><!-- --></span>
+<div>
+<table border='0' cellpadding='7' width='720'>
+<tr>
+<td width='40%'>
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=201748293206869&xfbml=1"></script><fb:like send="true" width="438" show_faces="false" font="" data-colorscheme="dark"></fb:like>
+</td>
+<td width='40%'>
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="serverwow" data-lang="es" data-size="large" data-related="serverwow" data-hashtags="serverwow">Twittear</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</td>
+<td width='10%'>
+<g:plusone></g:plusone>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>

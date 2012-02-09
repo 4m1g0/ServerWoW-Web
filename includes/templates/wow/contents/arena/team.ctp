@@ -33,6 +33,21 @@
 				</div>
 
 				<div class="under-name">
+<div>
+<table border='0' cellpadding='7' width='50%'>
+<tr>
+<td width='25%'>
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=201748293206869&xfbml=1"></script><fb:like send="true" width="400" show_faces="false" font="" data-colorscheme="dark"></fb:like>
+</td>
+<td width='10%'>
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="serverwow" data-lang="es" data-related="serverwow" data-hashtags="serverwow">Twittear</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</td>
+<td width='5%'>
+<g:plusone size="medium"></g:plusone>
+</tr>
+</table>
+</div>
 					<?php echo $l->extraFormat('template_arena_team_info_fmt',
 						array(
 							'format' => $l->format('template_team_type_format', $team['type'], $team['type']),

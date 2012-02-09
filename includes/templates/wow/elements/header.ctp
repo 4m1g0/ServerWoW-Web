@@ -6,7 +6,7 @@
 </div>
 </form>
 <g:plusone></g:plusone>
-<div><a href="https://plus.google.com/117818722165936859038?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></div>
+<div><a href="https://plus.google.com/117818722165936859038?prsrc=3" style="text-decoration:none;" target="_blank"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></div>
 </div>
 <h1 id="logo"><a href="<?php echo $this->getWowUrl(); ?>">World of Warcraft</a></h1>
 <div class="header-plate">
