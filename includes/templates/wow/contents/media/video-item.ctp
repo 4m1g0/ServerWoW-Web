@@ -24,6 +24,8 @@ $("#filter-options").show().hide();
 var galleryType = "videos";
 var dataKey = "videos";
 var viewType = "film-strip";
+var indices = [""];
+var itemPaths = [""];
 var discussionSigs = ["" ];
 var videoData = [{ flv: "/" } ];
 if (location.hash) {
