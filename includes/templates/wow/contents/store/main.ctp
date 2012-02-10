@@ -1,3 +1,12 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Tienda-Bloque_Lateral_Izquierdo:Abajo', [200, 200], 'div-gpt-ad-1328892533800-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Tienda-Centro:Abajo', [728, 90], 'div-gpt-ad-1328892533800-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 <div class="media-content">
 <div class="media-content">
 
@@ -117,17 +126,12 @@ $price = $store->getTotalPrice();
 	<?php if ($pagination) echo '<ul class="ui-pagination">' . $pagination . '</ul>'; ?>
 	<span class="clear"><!-- --></span>
 	<br>
-	<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Tienda 728&#42;90) */
-google_ad_slot = "1645570674";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<!-- ServerWoW:Tienda-Centro:Abajo -->
+<div id='div-gpt-ad-1328892533800-1' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328892533800-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 
 	</div>
 	<div style="float:left;width:230px;position:relative;">
@@ -150,17 +154,13 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</ul>
 	<center>
 	<br>
-	<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Tienda */
-google_ad_slot = "2784653425";
-google_ad_width = 200;
-google_ad_height = 200;
-//-->
+<!-- ServerWoW:Tienda-Bloque_Lateral_Izquierdo:Abajo -->
+<div id='div-gpt-ad-1328892533800-0' style='width:200px; height:200px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328892533800-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
+</div>
+</center>
 	</div>
 </div>
 	</div>

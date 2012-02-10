@@ -1,3 +1,10 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Juego:Estado-Centro', [336, 280], 'div-gpt-ad-1328883397417-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
 <div class="content-header">
 				<h2 class="header ">Estado de los reinos</h2>
 
@@ -5,20 +12,6 @@
 		<div class="desc">Esta página muestra todos los reinos de World of Warcraft disponibles, así como su estado actual. Un reino puede aparecer como ACTIVO o NO ACTIVO. Los mensajes sobre el estado del reino y los horarios de mantenimiento se publicarán en los foros del <a href="http://serverwow.com/wow/forum/8/">Estado del servicio</a>. Queremos pedir disculpas de antemano si tu reino aparece como “no activo”. Lo más probable es que ya estemos trabajando para reactivarlo lo antes posible.</div>
 	<span class="clear"><!-- --></span>
 	</div>
-
-	
-	<center>
-	<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Estado 728&#42;90) */
-google_ad_slot = "2183527149";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
 
 	<div id="realm-status">
 	<ul class="tab-menu ">
@@ -128,27 +121,13 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</div>
 	</div>
 
-<center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Estado 300&#42;250) */
-google_ad_slot = "3702053257";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
+<center>
+<!-- ServerWoW:Juego:Estado-Centro -->
+<div id='div-gpt-ad-1328883397417-0' style='width:336px; height:280px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Estado 300&#42;250) */
-google_ad_slot = "3702053257";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center>
 		<div id="all-realms">
 	<div class="table full-width">

@@ -1,18 +1,21 @@
-<center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Media-videos-screenshots 728&#42;90) */
-google_ad_slot = "8381664734";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Medios-Centro:Arriba', [728, 90], 'div-gpt-ad-1328887221789-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-</center>
-<div class="media-content">
 
+<center>
+<!-- ServerWoW:Medios-Centro:Arriba -->
+<div id='div-gpt-ad-1328887221789-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328887221789-0'); });
+</script>
+</div>
+</center>
+
+<div class="media-content">
 <!--[if IE]>
 <script type="text/javascript">
 //<![CDATA[

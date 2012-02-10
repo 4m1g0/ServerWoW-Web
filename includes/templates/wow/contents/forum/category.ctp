@@ -1,15 +1,19 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Foros:Categoria-Centro:Abajo', [728, 90], 'div-gpt-ad-1328890364205-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Foros:Categoria-Centro:Arriba', [728, 90], 'div-gpt-ad-1328890364205-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 <center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Foro-general 728&#42;90) */
-google_ad_slot = "5762382137";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<!-- ServerWoW:Foros:Categoria-Centro:Arriba -->
+<div id='div-gpt-ad-1328890364205-1' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328890364205-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center>
 
 <?php if (!isset($forum) || !$forum) return; ?>
@@ -118,13 +122,16 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 								<?php if ($topic['flags'] & THREAD_FLAG_CLOSED) echo '<img src="' . CLIENT_FILES_PATH . '/wow/static/images/layout/cms/post_locked.gif" alt="" />'; ?>
 							</a>
 					</td>
-					<?php if ($topic['visited_page'] > 0) : ?>
+					<td class="post-pageNav">
+					&#160;
+					</td>
+					<?php /* if ($topic['visited_page'] > 0) : ?>
 					<td class="post-pages">
 						<a class="last-read" data-tooltip="Jump to your last read page" href="<?php echo $this->getWowUrl('forum/topic/' . $topic['thread_id'] . '?page=' . $topic['visited_page']); ?>"></a>
 						<!-- comment for ie6 -->
 						<span> </span>
 					</td>
-					<?php endif; ?>
+					<?php endif; */ ?>
 					<td class="post-author">
 							<?php if ($topic['blizzpost'] == 1):  ?>
 							<span class="type-blizzard">
@@ -163,6 +170,16 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
     <div class="forum-actions topic-bottom">
 		<div class="actions-panel">
+		
+<center>
+<!-- ServerWoW:Foros:Categoria-Centro:Abajo -->
+<div id='div-gpt-ad-1328890364205-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328890364205-0'); });
+</script>
+</div>
+</center>
+<br><br>		
 			<?php if ($pagination) echo '<ul class="ui-pagination">' . $pagination . '</ul>'; ?>
 
 	<a class="ui-button button1 <?php if (!$this->c('Forum')->isAllowedToAction('category', BANNED_FLAG_ALLOW_TOPICS)) echo 'disabled'; ?>" href="<?php if ($this->c('Forum')->isAllowedToAction('category', BANNED_FLAG_ALLOW_TOPICS)) echo $this->getWowUrl('forum/' . $forum->getCategoryId() . '/topic'); else echo 'javascript:;'; ?>"<?php if (!$this->c('AccountManager')->isLoggedIn()) : ?> onclick="return Login.open('<?php echo $this->getCoreUrl('login/login.frag'); ?>');"<?php endif; ?>>
@@ -177,16 +194,3 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     </div>
         </div>
     </div>
-<center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Foro-general 728&#42;90) */
-google_ad_slot = "5762382137";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-</center>

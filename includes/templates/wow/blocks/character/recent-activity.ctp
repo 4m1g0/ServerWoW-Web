@@ -1,18 +1,21 @@
 <div class="profile-recentactivity">
 
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Character-Centro_Derecha:Abajo', [336, 280], 'div-gpt-ad-1328908404498-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 <h3 class="category ">Publicidad</h3>
 <div class="profile-box-simple">
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Armeria Characters 336&#42;280) */
-google_ad_slot = "3190607740";
-google_ad_width = 336;
-google_ad_height = 280;
-//-->
+<!-- ServerWoW:Character-Centro_Derecha:Abajo -->
+<div id='div-gpt-ad-1328908404498-0' style='width:336px; height:280px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328908404498-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </div>
 
 	<h3 class="category "><?php echo $l->getString('template_profile_recent_activity'); ?></h3>

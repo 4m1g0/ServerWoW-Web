@@ -1,3 +1,12 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Foros-Bloque_Lateral_Derecho:Abajo', [300, 250], 'div-gpt-ad-1328889133628-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Foros-Bloque_Lateral_Derecho:Arriba', [300, 250], 'div-gpt-ad-1328889133628-1').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Foros-Centro', [468, 60], 'div-gpt-ad-1328889133628-2').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
 <script type="text/javascript">
 	$(function(){Cms.Station.init();});
 </script>
@@ -56,17 +65,14 @@
 					<div id="forum-list">
 						<div id="forum-list-interior">
 						
-						<center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Foro 468&#42;60) */
-google_ad_slot = "9580528937";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
+						<center>
+<!-- ServerWoW:Foros-Centro -->
+<div id='div-gpt-ad-1328889133628-2' style='width:468px; height:60px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328889133628-2'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
+</div>
+</center>
 						
 						<?php
 						$categories = $forum->getIndexCategories();
@@ -127,17 +133,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					<div class="readmore">
 						Publicidad
 					</div>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Foro Home 300&#42;250) */
-google_ad_slot = "1246992851";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
+<!-- ServerWoW:Foros-Bloque_Lateral_Derecho:Arriba -->
+<div id='div-gpt-ad-1328889133628-1' style='width:300px; height:250px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328889133628-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
                     </div>
 					
 				<br><div id="popular-topics">
@@ -188,17 +189,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					<div class="readmore">
 						Publicidad
 					</div>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Foro Home 300&#42;250) */
-google_ad_slot = "1246992851";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
+<!-- ServerWoW:Foros-Bloque_Lateral_Derecho:Abajo -->
+<div id='div-gpt-ad-1328889133628-0' style='width:300px; height:250px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328889133628-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
                     </div><br>
 	
 					

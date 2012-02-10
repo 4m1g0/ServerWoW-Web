@@ -1,31 +1,30 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Items-Bloque_Lateral_Derecho', [300, 250], 'div-gpt-ad-1328910445828-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Items-Centro_Izquierda:Arriba', [468, 60], 'div-gpt-ad-1328910445828-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 	<div id="wiki" class="wiki wiki-item">
 	
 	<br>
 	<div style="margin-left:30px">
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (items 728&#42;90) */
-google_ad_slot = "5245760639";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+<!-- ServerWoW:Items-Centro_Izquierda:Arriba -->
+<div id='div-gpt-ad-1328910445828-1' style='width:468px; height:60px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328910445828-1'); });
 </script>
 </div>
+</div>
 		<div class="sidebar">
-	<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Armeria-items 300&#42;250) */
-google_ad_slot = "3165312077";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
+<!-- ServerWoW:Items-Bloque_Lateral_Derecho -->
+<div id='div-gpt-ad-1328910445828-0' style='width:300px; height:250px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328910445828-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>	
+</div>
 	<?php if (in_array($item->item('class'), array(ITEM_CLASS_ARMOR, ITEM_CLASS_WEAPON))) :
 		if (!in_array($item->item('InventoryType'), array(INV_TYPE_FINGER, INV_TYPE_NECK, INV_TYPE_RANGED, INV_TYPE_RELIC, INV_TYPE_TRINKET))) :
 	?>

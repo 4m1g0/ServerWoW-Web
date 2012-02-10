@@ -1,3 +1,12 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Juego:BugTracker-Centro', [728, 90], 'div-gpt-ad-1328884482492-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Juego:BugTracker-Centro:Abajo', [728, 90], 'div-gpt-ad-1328884482492-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 <div class="media-content">
 <div class="media-content">
 
@@ -47,17 +56,14 @@
 					<span class="clear"><!-- --></span>
 					<br />
 			</form>
-			<center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Bugtracker 728&#42;90) */
-google_ad_slot = "5141927827";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+			<center>
+<!-- ServerWoW:Juego:BugTracker-Centro -->
+<div id='div-gpt-ad-1328884482492-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328884482492-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
+</div>
+</center>
 		<div class="item-results" id="item-results">
 			<div class="table full-width">
 				<table>
@@ -101,17 +107,14 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			</ul>
 	<span class="clear"><!-- --></span>
 	<br>
-<center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Bugtracker 728&#42;90) */
-google_ad_slot = "5141927827";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<center>
+<!-- ServerWoW:Juego:BugTracker-Centro:Abajo -->
+<div id='div-gpt-ad-1328884482492-1' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328884482492-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
+</div>
+</center>
 	</div>
 
 	<div style="float:left;width:230px;position:relative;">

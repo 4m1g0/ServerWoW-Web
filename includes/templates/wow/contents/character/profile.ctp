@@ -1,14 +1,20 @@
-<div align="right" style="margin-right:30px"><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Blog 468&#42;60) */
-google_ad_slot = "3890262694";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Character-Centro_Derecha:Arriba', [468, 60], 'div-gpt-ad-1328908353137-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Character-Centro_Izquierda:Abajo', [468, 60], 'div-gpt-ad-1328908353137-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></div>
+
+<div align="right" style="margin-right:30px">
+<!-- ServerWoW:Character-Centro_Derecha:Arriba -->
+<div id='div-gpt-ad-1328908353137-0' style='width:468px; height:60px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328908353137-0'); });
+</script>
+</div>
+</div>
 
 <?php $profileType = $character->getProfileType(); ?>
 <div class="summary-top">
@@ -159,17 +165,14 @@ endif; ?>
 
 <?php if ($this->issetRegion('recentActivity')) echo $this->region('recentActivity'); ?>
 		<div class="summary-bottom-left">
-		<center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Personaje 468&#42;60) */
-google_ad_slot = "0614753472";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
+		<center>
+		<!-- ServerWoW:Character-Centro_Izquierda:Abajo -->
+<div id='div-gpt-ad-1328908353137-1' style='width:468px; height:60px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328908353137-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
+</div>
+</center>
 <br>
 			<div class="summary-talents" id="summary-talents">
 				<ul>

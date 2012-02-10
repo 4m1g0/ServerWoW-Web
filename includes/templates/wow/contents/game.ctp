@@ -1,3 +1,12 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Juego-Centro', [728, 90], 'div-gpt-ad-1328835997967-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Juego-Centro:Abajo', [728, 90], 'div-gpt-ad-1328835997967-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 <div id="wiki" class="wiki directory wiki-index">
 
 		<div class="title">
@@ -11,17 +20,12 @@
 		</div>
 
 <center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Juego 728&#42;90) */
-google_ad_slot = "5115960124";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<!-- ServerWoW:Juego-Centro -->
+<div id='div-gpt-ad-1328835997967-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center>
 
 		<div class="index">
@@ -614,17 +618,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</div>
 
 <center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Juego 728&#42;90) */
-google_ad_slot = "5115960124";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<!-- ServerWoW:Juego-Centro:Abajo -->
+<div id='div-gpt-ad-1328835997967-1' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center>
 	<span class="clear"> </span>
 	</div>

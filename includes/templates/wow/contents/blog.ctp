@@ -1,3 +1,13 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Blog-Bloque_Lateral_Derecho:Abajo', [300, 250], 'div-gpt-ad-1328835256314-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Blog-Bloque_Lateral_Derecho:Arriba', [300, 250], 'div-gpt-ad-1328835256314-1').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Blog-Centro', [468, 60], 'div-gpt-ad-1328835256314-2').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 <script type="text/javascript">
         //<![CDATA[
 		$(function(){ Cms.Blog.init(); })
@@ -54,17 +64,13 @@
 							
 <center>
 <br>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Blog 468&#42;60) */
-google_ad_slot = "3890262694";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
+<!-- ServerWoW:Blog-Centro -->
+<div id='div-gpt-ad-1328835256314-2' style='width:468px; height:60px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835256314-2'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>							
+</div>
+</center>							
 
 						<div class="detail"><?php echo $item['text']; ?>
 <style type="text/css">
@@ -387,26 +393,13 @@ border: 1px solid #CD9000;
 			            <h3 class="title-bnet-ads">PUBLICIDAD</h3>
 		            </div>
 		<div class="bnet-offer-bg">
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com Blog (300&#42;250) */
-google_ad_slot = "1662060769";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
+<!-- ServerWoW:Blog-Bloque_Lateral_Derecho:Arriba -->
+<div id='div-gpt-ad-1328835256314-1' style='width:300px; height:250px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835256314-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 		</div>
-		<script type="text/javascript">
-			//<![CDATA[
-				if(typeof (BnetAds.addEvent) != "undefined" )
-					BnetAds.addEvent(window, 'load', function(){ BnetAds.trackEvent('2555187', 'Trial-EU', 'wow'); } );
-				else
-					BnetAds.trackEvent('2555187', 'Trial-EU', 'wow');
-			//]]>
-		</script>
 	</div>
 			</div>
 
@@ -429,26 +422,13 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 			            <h3 class="title-bnet-ads">PUBLICIDAD</h3>
 		            </div>
 		<div class="bnet-offer-bg">
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com Blog (300&#42;250) */
-google_ad_slot = "1662060769";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
+<!-- ServerWoW:Blog-Bloque_Lateral_Derecho:Abajo -->
+<div id='div-gpt-ad-1328835256314-0' style='width:300px; height:250px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835256314-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 		</div>
-		<script type="text/javascript">
-			//<![CDATA[
-				if(typeof (BnetAds.addEvent) != "undefined" )
-					BnetAds.addEvent(window, 'load', function(){ BnetAds.trackEvent('2555187', 'Trial-EU', 'wow'); } );
-				else
-					BnetAds.trackEvent('2555187', 'Trial-EU', 'wow');
-			//]]>
-		</script>
 	</div>
 			</div>
 			

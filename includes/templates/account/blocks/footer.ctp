@@ -1,18 +1,35 @@
 <!-- START: Footer -->
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Cuenta-Centro:Abajo', [728, 90], 'div-gpt-ad-1328911235913-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
 <div id="footer">
 <div id="sitemap" class="promotions">
 <center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Cuenta 728&#42;90) */
-google_ad_slot = "1981192807";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<!-- ServerWoW:Cuenta-Centro:Abajo -->
+<div id='div-gpt-ad-1328911235913-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328911235913-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center><br>
 <div class="column">
 <h3 class="bnet">

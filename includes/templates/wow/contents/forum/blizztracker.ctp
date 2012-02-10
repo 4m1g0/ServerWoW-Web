@@ -1,3 +1,11 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Foros:BlizzTracker-Centro:Arriba', [728, 90], 'div-gpt-ad-1328891670604-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 <div id="forum-content" class="bluetracker">
 	<div class="forum-actions top">
 		<div class="actions-panel">
@@ -9,17 +17,12 @@
 	</div>
 
 <center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Blizztracker 728&#42;90) */
-google_ad_slot = "8702490541";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<!-- ServerWoW:Foros:BlizzTracker-Centro:Arriba -->
+<div id='div-gpt-ad-1328891670604-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328891670604-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center>
 
     <div id="posts-container">

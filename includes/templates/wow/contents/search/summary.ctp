@@ -1,15 +1,18 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Busqueda-Centro:Arriba', [728, 90], 'div-gpt-ad-1328909434585-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 <center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Search 728&#42;90) */
-google_ad_slot = "2771465252";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<!-- ServerWoW:Busqueda-Centro:Arriba -->
+<div id='div-gpt-ad-1328909434585-0' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328909434585-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center>
 
 <div class="search">
@@ -62,19 +65,6 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	?>
 	</ul>
 		</div>
-		
-<center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Search 728&#42;90) */
-google_ad_slot = "2771465252";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-</center>
+
 	<span class="clear"><!-- --></span>
 	</div>

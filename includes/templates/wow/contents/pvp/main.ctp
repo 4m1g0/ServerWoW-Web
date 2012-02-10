@@ -1,3 +1,12 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:PvP-Bloque_Lateral_Izquierdo:Abajo', [200, 200], 'div-gpt-ad-1328880547085-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:PvP-Centro:Arriba', [728, 90], 'div-gpt-ad-1328848630388-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 <?php
 $bg = $this->c('Config')->getValue('site.battlegroup');
 ?>
@@ -11,17 +20,12 @@ $bg = $this->c('Config')->getValue('site.battlegroup');
 			<div class="top-title">
 				<h3 class="category ">Mejores Equipos de Arenas</h3>
 				<center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Juego-PvP 728&#42;90) */
-google_ad_slot = "3035081840";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
+<!-- ServerWoW:PvP-Centro:Arriba -->
+<div id='div-gpt-ad-1328848630388-1' style='width:728px; height:90px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328848630388-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center>
 				<span class="clear"><!-- --></span>
 			</div>
@@ -70,8 +74,16 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	<span class="clear"><!-- --></span>
 			</div>
 		</div>
-	
+
 		<div class="pvp-left">
+<script type='text/javascript'>
+(function() {
+var useSSL = 'https:' == document.location.protocol;
+var src = (useSSL ? 'https:' : 'http:') +
+'//www.googletagservices.com/tag/js/gpt.js';
+document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+})();
+</script>
 			<ul class="dynamic-menu" id="menu-pvp">
 				<li class="root-item item-active">
 					<a href="<?php echo $this->getWowUrl('pvp/'); ?>">
@@ -89,18 +101,14 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 				</li>
 				<?php endforeach; ?>
 				<li>
-			<center><br>
-			<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (PvP 200&#42;200) */
-google_ad_slot = "3061949748";
-google_ad_width = 200;
-google_ad_height = 200;
-//-->
+<br>
+<center>
+<!-- ServerWoW:PvP-Bloque_Lateral_Izquierdo:Abajo -->
+<div id='div-gpt-ad-1328880547085-0' style='width:200px; height:200px;'>
+<script type='text/javascript'>
+googletag.display('div-gpt-ad-1328880547085-0');
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center>
 </li>
 			</ul>

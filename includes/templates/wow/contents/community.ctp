@@ -1,3 +1,12 @@
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Comunidad-Bloque_Lateral_Derecho', [300, 250], 'div-gpt-ad-1328886177869-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:Comunidad-Centro', [468, 60], 'div-gpt-ad-1328886177869-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
 	<div class="top-banner">
 	<?php echo $this->c('Document')->releaseJs('contents'); ?>
 
@@ -66,17 +75,15 @@
 			<div class="content-wrapper">
 				<div class="inside-col">
 				<br>
-				<center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Comunidad 468&#42;60) */
-google_ad_slot = "7125709149";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
+				<center>
+<!-- ServerWoW:Comunidad-Centro -->
+<div id='div-gpt-ad-1328886177869-1' style='width:468px; height:60px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328886177869-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center><br>
+</div>
+</center>
+<br>
 											<span class="title">Facebook</span>
 				<div class="fb-like-box" data-href="http://www.facebook.com/ServerWoW" data-width="600" data-height="800" data-colorscheme="dark" data-show-faces="true" data-border-color="grey" data-stream="true" data-header="false"></div>
 				<br>				<br>
@@ -87,17 +94,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 						<div class="content-block">
 						<br><br>
 
-<center><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Comunidad 468&#42;60) */
-google_ad_slot = "7125709149";
-google_ad_width = 468;
-google_ad_height = 60;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></center>
+				<center>
+</center>
 	<span class="clear"><!-- --></span>
 					</div>	
 				</div>
@@ -163,18 +161,13 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	<span class="clear"><!-- --></span>
 						</div>
 						<div class="content-block">
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Comunidad 300&#42;250) */
-google_ad_slot = "5936098316";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
+<!-- ServerWoW:Comunidad-Bloque_Lateral_Derecho -->
+<div id='div-gpt-ad-1328886177869-0' style='width:300px; height:250px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328886177869-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-						</div>
+</div>
+				</div>
 					</div>
 										
 					<div class="outside-section social-media">

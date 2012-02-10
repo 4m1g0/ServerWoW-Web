@@ -1,5 +1,13 @@
-<div id="profile-wrapper" class="profile-wrapper profile-wrapper-<?php echo $team['faction_text']; ?>">
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:PvP:Arena:Equipos-Bloque_Lateral_Izquierdo:Abajo', [160, 600], 'div-gpt-ad-1328882788522-0').addService(googletag.pubads());
+googletag.defineSlot('/7727819/ServerWoW:PvP:Arena:Equipos-Centro', [336, 280], 'div-gpt-ad-1328882788522-1').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
 
+<div id="profile-wrapper" class="profile-wrapper profile-wrapper-<?php echo $team['faction_text']; ?>">
 		<div class="profile-sidebar-anchor">
 			<div class="profile-sidebar-outer">
 				<div class="profile-sidebar-inner">
@@ -89,18 +97,14 @@
 
 			</li>
 			<li>
-			<center><br>
-			<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Arena 160&#42;600) */
-google_ad_slot = "8011449342";
-google_ad_width = 160;
-google_ad_height = 600;
-//-->
+			<center>
+<br>
+<!-- ServerWoW:PvP:Arena:Equipos-Bloque_Lateral_Izquierdo:Abajo -->
+<div id='div-gpt-ad-1328882788522-0' style='width:160px; height:600px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328882788522-0'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+</div>
 </center>
 			</li>
 
@@ -172,30 +176,14 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</div>
 
 				<div class="summary-roster">
-				
 <center>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Arena 300&#42;250) */
-google_ad_slot = "9777950991";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
+<!-- ServerWoW:PvP:Arena:Equipos-Centro -->
+<div id='div-gpt-ad-1328882788522-1' style='width:336px; height:280px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328882788522-1'); });
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script><script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Arena 300&#42;250) */
-google_ad_slot = "9777950991";
-google_ad_width = 300;
-google_ad_height = 250;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-</center><br>
+</div>
+</center>
 				
 					<div class="ui-dropdown" id="filter-timeframe">
 						<select>

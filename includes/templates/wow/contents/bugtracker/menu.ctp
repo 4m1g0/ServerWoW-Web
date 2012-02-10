@@ -26,18 +26,22 @@
 			<?php endforeach; ?>
 			<li<?php if ($this->core->getUrlAction(2) == 'changelog') echo ' class="item-active"'; ?>><a href="<?php echo $this->getWowUrl('bugtracker/changelog'); ?>"><span class="arrow">Changelog</span></a></li>
 			<li>
-			<center><br>
-			<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Bugtracker 200&#42;200) */
-google_ad_slot = "1165232208";
-google_ad_width = 200;
-google_ad_height = 200;
-//-->
+			<center>
+			<br>
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/7727819/ServerWoW:Juego:BugTracker-Bloque_Lateral_Izquierdo:Abajo', [200, 200], 'div-gpt-ad-1328884517362-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
 </script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+
+<!-- ServerWoW:Juego:BugTracker-Bloque_Lateral_Izquierdo:Abajo -->
+<div id='div-gpt-ad-1328884517362-0' style='width:200px; height:200px;'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328884517362-0'); });
 </script>
+</div>
 			</center>
 			</li>
 
