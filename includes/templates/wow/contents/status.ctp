@@ -139,10 +139,11 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Expansion</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Version</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Tipo</span></a></th>
+					<th><a href="javascript:;" class="sort-link"><span class="arrow">Idioma</span></a></th>
+					<th><a href="javascript:;" class="sort-link"><span class="arrow">XPRate</span></a></th>
+					<th><a href="javascript:;" class="sort-link"><span class="arrow">Rates</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Población</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Uptime</span></a></th>
-					<th><a href="javascript:;" class="sort-link"><span class="arrow">Idioma</span></a></th>
-					<th><a href="javascript:;" class="sort-link"><span class="arrow">Rates</span></a></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -180,27 +181,27 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 									(<?php echo $r['type']; ?>)
 							</span>
 						</td>
-						<td class="population" data-raw="medium">
-							<span class="medium">
-									<?php
-									 if ($r['status'] == "down")
-									 	echo '<font color="grey">'.$l->getString("realm_status_off").'</font>';
-									 elseif ($r['population'] < 500)
-									 	echo '<font color="green">'.$l->getString("realm_status_baja").'</font>';
-									 elseif ($r['population'] > 1000 && $r['population'] < 1500)
-									 	echo '<font color="yellow">'.$l->getString("realm_status_media").'</font>';
-									 elseif ($r['population'] > 1500)
-									 	echo '<font color="red">'.$l->getString("realm_status_alta").'</font>';
-									 ?>
-							</span>
-						</td>
-						<td class="population" data-raw="medium">
-							<span class="medium">
-									<?php echo $r['uptime']; ?>
-							</span>
-						</td>
 						<td class="locale">
 							<?php echo $r['language']; ?>
+						</td>
+						<td class="locale">
+							<?php
+								switch ($r['id'])
+								{
+									case 1:
+										echo $l->getString("realm_1_xprate");
+										break;
+									case 2:
+										echo $l->getString("realm_2_xprate");
+										break;
+									case 3:
+										echo $l->getString("realm_3_xprate");
+										break;
+									case 4:
+										echo $l->getString("realm_4_xprate");
+										break;
+								}
+							  ?>
 						</td>
 						<td class="locale">
 							<?php
@@ -220,6 +221,25 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 										break;
 								}
 							  ?>
+						</td>
+						<td class="population" data-raw="medium">
+							<span class="medium">
+									<?php
+									 if ($r['status'] == "down")
+									 	echo '<font color="grey">'.$l->getString("realm_status_off").'</font>';
+									 elseif ($r['population'] < 500)
+									 	echo '<font color="green">'.$l->getString("realm_status_baja").'</font>';
+									 elseif ($r['population'] > 1000 && $r['population'] < 1500)
+									 	echo '<font color="yellow">'.$l->getString("realm_status_media").'</font>';
+									 elseif ($r['population'] > 1500)
+									 	echo '<font color="red">'.$l->getString("realm_status_alta").'</font>';
+									 ?>
+							</span>
+						</td>
+						<td class="population" data-raw="medium">
+							<span class="medium">
+									<?php echo $r['uptime']; ?>
+							</span>
 						</td>
 					</tr>
 				<?php
@@ -259,18 +279,27 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 									(<?php echo $r['type']; ?>)
 							</span>
 						</td>
-						<td class="population" data-raw="medium">
-							<span class="medium">
-									<?php echo $l->getString("loggin_to_see"); ?>
-							</span>
-						</td>
-						<td class="population" data-raw="medium">
-							<span class="medium">
-									<?php echo $l->getString("loggin_to_see"); ?>
-							</span>
-						</td>
 						<td class="locale">
 							<?php echo $r['language']; ?>
+						</td>
+						<td class="locale">
+							<?php
+								switch ($r['id'])
+								{
+									case 1:
+										echo $l->getString("realm_1_xprate");
+										break;
+									case 2:
+										echo $l->getString("realm_2_xprate");
+										break;
+									case 3:
+										echo $l->getString("realm_3_xprate");
+										break;
+									case 4:
+										echo $l->getString("realm_4_xprate");
+										break;
+								}
+							  ?>
 						</td>
 						<td class="locale">
 							<?php
@@ -290,6 +319,16 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 										break;
 								}
 							  ?>
+						</td>
+						<td class="population" data-raw="medium">
+							<span class="medium">
+								<?php echo $l->getString("loggin_to_see"); ?>
+							</span>
+						</td>
+						<td class="population" data-raw="medium">
+							<span class="medium">
+								<?php echo $l->getString("loggin_to_see"); ?>
+							</span>
 						</td>
 					</tr>
 				<?php

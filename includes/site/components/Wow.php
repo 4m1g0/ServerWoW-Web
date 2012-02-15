@@ -657,7 +657,7 @@ class Wow_Component extends Component
 			switch ($r['timezone'])
 			{
 				default:
-                    $r['language'] = 'Development Realm';
+                    $r['language'] = 'Desarrollo';
                     break;
                 case 8:
                     $r['language'] = $this->c('Locale')->getString('template_locale_en');
