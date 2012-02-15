@@ -136,6 +136,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 				<tr>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Estado</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Nombre del reino</span></a></th>
+					<th><a href="javascript:;" class="sort-link"><span class="arrow">Expansion</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Version</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Tipo</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Población</span></a></th>
@@ -161,6 +162,16 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 							<?php echo $r['name']; ?>
 						</td>
 						<td class="name">
+							<?php
+							if ($r['gamebuild'] == 12340)
+								$wow_version = "Wotlk";
+							if ($r['gamebuild'] == 13623)
+								$wow_version = "Cataclysm";
+								
+							echo $wow_version;
+							?>
+						</td>
+						<td class="name">
 							<?php echo $r['gamebuild']; ?>
 						</td>
 						<td data-raw="<?php echo strtolower($r['type']); ?>" class="type">
@@ -170,7 +181,16 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 						</td>
 						<td class="population" data-raw="medium">
 							<span class="medium">
-									<?php echo $r['population']; ?>
+									<?php
+									 if ($r['status'] == "down")
+									 	echo '<font color="grey">Off</font>';
+									 elseif ($r['population'] < 500)
+									 	echo '<font color="green">Baja</font>';
+									 elseif ($r['population'] > 1000 && $r['population'] < 1500)
+									 	echo '<font color="yellow">Media</font>';
+									 elseif ($r['population'] > 1500)
+									 	echo '<font color="red">Alta</font>';
+									 ?>
 							</span>
 						</td>
 						<td class="population" data-raw="medium">

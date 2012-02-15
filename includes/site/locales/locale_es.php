@@ -20,7 +20,7 @@
  **/
  
 $Site_Locale = array(
-    'locale_name' => 'Spanish',
+    'locale_name' => 'Español',
     'locale_region' => 'América/Europa',
     'template_title' => 'Server WoW : Server de World of Warcraft, Servidor de WoW',
     
@@ -101,7 +101,7 @@ $Site_Locale = array(
     
     'template_locale_de' => 'German',
     'template_locale_en' => 'English',
-    'template_locale_es' => 'Spanish',
+    'template_locale_es' => 'Español',
     'template_locale_fr' => 'French',
     'template_locale_ru' => 'Russian',
     

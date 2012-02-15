@@ -689,54 +689,38 @@ class Wow_Component extends Component
 
 			$r['uptime'] = 'Minutos:' . $min . ' Horas:' . $hour . ' Dias:' . $day;
 			
+			$r['population'] = $query['players'];
+			
 			switch ($r['id'])
-			{			
+			{
 				case 1:
-						if ($r['status'])
+						if ($r['status'] == "up")
 						{
-							if ($query['players'] < 100)
-								$r['population'] = '<font color="green">BAJA</font>';
-							else
+							if ($query['players'] > 200)
 								$r['population'] = $query['players'] + 500;
 						}
-						else
-							$r['population'] = '<font color="grey">OFF</font>';
 					break;
 				case 2:
-						if ($r['status'])
+						if ($r['status'] == "up")
 						{
-							if ($query['players'] < 100)
-								$r['population'] = '<font color="green">BAJA</font>';
-							else
+							if ($query['players'] > 200)
 								$r['population'] = $query['players'] + 500;
 						}
-						else
-							$r['population'] = '<font color="grey">OFF</font>';
 					break;
 				case 3:
-						if ($r['status'])
+						if ($r['status'] == "up")
 						{
-							if ($query['players'] < 100)
-								$r['population'] = '<font color="green">BAJA</font>';
-							else
+							if ($query['players'] > 200)
 								$r['population'] = $query['players'] + 500;
 						}
-						else
-							$r['population'] = '<font color="grey">OFF</font>';
 					break;
 				case 4:
-						if ($r['status'])
+						if ($r['status'] == "up")
 						{
-							if ($query['players'] < 100)
-								$r['population'] = '<font color="green">BAJA</font>';
-							else
-								$r['population'] = $query['players'];
+							if ($query['players'] > 200)
+								$r['population'] = $query['players'] + 200;
 						}
-						else
-							$r['population'] = '<font color="grey">OFF</font>';
 					break;
-				default:
-						$r['population'] = '<font color="grey">OFF</font>';
 			}
 		}
 		return $realms;
