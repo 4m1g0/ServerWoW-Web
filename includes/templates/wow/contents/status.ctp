@@ -141,7 +141,8 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Tipo</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Población</span></a></th>
 					<th><a href="javascript:;" class="sort-link"><span class="arrow">Uptime</span></a></th>
-					<th><a href="javascript:;" class="sort-link"><span class="arrow">Local</span></a></th>
+					<th><a href="javascript:;" class="sort-link"><span class="arrow">Idioma</span></a></th>
+					<th><a href="javascript:;" class="sort-link"><span class="arrow">Rates</span></a></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -164,9 +165,9 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 						<td class="name">
 							<?php
 							if ($r['gamebuild'] == 12340)
-								$wow_version = "Wotlk";
+								$wow_version = $l->getString("realm_status_version_12340");
 							if ($r['gamebuild'] == 13623)
-								$wow_version = "Cataclysm";
+								$wow_version = $l->getString("realm_status_version_13623");
 								
 							echo $wow_version;
 							?>
@@ -183,13 +184,13 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 							<span class="medium">
 									<?php
 									 if ($r['status'] == "down")
-									 	echo '<font color="grey">Off</font>';
+									 	echo '<font color="grey">'.$l->getString("realm_status_off").'</font>';
 									 elseif ($r['population'] < 500)
-									 	echo '<font color="green">Baja</font>';
+									 	echo '<font color="green">'.$l->getString("realm_status_baja").'</font>';
 									 elseif ($r['population'] > 1000 && $r['population'] < 1500)
-									 	echo '<font color="yellow">Media</font>';
+									 	echo '<font color="yellow">'.$l->getString("realm_status_media").'</font>';
 									 elseif ($r['population'] > 1500)
-									 	echo '<font color="red">Alta</font>';
+									 	echo '<font color="red">'.$l->getString("realm_status_alta").'</font>';
 									 ?>
 							</span>
 						</td>
@@ -201,18 +202,99 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 						<td class="locale">
 							<?php echo $r['language']; ?>
 						</td>
+						<td class="locale">
+							<?php
+								switch ($r['id'])
+								{
+									case 1:
+										echo $l->getString("realm_1_rates");
+										break;
+									case 2:
+										echo $l->getString("realm_2_rates");
+										break;
+									case 3:
+										echo $l->getString("realm_3_rates");
+										break;
+									case 4:
+										echo $l->getString("realm_4_rates");
+										break;
+								}
+							  ?>
+						</td>
 					</tr>
 				<?php
 					endforeach;
 					endif;
 				}
 				else
-				{				
+				{
+					if ($realms):
+					$toggleStyle = 2;
+					foreach ($realms as &$r) :
 				?>
-				<tr class="no-results" style="display: none">
-					<td colspan="6">Ningún resultado coincide con los filtros seleccionados o <b>No</b> has iniciado Sesion.</td>
-				</tr>
+					<tr class="row<?php echo $toggleStyle % 2 ? '1' : '2'; ?>">
+						<td class="status" data-raw="<?php echo $r['status']; ?>">
+							<div class="status-icon <?php echo $r['status']; ?>"
+								 data-tooltip="<?php echo $l->getString(($r['status'] == 'up' ? 'template_realm_status_available' : 'template_realm_status_not_available')); ?>">
+							</div>
+						</td>
+						<td class="name">
+							<?php echo $r['name']; ?>
+						</td>
+						<td class="name">
+							<?php
+							if ($r['gamebuild'] == 12340)
+								$wow_version = $l->getString("realm_status_version_12340");
+							if ($r['gamebuild'] == 13623)
+								$wow_version = $l->getString("realm_status_version_13623");
+								
+							echo $wow_version;
+							?>
+						</td>
+						<td class="name">
+							<?php echo $r['gamebuild']; ?>
+						</td>
+						<td data-raw="<?php echo strtolower($r['type']); ?>" class="type">
+							<span class="<?php echo strtolower($r['type']); ?>">
+									(<?php echo $r['type']; ?>)
+							</span>
+						</td>
+						<td class="population" data-raw="medium">
+							<span class="medium">
+									<?php echo $l->getString("loggin_to_see"); ?>
+							</span>
+						</td>
+						<td class="population" data-raw="medium">
+							<span class="medium">
+									<?php echo $l->getString("loggin_to_see"); ?>
+							</span>
+						</td>
+						<td class="locale">
+							<?php echo $r['language']; ?>
+						</td>
+						<td class="locale">
+							<?php
+								switch ($r['id'])
+								{
+									case 1:
+										echo $l->getString("realm_1_rates");
+										break;
+									case 2:
+										echo $l->getString("realm_2_rates");
+										break;
+									case 3:
+										echo $l->getString("realm_3_rates");
+										break;
+									case 4:
+										echo $l->getString("realm_4_rates");
+										break;
+								}
+							  ?>
+						</td>
+					</tr>
 				<?php
+					endforeach;
+					endif;
 				}
 				?>
 			</tbody>

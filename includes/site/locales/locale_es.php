@@ -1959,5 +1959,19 @@ El equipo de cuentas de ServerWoW <br />
 	'template_forum_message' => 'Mensajes',
 	'template_account_unstuck_success_text' => '[t] Selected character were unstucked!',
 	'template_account_status_info_banned' => 'La cuenta <b>%s</b> fue baneada por <b>%s</b> (motivo: <b>%s</b>) <br />y no podra crear temas ni responder en los foros publicos, solo en los foros para baneados.',
+	
+
+	'realm_status_off' => 'Off',
+	'realm_status_on' => 'On',
+	'realm_status_baja' => 'Baja',
+	'realm_status_media' => 'Media',
+	'realm_status_alta' => 'Alta',
+	'realm_status_version_12340' => 'Wotlk',
+	'realm_status_version_13623' => 'Cataclysm',
+	'realm_1_rates' => 'Mision:1 Muerte:1 Explorar:1 Oro:1',
+	'realm_2_rates' => 'Mision:3 Muerte:2 Explorar:1 Oro:1',
+	'realm_3_rates' => 'Mision:4 Muerte:3 Explorar:2 Oro:1',
+	'realm_4_rates' => 'Mision:1 Muerte:1 Explorar:1 Oro:1',
+	'loggin_to_see' => 'Tienes que estar Logueado',
 );
 ?>
