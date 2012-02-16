@@ -238,7 +238,12 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328883397417-0');
 						</td>
 						<td class="population" data-raw="medium">
 							<span class="medium">
-									<?php echo $r['uptime']; ?>
+								<?php
+								 if ($r['status'] == "down")
+								 	echo '<font color="grey">'.$l->getString("realm_status_off").'</font>';
+								 else
+									echo $r['uptime'];
+								?>
 							</span>
 						</td>
 					</tr>

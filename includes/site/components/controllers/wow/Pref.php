@@ -43,6 +43,24 @@ class Pref_Wow_Controller_Component extends Groupwow_Controller_Component
 				$id = $this->c('AccountManager')->user('id');
 				$this->c('Db')->wow()->query("UPDATE `wow_user_characters` SET `isActive` = 0 WHERE `account` = %d", $id);
 				$this->c('Db')->wow()->query("UPDATE `wow_user_characters` SET `isActive` = 1 WHERE `index` = %d AND `account` = %d", $idx, $id);
+
+				// Update NickName for Chat
+				$isActive = $this->c('Db')->wow()->selectRow("SELECT `id`, `guid`, `name`, `account`, `realmName`, `isActive` FROM `wow_user_characters` WHERE `account` = '%d' AND isActive = '1'", $id);
+				
+				switch($isActive['realmName'])
+				{
+					case "King of Kingdoms":
+						$isActive['realmName'] = "KoK";
+						break;
+					case "Lord of Crusaders":
+						$isActive['realmName'] = "LoC";
+						break;
+					case "Chaos World":
+						$isActive['realmName'] = "CW";
+						break;
+				}
+				
+				$this->c('Db')->wow()->query("UPDATE `wow_users_accounts` SET `nickname` = '%s' WHERE `account_id` = '%d'", $isActive['name'].'@'.$isActive['realmName'], $id);
 			}
 		}
 		return $this;

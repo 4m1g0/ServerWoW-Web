@@ -1975,8 +1975,8 @@ El equipo de cuentas de ServerWoW <br />
 
 	'realm_1_rates' => 'Mision:x1 Muerte:x1 Oro:x1',
 	'realm_2_rates' => 'Mision:x5 Muerte:x2 Oro:x1',
-	'realm_3_rates' => 'Mision:x3 Muerte:x2 Oro:x1',
-	'realm_4_rates' => 'Mision:x1 Muerte:x1 Oro:x1',
+	'realm_3_rates' => 'Mision:x4 Muerte:x2 Oro:x1',
+	'realm_4_rates' => 'Mision:x5 Muerte:x1 Oro:x1',
 	
 	'loggin_to_see' => 'Tienes que estar Logueado',
 );

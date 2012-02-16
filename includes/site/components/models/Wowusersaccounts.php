@@ -26,6 +26,9 @@ class WowUsersAccounts_Model_Component extends Model_Db_Component
 	public $m_fields = array(
 		'id' => 'Id',
 		'account_id' => array('type' => 'integer'),
+		'username' => array('type' => 'string'),
+		'nickname' => array('type' => 'string'),
+		'lastactivity' => array('type' => 'integer'),
 	);
 }
 ?>

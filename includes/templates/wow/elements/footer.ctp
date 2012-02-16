@@ -94,3 +94,5 @@ BnetAds.trackEvent('2556050', 'PetStoreEU', 'wow');
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
+<link type="text/css" href="http://serverwow.com/webroot/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
+<script type="text/javascript" src="http://serverwow.com/webroot/cometchat/cometchatjs.php" charset="utf-8"></script>

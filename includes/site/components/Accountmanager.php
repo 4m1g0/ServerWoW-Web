@@ -235,6 +235,24 @@ class AccountManager_Component extends Component
 		$this->c('Db')->wow()->query($sql_query);
 		$this->c('Db')->wow()->query("REPLACE INTO `wow_users` (id, chars_save) VALUES (%d, %d)", $acc_id, (time() + IN_DAYS));
 
+		// Update NickName for Chat
+		$isActive = $this->c('Db')->wow()->selectRow("SELECT `id`, `guid`, `name`, `account`, `realmName`, `isActive` FROM `wow_user_characters` WHERE `account` = '%d' AND isActive = '1'", $acc_id);
+		
+		switch($isActive['realmName'])
+		{
+			case "King of Kingdoms":
+				$isActive['realmName'] = "KoK";
+				break;
+			case "Lord of Crusaders":
+				$isActive['realmName'] = "LoC";
+				break;
+			case "Chaos World":
+				$isActive['realmName'] = "CW";
+				break;
+		}
+				
+		$this->c('Db')->wow()->query("UPDATE `wow_users_accounts` SET `nickname` = '%s' WHERE `account_id` = '%d'", $isActive['name'].'@'.$isActive['realmName'], $acc_id);
+
 		if ($idxToDelete >= 0)
 			unset($this->m_characters[$idxToDelete]);
 
@@ -748,8 +766,12 @@ class AccountManager_Component extends Component
 			$this->m_loginError |= ERROR_USERNAME_TAKEN;
 			return false;
 		}
+		
+		$max_id = $this->c('Db')->realm()->selectRow("SELECT max(id) AS max from account");
+		$max_id++;
 
-		$this->c('Db')->realm()->query("INSERT INTO account (username,sha_pass_hash,expansion,email) VALUES ('%s', '%s', 2, '%s')", $user, $sha, $email);
+		$this->c('Db')->realm()->query("INSERT INTO account (id,username,sha_pass_hash,expansion,email) VALUES ('%d', '%s', '%s', 2, '%s')", $max_id, $user, $sha, $email);
+		$this->c('Db')->wow()->query("INSERT INTO wow_users_account (id,account_id,username,nickname) VALUES ('%d', '%d', '%s', '%s')", $max_id, $max_id, $user, $user);
 
 		return true;
 	}
