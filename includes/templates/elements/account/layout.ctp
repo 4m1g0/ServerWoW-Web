@@ -126,6 +126,16 @@ if ($this->c('AccountManager')->isAllowedToReceiveMsg() || $this->c('AccountMana
 </div>
 </li>
 <?php endif; ?>
+<li>
+<a href="#" class="border-3 menu-arrow" onclick="openAccountDropdown(this, 'friends'); return false;"><?php echo $l->getString('template_management_menu_friends'); ?></a>
+<span></span>
+<div class="flyout-menu" id="friends-menu" style="display: none">
+<ul>
+<li><a href="<?php echo $this->getAppUrl('account/management/addfriend'); ?>"><?php echo $l->getString('template_management_menu_parameters_friends_add'); ?></a></li>
+<li><a href="<?php echo $this->getAppUrl('account/management/blockfriends'); ?>"><?php echo $l->getString('template_management_menu_parameters_friends_block'); ?></a></li>
+</ul>
+</div>
+</li>
 </ul>
 <span class="clear"><!-- --></span>
 </div>

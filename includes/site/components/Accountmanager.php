@@ -236,22 +236,22 @@ class AccountManager_Component extends Component
 		$this->c('Db')->wow()->query("REPLACE INTO `wow_users` (id, chars_save) VALUES (%d, %d)", $acc_id, (time() + IN_DAYS));
 
 		// Update NickName for Chat
-		$isActive = $this->c('Db')->wow()->selectRow("SELECT `id`, `guid`, `name`, `account`, `realmName`, `isActive` FROM `wow_user_characters` WHERE `account` = '%d' AND isActive = '1'", $acc_id);
+		//$isActive = $this->c('Db')->wow()->selectRow("SELECT `id`, `guid`, `name`, `account`, `realmName`, `isActive` FROM `wow_user_characters` WHERE `account` = '%d' AND isActive = '1'", $acc_id);
 		
-		switch($isActive['realmName'])
+		switch($this->charInfo('realmName'))
 		{
 			case "King of Kingdoms":
-				$isActive['realmName'] = "KoK";
+				$realm_Active = "KoK";
 				break;
 			case "Lord of Crusaders":
-				$isActive['realmName'] = "LoC";
+				$realm_Active = "LoC";
 				break;
 			case "Chaos World":
-				$isActive['realmName'] = "CW";
+				$realm_Active = "CW";
 				break;
 		}
 				
-		$this->c('Db')->wow()->query("UPDATE `wow_users_accounts` SET `nickname` = '%s' WHERE `account_id` = '%d'", $isActive['name'].'@'.$isActive['realmName'], $acc_id);
+		$this->c('Db')->wow()->query("UPDATE `wow_users_accounts` SET `nickname` = '%s' WHERE `account_id` = '%d'", $this->charInfo('name').'@'.$realm_Active, $acc_id);
 
 		if ($idxToDelete >= 0)
 			unset($this->m_characters[$idxToDelete]);
@@ -692,7 +692,10 @@ class AccountManager_Component extends Component
 
 	public function isBanned()
 	{
-		return $this->m_user->banned;
+		if (isset($this->m_user->banned))
+			return $this->m_user->banned;
+		else
+			return false;
 	}
 
 	public function isAllowedToForums()
@@ -771,7 +774,7 @@ class AccountManager_Component extends Component
 		$max_id++;
 
 		$this->c('Db')->realm()->query("INSERT INTO account (id,username,sha_pass_hash,expansion,email) VALUES ('%d', '%s', '%s', 2, '%s')", $max_id, $user, $sha, $email);
-		$this->c('Db')->wow()->query("INSERT INTO wow_users_account (id,account_id,username,nickname) VALUES ('%d', '%d', '%s', '%s')", $max_id, $max_id, $user, $user);
+		$this->c('Db')->wow()->query("INSERT INTO wow_users_accounts (id,account_id,username,nickname) VALUES ('%d', '%d', '%s', '%s')", $max_id, $max_id, $user, $user);
 
 		return true;
 	}
@@ -1291,6 +1294,162 @@ class AccountManager_Component extends Component
 		$msg['text'] = preg_replace('/\[img](.+?)\[\/img\]/six', '<img src="$1" />', $msg['text']);
 
 		return $msg;
+	}
+	
+	public function addFriend()
+	{
+		$char = $this->c('AccountManager')->getActiveCharacter();
+		
+		if (!$char)
+			return false;
+
+		if (!isset($_POST['csrftoken']))
+			return false;
+
+		$fields = array('friend' => 1, 'realmId' => 2);
+
+		foreach ($fields as $f => $v)
+		{
+			if (!isset($_POST[$f]) || !$_POST[$f])
+			{
+				$this->m_lastErrorIdx = 'template_add_friend_err' . $v;
+				$this->m_success = false;
+				return false;
+			}
+		}
+
+		$realmId = intval($_POST['realmId']);
+		if ($realmId != $this->c('Config')->getValue('realms.' . $realmId . '.id'))
+		{
+			$this->m_lastErrorIdx = 'template_add_friend_err9';
+			$this->m_success = false;
+			return false;
+		}
+
+		// try to find character guid and account ID
+		$this->c('Db')->switchTo('characters', $realmId);
+		if (!$this->c('Db')->isDatabaseAvailable('characters', $realmId))
+		{
+			// realm's characters DB is not available
+			$this->m_lastErrorIdx = 'template_add_friend_err10';
+			$this->m_success = false;
+			return false;
+		}
+
+		$rcv_name = addslashes($_POST['friend']);
+		$char = $this->c('QueryResult', 'Db')
+			->model('Characters')
+			->fields(array('Characters' => array('guid', 'name', 'account')))
+			->fieldCondition('name', ' = \'' . $rcv_name . '\'', true)
+			->loadItem();
+
+		if (!$char)
+		{
+			// realm's characters DB is not available
+			$this->m_lastErrorIdx = 'template_add_friend_err7';
+			$this->m_success = false;
+			return false;
+		}
+
+		if ($char['account'] == $this->user('id'))
+		{
+			$this->m_lastErrorIdx = 'template_add_friend_err6';
+			$this->m_success = false;
+			return false;
+		}
+		
+		$check_ = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `user_acc` = '%d' AND `friend_acc` = '%d'", $this->user('id'), $char['account']);
+		if ($check_)
+		{
+			$this->m_lastErrorIdx = 'template_add_friend_err8';
+			$this->m_success = false;
+			return false;
+		}
+		
+		$mutual = substr(md5(rand()),0,20);
+		$mutual_encode = base64_encode($mutual);
+
+		$title = addslashes($this->charInfo('name')." Te ha agregado como amigo");
+		$msg = addslashes("Hola ".$char['name'].", \n".$this->charInfo('name')." Te ha agregado como amigo\n\n Puedes agregarlo tambien desde el siguiente link:\n <a href=//serverwow.com/account/management/addfriend/".$mutual_encode.">Agregar Amigo</a>\n\n Tambien puedes bloquearlo desde el siguiente link:\n <a href=//serverwow.com/account/management/blockfriends/".$mutual_encode.">Bloquear</a>");
+		$msg = str_replace(array("\n", "\n\r"), '<br />', $msg);
+
+		// by default, everybody can add friends
+		$edt = $this->c('Editing')
+			->clearValues()
+			->setModel('WowPrivateMessages')
+			->setType('insert');
+
+		$edt->sender_id = $this->user('id');
+		$edt->receiver_id = $char['account'];
+		$edt->send_date = time();
+		$edt->title = $title;
+		$edt->text = $msg;
+		$edt->read = '0';
+		$edt->sender_guid = $this->charInfo('guid');
+		$edt->sender_realmId = $this->charInfo('realmId');
+		$edt->receiver_guid = $char['guid'];
+		$edt->receiver_realmId = $realmId;
+		$edt->save()->clearValues();
+
+		unset($edt);
+			
+		$this->c('Db')->wow()->query("INSERT INTO `wow_user_friends` (user_acc,user_guid,user_realm,friend_acc,friend_guid,friend_realm,mutual_act) VALUES ('%d', '%d', '%d', '%d', '%d', '%d', '%s')", $this->user('id'), $this->charInfo('guid'), $this->charInfo('realmId'), $char['account'], $char['guid'], $realmId, $mutual);
+
+		return true;
+	}
+	
+	public function add2Friend()
+	{
+		$char = $this->c('AccountManager')->getActiveCharacter();
+		
+		if (!$char)
+			return false;
+
+		$mutual = 0;
+		$mutual_decode = base64_decode(addslashes($this->core->getUrlAction(3)));
+
+		$check_act = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `mutual_act` = '%s'", $mutual_decode);
+		if ($check_act)
+		{
+			$check_act2 = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `user_acc` = '%d' AND `friend_acc` = '%d'", $this->user('id'), $char['account']);
+
+			if (!$check_act2)
+			{
+				$this->c('Db')->wow()->query("INSERT INTO `wow_user_friends` (user_acc,user_guid,user_realm,friend_acc,friend_guid,friend_realm,mutual_act) VALUES ('%d', '%d', '%d', '%d', '%d', '%d', '%d')", $this->user('id'), $this->charInfo('guid'), $this->charInfo('realmId'), $check_act['user_acc'], $check_act['user_guid'], $check_act['user_realm'], $mutual);
+				$this->c('Db')->wow()->query("UPDATE `wow_user_friends` SET `mutual_act` = '0' WHERE `mutual_act` = '%s'", $mutual_decode);
+
+				return true;
+			}
+		}
+	}
+	
+	public function blockFriend()
+	{
+		$char = $this->c('AccountManager')->getActiveCharacter();
+		
+		if (!$char)
+			return false;
+
+		$block_decode = base64_decode(addslashes($this->core->getUrlAction(3)));
+
+		$block_act = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `mutual_act` = '%s'", $block_decode);
+		if ($block_act)
+		{
+				$this->c('Db')->wow()->query("INSERT INTO `cometchat_block` (fromid,toid) VALUES ('%d', '%d')", $this->user('id'), $block_act['user_acc']);
+				$this->c('Db')->wow()->query("UPDATE `wow_user_friends` SET `mutual_act` = '0' WHERE `mutual_act` = '%s'", $block_decode);
+
+				return true;
+		}
+	}
+	
+	public function getblockFriends()
+	{
+		$block_user = $this->c('Db')->wow()->select("select distinct(m.id) `id`, m.nickname `name` from cometchat_block, wow_users_accounts m where m.id = toid and fromid = '".$this->user('id')."'");
+
+		if ($block_user)
+		{
+			return $block_user;
+		}
 	}
 }
 ?>

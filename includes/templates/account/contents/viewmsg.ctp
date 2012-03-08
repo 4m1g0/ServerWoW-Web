@@ -4,16 +4,19 @@
 <h3 class="headline"><?php echo $l->getString('template_show_message'); ?></h3>
 </div>
 <div id="page-content" class="page-content">
-<div align="center">
-Message from <b><?php echo $msg['sender']; ?></b> (sent: <?php echo date('d/m/Y H:i:s', $msg['send_date']); ?>)<br />
-<b>Title:</b> <?php echo $msg['title']; ?><br />
-<b>Message:</b> <blockquote><?php echo $msg['text']; ?></blockquote>
-</div>
+<p>Mensaje de <b><?php echo $msg['sender']; ?></b> <br>
+  (Fecha: <?php echo date('d/m/Y H:i:s', $msg['send_date']); ?>)<br>
+  <br />
+  <b>Asunto:</b> <?php echo $msg['title']; ?><br>
+  <br />
+</p>
+<blockquote><?php echo $msg['text']; ?></blockquote>
+<br>
 <?php if ($this->c('AccountManager')->isAllowedToSendMsg()) : ?>
-<h3 class="headline">Answer:</h3>
 <form method="post" action="/account/management/newmessage" id="change-settings">
 <input type="hidden" name="csrftoken" value="9c55345b-f40d-4903-82b6-fd1a4b7d250f" />
 <div class="form-row">
+<h3 class="headline">Responder:</h3>
 <label for="receiver" class="label-full ">
 <strong> <?php echo $l->getString('template_new_msg_receiver'); ?></strong>
 </label>

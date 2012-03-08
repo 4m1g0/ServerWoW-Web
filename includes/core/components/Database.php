@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) 2009-2011 Shadez <https://github.com/Shadez>
  *

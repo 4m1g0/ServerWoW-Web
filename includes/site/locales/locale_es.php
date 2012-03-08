@@ -833,6 +833,7 @@ $Site_Locale = array(
     'template_management_menu_parameters_parental_control' => 'Controles Parentales',
     'template_management_menu_parameters_payment_method' => 'Mis opciones de Pago',
     'template_management_menu_parameters_address_book' => 'Contacto',
+	
     
     'template_management_menu_games_add_game' => 'Añadir o Registrar un Juego',
     'template_management_menu_games_get_a_game' => 'Comprar juegos digitales',
@@ -1979,5 +1980,26 @@ El equipo de cuentas de ServerWoW <br />
 	'realm_4_rates' => 'Mision:x5 Muerte:x1 Oro:x1',
 	
 	'loggin_to_see' => 'Tienes que estar Logueado',
+
+	'template_management_menu_friends' => 'Amigos',
+	'template_add_friends' => 'Amigos',
+	'template_management_menu_parameters_friends_add' => 'Añadir Amigo',
+	'template_management_menu_parameters_friends_block' => 'Amigos Bloqueados',
+	'template_add_friend_new' => 'Añadir Amigo',
+	'template_add_friend' => 'Amigo',
+	'template_add_friend_realm' => 'Reino',
+	'template_add_friend_text' => 'Mensaje',
+	'template_add_friend_send' => 'Enviar',
+	'template_add_friend_err' => '',
+	'template_add_friend_err1' => 'El campo Amigo No puede estar vacio',	
+	'template_add_friend_err2' => 'El Mensaje no puede estar vacio',
+	'template_add_friend_err3' => 'El campo Reino No puede estar vacio',
+	'template_add_friend_err4' => '',
+	'template_add_friend_err5' => 'El usuario no puede tener amigos',
+	'template_add_friend_err6' => 'No puedes añadirte a ti mismo',
+	'template_add_friend_err7' => 'Tu amigo no existe',
+	'template_add_friend_err8' => 'Este amigo ya esta añadido',
+	'template_add_friend_err9' => 'El reino no fue encontrado',
+	'template_add_friend_err10' => 'Imposible realizar la accion',
 );
 ?>

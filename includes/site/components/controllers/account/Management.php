@@ -92,6 +92,34 @@ class Management_Account_Controller_Component extends Controller_Component
 					$this->buildBlock('outbox');
 			}
 		}
+		elseif (strtolower($this->core->getUrlAction(2)) == 'addfriend')
+		{
+				$id = $core->getUrlAction(3);
+				if ($id)
+				{
+					if ($this->c('AccountManager')->add2Friend())
+					$core->redirectApp('/account/management/');
+				}
+				
+				if ($this->c('AccountManager')->addFriend())
+					$core->redirectApp('/account/management/sent');
+
+				$this->buildBlock('addfriend');
+		}
+		elseif (strtolower($this->core->getUrlAction(2)) == 'blockfriends')
+		{
+				$id = $core->getUrlAction(3);
+				if ($id)
+				{
+					if ($this->c('AccountManager')->blockFriend())
+					$core->redirectApp('/account/management/blockfriends');
+				}
+				
+				//if ($this->c('AccountManager')->blockFriends())
+					//$core->redirectApp('/account/management/blockfriends');
+
+				$this->buildBlock('blockfriends');
+		}
 		elseif (strtolower($core->getUrlAction(2)) == 'payments')
 		{
 			$action = $core->getUrlAction(3);
@@ -176,6 +204,20 @@ class Management_Account_Controller_Component extends Controller_Component
 	{
 		return $this->block()
 			->setTemplate('writemessage', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_blockfriends()
+	{
+		return $this->block()
+			->setTemplate('blockfriends', 'account' . DS . 'contents')
+			->setRegion('pagecontent');
+	}
+
+	protected function block_addfriend()
+	{
+		return $this->block()
+			->setTemplate('addfriend', 'account' . DS . 'contents')
 			->setRegion('pagecontent');
 	}
 

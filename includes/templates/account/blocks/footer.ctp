@@ -22,6 +22,15 @@ googletag.enableServices();
 });
 </script>
 <div id="footer">
+<?php
+if (!$this->c('AccountManager')->isBanned())
+{
+?>
+<link type="text/css" href="http://serverwow.com/webroot/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
+<script type="text/javascript" src="http://serverwow.com/webroot/cometchat/cometchatjs.php" charset="utf-8"></script>
+<?php
+}
+?>
 <div id="sitemap" class="promotions">
 <center>
 <!-- ServerWoW:Cuenta-Centro:Abajo -->

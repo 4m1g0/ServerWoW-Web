@@ -1,3 +1,13 @@
+<?php
+//if (!$this->c('AccountManager')->isBanned())
+if ($this->c('AccountManager')->user('id') == 21212121212121222121212122121212)
+{
+?>
+<link type="text/css" href="http://serverwow.com/webroot/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
+<script type="text/javascript" src="http://serverwow.com/webroot/cometchat/cometchatjs.php" charset="utf-8"></script>
+<?php
+}
+?>
 <div id="sitemap" class="promotions">
 <div class="column">
 <h3 class="bnet">
@@ -94,5 +104,3 @@ BnetAds.trackEvent('2556050', 'PetStoreEU', 'wow');
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
-<link type="text/css" href="http://serverwow.com/webroot/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
-<script type="text/javascript" src="http://serverwow.com/webroot/cometchat/cometchatjs.php" charset="utf-8"></script>

@@ -36,12 +36,24 @@ onclick="BnetAds.trackImpression('Battle.net Login', 'Character Card', 'New'); r
 </div>
 <?php endif; ?>
 </div>
-<div style="width:38px;height: 117px;position:fixed;right: 0pt; top: 33%; z-index: 99999;">
-<a href="http://www.facebook.com/ServerWoW" target="_blank" title="Sigueme en Facebook"><img src="http://serverwow.com/webroot/cms/hazte-fan_facebook.png" width="38" height="117" border="0" alt="Sigueme en Facebook" title="Sígueme en Facebook"></a>
+<div style="position:fixed;right:0;bottom:160px;width:37px;z-index:1000;" id="tabtwo">
+	<a target="_blank" href="http://www.youtube.com/user/ServerW0W">
+		<img border="0" src="/custom_files/youtube.png" width="37" height="37" title="Síguenos en YouTube" alt="Síguenos en YouTube" />
+	</a>
 </div>
-<div style="width:39px;height: 179px;position:fixed;right: 0pt; top: 55%; z-index: 99999;">
-<a href="https://twitter.com/#!/list/n4ch3/lcv" target="_blank" title="Sigueme en Twitter"><img src="http://serverwow.com/webroot/cms/naranja_twitter.png" width="39" height="179" border="0" alt="Sigueme en Twitter" title="Sigueme en Twitter" /></a>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-  {lang: 'es'}
+<div style="position:fixed;right:0;bottom:120px;width:37px;z-index:1000;" id="tabthree">
+	<a target="_blank" href="https://twitter.com/#!/n4ch3/lcv">
+		<img border="0" src="/custom_files/twitter.png" width="37" height="37" title="Síguenos en Twitter" alt="Síguenos en Twitter" />
+	</a>
+</div>
+<div style="position:fixed;right:0;bottom:80px;width:37px;z-index:1000;" id="tabfour">
+	<a target="_blank" href="http://www.facebook.com/ServerWoW">
+		<img border="0" src="/custom_files/facebook.png" width="37" height="37" title="Siguenos en Facebook" alt="Siguenos en Facebook" />
+	</a>
+</div>
+<div style="position:fixed;right:0;bottom:40px;width:37px;z-index:1000;" id="tabfive">
+	<a target="_blank" href="https://plus.google.com/117818722165936859038">
+		<img border="0" src="/custom_files/delicious.png" width="37" height="37" title="Síguenos en Google Plus" alt="Síguenos en Google Plus" />
+	</a>
+</div>
 </script>
-</div> 

@@ -36,7 +36,7 @@ $countries = array(
 	array('id' => 'alemania', 'type' => 'allopass', 'code' => 'LOS', 'number' => 41414, 'info' => '*Precio del mensaje €1.49/SMS'),
 	array('id' => 'canada', 'type' => 'allopass', 'code' => 'CODE', 'number' => 52624, 'info' => '*Price of SMS 3.00$'),
 	array('id' => 'usa', 'type' => 'allopass', 'code' => 'AP', 'number' => 23333, 'info' => 'Payment is available to subscribers on AT&T, Sprint, Cellular One, Nextel, Boost, Alltel, Virgin Mobile <br>*Price of SMS $2.99'),
-//	array('id' => 'sepomo', 'type' => 'sepomo', 'code' => 'CODE', 'number' => 27777, 'info' => ''),
+	array('id' => 'sepomo', 'type' => 'sepomo', 'code' => 'Ingresa el Codigo', 'number' => 0, 'info' => ''),
 );
 foreach ($countries as $c)
 {
@@ -142,13 +142,18 @@ function hideAllCountries()
 	<option value="canada">Canada</option>
 	<option value="usa">USA</option>
 	<option value="b">---</option>
-	<option value="sepomo">TEMP SEPOMO</option>
+	<option value="sepomo">Codigos SERVERWOW</option>
 </select>
 </div>
 <?php
 foreach ($countries as $country) : ?>
 <div id="<?php echo $country['id']; ?>" style="display:none;" data-optype="<?php echo $country['type']; ?>">
-		<?php if (!isset($country['number2'])) : ?>
+		<?php if (isset($country['number']) && $country['number'] == 0) : ?>
+		<center>
+		<br><br><br>
+		- <strong><?php echo $country['code']; ?></strong>
+		</center>        
+		<?php elseif (!isset($country['number2'])) : ?>
 		<center>
 		<br><br><br>
 		- Envia <strong><?php echo $country['code']; ?></strong> desde tu Celular al <strong><?php echo $country['number']; ?></strong> para obtener tu Codigo
