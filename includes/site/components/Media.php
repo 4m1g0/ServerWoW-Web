@@ -87,13 +87,13 @@ class Media_Component extends Component
 
 	public function submitScreenshot()
 	{
-		if (!$this->c('AccountManager')->isLoggedIn())
+		if (!$this->c('AccountManager')->isLoggedIn() || !$this->c('AccountManager')->user('id'))
 			return $this;
 
 		if (!isset($_FILES['ss']) || !$_FILES['ss'])
 			return $this->core->redirectUrl('media/screenshots');
 
-		$types = array('image/jpeg', 'image/png', 'image/gif', 'image/bmp');
+		$types = array('image/jpeg', 'image/png', 'image/gif');
 
 		if (!in_array($_FILES['ss']['type'], $types))
 			return $this->core->redirectUrl('media/screenshots');
@@ -104,18 +104,56 @@ class Media_Component extends Component
 		$ext = $d[sizeof($d)-1];
 		$file = ($maxid + 1) . '.' . $ext;
 		
-		move_uploaded_file($_FILES['ss']['tmp_name'], UPLOADS_DIR . 'screenshots' . DS . $file);
-		$edt = $this->c('Editing')
-			->clearValues()
-			->setModel('WowMediaScreenshots')
-			->setType('insert');
+		if (!getimagesize($_FILES['ss']['tmp_name'])) // First, try to check image size, if TRUE, valid image type
+		{
+			$this->c('Log')->writeError('%s : The File you are trying to upload is not allowed, unvalid type of image validation, Tmp File: %s File: %s Account: %d, Ip: %s, Ip2: %s', __METHOD__, $_FILES['ss']['tmp_name'], $file, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->get_Realip(), $_SERVER['REMOTE_ADDR']);
+			$note = "PHP Shell attemp, No Image Size";
+			$hack_report_val = TRUE;
+		}
+		else // More Secure Data About the upload
+		{
+			$blacklist = array(".php", ".phtml", ".php3", ".php4", ".js", ".shtml", ".pl" ,".py");
+			
+			foreach ($blacklist as $blacklists)
+			{
+				if (preg_match('/$file\$/i', $blacklists)) // Check if is some /blacklist/ in the name
+				{
+					$this->c('Log')->writeError('%s : The File you are trying to upload is not allowed (PHP) Possible Shell, Tmp File: %s File: %s, Account: %s, Ip: %s, Ip2: %s', __METHOD__, $_FILES['ss']['tmp_name'], $file, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->get_Realip(), $_SERVER['REMOTE_ADDR']);
+					$note = "PHP Shell attemp, PHP in code";
+					$hack_report_val = TRUE;
+				}
+			}
+		}
+		
+		// Add report to DB
+		if (isset($hack_report_val) == TRUE)
+		{
+			$this->c('Db')->wow()->query("INSERT INTO wow_hack_reports (user_id,user_ip,tmp_file,file,date,note) VALUES ('%d', '%s', '%s', '%s', '%s', '%s')", $this->c('AccountManager')->user('id'), $this->c('AccountManager')->get_Realip(), $_FILES['ss']['tmp_name'], $file, time(), $note);
 
-		$edt->file = $file;
-		$edt->post_date = time();
-		$edt->approved = 1;
-		$edt->sender_id = $this->c('AccountManager')->user('id');
+			$rName = rand() . '_' . date("Y-m-d");
+			move_uploaded_file($_FILES['ss']['tmp_name'], UPLOADS_DIR . 'reports' . DS . $rName.'.txt');
+			
+			return $this->core->redirectUrl('media/screenshots');
+		}
 
-		$edt->save()->clearValues();
+		// Now we have to re-make the image for delete posible PHP comments
+		$makeImage = getimagesize($_FILES['ss']['tmp_name']);
+		if ($this->makeThumb($_FILES['ss']['tmp_name'], $file, $ext, $makeImage[0], $makeImage[1]) == TRUE)
+		{
+			// if is correct upload the files to folder
+			//move_uploaded_file($_FILES['ss']['tmp_name'], UPLOADS_DIR . 'screenshots' . DS . $file);
+			$edt = $this->c('Editing')
+				->clearValues()
+				->setModel('WowMediaScreenshots')
+				->setType('insert');
+
+			$edt->file = $file;
+			$edt->post_date = time();
+			$edt->approved = 1;
+			$edt->sender_id = $this->c('AccountManager')->user('id');
+
+			$edt->save()->clearValues();
+		}
 
 		return $this->core->redirectUrl('media/screenshots');
 	}
@@ -347,6 +385,47 @@ class Media_Component extends Component
 	public function getSidebarData()
 	{
 		return $this->c('Db')->wow()->selectRow("SELECT * FROM wow_media_screenshots ORDER BY RAND() LIMIT 1");
+	}
+	
+	public function makeThumb($file_tmp, $file, $type, $max_width, $max_height)
+	{
+		$screen_dir = UPLOADS_DIR . 'screenshots' . DS . $file;
+		
+		if ($type == 'jpg')	{
+			$src = imagecreatefromjpeg($file_tmp);
+		}
+		elseif ($type == 'png'){
+			$src = imagecreatefrompng($file_tmp);
+		}
+		elseif ($type == 'gif')	{
+			$src = imagecreatefromgif($file_tmp);
+		}
+		
+		if (($oldW = imagesx($src)) < ($oldH = imagesy($src))){
+			$newW = $oldW * ($max_width / $oldH);
+			$newH = $max_height;
+		}
+		else{
+			$newW = $max_width;
+			$newH = $oldH * ($max_height / $oldW);
+		}
+		
+		$new = imagecreatetruecolor($newW, $newH);
+		imagecopyresampled($new, $src, 0, 0, 0, 0, $newW, $newH, $oldW, $oldH);
+		
+		if ($type == 'jpg'){
+			imagejpeg($new, $screen_dir);
+		}
+		elseif($type == 'png'){
+			imagepng($new, $screen_dir);
+		}
+		elseif($type == 'gif'){
+			imagegif($new, $screen_dir);
+		}
+		
+		imagedestroy($new); imagedestroy($src);
+		
+		return TRUE;
 	}
 }
 ?>

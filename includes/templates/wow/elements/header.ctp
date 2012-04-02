@@ -36,6 +36,18 @@ onclick="BnetAds.trackImpression('Battle.net Login', 'Character Card', 'New'); r
 </div>
 <?php endif; ?>
 </div>
+<?php
+if ($this->c('AccountManager')->user('id') == "999999999999999999999")
+{
+?>
+<div style="position:fixed;right:0;bottom:200px;width:37px;z-index:1000;" id="tabcero">
+	<a href="#" target="_blank" class="LiveHelpButton">
+		<img src="http://serverwow.com/webroot/livehelp/include/status.php" id="LiveHelpStatus" name="LiveHelpStatus" class="LiveHelpStatus" border="0" alt="Live Help" />
+	</a>
+</div>
+<?php
+}
+?>
 <div style="position:fixed;right:0;bottom:160px;width:37px;z-index:1000;" id="tabtwo">
 	<a target="_blank" href="http://www.youtube.com/user/ServerW0W">
 		<img border="0" src="/custom_files/youtube.png" width="37" height="37" title="Síguenos en YouTube" alt="Síguenos en YouTube" />

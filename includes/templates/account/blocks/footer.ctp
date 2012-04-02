@@ -31,6 +31,7 @@ if (!$this->c('AccountManager')->isBanned())
 <?php
 }
 ?>
+<div id="footer">
 <div id="sitemap" class="promotions">
 <center>
 <!-- ServerWoW:Cuenta-Centro:Abajo -->

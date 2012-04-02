@@ -29,6 +29,11 @@ class Wow_Controller_Component extends Controller_Component
 
 	public function build($core)
 	{
+		if (!$this->c('AccountManager')->isLoggedIn())
+		{
+			$core->redirectApp('/login/');
+			return $this;
+		}
 		if (!$core->getUrlAction(1))
 			$action = 'Home';
 		else

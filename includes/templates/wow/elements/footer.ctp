@@ -1,6 +1,5 @@
 <?php
-//if (!$this->c('AccountManager')->isBanned())
-if ($this->c('AccountManager')->user('id') == 21212121212121222121212122121212)
+if (!$this->c('AccountManager')->isBanned())
 {
 ?>
 <link type="text/css" href="http://serverwow.com/webroot/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">

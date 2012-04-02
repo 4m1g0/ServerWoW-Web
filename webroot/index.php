@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) 2011 Shadez <https://github.com/Shadez>
  *
@@ -18,6 +17,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  **/
 
-define('BOOT_FILE', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'boot.php');
+define('BOOT_FILE', dirname(dirname(__FILE__)) . '/' . 'includes' . '/' . 'boot.php');
+//define('BOOT_FILE', "/home/serwwcom/public_html/includes/boot.php");
 include(BOOT_FILE);
 ?>

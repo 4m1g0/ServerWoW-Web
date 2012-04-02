@@ -404,7 +404,7 @@ class AccountManager_Component extends Component
 		$this->c('Cookie')->write('wowuser', $this->m_cookieData);
 
 		$this->m_user = $user;
-		$this->m_sessionInfo = 'EU-' . $user->id . '-' . sha1($user->sha_pass_hash); // Ticket ID
+		$this->m_sessionInfo = 'ES-' . $user->id . '-' . sha1($user->sha_pass_hash); // Ticket ID
 
 		$this->c('Session')->setSession('isLoggedIn', true);
 
@@ -1451,5 +1451,41 @@ class AccountManager_Component extends Component
 			return $block_user;
 		}
 	}
+	
+	public function get_Realip()
+	{
+    	if ($_SERVER)
+		{
+			if ($_SERVER["HTTP_X_FORWARDED_FOR"])
+			{
+				$realip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+			}
+			elseif ($_SERVER["HTTP_CLIENT_IP"])
+			{
+				$realip = $_SERVER["HTTP_CLIENT_IP"];
+       		}
+	   		else
+	   		{  
+				$realip = $_SERVER["REMOTE_ADDR"];
+       		}
+		}
+		else
+		{
+			if (getenv( 'HTTP_X_FORWARDED_FOR'))
+			{
+				$realip = getenv('HTTP_X_FORWARDED_FOR');
+        	}
+			elseif (getenv('HTTP_CLIENT_IP'))
+			{  
+				$realip = getenv('HTTP_CLIENT_IP');
+			}
+			else
+			{
+				$realip = getenv('REMOTE_ADDR');
+			}
+	    }
+
+    	return $realip;
+	}	
 }
 ?>

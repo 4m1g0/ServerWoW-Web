@@ -117,6 +117,8 @@ $('#accountName').focus();
 </script>
 </div>
 <div id="footer">
+<?php
+/*
 
 <div id="sitemap" class="promotions">
 <div class="column">
@@ -160,7 +162,9 @@ $('#accountName').focus();
 <li><a href="<?php echo CLIENT_FILES_PATH; ?>/wow/bugtracker/"><?php echo $l->getString('template_footer_support_link2'); ?></a></li>
 </ul>
 </div>
-
+*/
+?>
+<br><br><br><br>
 </div>
 <div id="copyright">
 <a href="javascript:;" tabindex="100" id="change-language">

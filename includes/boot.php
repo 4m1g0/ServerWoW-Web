@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) 2009-2011 Shadez <https://github.com/Shadez>
  *
@@ -24,13 +23,13 @@ if (!defined('BOOT_FILE'))
 session_start();
 error_reporting(E_ALL);
 
-$debug = true;
-$use_lag_reports = true;
+$debug = false;
+$use_lag_reports = false;
 
 $tstart = array_sum(explode(' ', microtime()));
 
 define('ROOT', dirname(dirname(__FILE__)));
-define('DS', DIRECTORY_SEPARATOR);
+define('DS', '/');
 define('WEBROOT_DIR', ROOT . DS . 'webroot' . DS);
 
 define('INCLUDES_DIR', ROOT . DS . 'includes' . DS);

@@ -93,6 +93,18 @@ var s = document.getElementsByTagName("script")[0];
 s.parentNode.insertBefore(po, s);
 })();
 </script>
+<?php
+if ($this->c('AccountManager')->user('id') == "999999999999999999999")
+{
+?>
+<!-- stardevelop.com Live Help International Copyright - All Rights Reserved //-->
+<!-- BEGIN Live Help Code - NOT PERMITTED TO MODIFY IMAGE MAP/CODE/LINKS //-->
+<script type="text/javascript" src="http://serverwow.com/webroot/livehelp/scripts/jquery-1.4.1.js"></script>
+<script type="text/javascript" src="http://serverwow.com/webroot/livehelp/scripts/jquery.livehelp.js"></script>
+<!-- END Live Help HTML Code - NOT PERMITTED TO MODIFY IMAGE MAP/CODE/LINKS //-->
+<?php
+}
+?>
 </head>
 <body class="<?php echo $l->getLocale(LOCALE_DOUBLE) . ' ' . (isset($body_class) ? $body_class : 'homepage'); if (isset($notify)) echo ' has-notify-bar'; ?>">
 <div id="fb-root"></div>

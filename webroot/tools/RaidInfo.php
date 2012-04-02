@@ -19,7 +19,7 @@
  **/
 
 define('SKIP_SHUTDOWN', true);
-define('BOOT_FILE', dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'boot.php');
+define('BOOT_FILE', dirname(dirname(dirname(__FILE__))) . '/' . 'includes' . '/' . 'boot.php');
 include(BOOT_FILE);
 
 $data = $core->c('QueryResult', 'Db')
