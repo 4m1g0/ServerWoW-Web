@@ -1,7 +1,4 @@
-So:
-
-- Unic Copy - Full rights®
-- Original site design //done
+﻿- Original site design //done
 - Multi Realms support //done
 - Multi Lang Support (without /wow/$lang/) //done
 
@@ -32,8 +29,13 @@ So:
 - Admin Panel (General) // done
 - Moderation Panel (General) // done (forums)
 
-Have in Count
+Allways Have in Count
 - Friendly URL's
 - Secure Website (Prevent SQL Injections, etc)
 
-Initial Price : US $1500
+=> On Development <=
+- Add Memcached Support
+- Add APC Support
+- Add CDN Support (maxCDN)
+- Implement Minify
+- SSL require for /login
