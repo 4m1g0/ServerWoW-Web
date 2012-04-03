@@ -1,1 +1,0 @@
-ALTER TABLE  `wow_user_groups` ADD  `group_style` VARCHAR( 255 ) NOT NULL ;

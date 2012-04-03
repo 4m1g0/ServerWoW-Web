@@ -1,0 +1,39 @@
+So:
+
+- Unic Copy - Full rights®
+- Original site design //done
+- Multi Realms support //done
+- Multi Lang Support (without /wow/$lang/) //done
+
+- News system (with Moderation//Admin Panel) // done
+- Forums (with Moderation//Admin Panel) // done
+- Account management // done
+- Simple features (Create account, Change Password, etc..) // done
+
+- Character profile (simple and advanced versions) // done
+- Character audit feature (advanced profile) // done
+- Character reputation // done
+- Character achievements // done
+- Character PvP info // done
+- Character Activity // done
+- Guild page // done
+- Guild roster // done
+
+- WoWhead included (Item pages, etc..) (in /game/) (with Moderation Panel//Admin Panel) // done
+
+- Realms status // done
+- Media system (screenshots, videos, texts) (in /community/) (with Moderation Panel//Admin Panel) //done
+
+- BugTracker (in /media/) (with Moderation Panel//Admin Panel) // Done
+- Search Engine // done
+
+- Credits Store "Paypal/SMS" (in /services/) (with Admin Panel) // done
+
+- Admin Panel (General) // done
+- Moderation Panel (General) // done (forums)
+
+Have in Count
+- Friendly URL's
+- Secure Website (Prevent SQL Injections, etc)
+
+Initial Price : US $1500

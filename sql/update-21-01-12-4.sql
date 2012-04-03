@@ -1,1 +1,0 @@
-ALTER TABLE  `wow_forum_category` ADD  `banned_flag` INT NOT NULL AFTER  `gmlevel` ;

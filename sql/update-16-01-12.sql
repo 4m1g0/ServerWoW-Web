@@ -1,1 +1,0 @@
-ALTER TABLE  `wow_forum_posts` ADD  `deleted_by` VARCHAR( 255 ) NOT NULL ;

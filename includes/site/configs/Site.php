@@ -21,7 +21,6 @@
 $SiteConfig = array (
   'site' => 
   array (
-    'creation_youtube_id' => 'DSRrrR4z_ks',
     'path' => '',
     'locale_indexes' => 
     array (
@@ -35,8 +34,11 @@ $SiteConfig = array (
       'level' => '3',
     ),
     'title' => 'World of Warcraft',
+	'description' => 'Server WoW : El mejor Server de World of Warcraft privado blizzlike Version Cataclysm 4.0.6a y Wrath of The lich king 3.3.5a, Juega Gratis WoW',
+    'keywords' => 'wow, juegos, multijugador masivo, world of warcraft, blizzlike, cataclysm, wotlk, server, privado, foros',
     'battlegroup' => 'Massive Online',
     'icons_server' => 'http://eu.battle.net/wow-assets/static/images/icons',
+    'creation_youtube_id' => 'DSRrrR4z_ks',
     'locale' => 
     array (
       'default' => 'es',
