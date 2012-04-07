@@ -22,6 +22,9 @@ class Grouplogin_Controller_Component extends Wowcstemplate_Controller_Component
 {
 	protected function beforeActions()
 	{
+		if (!$this->isSSLConnection())
+			$this->reconnectWithSSL();
+
 		/*if (!$this->core->getUrlLocale())
 		{
 			// Redirect
@@ -44,6 +47,7 @@ class Grouplogin_Controller_Component extends Wowcstemplate_Controller_Component
 		}*/
 
 		$this->wowTemplater();
+
 		return $this;
 	}
 }

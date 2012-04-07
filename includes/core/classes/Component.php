@@ -219,21 +219,6 @@ abstract class Component
 		return $this->c('Page')->getContents($name);
 	}
 
-	public function getUnit($name, $new = false)
-	{
-		if ($new)
-		{
-			if (!in_array($name, array('', 'List', 'Item')))
-				$name = 'List';
-
-			$class = $name . '_Unit_Component';
-			$unit = new $class($name . '_Unit', $this->core);
-			return $unit->initialize();
-		}
-
-		return $this->c($name, 'Unit');
-	}
-
 	public function shutdownComponent()
 	{
 		foreach ($this as &$field)
@@ -310,6 +295,20 @@ abstract class Component
 			return $asOffset ? 0 : 1;
 
 		return $asOffset ? (intval($_GET['page']) - 1) : intval($_GET['page']);
+	}
+
+	public function isSSLConnection()
+	{
+		return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on');
+	}
+
+	public function reconnectWithSSL()
+	{
+		if (!$this->isSSLConnection())
+		{
+			header('Location: https://' . $_SERVER['HTTP_HOST'] . '/' . $this->core->getRawUrl());
+			exit;
+		}
 	}
 
 	/*** Some Events ***/

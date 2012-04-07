@@ -275,7 +275,7 @@ class Core_Component extends Component
 		return $this->m_rawUrl;
 	}
 
-	public function getAppUrl()
+	public function getAppUrl($url = '')
 	{
 		return implode('/', $this->m_actions);
 	}

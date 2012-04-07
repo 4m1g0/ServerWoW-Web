@@ -130,7 +130,7 @@ class Controller_Component extends Component
 
 		if (method_exists($this, 'block_' . $name))
 		{
-			$block = &$this->{'block_' . $name}();
+			$block = $this->{'block_' . $name}();
 			$block->setBlockName($name);
 			if ($block->getMainUnit() != null && method_exists($this, 'unit_' . $block->getMainUnit()))
 			{
@@ -138,7 +138,7 @@ class Controller_Component extends Component
 					$unit = $this->m_units[$block->getMainUnit()];
 				else
 				{
-					$unit = &$this->{'unit_' . $block->getMainUnit()}();
+					$unit = $this->{'unit_' . $block->getMainUnit()}();
 					$unit->findData();
 				}
 				$block->setMainUnitObject($unit);

@@ -20,7 +20,7 @@
 
 class Home_WoW_Controller_Component extends Groupwow_Controller_Component
 {
-	public function build()
+	public function build($core)
 	{
 		$this->c('Wow')->checkBlogPagination();
 
