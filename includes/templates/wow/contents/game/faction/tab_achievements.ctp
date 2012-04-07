@@ -81,7 +81,7 @@
 
 
 
-		<span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $ach['iconname']; ?>.jpg");'>
+		<span  class="icon-frame frame-18 " style='background-image: url("<?php echo $this->getMediaServer(); ?>/wow/icons/18/<?php echo $ach['iconname']; ?>.jpg");'>
 		</span>
 							<span class="has-tip"><?php echo $ach['name']; ?></span>
 						</strong>

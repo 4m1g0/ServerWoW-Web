@@ -86,7 +86,7 @@
 
 
 
-		<span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $i['icon']; ?>.jpg");'>
+		<span  class="icon-frame frame-18 " style='background-image: url("<?php echo $this->getMediaServer(); ?>/wow/icons/18/<?php echo $i['icon']; ?>.jpg");'>
 		</span>
 						<strong><?php echo $i['name']; ?></strong>
 

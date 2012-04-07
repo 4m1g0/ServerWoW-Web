@@ -491,13 +491,18 @@ class Admin_Component extends Component
 			return false;
 
 		$site = $_POST['site'];
-		$this->c('Config')->setValue('site.path', $site['path']);
+//		$this->c('Config')->setValue('site', $site['path']);
 
 		$d = explode(',', $site['locale_indexes']);
 
 		foreach ($d as &$i)
 			$i =trim($i);
 
+		$site['locale_indexes'] = $d;
+		$site['log']['filename'] = str_replace('\\\\', '\\', $site['log']['filename']);
+
+		$this->c('Config')->setValue('site', $site);
+/*
 		$this->c('Config')->setValue('site.locale_indexes', $d);
 
 		$this->c('Config')->setValue('site.creation_youtube_id', $site['creation_youtube_id']);
@@ -505,7 +510,7 @@ class Admin_Component extends Component
 		$this->c('Config')->setValue('site.log', $site['log']);
 
 		$this->c('Config')->setValue('site.locale', $site['locale']);
-
+*/
 		$this->c('Config')->setValue('misc', $_POST['misc']);
 
 		$this->c('Config')->setValue('session', $_POST['session']);

@@ -1,11 +1,3 @@
-/**
- *
- * @copyright  2010, Blizzard Entertainment, Inc
- * @class      Lightbox
- *
- * @requires   Core
- */
-
 var Lightbox = {
     timeout:        0,
     initialized:    false,
@@ -54,7 +46,7 @@ var Lightbox = {
      * @param array images - array of objects containing title (optional), src, and path (optional) of image to view.
      *  Example:
      *      [{ title: "Image title",
-     *        src:    "http://us.media.blizzard.com/sc2/media/screenshots/protoss_archon_002-large.jpg",
+     *        src:    "/media/screenshots/protoss_archon_002-large.jpg",
      *        path:   "/sc2/en/media/screenshots/?view#/protoss_archon_002" (omitting the path property will cause the gallery-view icon to hide)
      *      }]
      *

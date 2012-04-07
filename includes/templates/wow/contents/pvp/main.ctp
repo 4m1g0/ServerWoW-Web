@@ -61,7 +61,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328848630388-1');
 								<div class="members">
 									<a href="/wow/ru/character/alakir/%C3%9Feast/">
 										<span class="icon-frame frame-14 ">
-											<img src="http://eu.media.blizzard.com/wow/icons/18/class_8.jpg" alt="" width="14" height="14" />
+											<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_8.jpg" alt="" width="14" height="14" />
 										</span>
 									</a>
 								</div> -->

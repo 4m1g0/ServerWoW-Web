@@ -2,18 +2,6 @@ $(document).ready(function() {
 	Support.initialize();
 });
 
-/**
- * Methods used in validating support forms
- *
- * @copyright   2010, Blizzard Entertainment, Inc.
- * @class       AccountSettings
- * @requires    
- * @example
- *
- *      AccountSettings.initialize();
- *
- */
-
 var Support = {
 	form: '',
 	requiredField: {},

@@ -147,7 +147,7 @@ if (!$mounts) return;
 			rel="np">
 
 			<span class="render">
-				<span class="render-model" style="background-image: url(http://eu.media.blizzard.com/wow/renders/npcs/grid/creature<?php echo $collected['npc_id']; ?>.jpg)"></span>
+				<span class="render-model" style="background-image: url(<?php echo $this->getRenderServer(); ?>/wow/renders/npcs/grid/creature<?php echo $collected['npc_id']; ?>.jpg)"></span>
 			</span>
 
 			<span class="name color-q<?php echo $collected['quality']; ?>"><?php echo $collected['name']; ?></span>
@@ -222,7 +222,7 @@ if (!$mounts) return;
         <script type="text/javascript">
         //<![CDATA[
 			$(function() {
-				Companion.renderPath = 'http://eu.media.blizzard.com/wow/renders/npcs/grid/creature{id}.jpg';
+				Companion.renderPath = '<?php echo $this->getRenderServer(); ?>/wow/renders/npcs/grid/creature{id}.jpg';
 				Companion.itemPath = '<?php echo $this->getWowUrl('item/{id}'); ?>'; 
 				Companion.setData({
 					<?php if ($mounts['mounts']) : foreach($mounts['mounts'] as &$mount) : ?>

@@ -3,7 +3,7 @@
 
 <a href="/wow/es/media/videos/?keywords=&amp;view#/fall-of-the-lich-king" class="thumb-wrapper">
 
-<span class="thumb-bg" style="background-image:url(http://eu.media.blizzard.com/wow/media/videos/fall-of-the-lich-king/fall-of-the-lich-king-index-thumb.jpg)">
+<span class="thumb-bg" style="background-image:url(<?php echo $this->getMediaServer(); ?>/wow/media/videos/fall-of-the-lich-king/fall-of-the-lich-king-index-thumb.jpg)">
 
 <span class="thumb-frame">
 
@@ -17,7 +17,7 @@
 
 <a href="/wow/es/media/videos/?keywords=&amp;view#/wrath-ending" class="thumb-wrapper">
 
-<span class="thumb-bg" style="background-image:url(http://eu.media.blizzard.com/wow/media/videos/wrath-ending/wrath-ending-index-thumb.jpg)">
+<span class="thumb-bg" style="background-image:url(<?php echo $this->getMediaServer(); ?>/wow/media/videos/wrath-ending/wrath-ending-index-thumb.jpg)">
 
 <span class="thumb-frame">
 
@@ -31,7 +31,7 @@
 
 <a href="/wow/es/media/videos/?keywords=&amp;view#/cataclysm-reveal" class="thumb-wrapper">
 
-<span class="thumb-bg" style="background-image:url(http://eu.media.blizzard.com/wow/media/videos/cataclysm-reveal/cataclysm-reveal-index-thumb.jpg)">
+<span class="thumb-bg" style="background-image:url(<?php echo $this->getMediaServer(); ?>/wow/media/videos/cataclysm-reveal/cataclysm-reveal-index-thumb.jpg)">
 
 <span class="thumb-frame">
 
@@ -45,7 +45,7 @@
 
 <a href="/wow/es/media/videos/?keywords=&amp;view#/cataclysm-worldreborn" class="thumb-wrapper" style="margin-right:0">
 
-<span class="thumb-bg" style="background-image:url(http://eu.media.blizzard.com/wow/media/videos/cataclysm-worldreborn/cataclysm-worldreborn-index-thumb.jpg)">
+<span class="thumb-bg" style="background-image:url(<?php echo $this->getMediaServer(); ?>/wow/media/videos/cataclysm-worldreborn/cataclysm-worldreborn-index-thumb.jpg)">
 
 <span class="thumb-frame">
 
@@ -61,7 +61,7 @@
 
 <a href="/wow/es/media/videos/?keywords=&amp;view#/cataclysm-tv-spot" class="thumb-wrapper">
 
-<span class="thumb-bg" style="background-image:url(http://eu.media.blizzard.com/wow/media/videos/cataclysm-tv-spot/cataclysm-tv-spot-index-thumb.jpg)">
+<span class="thumb-bg" style="background-image:url(<?php echo $this->getMediaServer(); ?>/wow/media/videos/cataclysm-tv-spot/cataclysm-tv-spot-index-thumb.jpg)">
 
 <span class="thumb-frame">
 
@@ -75,7 +75,7 @@
 
 <a href="/wow/es/media/videos/?keywords=&amp;view#/cataclysm-intro" class="thumb-wrapper">
 
-<span class="thumb-bg" style="background-image:url(http://eu.media.blizzard.com/wow/media/videos/cataclysm-intro/cataclysm-intro-index-thumb.jpg)">
+<span class="thumb-bg" style="background-image:url(<?php echo $this->getMediaServer(); ?>/wow/media/videos/cataclysm-intro/cataclysm-intro-index-thumb.jpg)">
 
 <span class="thumb-frame">
 
@@ -89,7 +89,7 @@
 
 <a href="/wow/es/media/videos/?keywords=&amp;view#/zandalari" class="thumb-wrapper">
 
-<span class="thumb-bg" style="background-image:url(http://eu.media.blizzard.com/wow/media/videos/zandalari/zandalari-index-thumb.jpg)">
+<span class="thumb-bg" style="background-image:url(<?php echo $this->getMediaServer(); ?>/wow/media/videos/zandalari/zandalari-index-thumb.jpg)">
 
 <span class="thumb-frame">
 
@@ -103,7 +103,7 @@
 
 <a href="/wow/es/media/videos/?keywords=&amp;view#/rage-of-the-firelands" class="thumb-wrapper" style="margin-right:0">
 
-<span class="thumb-bg" style="background-image:url(http://eu.media.blizzard.com/wow/media/videos/rage-of-the-firelands/rage-of-the-firelands-index-thumb.jpg)">
+<span class="thumb-bg" style="background-image:url(<?php echo $this->getMediaServer(); ?>/wow/media/videos/rage-of-the-firelands/rage-of-the-firelands-index-thumb.jpg)">
 
 <span class="thumb-frame">
 
@@ -119,7 +119,7 @@
 
 <a href="/wow/es/media/videos/?keywords=&amp;view#/mists-of-pandaria-reveal" class="thumb-wrapper">
 
-<span class="thumb-bg" style="background-image:url(http://eu.media.blizzard.com/wow/media/videos/mists-reveal/mists-of-pandaria-reveal-index-thumb.jpg)">
+<span class="thumb-bg" style="background-image:url(<?php echo $this->getMediaServer(); ?>/wow/media/videos/mists-reveal/mists-of-pandaria-reveal-index-thumb.jpg)">
 
 <span class="thumb-frame">
 

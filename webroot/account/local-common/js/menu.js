@@ -1,22 +1,3 @@
-/**
- * Dynamically create and position certain menus and sub menus (JSON objects) depending on specific conditions.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       Menu
- * @requires    Page
- * @example
- *
- *      Menu.data = {
- *          children: [
- *              {
- *                  label: "Foo",
- *                  url:   "/foo/bar"
- *              }
- *          ]
- *      }
- *
- */
-
 var Menu = {
 
 	/**

@@ -32,7 +32,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328910445828-0');
 		<div class="model-viewer">
 				<div class="model" id="model-<?php echo $item->item('entry'); ?>">
 					<div class="loading">
-						<div class="viewer" style="background-image: url('http://eu.media.blizzard.com/wow/renders/items/item<?php echo $item->item('entry'); ?>.jpg');"></div>
+						<div class="viewer" style="background-image: url('<?php echo $this->getRenderServer(); ?>/wow/renders/items/item<?php echo $item->item('entry'); ?>.jpg');"></div>
 					</div>
 					<a href="javascript:;" class="zoom"></a>
 					<a href="javascript:;" class="rotate"></a>

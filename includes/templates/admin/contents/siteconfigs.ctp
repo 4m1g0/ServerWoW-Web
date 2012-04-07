@@ -49,6 +49,35 @@ Default Site Locale
 <option value="ru"<?php if ($site['locale']['default'] == 'ru') echo ' selected="selected"'; ?>>Russian</option>
 </select>
 </div>
+
+<div class="input text long">
+Site Title
+<input type="text" name="site[title]" size=50 value="<?php echo $site['title']; ?>" />
+</div>
+<div class="input text long">
+Site Description
+<input type="text" name="site[description]" size=50 value="<?php echo $site['description']; ?>" />
+</div>
+<div class="input text long">
+Site Keywords
+<input type="text" name="site[keywords]" size=50 value="<?php echo $site['keywords']; ?>" />
+</div>
+<div class="input text long">
+Battlegroup
+<input type="text" name="site[battlegroup]" size=50 value="<?php echo $site['battlegroup']; ?>" />
+</div>
+<div class="input text long">
+Icons Server URL (items, achievements, spells)
+<input type="text" name="site[icons_server]" size=50 value="<?php echo $site['icons_server']; ?>" />
+</div>
+<div class="input text long">
+Media Server URL (wow icons, classes icons, static pages icons)
+<input type="text" name="site[media_server]" size=50 value="<?php echo $site['media_server']; ?>" />
+</div>
+<div class="input text long">
+Renders Server URL (items &amp; npcs rendered images)
+<input type="text" name="site[render_server]" size=50 value="<?php echo $site['render_server']; ?>" />
+</div>
 <div class="input text long">
 Admin Email
 <input type="text" name="misc[admin_email]" size=50 value="<?php echo $misc['admin_email']; ?>" />

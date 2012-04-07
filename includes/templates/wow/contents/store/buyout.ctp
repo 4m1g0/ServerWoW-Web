@@ -157,7 +157,7 @@ function buyout()
 						foreach ($i['itemset_items'] as $pi) :
 						?>
 							<a href="<?php echo $this->getWowUrl('item/' . $pi['entry']); ?>" class="item-link color-q<?php echo $pi['Quality']; ?>">
-								<span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $pi['icon']; ?>.jpg");'></span>
+								<span  class="icon-frame frame-18 " style='background-image: url("<?php echo $this->getMediaServer(); ?>/wow/icons/18/<?php echo $pi['icon']; ?>.jpg");'></span>
 							</a>
 						<?php
 						endforeach;?>
@@ -167,7 +167,7 @@ function buyout()
 							<td<?php if ($i['storeInfo']['service_type'] == 0) : ?> data-raw="<?php echo (7 - $i['Quality']) . ' ' . $i['name']; ?>"<?php endif; ?>>
 							<?php if ($i['storeInfo']['service_type'] == 0) : ?>
 								<a href="<?php echo $this->getWowUrl('item/' . $i['entry']); ?>" class="item-link color-q<?php echo $i['Quality']; ?>">
-									<span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $i['icon']; ?>.jpg");'>
+									<span  class="icon-frame frame-18 " style='background-image: url("<?php echo $this->getMediaServer(); ?>/wow/icons/18/<?php echo $i['icon']; ?>.jpg");'>
 									</span>
 									<strong><?php echo $i['name']; ?></strong>
 								</a>

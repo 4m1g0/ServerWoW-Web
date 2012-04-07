@@ -1,10 +1,3 @@
-/**
- * Turns a background sprite image into a draggable and rotatable 3D model viewer.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       ModelRotator
- * @requires    Core
- */
 var ModelRotator = Class.extend({
 
 	/**

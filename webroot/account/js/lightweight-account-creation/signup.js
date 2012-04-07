@@ -39,9 +39,9 @@ var WowLanding = {
                 
             flashFilename += locale;
 
-            swfobject.embedSWF("http://us.media.blizzard.com/blizzard/movies/player/video_loader2.swf",
+            swfobject.embedSWF("/movies/player/video_loader2.swf",
 				"flashVideo", "848", playerHeight, "9", null, { "vidArr": flashFilename + ":" + playerSplash + ":" + hostingDir + "" + playerParams }, 
-				{ "allowFullScreen" : true, "bgcolor" : "000000", "base" : "http://us.media.blizzard.com/blizzard/movies/player/", "allowScriptAccess" : "always", "wmode" : "transparent" }
+				{ "allowFullScreen" : true, "bgcolor" : "000000", "base" : "/movies/player/", "allowScriptAccess" : "always", "wmode" : "transparent" }
 			);
 			
         },

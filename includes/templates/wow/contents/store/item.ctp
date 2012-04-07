@@ -32,7 +32,7 @@ foreach ($store_item['itemset_items'] as $pi) :
 ?>
 <li>
 <a href="<?php echo $this->getWowUrl('item/' . $pi['entry']); ?>" class="item-link color-q<?php echo $pi['Quality']; ?>">
-<span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $pi['icon']; ?>.jpg");'></span>
+<span  class="icon-frame frame-18 " style='background-image: url("<?php echo $this->getMediaServer(); ?>/wow/icons/18/<?php echo $pi['icon']; ?>.jpg");'></span>
  <?php echo $pi['name']; ?></a></li>
 <?php
 endforeach;

@@ -1,15 +1,3 @@
-/**
- * A slideshow system. Will display a single slide (with a description, title and image) at a time,
- * and will fade between the slides based on a duration. You can manually jump to specific slides.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       Slideshow
- * @example
- *
- *      Slideshow.initialize('#slideshow', []);
- *
- */
-
 var Slideshow = {
 
     /**

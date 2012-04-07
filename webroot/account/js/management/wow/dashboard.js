@@ -2,17 +2,6 @@ $(document).ready(function() {
 	Services.initialize();
 });
 
-/**
- * Toggles display of WoW service categories, e.g., Character Services, Additional Services.
- *
- * @copyright   2010, Blizzard Entertainment, Inc.
- * @class       Services
- * @requires    
- * @example
- *
- *      Services.initialize();
- *
- */
 var Services = {
 	wrapper: {},
     menuItems: {},

@@ -5,16 +5,6 @@ $(document).ready(function() {
 	DashboardForm.initialize();
 });
 
-/**
- * Kills disabled links.
- *
- * @copyright   2011, Blizzard Entertainment, Inc.
- * @class       Services
- * @example
- *
- *      DashboardLinks.disable();
- *
- */
 var DashboardLinks = {
 	disable: function() {
 		DashboardLinks.disabled = $('a.disabled');
@@ -39,12 +29,6 @@ var DashboardLinks = {
 	}
 };
 
-/**
- * Displays animation for game upgrades.
- *
- * @copyright   2011, Blizzard Entertainment, Inc
- * @class       UpgradeBox
- */
 var UpgradeBox = Class.extend({
 
 	/**
@@ -141,17 +125,6 @@ var UpgradeBox = Class.extend({
 
 }); 
 
-/**
- * Toggles display of previous Product Levels, including Standard or Collector's Edition status.
- *
- * @copyright   2011, Blizzard Entertainment, Inc.
- * @class       AccountHistory
- * @requires    
- * @example
- *
- *      AccountHistory.initialize();
- *
- */
 var AccountHistory = {
 	primaryAccount: {},
 	secondaryAccounts: '',
@@ -192,17 +165,6 @@ var AccountHistory = {
 	}
 };
 
-/**
- * Toggles display of inline dashboard form.
- *
- * @copyright   2011, Blizzard Entertainment, Inc.
- * @class       AccountHistory
- * @requires    
- * @example
- *
- *      DashboardForm.initialize();
- *
- */
 var DashboardForm = {
 	accountWrapper: $('.account-management'),
 	formWrapper: $('.dashboard-form'),
@@ -334,17 +296,6 @@ var DashboardForm = {
 	}
 };
 
-/**
- * Handler for RPC calls (inline forms).
- *
- * @copyright   2011, Blizzard Entertainment, Inc.
- * @class       Services
- * @requires    
- * @example
- *
- *      RPC.cancel('#form-id');
- *
- */
 var RPC = {
 	cancel: function(form) {
 		DashboardForm.hide($(form));

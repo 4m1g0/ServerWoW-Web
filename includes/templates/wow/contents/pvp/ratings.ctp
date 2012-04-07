@@ -209,7 +209,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328849578247-2');
 
 
 		<span class="icon-frame frame-14 " data-tooltip="<?php echo $l->getString('faction_' . ($this->c('Wow')->getFactionId($t['race']) == FACTION_ALLIANCE ? 'alliance' : 'horde')); ?>">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/faction_<?php echo $this->c('Wow')->getFactionId($t['race']); ?>.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/faction_<?php echo $this->c('Wow')->getFactionId($t['race']); ?>.jpg" alt="" width="14" height="14" />
 		</span>
 									</td>
 									<td class="align-center"><span class="win"><?php echo $t['seasonWins']; ?></span></td>

@@ -2,9 +2,6 @@
  * jQuery JavaScript Library v1.4.4
  * http://jquery.com/
  *
- * Patched by Blizzard Entertainment to include this revision:
- * https://github.com/jquery/jquery/commit/534dbd660eaefbbc5827b1b61ba384e768562086
- *
  * Copyright 2010, John Resig
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license

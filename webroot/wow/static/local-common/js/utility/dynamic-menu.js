@@ -1,10 +1,3 @@
-/**
- * Enables an unordered list to slide left/right to display multiple tiers of child menus.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       DynamicMenu
- * @requires    Core
- */
 var DynamicMenu = Class.extend({
 
 	/**

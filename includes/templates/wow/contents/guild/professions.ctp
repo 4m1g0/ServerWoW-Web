@@ -177,7 +177,7 @@
 
 
 
-		<span  class="icon-frame frame-18 " style='background-image: url("http://eu.media.blizzard.com/wow/icons/18/<?php echo $prof['info']['icon']; ?>.jpg");'>
+		<span  class="icon-frame frame-18 " style='background-image: url("<?php echo $this->getMediaServer(); ?>/wow/icons/18/<?php echo $prof['info']['icon']; ?>.jpg");'>
 		</span>
 							<?php echo $prof['info']['name']; ?> (<span class="total"><?php echo sizeof($prof['members']); ?></span>)
 						</span>
@@ -235,7 +235,7 @@
 
 
 <span class="icon-frame frame-14 " data-tooltip="<?php echo $l->getString('character_race_' . $m['race']); ?>">
-<img src="http://eu.media.blizzard.com/wow/icons/18/race_<?php echo $m['race'] . '_' . $m['gender']; ?>.jpg" alt="" width="14" height="14" />
+<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_<?php echo $m['race'] . '_' . $m['gender']; ?>.jpg" alt="" width="14" height="14" />
 </span>
 					</td>
 					<td class="cls" data-raw="<?php echo $l->getString('character_class_' . $m['class']); ?>">
@@ -244,7 +244,7 @@
 
 
 <span class="icon-frame frame-14 " data-tooltip="<?php echo $l->getString('character_class_' . $m['class']); ?>">
-<img src="http://eu.media.blizzard.com/wow/icons/18/class_<?php echo $m['class']; ?>.jpg" alt="" width="14" height="14" />
+<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_<?php echo $m['class']; ?>.jpg" alt="" width="14" height="14" />
 </span>
 					</td>
 					<td class="lvl"><?php echo $m['level']; ?></td>

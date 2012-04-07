@@ -1,9 +1,3 @@
-/**
- * Password validation and strength rating.
- *
- * @copyright   2011, Blizzard Entertainment, Inc
- * @class       Password
- */
 var Password = Class.extend({
 
 	/**
@@ -207,13 +201,6 @@ var Password = Class.extend({
 
 
 });
-
-/**
- * Email validation.
- *
- * @copyright   2011, Blizzard Entertainment, Inc
- * @class       Email
- */
 var Email = Class.extend({
 
 	/**
@@ -279,13 +266,6 @@ var Email = Class.extend({
 	}
 
 });
-
-/**
- * Account creation utility.
- *
- * @copyright   2011, Blizzard Entertainment, Inc
- * @class       Creation
- */
 var Creation = Class.extend({
 
 	/**
@@ -1028,13 +1008,6 @@ var Creation = Class.extend({
 	}
 
 });
-
-/**
- * Account creation confirmation utility.
- *
- * @copyright   2011, Blizzard Entertainment, Inc
- * @class       Confirmation
- */
 var Confirmation = Class.extend({
 
 	/**

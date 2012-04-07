@@ -1,21 +1,6 @@
 $(document).ready(function() {
 	UI.initialize();
 });
-
-/**
- * Functionality for all custom UI elements and systems.
- *
- * @copyright   2010, Blizzard Entertainment, Inc.
- * @class       UI
- * @example
- *
- *      UI.initialize();
- *      UI.freezeButton($('#foobar'));
- *      UI.wakeButton($('#foobar'));
- *		UI.showNotes('a[rel="noteContainerID"]');
- *
- */
-
 var UI = {
 	
 	buttons: {},
@@ -428,16 +413,6 @@ function ComboBox(inputText, inputSelect, toggleLink) {
 	this.initialize();
 }
 
-/**
- * Reformats a date per the user's time zone and locale.
- *
- * @copyright   2010, Blizzard Entertainment, Inc.
- * @class       DateTime
- * @requires	Core
- * @example
- *
- *      var times = new DateTime('#content'); // will apply to all <time/> elements within <div id="content"/>
- */
 var DateTime = Class.extend({
 
 	/**

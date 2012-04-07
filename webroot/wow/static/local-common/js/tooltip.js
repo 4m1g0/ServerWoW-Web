@@ -1,15 +1,3 @@
-/**
- * Dynamically create tooltips, append specific content from different medians, and display at certain positions.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       Tooltip
- * @requires    Page
- * @example
- *
- *      onmouseover="Tooltip.show(this, 'This is the tooltip text!');"
- *
- */
-
 var Tooltip = {
 
     /**

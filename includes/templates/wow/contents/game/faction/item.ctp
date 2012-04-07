@@ -21,7 +21,7 @@
 				>
 
 				<div class="loading">
-					<div class="viewer" style="background-image: url('http://eu.media.blizzard.com/wow/renders/npcs/rotate/creature<?php echo $n[0]; ?>.jpg');"></div>
+					<div class="viewer" style="background-image: url('<?php echo $this->getRenderServer(); ?>/wow/renders/npcs/rotate/creature<?php echo $n[0]; ?>.jpg');"></div>
 				</div>
 
 				<a href="javascript:;" class="rotate"></a>

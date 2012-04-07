@@ -22,6 +22,7 @@ $SiteConfig = array (
   'site' => 
   array (
     'path' => '',
+    'creation_youtube_id' => 'DSRrrR4z_ks',
     'locale_indexes' => 
     array (
       0 => '0',
@@ -30,19 +31,20 @@ $SiteConfig = array (
     'log' => 
     array (
       'enabled' => '1',
-      'filename' => 'Y:\home\wowcs\www\webroot\_debug\tmp.dbg',
+      'filename' => 'S:\\home\\wowcs\\www\\webroot\\_debug\\tmp.dbg',
       'level' => '3',
     ),
-    'title' => 'World of Warcraft',
-	'description' => 'Server WoW : El mejor Server de World of Warcraft privado blizzlike Version Cataclysm 4.0.6a y Wrath of The lich king 3.3.5a, Juega Gratis WoW',
-    'keywords' => 'wow, juegos, multijugador masivo, world of warcraft, blizzlike, cataclysm, wotlk, server, privado, foros',
-    'battlegroup' => 'Massive Online',
-    'icons_server' => 'http://eu.battle.net/wow-assets/static/images/icons',
-    'creation_youtube_id' => 'DSRrrR4z_ks',
     'locale' => 
     array (
       'default' => 'es',
     ),
+    'title' => 'World of Warcraft',
+    'description' => 'Server WoW : El mejor Server de World of Warcraft privado blizzlike Version Cataclysm 4.0.6a y Wrath of The lich king 3.3.5a, Juega Gratis WoW',
+    'keywords' => 'wow, juegos, multijugador masivo, world of warcraft, blizzlike, cataclysm, wotlk, server, privado, foros',
+    'battlegroup' => 'Massive Online',
+    'icons_server' => 'http://eu.battle.net/wow-assets/static/images/icons',
+    'media_server' => 'http://eu.media.blizzard.com',
+    'render_server' => 'http://eu.media.blizzard.com',
   ),
   'misc' => 
   array (
@@ -64,7 +66,7 @@ $SiteConfig = array (
       'id' => '1',
       'name' => 'Armory Realm',
       'type' => 'SERVER_TRINITY',
-	  'db_id' => 1
+      'db_id' => 1,
     ),
   ),
   'database' => 

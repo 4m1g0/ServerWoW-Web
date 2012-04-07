@@ -259,7 +259,7 @@
 				<li data-id="arcaneres" class=" has-icon">
 						<span class="icon"> 
 					<span class="icon-frame frame-12">
-						<img src="http://eu.battle.net/wow-assets/static/images/icons/18/resist_arcane.jpg" alt="" width="12" height="12" />
+						<img src="<?php echo $this->getIconsServer(); ?>/18/resist_arcane.jpg" alt="" width="12" height="12" />
 					</span>
 			</span>
 					<span class="name"><?php echo $l->getString('stat_resistance_arcane'); ?></span>
@@ -269,7 +269,7 @@
 				<li data-id="fireres" class=" has-icon">
 						<span class="icon"> 
 					<span class="icon-frame frame-12">
-						<img src="http://eu.battle.net/wow-assets/static/images/icons/18/resist_fire.jpg" alt="" width="12" height="12" />
+						<img src="<?php echo $this->getIconsServer(); ?>/18/resist_fire.jpg" alt="" width="12" height="12" />
 					</span>
 			</span>
 					<span class="name"><?php echo $l->getString('stat_resistance_fire'); ?></span>
@@ -279,7 +279,7 @@
 				<li data-id="frostres" class=" has-icon">
 						<span class="icon"> 
 					<span class="icon-frame frame-12">
-						<img src="http://eu.battle.net/wow-assets/static/images/icons/18/resist_frost.jpg" alt="" width="12" height="12" />
+						<img src="<?php echo $this->getIconsServer(); ?>/18/resist_frost.jpg" alt="" width="12" height="12" />
 					</span>
 			</span>
 					<span class="name"><?php echo $l->getString('stat_resistance_frost'); ?></span>
@@ -289,7 +289,7 @@
 				<li data-id="natureres" class=" has-icon">
 						<span class="icon">
 					<span class="icon-frame frame-12">
-						<img src="http://eu.battle.net/wow-assets/static/images/icons/18/resist_nature.jpg" alt="" width="12" height="12" />
+						<img src="<?php echo $this->getIconsServer(); ?>/18/resist_nature.jpg" alt="" width="12" height="12" />
 					</span>
 			</span>
 					<span class="name"><?php echo $l->getString('stat_resistance_nature'); ?></span>
@@ -299,7 +299,7 @@
 				<li data-id="shadowres" class=" has-icon">
 						<span class="icon">
 					<span class="icon-frame frame-12">
-						<img src="http://eu.battle.net/wow-assets/static/images/icons/18/resist_shadow.jpg" alt="" width="12" height="12" />
+						<img src="<?php echo $this->getIconsServer(); ?>/18/resist_shadow.jpg" alt="" width="12" height="12" />
 					</span>
 			</span>
 					<span class="name"><?php echo $l->getString('stat_resistance_shadow'); ?></span>

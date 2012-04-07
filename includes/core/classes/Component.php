@@ -65,6 +65,7 @@ abstract class Component
 	protected $m_locale = '';
 	protected $m_localeID = 0;
 	protected $m_coreUrl = '';
+	private $m_iconsServer = '';
 
 	/**
 	 * Class constructor
@@ -309,6 +310,48 @@ abstract class Component
 			header('Location: https://' . $_SERVER['HTTP_HOST'] . '/' . $this->core->getRawUrl());
 			exit;
 		}
+	}
+
+	public function getIconsServer()
+	{
+		if (!$this->m_iconsServer)
+		{
+			$this->m_iconsServer = array(
+				$this->c('Config')->getValue('site.icons_server'),
+				$this->c('Config')->getValue('site.media_server'),
+				$this->c('Config')->getValue('site.render_server')
+			);
+		}
+
+		return $this->m_iconsServer[0];
+	}
+
+	public function getMediaServer()
+	{
+		if (!$this->m_iconsServer)
+		{
+			$this->m_iconsServer = array(
+				$this->c('Config')->getValue('site.icons_server'),
+				$this->c('Config')->getValue('site.media_server'),
+				$this->c('Config')->getValue('site.render_server')
+			);
+		}
+
+		return $this->m_iconsServer[1];
+	}
+
+	public function getRenderServer()
+	{
+		if (!$this->m_iconsServer)
+		{
+			$this->m_iconsServer = array(
+				$this->c('Config')->getValue('site.icons_server'),
+				$this->c('Config')->getValue('site.media_server'),
+				$this->c('Config')->getValue('site.render_server')
+			);
+		}
+
+		return $this->m_iconsServer[1];
 	}
 
 	/*** Some Events ***/

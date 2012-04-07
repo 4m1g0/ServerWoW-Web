@@ -89,17 +89,17 @@
 				</td>
 				<td class="align-center">
 		<span class="icon-frame frame-14 " data-tooltip="<?php echo $c['race_text']; ?>">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_<?php echo $c['race'] . '_' . $c['gender']; ?>.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_<?php echo $c['race'] . '_' . $c['gender']; ?>.jpg" alt="" width="14" height="14" />
 		</span>
 				</td>
 				<td class="align-center">
 		<span class="icon-frame frame-14 " data-tooltip="<?php echo $c['class_text']; ?>">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_<?php echo $c['class']; ?>.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_<?php echo $c['class']; ?>.jpg" alt="" width="14" height="14" />
 		</span>
 				</td>
 				<td class="align-center">
 		<span class="icon-frame frame-14 " data-tooltip="<?php echo $l->getString('faction_' . ($this->c('Wow')->getFactionId($c['race']) == FACTION_ALLIANCE ? 'alliance' : 'horde')); ?>">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/faction_<?php echo $this->c('Wow')->getFactionId($c['race']) == FACTION_ALLIANCE ? 0 : 1; ?>.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/faction_<?php echo $this->c('Wow')->getFactionId($c['race']) == FACTION_ALLIANCE ? 0 : 1; ?>.jpg" alt="" width="14" height="14" />
 		</span>
 				</td>
 				<td>

@@ -1,11 +1,3 @@
-/**
- * Builds a toolbar that allows basic BBcode styled syntax within a textarea.
- * Supports basic tags: bold, italics, underline, list, quote
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       Rich Text Editor
- * @example
- */
 
 var BML = {
 

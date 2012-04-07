@@ -185,42 +185,42 @@
 							<li>
 								<a href="../race/worgen"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_worgen_male.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_worgen_male.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Huargen</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/draenei"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_draenei_female.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_draenei_female.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Draenei</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/dwarf"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_dwarf_male.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_dwarf_male.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Enano</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/gnome"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_gnome_female.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_gnome_female.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Gnomo</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/human"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_human_male.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_human_male.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Humano</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/night-elf"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_night-elf_female.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_night-elf_female.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Elfo de la noche</span>
 								</a>
 							</li>
@@ -232,42 +232,42 @@
 							<li>
 								<a href="../race/goblin"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_goblin_female.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_goblin_female.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Goblin</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/blood-elf"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_blood-elf_male.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_blood-elf_male.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Elfo de sangre</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/orc"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_orc_female.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_orc_female.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Orco</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/tauren"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_tauren_male.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_tauren_male.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Tauren</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/troll"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_troll_female.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_troll_female.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Trol</span>
 								</a>
 							</li>
 							<li>
 								<a href="../race/forsaken"
 								>
-									<span class="icon-frame frame-36" style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/race_forsaken_male.jpg);"><span class="frame"></span></span>
+									<span class="icon-frame frame-36" style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/race_forsaken_male.jpg);"><span class="frame"></span></span>
 									<span class="list-title">Renegados</span>
 								</a>
 							</li>
@@ -311,7 +311,7 @@
 							<a href="../class/warrior"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_warrior.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_warrior.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Guerrero</span>
@@ -321,7 +321,7 @@
 							<a href="../class/paladin"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_paladin.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_paladin.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Paladín</span>
@@ -331,7 +331,7 @@
 							<a href="../class/hunter"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_hunter.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_hunter.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Cazador</span>
@@ -341,7 +341,7 @@
 							<a href="../class/rogue"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_rogue.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_rogue.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Pícaro</span>
@@ -351,7 +351,7 @@
 							<a href="../class/priest"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_priest.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_priest.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Sacerdote</span>
@@ -361,7 +361,7 @@
 							<a href="../class/death-knight"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_death-knight.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_death-knight.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Caballero de la Muerte</span>
@@ -371,7 +371,7 @@
 							<a href="../class/shaman"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_shaman.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_shaman.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Chamán</span>
@@ -381,7 +381,7 @@
 							<a href="../class/mage"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_mage.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_mage.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Mago</span>
@@ -391,7 +391,7 @@
 							<a href="../class/warlock"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_warlock.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_warlock.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Brujo</span>
@@ -401,7 +401,7 @@
 							<a href="../class/druid"
 							>
 								<span class="icon-frame frame-36"
-									style="background-image: url(http://eu.media.blizzard.com/wow/icons/36/class_druid.jpg);">
+									style="background-image: url(<?php echo $this->getMediaServer(); ?>/wow/icons/36/class_druid.jpg);">
 									<span class="frame"></span>
 								</span>
 								<span class="list-title">Druida</span>

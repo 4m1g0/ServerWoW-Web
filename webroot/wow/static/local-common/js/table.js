@@ -1,10 +1,3 @@
-/**
- * Primary table utility that handles the sorting, filtering and pagination of a table and its rows.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       Table
- * @requires    Core
- */
 var Table = Class.extend({
 
 	/**

@@ -1,10 +1,3 @@
-/**
- * Creates skinnable form elements from HTML5 form elements.
- *
- * @copyright   2011, Blizzard Entertainment, Inc
- * @class       Inputs
- * @requires    Core
- */
 var Inputs = Class.extend({
 
 	/**

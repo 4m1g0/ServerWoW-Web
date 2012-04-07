@@ -1,16 +1,3 @@
-/**
- * Adds client side sorting and filtering to tables.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       TableSorter
- * @requires    Core
- * @example
- *
- *      var foobar = new TableSorter('#foobar table');
- *      foobar.sortRows(0, 'default', 'sword');
- *
- */
-
 function TableSorter(table) {
 	var self = this,
 		table = $(table),

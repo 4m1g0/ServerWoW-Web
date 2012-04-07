@@ -1,13 +1,3 @@
-/**
- * Opens a login overlay (or redirects to the login server).
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       Login
- * @example
- *
- *      onclick="return Login.open('/login/url/');"
- *      
- */
 
 var Login = {
 

@@ -73,7 +73,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_draenei_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_draenei_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Draenei
 								</a>
@@ -85,7 +85,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_night-elf_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_night-elf_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Elfos de la noche
 								</a>
@@ -97,7 +97,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_dwarf_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_dwarf_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Enanos
 								</a>
@@ -111,7 +111,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_gnome_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_gnome_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Gnomos
 								</a>
@@ -123,7 +123,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_worgen_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_worgen_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Huargen
 								</a>
@@ -135,7 +135,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_human_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_human_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Humanos
 								</a>
@@ -158,7 +158,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_blood-elf_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_blood-elf_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Elfos de sangre
 								</a>
@@ -170,7 +170,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_goblin_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_goblin_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Goblins
 								</a>
@@ -182,7 +182,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_orc_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_orc_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Orcos
 								</a>
@@ -196,7 +196,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_forsaken_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_forsaken_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Renegados
 								</a>
@@ -208,7 +208,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_tauren_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_tauren_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Tauren
 								</a>
@@ -220,7 +220,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_troll_male.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_troll_male.jpg" alt="" width="14" height="14" />
 		</span>
 						Trols
 								</a>
@@ -243,7 +243,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_warlock.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_warlock.jpg" alt="" width="14" height="14" />
 		</span>
 							Brujo
 						</a>
@@ -255,7 +255,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_death-knight.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_death-knight.jpg" alt="" width="14" height="14" />
 		</span>
 							Caballero de l...
 								</a>
@@ -267,7 +267,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_hunter.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_hunter.jpg" alt="" width="14" height="14" />
 		</span>
 							Cazador
 						</a>
@@ -279,7 +279,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_shaman.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_shaman.jpg" alt="" width="14" height="14" />
 		</span>
 							Chamán
 						</a>
@@ -291,7 +291,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_druid.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_druid.jpg" alt="" width="14" height="14" />
 		</span>
 							Druida
 						</a>
@@ -305,7 +305,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_warrior.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_warrior.jpg" alt="" width="14" height="14" />
 		</span>
 							Guerrero
 						</a>
@@ -317,7 +317,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_mage.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_mage.jpg" alt="" width="14" height="14" />
 		</span>
 							Mago
 						</a>
@@ -329,7 +329,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_paladin.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_paladin.jpg" alt="" width="14" height="14" />
 		</span>
 							Paladín
 						</a>
@@ -341,7 +341,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_rogue.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_rogue.jpg" alt="" width="14" height="14" />
 		</span>
 							Pícaro
 						</a>
@@ -353,7 +353,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_priest.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_priest.jpg" alt="" width="14" height="14" />
 		</span>
 							Sacerdote
 						</a>
@@ -421,7 +421,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/trade_alchemy.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/trade_alchemy.jpg" alt="" width="14" height="14" />
 		</span>
 						Alquimia
 									</a>
@@ -433,7 +433,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/inv_misc_pelt_wolf_01.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/inv_misc_pelt_wolf_01.jpg" alt="" width="14" height="14" />
 		</span>
 						Desuello
 									</a>
@@ -445,7 +445,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/trade_engraving.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/trade_engraving.jpg" alt="" width="14" height="14" />
 		</span>
 						Encantamiento
 									</a>
@@ -457,7 +457,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/trade_herbalism.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/trade_herbalism.jpg" alt="" width="14" height="14" />
 		</span>
 						Herboristería
 									</a>
@@ -469,7 +469,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/trade_blacksmithing.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/trade_blacksmithing.jpg" alt="" width="14" height="14" />
 		</span>
 						Herrería
 									</a>
@@ -481,7 +481,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/trade_engineering.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/trade_engineering.jpg" alt="" width="14" height="14" />
 		</span>
 						Ingeniería
 									</a>
@@ -495,7 +495,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/inv_inscription_tradeskill01.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/inv_inscription_tradeskill01.jpg" alt="" width="14" height="14" />
 		</span>
 						Inscripción
 									</a>
@@ -507,7 +507,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/inv_misc_gem_01.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/inv_misc_gem_01.jpg" alt="" width="14" height="14" />
 		</span>
 						Joyería
 									</a>
@@ -519,7 +519,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/inv_pick_02.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/inv_pick_02.jpg" alt="" width="14" height="14" />
 		</span>
 						Minería
 									</a>
@@ -531,7 +531,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/trade_leatherworking.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/trade_leatherworking.jpg" alt="" width="14" height="14" />
 		</span>
 						Peletería
 									</a>
@@ -543,7 +543,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/trade_tailoring.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/trade_tailoring.jpg" alt="" width="14" height="14" />
 		</span>
 						Sastrería
 									</a>
@@ -564,7 +564,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/trade_archaeology.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/trade_archaeology.jpg" alt="" width="14" height="14" />
 		</span>
 						Arqueología
 									</a>
@@ -576,7 +576,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/inv_misc_food_15.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/inv_misc_food_15.jpg" alt="" width="14" height="14" />
 		</span>
 						Cocina
 									</a>
@@ -590,7 +590,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/trade_fishing.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/trade_fishing.jpg" alt="" width="14" height="14" />
 		</span>
 						Pesca
 									</a>
@@ -602,7 +602,7 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1328835997967-0');
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/spell_holy_sealofsacrifice.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/spell_holy_sealofsacrifice.jpg" alt="" width="14" height="14" />
 		</span>
 						Primeros auxilios
 									</a>

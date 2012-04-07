@@ -36,7 +36,7 @@
 		?>
                 <li>
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/<?php echo $b['icon']; ?>.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/<?php echo $b['icon']; ?>.jpg" alt="" width="14" height="14" />
 		</span>
 
 						<strong><?php echo $b['name']; ?></strong>
@@ -55,7 +55,7 @@
             <div class="related-professions">
 			<?php foreach ($prof['related'] as $r) : ?>
                 <a class="profession" href="<?php echo $this->getWowUrl('profession/' . $r['prof_key']); ?>">
-		<span  class="icon-frame frame-56 circle-frame" style='background-image: url("http://eu.media.blizzard.com/wow/icons/56/<?php echo $r['icon']; ?>.jpg");'>
+		<span  class="icon-frame frame-56 circle-frame" style='background-image: url("<?php echo $this->getMediaServer(); ?>/wow/icons/56/<?php echo $r['icon']; ?>.jpg");'>
 		</span>
                         <strong><?php echo $r['prof_name']; ?></strong>
 
@@ -91,7 +91,7 @@
 
 
 
-		<span  class="icon-frame frame-56 circle-frame" style='background-image: url("http://eu.media.blizzard.com/wow/icons/56/<?php echo $prof['info']['icon']; ?>.jpg");'>
+		<span  class="icon-frame frame-56 circle-frame" style='background-image: url("<?php echo $this->getMediaServer(); ?>/wow/icons/56/<?php echo $prof['info']['icon']; ?>.jpg");'>
 		</span>
 				<?php echo $prof['info']['name']; ?>
 	<span class="clear"><!-- --></span>

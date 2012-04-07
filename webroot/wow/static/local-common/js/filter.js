@@ -1,11 +1,3 @@
-/**
- * Manipulates objects consiting of key/value pairs to apply filtering on specific content.
- * Converts the params into a query string within the hash tag: #key1=value&key2=value
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       Filter
- */
-
 var Filter = {
 
 	/**

@@ -3,16 +3,6 @@ $(document).ready(function() {
 	PasswordVerification.initialize();
 });
 
-/**
- * Password verification.
- *
- * @copyright   2010, Blizzard Entertainment, Inc.
- * @class       RedemptionForm
- * @example
- *
- *      PasswordVerification.initialize();
- *
- */
 var PasswordVerification = {
 	_validAlphabetic: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 	_validNumeric: '0123456789',

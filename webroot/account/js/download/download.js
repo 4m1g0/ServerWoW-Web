@@ -19,17 +19,6 @@ $(document).ready(function() {
 	LanguageSelection.initialize();
 });
 
-/**
- * Filters display of game client downloads.
- *
- * @copyright   2010, Blizzard Entertainment, Inc.
- * @class       LanguageSelection
- * @requires    
- * @example
- *
- *      DownloadFilter.initialize();
- *
- */
 var DownloadFilter = {
 	links: {},
 	initialize: function() {
@@ -72,17 +61,6 @@ var DownloadFilter = {
 	}
 };
 
-/**
- * Toggles display of game client region & language selection.
- *
- * @copyright   2010, Blizzard Entertainment, Inc.
- * @class       LanguageSelection
- * @requires    
- * @example
- *
- *      LanguageSelection.initialize();
- *
- */
 var LanguageSelection = {
 	links: {},
 	initialize: function() {

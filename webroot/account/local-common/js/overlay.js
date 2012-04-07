@@ -1,16 +1,3 @@
-/**
- * Creates an overlay box (modal) and blacks out the page for focus.
- * Can fetch content from a DOM element or through AJAX.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       Overlay
- * @requires    Page
- * @example
- *
- *      onclick="Overlay.open('/ajax/url/', { ajax: true });"
- *
- */
-
 var Overlay = {
 
 	/**

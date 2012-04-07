@@ -1,20 +1,4 @@
 
-/**
- * Renders a customized arena flag using the HTML5 <canvas> element.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       ArenaFlag
- * @requires    
- * @example
- *
- *      var flag = new ArenaFlag('canvas-element', {
- *			'bg': [ 3, 'ff020d58' ],
- *			'border': [ 35, 'ff000000' ],
- *			'emblem': [ 80, 'ffedf0ff' ]
- *		});
- *
- */
-
 function ArenaFlag(canvas, flag, simple) {
 	var self = this,
 		canvas = document.getElementById(canvas),

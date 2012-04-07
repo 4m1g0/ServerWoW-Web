@@ -2,16 +2,6 @@ $(document).ready(function() {
 	AddGame.initialize();
 });
 
-/**
- * Add game form.
- *
- * @copyright   2010, Blizzard Entertainment, Inc.
- * @class       AddGame
- * @example
- *
- *      AddGame.initialize();
- *
- */
 var AddGame = {
 	form: '',
 	requiredAccountName: {},

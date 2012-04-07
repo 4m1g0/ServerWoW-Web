@@ -1,9 +1,3 @@
-/**
- * All global and core class objects.
- *
- * @copyright	2010, Blizzard Entertainment, Inc
- * @class		Core
- */
 
 $(function() {
 	Page.initialize();

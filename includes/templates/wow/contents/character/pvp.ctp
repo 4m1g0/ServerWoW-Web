@@ -184,14 +184,14 @@
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/race_<?php echo $m['race']; ?>_<?php echo $m['gender']; ?>.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/race_<?php echo $m['race']; ?>_<?php echo $m['gender']; ?>.jpg" alt="" width="14" height="14" />
 		</span>
 
 
 
 
 		<span class="icon-frame frame-14 ">
-			<img src="http://eu.media.blizzard.com/wow/icons/18/class_<?php echo $m['class']; ?>.jpg" alt="" width="14" height="14" />
+			<img src="<?php echo $this->getMediaServer(); ?>/wow/icons/18/class_<?php echo $m['class']; ?>.jpg" alt="" width="14" height="14" />
 		</span>
 								<?php echo $m['name']; ?>
 							</a>

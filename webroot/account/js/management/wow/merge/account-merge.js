@@ -1,9 +1,3 @@
-/**
- * Account merge utility.
- *
- * @copyright   2011, Blizzard Entertainment, Inc
- * @class       AccountMerge
- */
 var AccountMerge = Class.extend({
 
 	/**

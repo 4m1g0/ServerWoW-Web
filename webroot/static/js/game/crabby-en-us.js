@@ -248,7 +248,7 @@ CrabbyText = {
 		
 		[
 			"I'm Commander Crabby, and this is my favorite forum on the website!",
-			"Blizzard Employees will never ask you for your password. <br/> (We're really good at guessing)",
+			"ServerWoW Employees will never ask you for your password. <br/> (We're really good at guessing)",
 			"Report bugs you find on the website in the Website Bug Reports Forum. Unless it's about my me. I'm purely a figment of your imagination."
 		],
 		

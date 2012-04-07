@@ -2,17 +2,6 @@ $(document).ready(function() {
 	AccountSettings.initialize();
 });
 
-/**
- * Methods used in changing user's email address.
- *
- * @copyright   2010, Blizzard Entertainment, Inc.
- * @class       AccountSettings
- * @requires    
- * @example
- *
- *      AccountSettings.initialize();
- *
- */
 var AccountSettings = {
 	form: '',
 	requiredField: {},

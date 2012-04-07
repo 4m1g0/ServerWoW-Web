@@ -1,21 +1,3 @@
-
-/**
- * Renders a customized guild tabard using the HTML5 <canvas> element.
- *
- * @copyright   2010, Blizzard Entertainment, Inc
- * @class       GuildTabard
- * @requires    
- * @example
- *
- *      var tabard = new GuildTabard('canvas-element', {
- *	 		'ring': 'alliance',
- *			'bg': [ 0, 2 ],
- *			'border': [ 0, 5 ],
- *			'emblem': [ 65, 12 ]
- *		});
- *
- */
-
 function GuildTabard(canvas, tabard) {
 	var self = this,
 		canvas = document.getElementById(canvas),
