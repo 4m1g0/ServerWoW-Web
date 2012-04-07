@@ -29,6 +29,9 @@ class Bugtracker_Component extends Component
 	protected $m_apiResponse = array('type' => 'unknown', 'error' => 'Unknown type', 'errno' => 1);
 	protected $m_totalCount = 0;
 
+	const REPORTS_PER_PAGE = 12; // Change this value to increase reports 1 page.
+	const CHANGES_PER_PAGE = 12; // Change this value to increase changes 1 page.
+
 	public function isCorrect()
 	{
 		return ($this->m_items) || ($this->m_item);
@@ -297,7 +300,7 @@ class Bugtracker_Component extends Component
 					'type' => $action,
 					'error' => 'none',
 					'success' => true,
-					'editedFields' => array('response' => str_replace(array("\n", "\n\r"), '<br />', addslashes($_POST['message'])), 'date' => date('d/m/Y', time()), 'admin' => $this->c('AccountManager')->settings('forums_username', 'forums'))
+					'editedFields' => array('response' => nl2br(htmlspecialchars($_POST['message'])), 'date' => date('d/m/Y', time()), 'admin' => $this->c('AccountManager')->settings('forums_username', 'forums'))
 				);
 				break;
 			case 'delete':
@@ -371,7 +374,7 @@ class Bugtracker_Component extends Component
 
 		$this->m_items = $q
 			->order(array('WowBugtrackerItems' => array('post_date')), 'DESC')
-			->limit(12, ($this->getPage(true) * 12))
+			->limit(self::REPORTS_PER_PAGE, ($this->getPage(true) * self::REPORTS_PER_PAGE))
 			->loadItems();
 
 		$q->model('WowBugtrackerItems')
@@ -404,7 +407,7 @@ class Bugtracker_Component extends Component
 		$this->m_items = $q
 			->order(array('WowBugtrackerItems' => array('post_date')), 'DESC')
 			->fieldCondition('wow_bugtracker_items.type', ' = ' . $this->getCategoryId())
-			->limit(12, ($this->getPage(true) * 12))
+			->limit(self::REPORTS_PER_PAGE, ($this->getPage(true) * self::REPORTS_PER_PAGE))
 			->loadItems();
 
 		$q->model('WowBugtrackerItems')
@@ -502,7 +505,7 @@ class Bugtracker_Component extends Component
 		if (!$text)
 			return $this;
 
-		$text = str_replace(array("\n", "\n\r"), '<br />', $text);
+		$text = nl2br(htmlspecialchars($text));
 
 		$char = $this->c('AccountManager')->getActiveCharacter();
 
@@ -671,7 +674,6 @@ class Bugtracker_Component extends Component
 			{
 				$comment['date'] = date('d/m/Y H:i', $comment['post_date']);
 				$comment['url'] = $this->getWowUrl('character/' . $comment['realmName'] . '/' . $comment['name']);
-				// $comment['comment'] = str_replace(array('<', '>'), array('&lt;', '&gt;'), $comment['comment']); DUPLICATE CODE in addComment method
 				$comment['comment'] = stripslashes($comment['comment']);
 				$comment['comment'] = str_replace(array('[code]', '[/code]'), array('<code style="border-color:#48230b;background:#21130b;color:#fae5cf;display:block;white-space:pre;overflow:auto;border:1px solid black;max-height:1000px;margin:5px 0;padding:10px;-webkit-border-radius:5px; border-radius:5px;font-family:monospace;">', '</code>'), $comment['comment']);
 
@@ -705,7 +707,7 @@ class Bugtracker_Component extends Component
 			
 		if ($this->c('AccountManager')->isBanned())
 		{
-			$this->c('Log')->writeDebug('%s : user %s tried to create a bug report, but user is banned', __METHOD__, $this->c('AccountManager')->user('id'));
+			$this->c('Log')->writeDebug('%s : user %s tried to create a bug report, but user was banned', __METHOD__, $this->c('AccountManager')->user('id'));
 			return $this->core->redirectUrl('account-status');
 		}
 
@@ -755,7 +757,7 @@ class Bugtracker_Component extends Component
 			->setType('insert');
 
 		$msg = addslashes($_POST['desc']);
-		$msg = str_replace(array("\n", "\n\r"), '<br />', $msg);
+		$msg = nl2br(htmlspecialchars($msg));
 		$edt->type = $this->getCategoryId();
 		$edt->item_id = isset($_POST['item']) ? intval($_POST['item']) : rand();
 		$edt->account_id = $this->c('AccountManager')->user('id');
@@ -807,7 +809,7 @@ class Bugtracker_Component extends Component
 		$edt->revid = addslashes($_POST['changelog']['revid']);
 		$edt->fixid = addslashes($_POST['changelog']['fixid']);
 		$edt->commiter = addslashes($_POST['changelog']['commiter']);
-		$edt->description = addslashes($_POST['changelog']['description']);
+		$edt->description = addslashes(nl2br(htmlspecialchars($_POST['changelog']['description'])));
 		$edt->post_date = strtotime($_POST['changelog']['post_date']);
 
 		$edt->save()->clearValues();
@@ -823,8 +825,8 @@ class Bugtracker_Component extends Component
 	{
 		return $this->c('QueryResult', 'Db')
 			->model('WowChangelog')
-			->limit(12, ($this->getPage(true) * 12))
-			->order(array('WowChangelog' => array('id')), 'DESC')  // Date is order in format dd/mm/aaaa so it order first 1/2/2012 than 3/1/2012
+			->limit(self::CHANGES_PER_PAGE, ($this->getPage(true) * self::CHANGES_PER_PAGE))
+			->order(array('WowChangelog' => array('post_date')), 'DESC')  // Date is order in format dd/mm/aaaa so it order first 1/2/2012 than 3/1/2012
 			->loadItems();
 	}
 
@@ -871,10 +873,10 @@ class Bugtracker_Component extends Component
 			->setType('update')
 			->setId((int)$this->core->getUrlAction(3));
 
-		$edt->revid = $_POST['changelog']['revid'];
-		$edt->fixid = $_POST['changelog']['fixid'];
-		$edt->commiter = $_POST['changelog']['commiter'];
-		$edt->description = $_POST['changelog']['description'];
+		$edt->revid = addslashes($_POST['changelog']['revid']);
+		$edt->fixid = addslashes($_POST['changelog']['fixid']);
+		$edt->commiter = addslashes($_POST['changelog']['commiter']);
+		$edt->description = addslashes(nl2br(htmlspecialchars($_POST['changelog']['description'])));
 		$edt->post_date = strtotime($_POST['changelog']['post_date']);
 
 		$edt->save()->clearValues();
