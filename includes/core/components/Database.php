@@ -298,7 +298,7 @@ class Database_Component extends Component
 				'cache' => $result
 			);
 
-			$this->c('Memcache')->getCache()->set($sql_key, $cache);
+			$this->c('Memcached')->getCache()->set($sql_key, $cache);
 		}
 		
 		return $result;
