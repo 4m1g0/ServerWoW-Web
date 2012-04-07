@@ -19,6 +19,19 @@
  **/
 
 $SiteConfig = array (
+  'cache' => 
+  array (
+    'memcached' => 
+    array (
+      'enabled' => '0',
+      'configs' => 
+      array (
+        'server' => '127.0.0.1',
+        'port' => '11211',
+      ),
+      'ttl' => '3600',
+    ),
+  ),
   'site' => 
   array (
     'path' => '',

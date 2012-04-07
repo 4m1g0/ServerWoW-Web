@@ -196,6 +196,21 @@ class Database_Component extends Component
 
 		$safe_sql = str_replace('%%', '%', $safe_sql);
 
+		$sql_key = md5($safe_sql);
+
+		// Check memcached cache
+		if ($this->c('Memcached')->isAllowed())
+		{
+			$cached = $this->c('Memcached')->getCache()->get($sql_key);
+
+			if ($cached && $cached['expire'] > time())
+				return $cached['cache'];
+			elseif ($cached && $cached['expire'] < time())
+				$this->c('Memcached')->getCache()->delete($sql_key);
+
+			unset($cached);
+		}
+		
 		if ($this->driver_type == 'mysqli')
 		{
 			$performed_query = @mysqli_query($this->connectionLink, $safe_sql);
@@ -275,6 +290,17 @@ class Database_Component extends Component
 
 		$this->postActions($result);
 
+		// try to store result in memcached
+		if ($this->c('Memcached')->isAllowed())
+		{
+			$cache = array(
+				'expire' => time() + $this->c('Config')->getValue('cache.memcached.ttl'),
+				'cache' => $result
+			);
+
+			$this->c('Memcache')->getCache()->set($sql_key, $cache);
+		}
+		
 		return $result;
 	}
 

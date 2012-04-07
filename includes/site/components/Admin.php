@@ -501,6 +501,8 @@ class Admin_Component extends Component
 		$site['locale_indexes'] = $d;
 		$site['log']['filename'] = str_replace('\\\\', '\\', $site['log']['filename']);
 
+		$this->c('Config')->setValue('cache', $_POST['cache']);
+
 		$this->c('Config')->setValue('site', $site);
 /*
 		$this->c('Config')->setValue('site.locale_indexes', $d);

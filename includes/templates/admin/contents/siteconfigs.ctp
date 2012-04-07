@@ -6,9 +6,28 @@ Site Configs |
 $site = $this->c('Config')->getValue('site');
 $misc = $this->c('Config')->getValue('misc');
 $sess = $this->c('Config')->getValue('session');
+$cache = $this->c('Config')->getValue('cache');
 ?>
 <hr />
 <form action="" method="post">
+<div class="input radio">
+Memcached enabled<br />
+<input type="radio" name="cache[memcached][enabled]" id="mchde" size=50 value="1"<?php if ($cache['memcached']['enabled']) echo ' checked="checked"'; ?> /> <label for="mchde">Yes</label><br />
+<input type="radio" name="cache[memcached][enabled]" id="mchdd" size=50 value="0"<?php if (!$cache['memcached']['enabled']) echo ' checked="checked"'; ?> /> <label for="mchdd">No</label>
+</div>
+<div class="input text long">
+Memcached server host
+<input type="text" name="cache[memcached][configs][server]" size=50 value="<?php echo $cache['memcached']['configs']['server']; ?>" />
+</div>
+<div class="input text long">
+Memcached server port
+<input type="text" name="cache[memcached][configs][port]" size=50 value="<?php echo $cache['memcached']['configs']['port']; ?>" />
+</div>
+<div class="input text long">
+Cache TTL (in seconds)
+<input type="text" name="cache[memcached][ttl]" size=50 value="<?php echo $cache['memcached']['ttl']; ?>" />
+</div>
+<hr />
 <div class="input text long">
 Client files path
 <input type="text" name="site[path]" size=50 value="<?php echo $site['path']; ?>" />
@@ -49,7 +68,7 @@ Default Site Locale
 <option value="ru"<?php if ($site['locale']['default'] == 'ru') echo ' selected="selected"'; ?>>Russian</option>
 </select>
 </div>
-
+<hr />
 <div class="input text long">
 Site Title
 <input type="text" name="site[title]" size=50 value="<?php echo $site['title']; ?>" />
@@ -78,6 +97,7 @@ Media Server URL (wow icons, classes icons, static pages icons)
 Renders Server URL (items &amp; npcs rendered images)
 <input type="text" name="site[render_server]" size=50 value="<?php echo $site['render_server']; ?>" />
 </div>
+<hr />
 <div class="input text long">
 Admin Email
 <input type="text" name="misc[admin_email]" size=50 value="<?php echo $misc['admin_email']; ?>" />

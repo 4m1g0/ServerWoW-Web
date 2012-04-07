@@ -32,3 +32,6 @@
 [07-Apr-2012 07:03:32 UTC] PHP Warning:  mysql_connect(): Access denied for user ''@'localhost' (using password: NO) in S:\home\wowcs\www\webroot\cometchat\cometchat_init.php on line 131
 [07-Apr-2012 07:04:32 UTC] PHP Warning:  mysql_connect(): Access denied for user ''@'localhost' (using password: NO) in S:\home\wowcs\www\webroot\cometchat\cometchat_init.php on line 131
 [07-Apr-2012 07:05:32 UTC] PHP Warning:  mysql_connect(): Access denied for user ''@'localhost' (using password: NO) in S:\home\wowcs\www\webroot\cometchat\cometchat_init.php on line 131
+[07-Apr-2012 07:06:32 UTC] PHP Warning:  mysql_connect(): Access denied for user ''@'localhost' (using password: NO) in S:\home\wowcs\www\webroot\cometchat\cometchat_init.php on line 131
+[07-Apr-2012 07:07:32 UTC] PHP Warning:  mysql_connect(): Access denied for user ''@'localhost' (using password: NO) in S:\home\wowcs\www\webroot\cometchat\cometchat_init.php on line 131
+[07-Apr-2012 07:08:32 UTC] PHP Warning:  mysql_connect(): Access denied for user ''@'localhost' (using password: NO) in S:\home\wowcs\www\webroot\cometchat\cometchat_init.php on line 131
