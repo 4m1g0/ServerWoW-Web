@@ -44,8 +44,10 @@ $SiteConfig = array (
     'log' => 
     array (
       'enabled' => '1',
+  	  'debug' => '0',
       'filename' => 'S:\\home\\wowcs\\www\\webroot\\_debug\\tmp.dbg',
       'level' => '3',
+	  'lag_report' => '0',
     ),
     'locale' => 
     array (

@@ -195,20 +195,32 @@ class Database_Component extends Component
 		$this->queryCount++;
 
 		$safe_sql = str_replace('%%', '%', $safe_sql);
-
 		$sql_key = md5($safe_sql);
+		
+		// Temp solution
+		//((NOT All can be cached in memcached, is needed APC and File Cache for some Fronted and static Pages, other results can't be cached for security for example (account_points,..))
+		$bandera = true;
+		$no_cache = array("wow_blog_comments", "account_buyout", "account_points", "ip_banned", "paypal_history", "sms_codes", "store_session", "uptime", "wow_forum_posts", "wow_forum_threads");
+	
+		foreach ($no_cache as $no_cached){
+			if (preg_match("/\b$no_cached\b/i", $safe_sql))
+				$bandera = false;
+		}
+		// Temp solution
 
-		// Check memcached cache
-		if ($this->c('Memcached')->isAllowed())
-		{
-			$cached = $this->c('Memcached')->getCache()->get($sql_key);
+		if (isset($bandera) && $bandera != false)
+		{		// Check memcached cache
+			if ($this->c('Memcached')->isAllowed())
+			{
+				$cached = $this->c('Memcached')->getCache()->get($sql_key);
 
-			if ($cached && $cached['expire'] > time())
-				return $cached['cache'];
-			elseif ($cached && $cached['expire'] < time())
-				$this->c('Memcached')->getCache()->delete($sql_key);
+				if ($cached && $cached['expire'] > time())
+					return $cached['cache'];
+				elseif ($cached && $cached['expire'] < time())
+					$this->c('Memcached')->getCache()->delete($sql_key);
 
-			unset($cached);
+				unset($cached);
+			}
 		}
 		
 		if ($this->driver_type == 'mysqli')
@@ -281,7 +293,7 @@ class Database_Component extends Component
 		$queryTime = round($query_end - $query_start, 4);
 		$this->c('Log')->writeSql('[%s ms]: %s', $queryTime, $safe_sql);
 
-		if ($queryTime > 0.5)
+		if ($this->c('Config')->getValue('log.lag_report') > 0 || $queryTime > 0.5)
 			$this->c('Log')->writeError('%s : warning: seems that query "%s" takes a lot of time: %.2f', __METHOD__, $safe_sql, $queryTime);
 
 		$this->queryTimeGeneration += $queryTime;
@@ -291,14 +303,17 @@ class Database_Component extends Component
 		$this->postActions($result);
 
 		// try to store result in memcached
-		if ($this->c('Memcached')->isAllowed())
+		if (isset($bandera) && $bandera != false)
 		{
-			$cache = array(
-				'expire' => time() + $this->c('Config')->getValue('cache.memcached.ttl'),
-				'cache' => $result
-			);
+			if ($this->c('Memcached')->isAllowed())
+			{
+				$cache = array(
+					'expire' => time() + $this->c('Config')->getValue('cache.memcached.ttl'),
+					'cache' => $result
+				);
 
-			$this->c('Memcached')->getCache()->set($sql_key, $cache);
+				$this->c('Memcached')->getCache()->set($sql_key, $cache);
+			}
 		}
 		
 		return $result;

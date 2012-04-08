@@ -43,8 +43,10 @@ $SiteConfig = array (
     'log' => 
     array (
       'enabled' => '1',
+  	  'debug' => '0',
       'filename' => 'Y:\home\wowcs\www\webroot\_debug\tmp.dbg',
       'level' => '3',
+	  'lag_report' => '0',
     ),
     'title' => 'World of Warcraft',
 	'description' => 'Server WoW : El mejor Server de World of Warcraft privado blizzlike Version Cataclysm 4.0.6a y Wrath of The lich king 3.3.5a, Juega Gratis WoW',

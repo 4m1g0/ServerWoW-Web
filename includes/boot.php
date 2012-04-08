@@ -23,9 +23,6 @@ if (!defined('BOOT_FILE'))
 session_start();
 error_reporting(E_ALL);
 
-$debug = false;
-$use_lag_reports = false;
-
 $tstart = array_sum(explode(' ', microtime()));
 
 define('ROOT', dirname(dirname(__FILE__)));
@@ -108,7 +105,7 @@ try {
 		$reportLag = true;
 	}
 
-	if ($reportLag && $use_lag_reports)
+	if ($reportLag && $this->c('Config')->getValue('log.lag_report') > 0)
 		$core->reportWebLag(($tend - $tstart), $memory_usage, $memory_peak_usage, $mysql_statistics); // Report about slow page generation
 
 	foreach ($mysql_statistics as $type => $stat)
@@ -126,7 +123,7 @@ catch(Exception $e) {
 
 	$appCrash = new AppCrash($e);
 
-	if ($debug)
+	if ($this->c('Config')->getValue('log.debug') > 0)
 		include(INCLUDES_DIR . 'ExceptionPage.php');
 	else
 		include(INCLUDES_DIR . 'ExceptionPageProduction.php');
@@ -134,7 +131,7 @@ catch(Exception $e) {
 	exit(1);
 }
 
-if ($debug && !defined('AJAX_PAGE'))
+if ($this->c('Config')->getValue('log.debug') > 0 && !defined('AJAX_PAGE'))
 {
 	echo $debug_output;
 }
