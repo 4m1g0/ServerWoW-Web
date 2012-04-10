@@ -35,6 +35,7 @@ $SiteConfig = array (
   'site' => 
   array (
     'path' => '',
+    'ssl' => '1',
     'locale_indexes' => 
     array (
       0 => '0',

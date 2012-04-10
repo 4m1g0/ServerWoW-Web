@@ -305,7 +305,7 @@ abstract class Component
 
 	public function reconnectWithSSL()
 	{
-		if (!$this->isSSLConnection())
+		if (!$this->isSSLConnection() && $this->c('Config')->getValue('site.ssl'))
 		{
 			header('Location: https://' . $_SERVER['HTTP_HOST'] . '/' . $this->core->getRawUrl());
 			exit;

@@ -36,6 +36,7 @@ $SiteConfig = array (
   array (
     'path' => '',
     'creation_youtube_id' => 'DSRrrR4z_ks',
+    'ssl' => '1',
     'locale_indexes' => 
     array (
       0 => '0',
