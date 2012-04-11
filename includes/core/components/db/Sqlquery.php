@@ -22,12 +22,12 @@ class SqlQuery_Db_Component extends Component
 {
 	protected $m_data = array();
 
-	public function selectItem($sql, $db_type, $keyIndex = '')
+	public function selectItem($sql, $db_type, $keyIndex = '', $cacheTtl = 0)
 	{
-		return $this->_query($sql, $db_type, 'selectRow', $keyIndex);
+		return $this->_query($sql, $db_type, 'selectRow', $keyIndex, $cacheTtl);
 	}
 
-	protected function _query($sql, $db_type, $type, $keyIndex = '')
+	protected function _query($sql, $db_type, $type, $keyIndex = '', $cacheTtl = 0)
 	{
 		$query = array($sql);
 
@@ -35,16 +35,19 @@ class SqlQuery_Db_Component extends Component
 			$this->c('Db')->{$db_type}()->IndexResults($keyIndex);
 
 		if ($this->c('Db')->isDatabaseAvailable($db_type))
+		{
+			$this->c('Db')->{$db_type}()->SetCacheTtl($cacheTtl);
 			$this->m_data = call_user_func_array(array($this->c('Db')->{$db_type}(), $type), $query);
+		}
 		else
 			$this->m_data = false;
 
 		return $this;
 	}
 
-	public function selectItems($sql, $db_type, $keyIndex = '')
+	public function selectItems($sql, $db_type, $keyIndex = '', $cacheTtl = 0)
 	{
-		return $this->_query($sql, $db_type, 'select', $keyIndex);
+		return $this->_query($sql, $db_type, 'select', $keyIndex, $cacheTtl);
 	}
 
 	public function getData()

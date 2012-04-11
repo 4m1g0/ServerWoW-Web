@@ -105,7 +105,7 @@ try {
 		$reportLag = true;
 	}
 
-	if ($reportLag && $this->c('Config')->getValue('log.lag_report') > 0)
+	if ($reportLag && $core->c('Config')->getValue('log.lag_report') > 0)
 		$core->reportWebLag(($tend - $tstart), $memory_usage, $memory_peak_usage, $mysql_statistics); // Report about slow page generation
 
 	foreach ($mysql_statistics as $type => $stat)
@@ -123,7 +123,7 @@ catch(Exception $e) {
 
 	$appCrash = new AppCrash($e);
 
-	if ($this->c('Config')->getValue('log.debug') > 0)
+	if ($core->c('Config')->getValue('log.debug') > 0)
 		include(INCLUDES_DIR . 'ExceptionPage.php');
 	else
 		include(INCLUDES_DIR . 'ExceptionPageProduction.php');
@@ -131,7 +131,7 @@ catch(Exception $e) {
 	exit(1);
 }
 
-if ($this->c('Config')->getValue('log.debug') > 0 && !defined('AJAX_PAGE'))
+if ($core->c('Config')->getValue('log.debug') > 0 && !defined('AJAX_PAGE'))
 {
 	echo $debug_output;
 }

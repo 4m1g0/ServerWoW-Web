@@ -45,6 +45,7 @@ class Database_Component extends Component
 	private $driver_type = 'mysqli';
 
 	private $index_key = '';
+	private $cache_ttl = 0;
 
 	/**
 	 * Connect to DB
@@ -198,7 +199,7 @@ class Database_Component extends Component
 		$sql_key = md5($safe_sql);
 
         // Check memcached cache
-		if ($this->c('Memcached')->isAllowed())
+		if ($this->c('Memcached')->isAllowed() && $this->cache_ttl > 0)
 		{
 			$cached = $this->c('Memcached')->getCache()->get($sql_key);
 
@@ -290,10 +291,10 @@ class Database_Component extends Component
 		$this->postActions($result);
 
 		// try to store result in memcached
-		if ($this->c('Memcached')->isAllowed())
+		if ($this->c('Memcached')->isAllowed()  && $this->cache_ttl > 0)
 		{
 			$cache = array(
-				'expire' => time() + $this->c('Config')->getValue('cache.memcached.ttl'),
+				'expire' => time() + $this->cache_ttl,
 				'cache' => $result
 			);
 
@@ -301,6 +302,11 @@ class Database_Component extends Component
 		}
 		
 		return $result;
+	}
+	
+	public function SetCacheTtl($cacheTtl)
+	{
+	    $this->cache_ttl = $cacheTtl;
 	}
 
 	public function IndexResults($index_key)

@@ -42,6 +42,7 @@ class Model_Db_Component extends Component
 	private $m_joinModels = array();
 	private $m_defaultFields = array();
 	private $m_defaultAliases = array();
+	private $m_cache_ttl = 0;
 
 	public function initialize()
 	{
@@ -176,6 +177,13 @@ class Model_Db_Component extends Component
 
 		return $this;
 	}
+	
+	public function setCacheTtl($cacheTtl)
+	{
+		$this->m_cache_ttl = $cacheTtl;
+
+		return $this;
+	}
 
 	public function getData()
 	{
@@ -186,7 +194,12 @@ class Model_Db_Component extends Component
 	{
 		if ($this->m_callbackComponent)
 			$this->c($this->m_callbackComponent['name'], $this->m_callbackComponent['type'])->onDataRequest($this->m_sqlData);
-
+		
+		if ($this->m_cache_ttl == 0)
+			$this->c('Db')->{$this->m_dbType}()->SetCacheTtl($this->c('Config')->getValue('cache.memcached.ttl'));
+		else
+			$this->c('Db')->{$this->m_dbType}()->SetCacheTtl($this->m_cache_ttl);
+		
 		$this->m_data = call_user_func_array(array($this->c('Db')->{$this->m_dbType}(), $type), $this->m_sqlData);
 
 		if ($this->m_callbackComponent)
