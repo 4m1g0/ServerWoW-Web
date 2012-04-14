@@ -42,6 +42,29 @@ class CacheControl_Component extends Component
 			if (!isset($this->m_noCachingModels[$type][$model]))
 				return true;
 		}
+		elseif (is_array($model))
+		{
+			$allowed = true;
+
+			foreach ($model as $m)
+			{
+				if (is_string($m))
+				{
+					if (isset($this->m_noCachingModels[$type][$m]))
+						$allowed = false;
+				}
+				elseif (is_object($m))
+				{
+					if (isset($this->m_noCachingModels[$type][$m->m_model]))
+						$allowed = false;
+				}
+
+				if (!$allowed)
+					break;
+			}
+
+			return $allowed;
+		}
 		elseif (is_object($model))
 		{
 			if (!isset($this->m_noCachingModels[$type][$model->m_model]))
