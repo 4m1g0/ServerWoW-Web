@@ -35,10 +35,12 @@ class Media_Component extends Component
 		{
 			case 'videos':
 				$this->initVideos($item);
+				$this->c('Db')->realm()->setModel($this->c('WowMediaVideos', 'Model'));
 				$this->m_totalCount = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_media_videos");
 				break;
 			case 'screenshots':
 				$this->initScreenshots($item);
+				$this->c('Db')->realm()->setModel($this->c('WowMediaScreenshots', 'Model'));
 				$this->m_totalCount = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_media_screenshots");
 				break;
 			default:
@@ -98,6 +100,7 @@ class Media_Component extends Component
 		if (!in_array($_FILES['ss']['type'], $types))
 			return $this->core->redirectUrl('media/screenshots');
 
+		$this->c('Db')->realm()->setModel($this->c('WowMediaScreenshots', 'Model'));
 		$maxid = $this->c('Db')->wow()->selectCell("SELECT MAX(id) FROM wow_media_screenshots");
 
 		$d = explode('.', $_FILES['ss']['name']);
@@ -384,6 +387,7 @@ class Media_Component extends Component
 
 	public function getSidebarData()
 	{
+		$this->c('Db')->realm()->setModel($this->c('WowMediaScreenshots', 'Model'));
 		return $this->c('Db')->wow()->selectRow("SELECT * FROM wow_media_screenshots ORDER BY RAND() LIMIT 1");
 	}
 	

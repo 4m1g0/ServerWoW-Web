@@ -118,7 +118,7 @@ class QueryResult_Db_Component extends Component
 
 	public function loadItem()
 	{
-		$item = $this->c('SqlQuery', 'Db')->selectItem($this->m_sqlBuilder->getSql(), $this->m_model->m_dbType, $this->m_sqlBuilder->getIndexKey())->getData();
+		$item = $this->c('SqlQuery', 'Db')->selectItem($this->m_sqlBuilder->getSql(), $this->m_model->m_dbType, $this->m_sqlBuilder->getIndexKey(), 0, $this->m_model)->getData();
 
 		$fields = $this->m_sqlBuilder->getLocaleFields();
 
@@ -164,7 +164,7 @@ class QueryResult_Db_Component extends Component
 
 	public function loadItems()
 	{
-		$items = $this->c('SqlQuery', 'Db')->selectItems($this->m_sqlBuilder->getSql(), $this->m_model->m_dbType, $this->m_sqlBuilder->getIndexKey())->getData();
+		$items = $this->c('SqlQuery', 'Db')->selectItems($this->m_sqlBuilder->getSql(), $this->m_model->m_dbType, $this->m_sqlBuilder->getIndexKey(), 0, $this->m_model)->getData();
 
 		$fields = $this->m_sqlBuilder->getLocaleFields();
 
@@ -184,12 +184,6 @@ class QueryResult_Db_Component extends Component
 			$this->parseResults($items[$keys[$i]], $fields);
 			$data[$keys[$i]] = $items[$keys[$i]];
 		}
-		/*
-		foreach ($items as $key => $item)
-		{
-			$this->parseResults($item, $fields);
-			$data[$key] = $item;
-		}*/
 
 		unset($items);
 

@@ -889,6 +889,7 @@ class Admin_Component extends Component
 
 	public function getLagReportsPagination()
 	{
+		$this->c('Db')->realm()->setModel($this->c('WowLagReports', 'Model'));
 		$count = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_lag_reports");
 		return $this->c('Pager')->generatePagination(
 			'/' . $this->core->getRawUrl(),

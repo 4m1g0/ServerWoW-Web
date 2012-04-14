@@ -372,7 +372,15 @@ class Forum_Component extends Component
 		}
 
 		// Count
+		$this->c('Db')->realm()->setModel($this->c('WowForumThreads', 'Model'));
 		$this->m_forumCounters['topics'] = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_forum_threads WHERE cat_id = %d AND (NOT (flags & %d) AND NOT (flags & %d))", $this->m_categoryId, THREAD_FLAG_PINNED, THREAD_FLAG_FEATURED);
+
+		$this->c('Db')->realm()->setModel(array(
+			$this->c('WowForumThreads', 'Model'),
+			$this->c('WowForumPosts', 'Model'),
+			$this->c('WowUserCharacters', 'Model'),
+			$this->c('WowAccounts', 'Model')
+		));
 
 		$this->m_pinnedTopics = $this->c('Db')->wow()->select("
 			SELECT

@@ -30,6 +30,9 @@ $SiteConfig = array (
         'port' => '11211',
       ),
       'ttl' => '3600',
+	  'nocache' => array(
+		'WowForumPosts' => true, 'WowForumCategory' => true, 'WowForumThreads' => true
+	  )
     ),
   ),
   'site' => 

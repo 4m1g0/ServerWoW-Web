@@ -675,7 +675,8 @@ class Wow_Component extends Component
                     $r['language'] = $this->c('Locale')->getString('template_locale_ru');
                     break;
 			}
-			
+
+			$this->c('Db')->realm()->setModel($this->c('Uptime', 'Model'));
 			$query = $this->c('Db')->realm()->selectRow("SELECT uptime, players FROM uptime WHERE realmid='%s' ORDER BY `starttime` DESC LIMIT 0, 1", $r['id']);
 			
 			$time = $query['uptime'];

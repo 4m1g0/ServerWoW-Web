@@ -47,6 +47,8 @@ class Database_Component extends Component
 	private $index_key = '';
 	private $cache_ttl = 0;
 
+	private $m_model = null;
+
 	/**
 	 * Connect to DB
 	 * @access   public
@@ -199,18 +201,24 @@ class Database_Component extends Component
 		$sql_key = md5($safe_sql);
 
         // Check memcached cache
-		if ($this->c('Memcached')->isAllowed() && $this->cache_ttl > 0)
+		if ($queryType != SQL_QUERY) // Skip INSERT/UPDATE/DELETE queries
 		{
-			$cached = $this->c('Memcached')->getCache()->get($sql_key);
+			if ($this->c('CacheControl')->isCachingAllowed($this->m_model, 'memcached'))
+			{
+				if ($this->c('Memcached')->isAllowed() && $this->cache_ttl > 0)
+				{
+					$cached = $this->c('Memcached')->getCache()->get($sql_key);
 
-			if ($cached && $cached['expire'] > time())
-				return $cached['cache'];
-			elseif ($cached && $cached['expire'] < time())
-				$this->c('Memcached')->getCache()->delete($sql_key);
+					if ($cached && $cached['expire'] > time())
+						return $cached['cache'];
+					elseif ($cached && $cached['expire'] < time())
+						$this->c('Memcached')->getCache()->delete($sql_key);
 
-			unset($cached);
+					unset($cached);
+				}
+			}
 		}
-		
+
 		if ($this->driver_type == 'mysqli')
 		{
 			$performed_query = @mysqli_query($this->connectionLink, $safe_sql);
@@ -290,15 +298,21 @@ class Database_Component extends Component
 
 		$this->postActions($result);
 
-		// try to store result in memcached
-		if ($this->c('Memcached')->isAllowed()  && $this->cache_ttl > 0)
+		if ($queryType != SQL_QUERY) // Skip INSERT/UPDATE/DELETE queries
 		{
-			$cache = array(
-				'expire' => time() + $this->cache_ttl,
-				'cache' => $result
-			);
+			if ($this->c('CacheControl')->isCachingAllowed($this->m_model, 'memcached'))
+			{
+				// try to store result in memcached
+				if ($this->c('Memcached')->isAllowed()  && $this->cache_ttl > 0)
+				{
+					$cache = array(
+						'expire' => time() + $this->cache_ttl,
+						'cache' => $result
+					);
 
-			$this->c('Memcached')->getCache()->set($sql_key, $cache);
+					$this->c('Memcached')->getCache()->set($sql_key, $cache);
+				}
+			}
 		}
 		
 		return $result;
@@ -488,6 +502,21 @@ class Database_Component extends Component
 	public function GetInsertID()
 	{
 		return ($this->driver_type == 'mysqli') ? mysqli_insert_id($this->connectionLink) : mysql_insert_id($this->connectionLink);
+	}
+
+	public function setModel($model)
+	{
+		if (!$model)
+			return $this;
+
+		$this->m_model = $model;
+
+		return $this;
+	}
+
+	public function getModel()
+	{
+		return $this->m_model;
 	}
 }
 ?>

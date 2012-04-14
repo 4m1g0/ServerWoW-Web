@@ -200,6 +200,7 @@ class Store_Component extends Component
 		if (!$items)
 			return $this;
 
+		$this->c('Db')->realm()->setModel($this->c('WowStoreItems', 'Model'));
 		$this->m_itemsCount = $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_store_items WHERE cat_id = %d", $catId);
 
 		$ids = array_keys($items);
@@ -654,6 +655,7 @@ class Store_Component extends Component
 				$sql .= ' WHERE cat_id ' . $cond;
 		}
 
+		$this->c('Db')->realm()->setModel($this->c('WowStoreItems', 'Model'));
 		$this->m_itemsCount = $this->c('Db')->wow()->selectCell("%s", $sql);
 		$ids = $q->limit(15, 15 * $this->getPage(true))
 			->keyIndex('item_id')
@@ -890,6 +892,7 @@ class Store_Component extends Component
 				$this->c('Db')->characters()->query("UPDATE characters SET at_login = at_login | 0x01 WHERE guid = %d", $guid);
 				break;
 			case SERVICE_CHARACTER_CHANGE_GENDER:
+				$this->c('Db')->realm()->setModel($this->c('Characters', 'Model'));
 				$gender = $this->c('Db')->characters()->selectRow("SELECT gender FROM characters WHERE guid = %d", $guid);
 
 				if ($gender['gender'] == 1)
@@ -905,6 +908,7 @@ class Store_Component extends Component
 					return $op_result;
 				}
 
+				$this->c('Db')->realm()->setModel($this->c('Characters', 'Model'));
 				$curr = $this->c('Db')->characters()->selectRow("SELECT level FROM characters WHERE guid = %d", $guid);
 				if (($curr['level'] + $levels) > STORE_POWERLEVEL_MAX)
 				{
@@ -926,6 +930,7 @@ class Store_Component extends Component
 				$this->c('Db')->characters()->query("UPDATE characters SET money = money + %d WHERE guid = %d", $levels, $guid);
 				break;
 			case SERVICE_PROFESSION:
+				$this->c('Db')->realm()->setModel($this->c('Characters', 'Model'));
 				$lvl = $this->c('Db')->characters()->selectCell("SELECT level FROM characters WHERE guid = %d", $guid);
 				if (!$lvl)
 				{
@@ -937,6 +942,7 @@ class Store_Component extends Component
 					$this->addErrorMessage('El Personaje debe tener minimo level 70 para completar esta accion!');
 					return $op_result;
 				}
+				$this->c('Db')->realm()->setModel($this->c('CharacterSkills', 'Model'));
 				$skill_val = $this->c('Db')->characters()->selectRow("SELECT * FROM character_skills WHERE guid = %d AND skill = %d LIMIT 1", $guid, $levels);
 				if (!$skill_val)
 				{

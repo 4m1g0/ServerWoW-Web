@@ -248,6 +248,7 @@ class Paypal_Component extends Component
 		}
 		else
 		{
+			$this->c('Db')->realm()->setModel($this->c('StoreSession', 'Model'));
 			$amount = $this->c('Db')->realm()->selectCell("SELECT amount FROM store_session WHERE session_id = '%s' LIMIT 1", $item_number);
 		}
 

@@ -769,7 +769,9 @@ class AccountManager_Component extends Component
 			$this->m_loginError |= ERROR_USERNAME_TAKEN;
 			return false;
 		}
-		
+
+		$this->c('Db')->realm()->setModel($this->c('Account', 'Model'));
+
 		$max_id = $this->c('Db')->realm()->selectRow("SELECT max(id) AS max from account");
 		$max_id++;
 
@@ -1083,11 +1085,13 @@ class AccountManager_Component extends Component
 		if (!$this->c('Db')->isDatabaseAvailable('characters', $realmId))
 			return false;
 
+		$this->c('Db')->realm()->setModel($this->c('Characters', 'Model'));
 		return $this->c('Db')->characters()->selectCell("SELECT online FROM characters WHERE guid = %d", $guid);
 	}
 
 	public function getUnreadMessagesCount()
 	{
+		$this->c('Db')->realm()->setModel($this->c('WowPrivateMessages', 'Model'));
 		return $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_private_messages WHERE receiver_id = %d AND `read` = 0", $this->user('id'));
 	}
 
@@ -1357,7 +1361,9 @@ class AccountManager_Component extends Component
 			$this->m_success = false;
 			return false;
 		}
-		
+
+		$this->c('Db')->realm()->setModel($this->c('WowUserFriends', 'Model'));
+
 		$check_ = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `user_acc` = '%d' AND `friend_acc` = '%d'", $this->user('id'), $char['account']);
 		if ($check_)
 		{
@@ -1408,6 +1414,7 @@ class AccountManager_Component extends Component
 		$mutual = 0;
 		$mutual_decode = base64_decode(addslashes($this->core->getUrlAction(3)));
 
+		$this->c('Db')->realm()->setModel($this->c('WowUserFriends', 'Model'));
 		$check_act = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `mutual_act` = '%s'", $mutual_decode);
 		if ($check_act)
 		{
@@ -1432,6 +1439,7 @@ class AccountManager_Component extends Component
 
 		$block_decode = base64_decode(addslashes($this->core->getUrlAction(3)));
 
+		$this->c('Db')->realm()->setModel($this->c('WowUserFriends', 'Model'));
 		$block_act = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `mutual_act` = '%s'", $block_decode);
 		if ($block_act)
 		{
@@ -1444,6 +1452,7 @@ class AccountManager_Component extends Component
 	
 	public function getblockFriends()
 	{
+		$this->c('Db')->realm()->setModel($this->c('WowUsersAccounts', 'Model'));
 		$block_user = $this->c('Db')->wow()->select("select distinct(m.id) `id`, m.nickname `name` from cometchat_block, wow_users_accounts m where m.id = toid and fromid = '".$this->user('id')."'");
 
 		if ($block_user)
