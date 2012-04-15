@@ -300,7 +300,7 @@ abstract class Component
 
 	public function isSSLConnection()
 	{
-		return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on');
+		return true;// (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on');
 	}
 
 	public function reconnectWithSSL()

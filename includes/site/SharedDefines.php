@@ -1092,4 +1092,8 @@ define('ADMIN_GROUP_SEND_MSG', 128);
 
 define('BANNED_FLAG_ALLOW_TOPICS', 1);
 define('BANNED_FLAG_ALLOW_POSTS', 2);
-?>
+
+define('PM_TYPE_MESSAGE', 1);
+define('PM_TYPE_SYSTEM', 2);
+
+define('PM_FLAG_SYSTEM_MESSAGE', 1);

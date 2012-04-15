@@ -1091,7 +1091,7 @@ class AccountManager_Component extends Component
 
 	public function getUnreadMessagesCount()
 	{
-		$this->c('Db')->realm()->setModel($this->c('WowPrivateMessages', 'Model'));
+		$this->c('Db')->wow()->setModel($this->c('WowPrivateMessages', 'Model'));
 		return $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_private_messages WHERE receiver_id = %d AND `read` = 0", $this->user('id'));
 	}
 
