@@ -31,7 +31,7 @@ $SiteConfig = array (
       ),
       'ttl' => '3600',
 	  'nocache' => array(
-		'WowForumPosts' => true, 'WowForumCategory' => true, 'WowForumThreads' => true
+		'WowBlogComments' => true, 'WowForumPosts' => true, 'WowForumThreads' => true, 'Characters' => true, 'Account' => true, 'AccountBuyout' => true, 'AccountBanned' => true, 'AccountPoints' => true, 'SmsCodes' => true, 'StoreSession' => true, 'StoreActions' => true, 'IpBanned' => true, 'PaypalHistory' => true, 'Uptime' => true, '' => true
 	  )
     ),
   ),

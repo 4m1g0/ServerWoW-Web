@@ -844,7 +844,7 @@ class Bugtracker_Component extends Component
 
 	public function getTotalChangelogCount()
 	{
-		$this->c('Db')->realm()->setModel($this->c('WowChangelog', 'Model'));
+		$this->c('Db')->wow()->setModel($this->c('WowChangelog', 'Model'));
 		return $this->c('Db')->wow()->selectCell("SELECT COUNT(*) FROM wow_changelog");
 	}
 

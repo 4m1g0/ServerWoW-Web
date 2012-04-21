@@ -45,7 +45,7 @@ class Pref_Wow_Controller_Component extends Groupwow_Controller_Component
 				$this->c('Db')->wow()->query("UPDATE `wow_user_characters` SET `isActive` = 1 WHERE `index` = %d AND `account` = %d", $idx, $id);
 
 				// Update NickName for Chat
-				$this->c('Db')->realm()->setModel($this->c('WowUserCharacters', 'Model'));
+				$this->c('Db')->wow()->setModel($this->c('WowUserCharacters', 'Model'));
 				$isActive = $this->c('Db')->wow()->selectRow("SELECT `id`, `guid`, `name`, `account`, `realmName`, `isActive` FROM `wow_user_characters` WHERE `account` = '%d' AND isActive = '1'", $id);
 				
 				switch($isActive['realmName'])

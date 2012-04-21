@@ -251,7 +251,7 @@ class Messages_Component extends Component
 			foreach ($this->m_messages['received'] as &$msg)
 				$msg['read'] = $asRead ? 1 : 0;
 
-			$this->c('Db')->wow()->query("UPDATE `wow_private_messages` SET `read` = %d WHERE `received_id` = %d", $asRead ? 1 : 0, $this->c('AccountManager')->user('id'));
+			$this->c('Db')->wow()->query("UPDATE `wow_private_messages` SET `read` = %d WHERE `receiver_id` = %d", $asRead ? 1 : 0, $this->c('AccountManager')->user('id'));
 
 		}
 		else
