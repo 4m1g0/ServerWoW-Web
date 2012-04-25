@@ -760,7 +760,7 @@ class AccountManager_Component extends Component
 		$sha = sha1(strtoupper($user). ':' . strtoupper($pass));
 
 		$check = $this->c('QueryResult', 'Db')
-			->model('Account')
+			->model('WowUsersAccounts')
 			->fieldCondition('username', ' = \'' . $user . '\'')
 			->loadItem();
 
@@ -770,13 +770,102 @@ class AccountManager_Component extends Component
 			return false;
 		}
 
+		$this->c('Db')->wow()->setModel($this->c('WowUsersAccounts', 'Model'));
+		$max_id = $this->c('Db')->wow()->selectRow("SELECT max(id) AS max from wow_users_accounts");
+		$max_id = $max_id + 1;
+
+		$this->c('Db')->wow()->query("INSERT INTO wow_users_accounts (id,username,nickname,password,email) VALUES ('%d', '%s', '%s', '%s', '%s')", $max_id, $user, $user, $sha, $email);
+		
+		$user_encode = base64_encode($max_id);
+		$activateLink = $_SERVER['HTTP_HOST']."/account/creation/activate/".$user_encode;
+		
+		if (AccountCreationEmail($user, $pass, $email, $activateLink, $_SERVER['HTTP_HOST']) == true)
+		{
+			$this->m_loginError |= ACCOUNT_CREATE;
+			return true;
+		}
+		
+		$this->m_loginError |= ACCOUNT_CREATE_FALSE;
+		return false;
+	}
+	
+	public function AccountConfirm($hash)
+	{
+		$user_decode = base64_decode($hash);
+		
+		$check = $this->c('QueryResult', 'Db')
+			->model('WowUsersAccounts')
+			->fieldCondition('id', ' = \'' . $user_decode . '\'')
+			->loadItem();
+
+		// if NULL, Account NOT create in createAccount()
+		if (!$check)
+		{
+			$this->m_loginError |= ERROR_ACCOUNT_NOEXIST;
+			return false;
+		}
+		// If password is NULL (Already Activate)
+		if (!$check['password'])
+		{
+			$this->m_loginError |= ERROR_ACCOUNT_ACTIVE;
+			return false;
+		}
+		
+		// Insert in the Realm the account
 		$this->c('Db')->realm()->setModel($this->c('Account', 'Model'));
-		$max_id = $this->c('Db')->realm()->selectRow("SELECT max(id) AS max from account");
-		$max_id++;
+		$this->c('Db')->realm()->query("INSERT INTO account (id,username,sha_pass_hash,expansion,email) VALUES ('%s', '%s', '%s', 2, '%s')", $check['id'], $check['username'], $check['password'], $check['email']);
+		// Delete Password from wow_database
+		$this->c('Db')->wow()->setModel($this->c('WowUsersAccounts', 'Model'));
+		$this->c('Db')->wow()->query("UPDATE wow_users_accounts SET password = 0 WHERE username = '%s')", $user);
 
-		$this->c('Db')->realm()->query("INSERT INTO account (id,username,sha_pass_hash,expansion,email) VALUES ('%s', '%s', '%s', 2, '%s')", $max_id, $user, $sha, $email);
-		$this->c('Db')->wow()->query("INSERT INTO wow_users_accounts (id,account_id,username,nickname) VALUES ('%s', '%s', '%s', '%s')", $max_id, $max_id, $user, $user);
-
+		$this->m_loginError |= ACCOUNT_ACTIVATE;
+		return true;
+	}
+	
+	public function AccountCreationEmail($user, $pass, $email, $activateLink, $host)
+	{
+		global $from;
+		
+		$title = "ServerWoW: Activacion de Cuenta";
+		$subject = 'Activacion de cuenta - "'.$user.'"';
+		$from = "registro@serverwow.com";
+		$to = $email;
+		
+		$headers = "MIME-Version: 1.0\r\n";
+		$headers .= "Content-type: text/html; charset=utf-8\r\n";
+		$headers .= "X-Mailer: PHP's mail() Function\r\n";
+		$headers .= "From: $from\r\n";
+  
+		$message = '
+			<html>
+				<head>
+					<title>'.$title.'</title>
+				</head>
+				<body>
+					<h2>Hola</h2>
+					<br><br>	  
+					<b>Cuenta:</b> '.$user.'<br>
+					<b>Password :</b> </strong>'.$pass.'<br>
+					<b>Email :</b> </strong>'.$email.'<br>
+					<b>Realmlist :</b> </strong>set realmlist logon.serverwow.com<br><br>
+					<b>Link de Activacion:</b><br> '.$activateLink.' <br><br><br>   
+					<b>Por favor haga click en el link de activación para activar su cuenta.</b><br><br>  
+					<b>Si el link no funciona copielo e introduzcalo en la barra web de su explorador.</b><br><br><br>  
+					<b>
+					Puedes Acceder a la Administracion de cuenta en '.$host.'/account/management/
+					<br><br><br>
+					Todo el equipo de Server WoW, Te desea lo mejor, esperamos te diviertas siendo parte de esta gran familia.
+					</b>
+					<br><br><br>
+					
+					<b>Nache<br></b>
+					<b>Director General.<br></b>
+					<b>Server WoW Realms - 2008-2012.</b>
+					<br>
+				</body>
+			</html>';
+  
+		@mail("$to", "$subject", "$message", "$headers");
 		return true;
 	}
 

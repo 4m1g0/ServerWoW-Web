@@ -97,17 +97,6 @@ href="<?php echo $this->getCoreUrl('account/creation/'); ?>"
 </span>
 </a>
 <br><br>
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-5286168753620257";
-/* ServerWoW.com (Login 336&#42;280) */
-google_ad_slot = "0980210044";
-google_ad_width = 336;
-google_ad_height = 280;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
 </div>
 <span class="clear"><!-- --></span>
 <script type="text/javascript">
