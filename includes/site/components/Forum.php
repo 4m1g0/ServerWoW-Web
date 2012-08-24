@@ -716,7 +716,7 @@ class Forum_Component extends Component
 
 		return $this;
 	}
-
+	
 	public function handleBbCodes(&$inpStr)
 	{
 		if (!$inpStr || !is_string($inpStr))
@@ -820,6 +820,18 @@ class Forum_Component extends Component
 
 		// Handle [youtube] tag
 		$inpStr = preg_replace('/\[youtube\](.+?)\[\/youtube\]/six', '<object style="height: 390px; width: 640px"><param name="movie" value="http://www.youtube.com/v/$1?version=3&feature=player_profilepage"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><embed src="http://www.youtube.com/v/$1?version=3&feature=player_profilepage" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="360"></object>', $inpStr);
+		
+		if ($inpStr)
+		{
+			$filtradas = 'wowlatinoamerica,fumetas,pepocivs,wowcore,radicalserver,radical-server,molten-wow,puta,puto,puto-server,putos,mierda,molten,wow core,wow-core,terragolfa,golfex,templars knights,templarsknights,templars-knights,arena-tournament,weed,vgaming,wlapictures,terra golfa,wowrean,wow rean,ancientguardians,ultimowow,latenciazero,mewet,wow-colombia,cagones,wownone,wow none,skwow,sk wow,sk-wow,culiao,noob,manco,cosmowow,cosmo wow,cosmo-wow,wow-justicia,wow justicia,wowjusticia,comunidadarena,comunidad-arena,revivaldreams,revival-dreams,revival dreams,zone-limit,zonelimit,zone limit,wow latinoamerica,wowtemplars,chevismo,malparido,wowlatinoamericano,wowrun,wow-run,wow run,33811925905,wowsulvus,wow sulvus'; 
+			$reemplazo = "[Censored]";
+ 
+			$f = explode(',', $filtradas);
+			$f = array_map('trim', $f);
+			$filtro = implode('|', $f);
+ 
+			$inpStr = ($reemplazo) ? preg_replace("#$filtro#i", $reemplazo, $inpStr) : preg_match("#$filtro#i", $inpStr);
+		}
 
 		return $this;
 	}
@@ -865,6 +877,9 @@ class Forum_Component extends Component
 			if (!($this->m_categoryData['banned_flag'] & BANNED_FLAG_ALLOW_TOPICS))
 				return $this->core->redirectUrl('account-status');
 		}
+		
+		if (!$this->c('AccountManager')->isAllowedToModerate() && $categoryId == "7")
+			return $this;
 
 		$char = $this->c('AccountManager')->getActiveCharacter();
 
@@ -873,6 +888,9 @@ class Forum_Component extends Component
 			$this->c('Log')->writeDebug('%s : user %d (%s) tried to create topic without any character on account', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'));
 			return $this;
 		}
+		
+		if ($char['level'] < 10)
+			return $this;
 
 		$rq_fields = array('xstoken' => 'notNull', 'sessionPersist' => 'forum.topic.form', 'detail' => 'notNull', 'subject' => 'notNull');
 
@@ -1012,6 +1030,9 @@ class Forum_Component extends Component
 			$this->c('Log')->writeDebug('%s : user %d (%s) tried to write in topic #%d without any character on account', __METHOD__, $this->c('AccountManager')->user('id'), $this->c('AccountManager')->user('username'), $topicId);
 			return $this;
 		}
+		
+		if ($char['level'] < 10)
+			return $this;
 
 		$topic_data = $this->c('QueryResult', 'Db')
 			->model('WowForumThreads')

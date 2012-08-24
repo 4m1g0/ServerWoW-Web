@@ -58,6 +58,13 @@ Flash.ratingImage = '<?php echo CLIENT_FILES_PATH; ?>/wow/player/rating-pegi.jpg
 Flash.expressInstall= '<?php echo CLIENT_FILES_PATH; ?>/wow/player/video-player.swf';
 //]]>
 </script>
+<script type="text/javascript">
+var phplive_v = new Object;
+phplive_v["name"] = "<?php echo strtolower($this->c('AccountManager')->user('username')) ?>";
+phplive_v["email"] = "<?php echo $this->c('AccountManager')->user('email') ?>";
+phplive_v["Login"] = "<?php echo $this->c('AccountManager')->user('username') ?>";
+phplive_v["CID"] = "<?php echo $this->c('AccountManager')->user('id') ?>";
+</script>
 </head>
 <body class="<?php echo $l->getLocale(LOCALE_DOUBLE); ?> logged-in">
 <script>(function(d, s, id) {
@@ -126,16 +133,6 @@ if ($this->c('AccountManager')->isAllowedToReceiveMsg() || $this->c('AccountMana
 </div>
 </li>
 <?php endif; ?>
-<li>
-<a href="#" class="border-3 menu-arrow" onclick="openAccountDropdown(this, 'friends'); return false;"><?php echo $l->getString('template_management_menu_friends'); ?></a>
-<span></span>
-<div class="flyout-menu" id="friends-menu" style="display: none">
-<ul>
-<li><a href="<?php echo $this->getAppUrl('account/management/addfriend'); ?>"><?php echo $l->getString('template_management_menu_parameters_friends_add'); ?></a></li>
-<li><a href="<?php echo $this->getAppUrl('account/management/blockfriends'); ?>"><?php echo $l->getString('template_management_menu_parameters_friends_block'); ?></a></li>
-</ul>
-</div>
-</li>
 </ul>
 <span class="clear"><!-- --></span>
 </div>
@@ -396,3 +393,28 @@ $('.png-fix').pngFix(); //]]>
 <script type="text/javascript" src="<?php echo CLIENT_FILES_PATH; ?>/account/js/settings/password.js?v23"></script>
 </body>
 </html>
+<?php if (!$this->c('AccountManager')->isBanned() && $this->c('AccountManager')->user('id')) { ?>
+<div style="position:fixed;right:0;top:150px;width:137px;" id="tabone">
+<!-- BEGIN PHP Live! code, (c) OSI Codes Inc. --><span id="phplive_btn_1337210059" onclick="phplive_launch_chat_0(0)" style="color: #0000FF; text-decoration: underline; cursor: pointer;"></span><script type="text/javascript">(function() { var phplive_e_1337210059 = document.createElement("script") ; phplive_e_1337210059.type = "text/javascript" ; phplive_e_1337210059.async = true ; phplive_e_1337210059.src = "http://live.serverwow.com/js/phplive_v2.js.php?q=0|1337210059|1|" ; document.getElementById("phplive_btn_1337210059").appendChild( phplive_e_1337210059 ) ; })() ;</script><!-- END PHP Live! code, (c) OSI Codes Inc. -->
+</div>
+<?php } ?>
+<div style="position:fixed;right:0;bottom:220px;width:37px;z-index:1000;" id="tabtwo">
+	<a target="_blank" href="http://www.youtube.com/user/ServerW0W">
+		<img border="0" src="/custom_files/youtube.png" width="37" height="37" title="Síguenos en YouTube" alt="Síguenos en YouTube" />
+	</a>
+</div>
+<div style="position:fixed;right:0;bottom:180px;width:37px;z-index:1000;" id="tabthree">
+	<a target="_blank" href="https://twitter.com/#!/n4ch3/lcv">
+		<img border="0" src="/custom_files/twitter.png" width="37" height="37" title="Síguenos en Twitter" alt="Síguenos en Twitter" />
+	</a>
+</div>
+<div style="position:fixed;right:0;bottom:140px;width:37px;z-index:1000;" id="tabfour">
+	<a target="_blank" href="http://www.facebook.com/ServerWoW">
+		<img border="0" src="/custom_files/facebook.png" width="37" height="37" title="Siguenos en Facebook" alt="Siguenos en Facebook" />
+	</a>
+</div>
+<div style="position:fixed;right:0;bottom:100px;width:37px;z-index:1000;" id="tabfive">
+	<a target="_blank" href="https://plus.google.com/117818722165936859038">
+		<img border="0" src="/custom_files/delicious.png" width="37" height="37" title="Síguenos en Google Plus" alt="Síguenos en Google Plus" />
+	</a>
+</div>

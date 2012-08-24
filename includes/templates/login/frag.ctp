@@ -91,7 +91,7 @@
 
 
 				<li class="icon-pass">
-					<a href="<?php echo $this->getCoreUrl('account/support/password-reset.html'); ?>"><?php echo $l->getString('login_help_title'); ?></a>
+					<a href="http://serverwow.com/account/support/password-reset.html"><?php echo $l->getString('login_help_title'); ?></a>
 				</li>
 
 			<li class="icon-secure">

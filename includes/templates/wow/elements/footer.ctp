@@ -1,11 +1,12 @@
 <?php
+/*
 if (!$this->c('AccountManager')->isBanned())
 {
 ?>
-<link type="text/css" href="http://serverwow.com/webroot/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
-<script type="text/javascript" src="http://serverwow.com/webroot/cometchat/cometchatjs.php" charset="utf-8"></script>
+<link type="text/css" href="http://chat.serverwow.com/cometchatcss.php" rel="stylesheet" charset="utf-8">
+<script type="text/javascript" src="http://chat.serverwow.com/cometchatjs.php" charset="utf-8"></script>
 <?php
-}
+}*/
 ?>
 <div id="sitemap" class="promotions">
 <div class="column">
@@ -38,6 +39,7 @@ if (!$this->c('AccountManager')->isBanned())
 <li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/support/password-reset.html"><?php echo $l->getString('template_footer_account_link1'); ?></a></li>
 <li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/creation/tos.html"><?php echo $l->getString('template_footer_account_link2'); ?></a></li>
 <li><a href="<?php echo CLIENT_FILES_PATH; ?>/account/management/"><?php echo $l->getString('template_footer_account_link3'); ?></a></li>
+<li><a href="http://juego.serverwow.com/jugar-gratis-world-of-warcraft.html"><?php echo $l->getString('template_footer_support_link4'); ?></a></li>
 </ul>
 </div>
 <div class="column">
@@ -47,6 +49,8 @@ if (!$this->c('AccountManager')->isBanned())
 <ul>
 <li><a href="<?php echo CLIENT_FILES_PATH; ?>/wow/forum/"><?php echo $l->getString('template_footer_support_link1'); ?></a></li>
 <li><a href="<?php echo CLIENT_FILES_PATH; ?>/wow/bugtracker/"><?php echo $l->getString('template_footer_support_link2'); ?></a></li>
+<li><a href="http://descargas.serverwow.com/world-of-warcraft/"><?php echo $l->getString('template_footer_support_link3'); ?></a></li>
+<li><a href="http://faq.serverwow.com/"><?php echo $l->getString('template_footer_support_link5'); ?></a></li>
 </ul>
 </div>
 <div id="footer-promotions">

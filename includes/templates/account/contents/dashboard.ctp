@@ -14,6 +14,8 @@
 <dl>
 <dt class="subcategory"><?php echo $l->getString('template_servicebar_account'); ?></dt>
 <dd class="account-name"><?php echo $account->user('username'); ?></dd>
+<dt class="subcategory">Correo</dt>
+<dd class="account-name"><?php echo $account->user('email'); ?></dd>
 <?php
 $banned = $account->user('banned');
 if ($banned)

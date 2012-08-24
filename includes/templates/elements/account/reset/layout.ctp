@@ -93,14 +93,14 @@ echo "(".$unread.")".$l->getString('template_messages');?></a></li>
                 <div class="explore-primary">
                     <div class="explore-links" style="float:left;">
                         <ul>
-							<li><a href="http://serversprivados.com/?in=33" target="_blank" tabindex="55"><img src="http://serversprivados.com/vote.jpg" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://www.wowtop.es/" target="_blank" tabindex="55"><img src="http://www.wowtop.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://100ranking.com/" target="_blank" tabindex="55"><img src="http://100ranking.com/button.php?u=nache" width="142" height="52" border="0" alt="Servidor privado"></a></li><!-- Start Servers WoW Code --> 
-<li><a href="http://world-of-warcraft.serverswow.net/?p=vote&v=30" target="_blank" alt="Vota por Server WoW | Server de WoW | Mas de 8000 Jugadores Online | Juega Gratis WoW | Server de World of Warcraft privado!"><img src="http://serverswow.net/vote.jpg" width="142px" height="52px" border="0" /></a><!-- End Servers WoW Code --></li><li>                       
+							<li><a href="http://serversprivados.com/?in=33" target="_blank" tabindex="55"><img src="http://serversprivados.com/vote.jpg" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://100ranking.com/" target="_blank" tabindex="55"><img src="http://100ranking.com/button.php?u=nache" width="142" height="52" border="0" alt="Servidor privado"></a></li><!-- Start Servers WoW Code --> 
+<li><a href="http://serverswow.net/" target="_blank"><img src="http://serverswow.net/button.php?u=nanouniko&buttontype=stats" width="125" height="115" border="0" alt="Vota por Server WoW | Server de WoW | Mas de 8000 Jugadores Online | Juega Gratis WoW | Server de World of Warcraft privado!" /></a><!-- End Servers WoW Code --></li><li>                       
                         </ul>
                     </div>
                     <div class="explore-links" style="margin-right:20px;">
                         <ul>
 
-                          <li><a href="http://gratis-wow.es/" target="_blank" tabindex="55"><img src="http://gratis-wow.es/button.php?u=nache" width="142" height="52" border="0" alt="Server"></a></li><li><a href="http://wowranking.es/" target="_blank" tabindex="55"><img src="http://wowranking.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="servidor"></a></li><li><a href="http://www.servidoreswow.es/" target="_blank" tabindex="55"><img src="http://www.servidoreswow.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="Server de World of Warcraft"></a></li>                        
+                          <li><a href="http://gratis-wow.es/" target="_blank" tabindex="55"><img src="http://gratis-wow.es/button.php?u=nache" width="142" height="52" border="0" alt="Server"></a></li><li><a href="http://www.servidoreswow.es/" target="_blank" tabindex="55"><img src="http://www.servidoreswow.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="Server de World of Warcraft"></a></li><li><a href="http://www.wowtop.es/" target="_blank" tabindex="55"><img src="http://www.wowtop.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="World of Warcraft"></a></li><li><a href="http://wowranking.es/" target="_blank" tabindex="55"><img src="http://wowranking.es/button.php?u=nanouniko" width="142" height="52" border="0" alt="servidor"></a></li>
                         </ul>
                     </div>
                     <center><span class="clear">Recuerda que cada vez que votas por nosotros, Agradeces nuestro trabajo, e invitas a que tengas <b>Muchos mas compañeros con quien jugar y COMPETIR!!</b></span></center>
@@ -263,17 +263,33 @@ if ($success) : ?>
 <p>Introduce tus datos en los campos correspondientes para restablecer una contraseña olvidada o el acceso a una cuenta que ha sido bloqueada por motivos de seguridad.&#160;&#160;<span class="locked-tip"><a data-tooltip="Si has recibido un e-mail nuestro informando de que tu cuenta ha sido bloqueada, tendrás que restablecer la contraseña para volver a tener acceso a tu cuenta. Normalmente, se envía este e-mail por actividad sospechosa en tu cuenta." data-tooltip-options='{"location": "mouse"}'><img height='16' width='16' src='/account/images/icons/tooltip-help.gif' alt=''/>&#160;&#160;</a></span></p>
 <form method="post" action="<?php echo CLIENT_FILES_PATH; ?>/account/support/password-reset.html" id="support-form">
 <input type="hidden" name="csrftoken" value="128871cc-6ca4-41cc-94c5-de0f87913a32" />
-<div class="form-row required">
-<label for="email" class="label-full ">
-<strong> Cuenta de ServerWoW (dirección de e-mail):
-</strong>
-<span class="form-required">*</span>
+<table width="30%" border="1" align="center">
+  <tr>
+    <td>
+<label for="user" class="label-full">
+<strong> Usuario:</strong></label>
+    </td>
+    <td>
+  <input type="text" id="user" name="user" value="<?php if (isset($_POST['user'])) echo $_POST['user']; ?>" class="input border-5 glow-shadow-2 
+" maxlength="150" tabindex="1" />    
+    </td>
+  </tr>
+  <tr>
+    <td>
+<label class="label-full">
+<strong></strong>
+<span class="form-required"></span>
 </label>
+<label for="email" class="label-full ">
+<strong> Correo:</strong></label></td>
+    <td>
 <input type="text" id="email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" class="input border-5 glow-shadow-2 
 " maxlength="150" tabindex="1" />
-</div>
-<div class="form-row required">
-<label class="label-full">
+    </td>
+  </tr>
+  <tr>
+    <td>
+ <label class="label-full">
 <strong></strong>
 <span class="form-required"></span>
 </label>
@@ -282,26 +298,28 @@ if ($success) : ?>
 #recaptcha_response_field input{width:145px !important;}
 #recaptcha_response_field {width:145px !important;}
 </style>
-<?php
+<strong>Captcha:</strong>
+</span>     
+    </td>
+    <td><span class="form-right">
+      <?php
 require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
 $publickey = "6LcZjsoSAAAAAPYGkJOTrHl_j_4zS6S9Chcyh2m6"; // you got this from the signup page
 echo recaptcha_get_html($publickey);
 ?>
-</span>
-</div>
-<fieldset class="ui-controls " >
-<button
-class="ui-button button1 disabled"
-type="submit"
-disabled="disabled"
-id="support-submit"
-tabindex="1"
->
-<span>
+    </span>
+    </td>    
+  </tr>
+  <tr>
+    <td>
+    </td>
+    <td>
+<button type="submit" id="support-submit" tabindex="1" >
 <span>Continuar</span>
-</span>
 </button>
-</fieldset>
+    </td>
+  </tr>  
+</table>
 </form>
 <?php endif; ?>
 </div>

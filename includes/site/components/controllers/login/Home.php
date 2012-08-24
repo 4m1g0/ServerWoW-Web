@@ -34,7 +34,7 @@ class Home_Login_Controller_Component extends Grouplogin_Controller_Component
 	{
 		if (isset($_POST['accountName']))
 			if ($this->c('AccountManager')->performLogin())
-				return $core->redirectUrl();
+				return $core->redirectUrl2();
 
 		return $this;
 	}

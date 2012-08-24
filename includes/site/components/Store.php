@@ -910,7 +910,13 @@ class Store_Component extends Component
 
 				$this->c('Db')->characters()->setModel($this->c('Characters', 'Model'));
 				$curr = $this->c('Db')->characters()->selectRow("SELECT level FROM characters WHERE guid = %d", $guid);
-				if (($curr['level'] + $levels) > STORE_POWERLEVEL_MAX)
+				
+				if ($realmId != 4 && (($curr['level'] + $levels) > STORE_POWERLEVEL_MAX))
+				{
+					$this->addErrorMessage('Unable to add levels: overcap!');
+					return $op_result;
+				}
+				elseif ($realmId == 4 && (($curr['level'] + $levels) > (STORE_POWERLEVEL_MAX + 5)))
 				{
 					$this->addErrorMessage('Unable to add levels: overcap!');
 					return $op_result;
@@ -922,16 +928,46 @@ class Store_Component extends Component
 					else
 						$setlevel = min(($curr['level'] + ($levels * 2)), STORE_POWERLEVEL_MAX);
 				}
+				
 				$this->c('Db')->characters()->query("UPDATE characters SET level = %d WHERE guid = %d", $setlevel, $guid);
 				break;
 			case SERVICE_GOLD:
 				// Convert money
 				$levels *= 10000; // 50 gold 00 silver 00 copper
-				$this->c('Db')->characters()->query("UPDATE characters SET money = money + %d WHERE guid = %d", $levels, $guid);
+
+				$edt = $this->c('Editing')
+					->clearValues()
+					->setModel('MailExternal')
+					->setType('insert');
+
+				$id = $this->c('QueryResult', 'Db')
+					->model('MailExternal')
+					->runFunction('MAX', 'id')
+					->loadItem();
+
+				$m_id = 1;
+				if ($id)
+					$m_id = $id['id'] + 1;
+
+				$edt->id = $m_id;
+				$edt->acct = $this->c('AccountManager')->user('id');
+				$edt->receiver = $guid;
+				$edt->subject = STORE_MAIL_SUBJECT;
+				$edt->message = STORE_MAIL_MESSAGE;
+				$edt->money = $levels;
+				$edt->item = 0;
+				$edt->item_count = 0;
+				$edt->date = date('Y-m-d');
+
+				$edt->save()->clearValues();
+
+				//$this->c('Db')->characters()->query("UPDATE characters SET money = money + %d WHERE guid = %d", $levels, $guid);
 				break;
 			case SERVICE_PROFESSION:
 				$this->c('Db')->characters()->setModel($this->c('Characters', 'Model'));
+				
 				$lvl = $this->c('Db')->characters()->selectCell("SELECT level FROM characters WHERE guid = %d", $guid);
+				
 				if (!$lvl)
 				{
 					$this->addErrorMessage('Character was not found!');
@@ -942,19 +978,31 @@ class Store_Component extends Component
 					$this->addErrorMessage('El Personaje debe tener minimo level 70 para completar esta accion!');
 					return $op_result;
 				}
+				
 				$this->c('Db')->characters()->setModel($this->c('CharacterSkills', 'Model'));
 				$skill_val = $this->c('Db')->characters()->selectRow("SELECT * FROM character_skills WHERE guid = %d AND skill = %d LIMIT 1", $guid, $levels);
+				
 				if (!$skill_val)
 				{
 					$this->addErrorMessage('El personaje debe aprender previamente la profesion que desea aprender!');
 					return $op_result;
 				}
-				elseif ($skill_val['value'] >= 450)
+				elseif ($realmId != 4 && $skill_val['value'] >= 450)
 				{
 					$this->addErrorMessage('El Personaje ya tiene el nivel maximo de profesion!');
 					return $op_result;
 				}
-				$this->c('Db')->characters()->query("UPDATE character_skills SET value = 450, max = 450 WHERE guid = %d AND skill = %d LIMIT 1", $guid, $levels);
+				elseif ($realmId == 4 && $skill_val['value'] >= 525)
+				{
+					$this->addErrorMessage('El Personaje ya tiene el nivel maximo de profesion!');
+					return $op_result;
+				}
+				
+				if ($realmId != 4)
+					$this->c('Db')->characters()->query("UPDATE character_skills SET value = 450, max = 450 WHERE guid = %d AND skill = %d LIMIT 1", $guid, $levels);
+				else
+					$this->c('Db')->characters()->query("UPDATE character_skills SET value = 525, max = 525 WHERE guid = %d AND skill = %d LIMIT 1", $guid, $levels);
+					
 				break;
 			default:
 				return $this;
@@ -993,7 +1041,7 @@ class Store_Component extends Component
 
 			if ($this->c('AccountManager')->isCharacterOnline($item['realm'], $item['guid']))
 			{
-				$this->addErrorMessage('Unable to perform buyout for item #' . $item['item'] . ' - character is online!');
+				$this->addErrorMessage('Imposible comprar el item #' . $item['item'] . ' - Personaje en Linea (Si estas seguro de que tu personaje NO esta conectado, Contacta a un Operador en el live Chat #Tienda)!');
 				continue; // online
 			}
 

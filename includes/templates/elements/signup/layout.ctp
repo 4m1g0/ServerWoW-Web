@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Crear Cuenta Gratis en ServerWoW - World of Warcraft</title>
-		<meta name="description" content="ServerWoW Crea tu Cuenta para jugar World of Warcraft gratis, Version Cataclysm 4.0.6a y Wrath of The lich king 3.3.5a">
+		<title>Server WoW - Server de World of Warcraft : Crear Cuenta Gratis</title>
+		<meta name="description" content="Crear tu Cuenta para jugar World of Warcraft gratis en Server Wow, Server de Warcraft">
 		<meta name="keywords" content="wow, juegos, multijugador masivo, world of warcraft, blizzlike, cataclysm, wotlk, server, privado">
 		<link rel="shortcut icon" href="/account/images/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="/account/css/lightweight-account-creation/signup.css"/>
@@ -48,9 +48,9 @@
 		};
 
 			var regionalSites = {
-				US: 'https://us.battle.net',
-				EU: 'https://eu.battle.net',
-				RU: 'https://eu.battle.net' 
+				US: 'https://serverwow.com',
+				EU: 'https://serverwow.com',
+				RU: 'https://serverwow.com' 
 			};
 
 			var enforceCaptcha = true;
@@ -61,6 +61,8 @@
 
 	</head>
 	<body class="es-es" onclick="WowLanding.regionMenu.hide();">
+<div style="position:fixed;right:0;top:100px;width:137px;" id="tabfive">
+</div>	
 	<div class="positionWrapper starter-edition">
 		<div class="relative">
 			<div class="page">
@@ -116,8 +118,6 @@
 
 
 		<div class="relative">
-
-
 	<div id="formValidation" class="messageBox" style="<?php if ($this->c('AccountManager')->getErrorCode() == 0) echo 'display:none'; ?>">
 		<div class="background">
 			<?php
@@ -225,7 +225,19 @@
 
 		<div class="clear"><!-- --></div>
 		<div id="captchaExtension" style="margin-left:22px;">
-			<?php if ($this->c('AccountManager')->getErrorCode() & ERROR_RECAPTCHA_FAILED) echo '<li>' . $l->getString('login_error_invalid_captcha') . '</li>';
+			<?php
+            	if ($this->c('AccountManager')->getErrorCode() & ERROR_RECAPTCHA_FAILED)
+					echo '<li>' . $l->getString('login_error_invalid_captcha') . '</li>';
+            	elseif ($this->c('AccountManager')->getErrorCode() & ERROR_EMAIL_TAKEN)
+					echo '<li>' . $l->getString('template_account_creation_email_taken') . '</li>';
+				elseif ($this->c('AccountManager')->getErrorCode() & ERROR_DOMAIN_NOT_VALID)
+					echo '<li>' . $l->getString('template_account_creation_domain_not_valid') . '</li>';
+				elseif ($this->c('AccountManager')->getErrorCode() & ERROR_USER_SAME_PASS)
+					echo '<li>' . $l->getString('template_account_creation_user_same_pass') . '</li>';
+				elseif ($this->c('AccountManager')->getErrorCode() & ERROR_IP_BANNED)
+					echo '<li>' . $l->getString('template_account_creation_ip_banned') . '</li>';
+				else
+					echo '';
 
 				require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
 				$publickey = "6LcZjsoSAAAAAPYGkJOTrHl_j_4zS6S9Chcyh2m6"; // you got this from the signup page
@@ -248,6 +260,11 @@
 			<div class="terms-desc">
 				No facilitaremos tu dirección de email a terceros, pero sí es posible que nos pongamos en contacto contigo sobre productos y promociones.
 			</div>
+			<div>
+			<?php
+			?>
+			</div>
+            
 		</td>
 	</tr>
 	<tr>
@@ -307,15 +324,9 @@
 
 	<div class="clear"><!-- --></div>
 	<br><br>
-	
 <div id="footer">
 </div>
 <div id="copyright">
-<?php echo $l->getString('copyright_bottom_title'); ?>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/termsofuse.html" tabindex="100"><?php echo $l->getString('copyright_bottom_tos'); ?></a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/legal/" tabindex="100"><?php echo $l->getString('copyright_bottom_legal'); ?></a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/privacy.html" tabindex="100"><?php echo $l->getString('copyright_bottom_privacy'); ?></a>
-<a onclick="return Core.open(this);" href="http://eu.blizzard.com/company/about/infringementnotice.html" tabindex="100"><?php echo $l->getString('copyright_bottom_copyright'); ?></a>
 </div>
 <div id="international"></div>
 <div id="legal">

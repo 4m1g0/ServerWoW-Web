@@ -10,7 +10,7 @@ include dirname(__FILE__)."/".'integration.php';
 
 /* BASE URL START */
 
-define('BASE_URL','/webroot/cometchat/');
+define('BASE_URL','/chat/');
 
 /* BASE URL END */
 
@@ -136,9 +136,9 @@ $bannedMessage = 'Sorry, you have been banned from using this service. Your mess
 
 
 
-define('ADMIN_USER','sup3r_admin');
+define('ADMIN_USER','sup3r_4dm1n');
 
-define('ADMIN_PASS','Abcd1234987**//--');
+define('ADMIN_PASS','b(;:n!tKW;@Y/#');
 
 
 

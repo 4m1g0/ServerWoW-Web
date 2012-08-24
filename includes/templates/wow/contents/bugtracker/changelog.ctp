@@ -1,15 +1,7 @@
 <div class="media-content">
-<div class="media-content">
-
 <div class="currently-viewing">
-<div>
 <span style="padding:20px;float:left"><h1>ServerWoW BugTracker</h1><span style="color:#00ff00;">Selecciona la Categoria</span></span>
-
-<div class="filter-details">
-
-<span class="clear"><!-- --></span>
-</div>
-</div>
+<div class="filter-details"><span class="clear"><!-- --></span></div>
 </div>
 
 <div style="min-height:900px;">
@@ -90,5 +82,5 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		<?php echo $this->region('bt_menu'); ?>
 	</div>
 </div>
-	</div>
-	</div>
+</div>
+

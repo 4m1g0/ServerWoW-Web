@@ -18,8 +18,8 @@ $countries = array(
 	array('id' => 'argentina', 'type' => 'allopass', 'code' => 'CODE', 'number' => 27777, 'info' => '*Servicio válido para Claro, Movistar, Personal y Nextel.<br>Precio del mensaje al 27777 : $5,99 ARS + Imp en Claro y $6,00 + Imp en Movistar, Personal y Nextel.<br> Servicio limitado a 60 sms/mes.'),
 	array('id' => 'bolivia', 'type' => 'sepomo', 'code' => 'CAVE', 'number' => 636, 'info' => '*El precio del mensaje es de 8.85 BOB + I.V.A.'),
 	array('id' => 'brasil', 'type' => 'allopass', 'code' => 'CODE', 'number' => 44844, 'info' => '*Custo: 4.99 BRL/SMS'),
-	array('id' => 'chile', 'type' => 'allopass', 'code' => 'CODE', 'number' => 3113, 'info' => '*Precio del sms $750 pesos impuestos incluídos.'),
-	array('id' => 'colombia', 'type' => 'allopass', 'code' => 'ALL', 'number' => 3911, 'info' => '*Servicio válido para Movistar, Tigo y Comcel.<br>Precio del mensaje $3.596 IVA. Inc.'),
+	array('id' => 'chile', 'type' => 'allopass', 'code' => 'PASS', 'number' => 1714, 'info' => '*Precio del sms $750 pesos impuestos incluídos.'),
+	array('id' => 'colombia', 'type' => 'allopass', 'code' => 'ALL', 'number' => 3911, 'info' => '*Servicio válido para Movistar, Tigo y Claro.<br>Precio del mensaje $3.596 IVA. Inc.', 'info2' => '- (Telefono Fijo)Llama al <b>01 901 444 4297</b> para obtener tu Codigo', 'info3' => '*(Telefono Fijo) $3900 pesos iva incluido por minuto Duración máxima de la llamada 1 minuto<br>'),
 	array('id' => 'costarica', 'type' => 'allopass', 'code' => 'CODE', 'number' => 2224, 'info' => '*Servicio disponible en ICE.<br>Precio del mensaje: C.700 impuestos incluídos'),
 	array('id' => 'ecuador', 'type' => 'allopass', 'code' => 'CODE', 'number' => 7722, 'info' => '*Servicio válido para Alegro y Movistar a $1,25 + Imp.<br>Porta con precio por mensaje al 7722 de $1,30 + Imp.'),
 	array('id' => 'spain', 'type' => 'allopass', 'code' => 'CODE', 'number' => 25065, 'info' => '*1,42€ IVA incluido.', 'info2' => '- (Telefono Fijo)Llama al <b>905 40 31 23</b> para obtener tu Codigo', 'info3' => '*(Telefono Fijo) 1,42€/llamada IVA incluído desde un teléfono de la red fija.<br> 1,95€/llamada IVA incluído desde red móvil'),
@@ -29,9 +29,10 @@ $countries = array(
 	array('id' => 'mexico', 'type' => 'allopass', 'code' => 'CODE', 'number' => 28000, 'info' => '*Servicio disponible para usuarios Telcel, Movistar, Iusacell, Unefon, Nextel.<br>$23.20 pesos IVA incluido por SMS.<br>$22.20 pesos en ciudades fronterizas en donde aplica el 11% de IVA<br>El servicio Allopass tiene un limite mensual de 50 SMS', 'info2' => '- (Telefono Fijo)Llama al <b>01 900 849 77 23</b> para obtener tu Codigo', 'info3' => '*(Telefono Fijo) $23.20 por minuto (incluye iva) Duración máxima de la llamada 1 minuto'),
 	array('id' => 'nicaragua', 'type' => '123ticket', 'code' => 'CODE', 'number' => 95100, 'info' => '*$1,00 USD + impuestos <br>Servicio disponible en Claro y Movistar.'),
 	array('id' => 'panama', 'type' => '123ticket', 'code' => 'CODE', 'number' => 1255, 'info' => '*$2 SMS IVA incluido.<br>Servicio disponible en Movistar.'),
-	array('id' => 'peru', 'type' => 'allopass', 'code' => 'CODE', 'number' => 7766, 'info' => '*Servicio válido para Claro, precio del mensaje al 7766, S./3,47 IGV incluido.<br>Movistar, precio del mensaje al 7766 es de USD1,19 IGV incluido.<br>Servicio limitado a 60 sms/mes.'),
+	array('id' => 'peru', 'type' => 'allopass', 'code' => 'CODE', 'number' => 7766, 'info' => '*Servicio válido para Claro, precio del mensaje al 7766, S./4,95 IGV incluido.<br>Movistar, precio del mensaje al 7766 es de USD1,77 IGV incluido.<br>Servicio limitado a 60 sms/mes.'),
+	array('id' => 'portugal', 'type' => 'allopass', 'code' => 'CODE', 'number' => 68636, 'info' => '*2,10€/sms.'),
 	array('id' => 'republicdom', 'type' => 'allopass', 'code' => 'CODE', 'number' => 92800, 'info' => 'Servicio disponible para Claro, Orange, Viva y Tricom<br>Precio del mensaje $64,00 DOP impuestos incluídos.'),
-	array('id' => 'uruguay', 'type' => 'allopass', 'code' => 'LCV', 'number' => 1714, 'info' => '*Precio del mensaje 60 UYU/SMS + Basico + IVA.<br>Disponible para Ancel.'),
+	array('id' => 'uruguay', 'type' => 'allopass_tmp', 'code' => 'LCV', 'number' => 1714, 'info' => '*Precio del mensaje 60 UYU/SMS + Basico + IVA.<br>Disponible para Ancel.'),
 	array('id' => 'venezuela', 'type' => 'allopass', 'code' => 'CODE', 'number' => 5833, 'op1' => 'Usuarios Movilnet', 'number2' => 2658, 'op2' => 'Usuarios Movistar y Digitel', 'info' => '*Costo del mensaje 7,5 BsF + impuestos en Movistar y Digitel.<br>5,0 BsF + impuestos en Movilnet.<br>Servicio limitado a 60 sms/mes.'),
 	array('id' => 'alemania', 'type' => 'allopass', 'code' => 'LOS', 'number' => 41414, 'info' => '*Precio del mensaje €1.49/SMS'),
 	array('id' => 'canada', 'type' => 'allopass', 'code' => 'CODE', 'number' => 52624, 'info' => '*Price of SMS 3.00$'),
@@ -68,7 +69,7 @@ $(document).ready(function() {
 
 		var type = $('#' + selectedCountry).attr('data-optype');
 
-		if (type != 'allopass' && type != 'sepomo' && type != '123ticket')
+		if (type != 'allopass' && type != 'allopass_tmp' && type != 'sepomo' && type != '123ticket')
 		{
 			isChecking = false;
 			return false;
@@ -134,6 +135,7 @@ function hideAllCountries()
 	<option value="nicaragua">Nicaragua</option>
 	<option value="panama">Panama</option>
 	<option value="peru">Peru</option>
+	<option value="portugal">Portugal</option>
 	<option value="republicdom">Republica Dominicana</option>
 	<option value="uruguay">Uruguay</option>
 	<option value="venezuela">Venezuela</option>

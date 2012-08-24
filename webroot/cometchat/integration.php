@@ -4,7 +4,7 @@
 
 /* ADVANCED */
 
-define('SET_SESSION_NAME','');			// Session name
+define('SET_SESSION_NAME','serverwow_chat');			// Session name
 define('DO_NOT_START_SESSION','0');		// Set to 1 if you have already started the session
 define('DO_NOT_DESTROY_SESSION','1');	// Set to 1 if you do not want to destroy session on logout
 define('SWITCH_ENABLED','0');		
@@ -17,9 +17,9 @@ define('FORCE_MAGIC_QUOTES','0');
 
 define('DB_SERVER',					'localhost'								);
 define('DB_PORT',					'3306'									);
-define('DB_USERNAME',				''									);
-define('DB_PASSWORD',				''								);
-define('DB_NAME',					''								);
+define('DB_USERNAME',				's3rv3rww_admin'									);
+define('DB_PASSWORD',				'650Gw1%UPq*Jo3Q6o2'								);
+define('DB_NAME',					's3rv3rww_web'								);
 define('TABLE_PREFIX',				'wow_'										);
 define('DB_USERTABLE',				'users_accounts'									);
 define('DB_USERTABLE_NAME',			'nickname'								);
@@ -38,7 +38,7 @@ function getUserID()
 	if (isset($_COOKIE['wowuser']))
 	{
 		$user = json_decode(base64_decode($_COOKIE['wowuser']));
-		$userid = $user->id;
+		$userid = intval($user->id);
 	}
 	return $userid;
 }

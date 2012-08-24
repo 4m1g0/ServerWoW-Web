@@ -249,6 +249,9 @@ class AccountManager_Component extends Component
 			case "Chaos World":
 				$realm_Active = "CW";
 				break;
+			case "Ragnaros":
+				$realm_Active = "Rag";
+				break;
 		}
 				
 		$this->c('Db')->wow()->query("UPDATE `wow_users_accounts` SET `nickname` = '%s' WHERE `account_id` = '%d'", $this->charInfo('name').'@'.$realm_Active, $acc_id);
@@ -534,8 +537,8 @@ class AccountManager_Component extends Component
 			return false;
 		}
 
-		$username = $_POST['accountName'];
-		$password = $_POST['password'];
+		$username = strip_tags(stripslashes($_POST['accountName']));
+		$password = strip_tags(stripslashes($_POST['password']));
 
 		if (!$username || !$password)
 		{
@@ -559,10 +562,10 @@ class AccountManager_Component extends Component
 
 		$user = $this->c('QueryResult', 'Db')
 			->model('Account')
-			->fieldCondition('username', ' = \'' . $username . '\'')
-			->fieldCondition('sha_pass_hash', ' = \'' . $this->sha($username, $password) . '\'')
+			->fieldCondition('username', ' = \'' . $username . '\'', 'AND')
+			->fieldCondition('sha_pass_hash', ' = \'' . sha1(strtoupper($username). ':' . strtoupper($password)) . '\'')
 			->loadItem();
-
+			
 		if (!$user)
 		{
 			$this->m_loginError |= ERROR_WRONG_USERNAME_OR_PASSWORD;
@@ -702,6 +705,20 @@ class AccountManager_Component extends Component
 	{
 		if (!$this->isLoggedIn() || !$this->isHaveAnyCharacters() || $this->isBanned())
 			return false;
+			
+		if ($this->m_activeChar['level'] < 9)
+			return false;
+
+		return true;
+	}
+	
+	public function isAllowedToGeneral()
+	{
+		if (!$this->isLoggedIn() || !$this->isHaveAnyCharacters() || $this->isBanned())
+			return false;
+			
+		if ($this->m_activeChar['level'] < 9)
+			return false;
 
 		return true;
 	}
@@ -741,6 +758,38 @@ class AccountManager_Component extends Component
 	{
 		if ((!$user || !$pass || !$confirm || !$email) || $pass != $confirm || strlen($user) < 2 | strlen($pass) < 6)
 			return false;
+			
+		$user = strip_tags(stripslashes($user));
+		$email = strip_tags(stripslashes($email));
+		$pass = strip_tags(stripslashes($pass));
+		$ip = $_SERVER["REMOTE_ADDR"];
+		
+		
+		if ($user == $pass)
+		{
+			$this->m_loginError |= ERROR_USER_SAME_PASS;
+			return false;
+		}
+		
+		// Check For VALID Domain
+		$check_email1 = explode('@',$email);
+		$check_email2 = explode('.',$check_email1[1]);
+		
+		$available_domains = array('/hotmail/i','/yahoo/i','/gmail/i','/live/i');
+		foreach ($available_domains as $available_domain)
+		{  
+			while (preg_match($available_domain, $check_email2[0]))
+			{
+				$can_continue = true;
+				break;
+			}
+		}
+		
+		if (isset($can_continue) != true)
+		{
+			$this->m_loginError |= ERROR_DOMAIN_NOT_VALID;
+			return false;
+		}
 
 		require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
 
@@ -759,114 +808,325 @@ class AccountManager_Component extends Component
 
 		$sha = sha1(strtoupper($user). ':' . strtoupper($pass));
 
-		$check = $this->c('QueryResult', 'Db')
-			->model('WowUsersAccounts')
+		$check_user = $this->c('QueryResult', 'Db')
+			->model('Account')
 			->fieldCondition('username', ' = \'' . $user . '\'')
 			->loadItem();
 
-		if ($check)
+		if ($check_user)
 		{
 			$this->m_loginError |= ERROR_USERNAME_TAKEN;
 			return false;
 		}
 
-		$this->c('Db')->wow()->setModel($this->c('WowUsersAccounts', 'Model'));
-		$max_id = $this->c('Db')->wow()->selectRow("SELECT max(id) AS max from wow_users_accounts");
-		$max_id = $max_id + 1;
-
-		$this->c('Db')->wow()->query("INSERT INTO wow_users_accounts (id,username,nickname,password,email) VALUES ('%d', '%s', '%s', '%s', '%s')", $max_id, $user, $user, $sha, $email);
-		
-		$user_encode = base64_encode($max_id);
-		$activateLink = $_SERVER['HTTP_HOST']."/account/creation/activate/".$user_encode;
-		
-		if (AccountCreationEmail($user, $pass, $email, $activateLink, $_SERVER['HTTP_HOST']) == true)
-		{
-			$this->m_loginError |= ACCOUNT_CREATE;
-			return true;
-		}
-		
-		$this->m_loginError |= ACCOUNT_CREATE_FALSE;
-		return false;
-	}
-	
-	public function AccountConfirm($hash)
-	{
-		$user_decode = base64_decode($hash);
-		
-		$check = $this->c('QueryResult', 'Db')
-			->model('WowUsersAccounts')
-			->fieldCondition('id', ' = \'' . $user_decode . '\'')
+		$check_email = $this->c('QueryResult', 'Db')
+			->model('Account')
+			->fieldCondition('email', ' = \'' . $email . '\'')
 			->loadItem();
 
-		// if NULL, Account NOT create in createAccount()
-		if (!$check)
+		if ($check_email)
 		{
-			$this->m_loginError |= ERROR_ACCOUNT_NOEXIST;
-			return false;
-		}
-		// If password is NULL (Already Activate)
-		if (!$check['password'])
-		{
-			$this->m_loginError |= ERROR_ACCOUNT_ACTIVE;
+			$this->m_loginError |= ERROR_EMAIL_TAKEN;
 			return false;
 		}
 		
-		// Insert in the Realm the account
-		$this->c('Db')->realm()->setModel($this->c('Account', 'Model'));
-		$this->c('Db')->realm()->query("INSERT INTO account (id,username,sha_pass_hash,expansion,email) VALUES ('%s', '%s', '%s', 2, '%s')", $check['id'], $check['username'], $check['password'], $check['email']);
-		// Delete Password from wow_database
-		$this->c('Db')->wow()->setModel($this->c('WowUsersAccounts', 'Model'));
-		$this->c('Db')->wow()->query("UPDATE wow_users_accounts SET password = 0 WHERE username = '%s')", $user);
+		$check_ip = $this->c('QueryResult', 'Db')
+			->model('IpBanned')
+			->fieldCondition('ip', ' = \'' . $ip . '\'')
+			->loadItem();
 
-		$this->m_loginError |= ACCOUNT_ACTIVATE;
-		return true;
-	}
+		if ($check_ip)
+		{
+			$this->m_loginError |= ERROR_IP_BANNED;
+			return false;
+		}
+		
+		$max_id = $this->c('Db')->wow()->selectRow("SELECT max(id) + 1 AS max FROM wow_users_accounts");
+		
+		if ($max_id['max'] != 0)
+		{
+			if ($this->c('Db')->wow()->query("INSERT INTO wow_users_accounts (id,account_id,username,nickname) VALUES ('%d', '%d', '%s', '%s')", $max_id['max'], $max_id['max'], $user, $user))
+			{
+				$this->c('Db')->realm()->setModel($this->c('Account', 'Model'));
+				if ($this->c('Db')->realm()->query("INSERT INTO account (id,username,sha_pass_hash,expansion,email) VALUES ('%d', '%s', '%s', 2, '%s')", $max_id['max'], $user, $sha, $email))
+				{
+					$title = "Cuenta en ServerWoW.com";
+					$subject = ''.$user.', Cuenta Creada';
+					$from = "registro@serverwow.com";
+					$to = $email;
+					$host = $_SERVER['HTTP_HOST'];
+
+					$headers = "MIME-Version: 1.0\r\n";
+					$headers .= "Content-type: text/html; charset=utf-8\r\n";
+					$headers .= "X-Mailer: PHP's mail() Function\r\n";
+					$headers .= "From: $from\r\n";
 	
-	public function AccountCreationEmail($user, $pass, $email, $activateLink, $host)
-	{
-		global $from;
-		
-		$title = "ServerWoW: Activacion de Cuenta";
-		$subject = 'Activacion de cuenta - "'.$user.'"';
-		$from = "registro@serverwow.com";
-		$to = $email;
-		
-		$headers = "MIME-Version: 1.0\r\n";
-		$headers .= "Content-type: text/html; charset=utf-8\r\n";
-		$headers .= "X-Mailer: PHP's mail() Function\r\n";
-		$headers .= "From: $from\r\n";
-  
-		$message = '
-			<html>
-				<head>
-					<title>'.$title.'</title>
-				</head>
-				<body>
-					<h2>Hola</h2>
-					<br><br>	  
-					<b>Cuenta:</b> '.$user.'<br>
-					<b>Password :</b> </strong>'.$pass.'<br>
-					<b>Email :</b> </strong>'.$email.'<br>
-					<b>Realmlist :</b> </strong>set realmlist logon.serverwow.com<br><br>
-					<b>Link de Activacion:</b><br> '.$activateLink.' <br><br><br>   
-					<b>Por favor haga click en el link de activaci�n para activar su cuenta.</b><br><br>  
-					<b>Si el link no funciona copielo e introduzcalo en la barra web de su explorador.</b><br><br><br>  
-					<b>
-					Puedes Acceder a la Administracion de cuenta en '.$host.'/account/management/
-					<br><br><br>
-					Todo el equipo de Server WoW, Te desea lo mejor, esperamos te diviertas siendo parte de esta gran familia.
-					</b>
-					<br><br><br>
+					$message = "
+					<html>
+<head>
+  <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+  <title>Creacion de Cuenta</title>
+</head>
+<body>
+  <div>
+    <table style='width: 650px;' border='0' cellpadding='0' cellspacing='0'>
+      <tbody>
+        <tr>
+          <td colspan='4'>
+            <div align='center'><span style='color: #999999; font-family: Arial, Helvetica, sans-serif; font-size: xx-small;'>Para asegurar la recepción de los e-mails de ServerWoW, agrega <strong><a href='mailto:e-correo@serverwow.com' target='_blank'>e-correo@serverwow.com</a></strong> a tu libreta de direcciones.</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+    <table style='width: 613px;' border='0' cellpadding='0' cellspacing='0'>
+      <tbody>
+        <tr>
+          <td bgcolor='#000000' width='613'>
+            <table style='width: 613px;' border='0' cellpadding='0' cellspacing='0'>
+              <tbody>
+                <tr>
+                  <td colspan='55' height='437' valign='top' width='613'><a href='' target='_blank'><span style='padding: 0px;'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/header-new16-esmx.jpg' alt=' ' border='0' height='443' width='613' /></span></a></td>
+                </tr>
+                <tr>
+                  <td bgcolor='#010000' height='100%' valign='top' width='2'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='2' /></td>
+                  <td bgcolor='#6e757b' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#544d47' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#000201' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#4b4a46' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#272d2d' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#9a958f' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#110705' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#190804' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0b0e15' height='100%' valign='top' width='42'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='42' /></td>
+                  <td bgcolor='#190904' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#140805' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#090302' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#110903' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#2f0e01' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#230901' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0f0800' height='100%' valign='top' width='7'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='7' /></td>
+                  <td bgcolor='#1d0a00' height='100%' valign='top' width='4'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='4' /></td>
+                  <td bgcolor='#060501' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#efdba3' valign='top' width='467'>
+                    <table border='0' cellpadding='0' cellspacing='0'>
+                      <tbody>
+                        <tr>
+                          <td width='15'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='15' /></td>
+                          <td>
+                            <table bgcolor='#efdba3' border='0' cellpadding='5' cellspacing='0'>
+                              <tbody>
+                                <tr>
+                                  <td style='padding: 0px 0px 16px;' colspan='3' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Hola $user, </p></td>
+                                </tr>
+                                <tr>
+                                  <td style='padding: 0px 0px 16px;' colspan='3' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Queremos informarte que tu cuenta en $host se ha creado satisfactoriamente!</p></td>
+                                </tr>
+                                <tr>
+                                  <td valign='top'></td>
+                                  <td style='padding: 0px 10px 12px 3px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Cuenta:</p></td>
+                                  <td style='padding: 0px 0px 12px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>$user</p></td>
+                                </tr>
+                                <tr>
+                                  <td valign='top'></td>
+                                  <td style='padding: 0px 10px 12px 3px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Password:</p></td>
+                                  <td style='padding: 0px 0px 12px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>$pass</p></td>
+                                </tr>
+                                <tr>
+                                  <td valign='top'></td>
+                                  <td style='padding: 0px 10px 12px 3px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Email:</p></td>
+                                  <td style='padding: 0px 0px 12px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>$email</p></td>
+                                </tr>
+                                <tr>
+                                  <td valign='top'></td>
+                                  <td style='padding: 0px 10px 12px 3px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Realmlist:</p></td>
+                                  <td style='padding: 0px 0px 12px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>set realmlist logon.$host</p></td>
+                                </tr>
+                                <tr>
+                                  <td style='padding: 0px;' colspan='3' valign='top'>
+                                    <div>
+                                      <p>&nbsp;</p>
+                                      <p>&nbsp;</p></div></td>
+                                </tr>
+                                <tr>
+                                  <td style='padding: 0px 0px 16px;' colspan='3' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Además, te invitamos a que visites los links mas importantes de $host, para que te ubiques e identifiques los posibles sitios de ayuda e interes.</p></td>
+                                </tr>
+                                <tr>
+                                  <td valign='top'></td>
+                                  <td style='padding: 0px 10px 12px 3px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Administracion de cuenta:</p></td>
+                                  <td style='padding: 0px 0px 12px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'><a href='http://$host/account/management/' target='_blank'>http://$host/account/management/</a></p></td>
+                                </tr>
+                                <tr>
+                                  <td valign='top'></td>
+                                  <td style='padding: 0px 10px 12px 3px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Foros:</p></td>
+                                  <td style='padding: 0px 0px 12px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'><a href='http://$host/wow/forum/' target='_blank'>http://$host/wow/forum/</a></p></td>
+                                </tr>
+                                <tr>
+                                  <td valign='top'></td>
+                                  <td style='padding: 0px 10px 12px 3px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Como Jugar Gratis:</p></td>
+                                  <td style='padding: 0px 0px 12px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'><a href='http://juego.$host/jugar-gratis-world-of-warcraft.html' target='_blank'>http://juego.$host/jugar-gratis-world-of-warcraft.html</a></p></td>
+                                </tr>
+                                <tr>
+                                  <td valign='top'></td>
+                                  <td style='padding: 0px 10px 12px 3px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Descargas:</p></td>
+                                  <td style='padding: 0px 0px 12px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'><a href='http://descargas.$host/world-of-warcraft/' target='_blank'>http://descargas.$host/world-of-warcraft/</a></p></td>
+                                </tr>
+                                <tr>
+                                  <td valign='top'></td>
+                                  <td style='padding: 0px 10px 12px 3px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>FAQ (Preguntas Frecuentes):</p></td>
+                                  <td style='padding: 0px 0px 12px;' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'><a href='http://faq.$host/' target='_blank'>http://faq.$host/</a></p></td>
+                                </tr>
+                                <tr>
+                                  <td style='padding: 0px 0px 16px;' colspan='3' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>&nbsp;</p>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>&nbsp;</p>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'>Todo el equipo de <a href='http://$host' target='_blank'>http://$host</a>, Te desea lo mejor, esperamos te diviertas siendo parte de esta gran familia. </p></td>
+                                </tr>
+                                <tr>
+                                  <td style='padding: 0px 0px 20px;' colspan='3' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'><br />
+                                      <br />
+                                      <span style='font-weight: bold; '>Nache</span><br />
+                                      <span style='font-weight: bold; '>Director General.</span><br />
+                                      <span style='font-weight: bold; '><a href='https://twitter.com/#!/n4ch3' target='_blank'>https://twitter.com/#!/n4ch3</a></span><br />
+                                      <br />
+                                      <span style='font-weight: bold; '>Server WoW Realms<br />
+                                        2008-2012<br />
+                                        <a href='https://twitter.com/#!/ServerWoW' target='_blank'>https://twitter.com/#!/ServerWoW</a></span></p></td>
+                                </tr>
+                                <tr>
+                                  <td style='padding: 0px;' colspan='3' valign='top'>
+                                    <p style='color: #620d06; font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 16px; font-family: Calibri,Trebuchet MS,arial,helvetica,sans-serif;'><span style='font-weight: bold; '>Siguenos!!<br />
+                                        <a href='https://www.facebook.com/ServerWoW' target='_blank'>https://www.facebook.com/ServerWoW</a></span></p></td>
+                                </tr>
+                              </tbody>
+                            </table></td>
+                          <td width='15'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='15' /></td>
+                        </tr>
+                      </tbody>
+                    </table></td>
+                  <td bgcolor='#170b00' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#180d00' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0f0500' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#140901' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#241705' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#1d0f01' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#1d0a00' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#211001' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#241504' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#1a0e01' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0f0700' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0f0800' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0c0500' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#090200' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0c0500' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0a0500' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0c0200' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#180100' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#260c00' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0e0600' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0a0402' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#140b06' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#1c0702' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0b0e15' height='100%' valign='top' width='41'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='41' /></td>
+                  <td bgcolor='#0b0e15' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0b0e15' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#0b0e15' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#140703' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#979692' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#2c2c2a' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#4a4a48' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#000100' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#514d4e' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#6e7774' height='100%' valign='top' width='1'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='1' /></td>
+                  <td bgcolor='#000002' height='100%' valign='top' width='2'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/pixel.gif' alt='' border='0' height='1' width='2' /></td>
+                </tr>
+                <tr>
+                  <td colspan='55' bgcolor='#020912' height='264' valign='top' width='613'><a href='http://serverwow.com/' target='_blank'><img style='display: block;' src='http://e-correo.serverwow.com/data_files/img/create_account/footer-new09.jpg' alt='' border='0' height='303' width='613' /></a></td>
+                </tr>
+              </tbody>
+            </table></td>
+        </tr>
+        <tr>
+          <td bgcolor='#000000' width='613'>
+            <table style='width: 613px;' bgcolor='#000000' border='0' cellpadding='0' cellspacing='10'>
+              <tbody>
+                <tr>
+                  <td>
+                    <div align='center'><a target='_blank' href='http://www.youtube.com/user/ServerW0W'><img src='http://e-correo.serverwow.com/data_files/img/custom/youtube.png' alt='Síguenos en YouTube' width='37' height='37' border='0' align='absmiddle' title='Síguenos en YouTube' /></a></div></td>
+                  <td>
+                    <div align='center'><a target='_blank' href='https://twitter.com/#!/n4ch3/lcv'><img border='0' src='http://e-correo.serverwow.com/data_files/img/custom/twitter.png' width='37' height='37' title='Síguenos en Twitter' alt='Síguenos en Twitter' /></a></div></td>
+                  <td>
+                    <div align='center'><a target='_blank' href='http://www.facebook.com/ServerWoW'><img border='0' src='http://e-correo.serverwow.com/data_files/img/custom/facebook.png' width='37' height='37' title='Siguenos en Facebook' alt='Siguenos en Facebook' /></a></div></td>
+                  <td>
+                    <div align='center'><a target='_blank' href='https://plus.google.com/117818722165936859038'><img border='0' src='http://e-correo.serverwow.com/data_files/img/custom/delicious.png' width='37' height='37' title='Síguenos en Google Plus' alt='Síguenos en Google Plus' /></a></div></td>
+                </tr>
+              </tbody>
+            </table></td>
+        </tr>
+        <tr>
+          <td bgcolor='#000000' width='613'>
+            <table style='width: 613px;' bgcolor='#000000' border='0' cellpadding='0' cellspacing='20'>
+              <tbody>
+                <tr>
+                  <td style='padding: 0in;' valign='top'><span style='font-family: Arial; font-size: xx-small; '><span style='font-size: 7pt; font-family: Arial; '>
+                        <div><span style='color: rgb(153, 153, 153);'>Si NO puedes ingresar a la Página Web (serverwow.com), intenta descargando la siguiente utilidad, haz clic </span><a href='http://www.mediafire.com/?2xo75ocwy95p8uc' target='_blank' style='color: rgb(135, 206, 250);'>aquí</a><span style='color: rgb(153, 153, 153);'> y sigue las instrucciones dentro de la descarga.</span></div>
+                        <div style='color: rgb(153, 153, 153); '><br />
+                          </div>
+                        <div>
+                          <p><span style='color: rgb(153, 153, 153);'>Si deseas leer nuestra política de privacidad </span><a href='http://privacy.serverwow.com' target='_blank' style='color: rgb(135, 206, 250);'>http://privacy.serverwow.com<br />
+                              <br />
+                              </a></p></div>
+                        <div style='color: rgb(153, 153, 153); '>2012 ServerWoW. Todos los derechos reservados. Todas las demás marcas son propiedad de sus respectivos dueños.</div></span></span></td>
+                  <td style='padding: 0px 0in 0in;' valign='top'><span style='font-family: Arial; font-size: xx-small; '>
+                      <div style='color: rgb(153, 153, 153); '>Soporte Técnico</div>
+                      <div><a href='http://serverwow.com/wow/bugtracker/' target='_blank' style='color: rgb(135, 206, 250);'>/wow/bugtracker/</a></div>
+                      <div style='color: rgb(153, 153, 153); '><br />
+                        </div>
+                      <div style='color: rgb(153, 153, 153); '>Guía para Jugar</div>
+                      <div><a href='http://juego.serverwow.com/jugar-gratis-world-of-warcraft.html' target='_blank' style='color: rgb(135, 206, 250);'>/jugar-gratis-world-of-warcraft.html</a></div>
+                      <div style='color: rgb(153, 153, 153); '><br />
+                        </div>
+                      <div style='color: rgb(153, 153, 153); '>FAQ</div>
+                      <div><a href='http://faq.serverwow.com' target='_blank' style='color: rgb(135, 206, 250);'>http://faq.serverwow.com</a></div></span></td>
+                </tr>
+              </tbody>
+            </table></td>
+        </tr>
+      </tbody>
+    </table><br />
+    </div>
+</body>
+</html>";
+
+					@mail("$to", "$subject", "$message", "$headers");
 					
-					<b>Nache<br></b>
-					<b>Director General.<br></b>
-					<b>Server WoW Realms - 2008-2012.</b>
-					<br>
-				</body>
-			</html>';
-  
-		@mail("$to", "$subject", "$message", "$headers");
-		return true;
+					return true;
+				}
+			}
+		}
+		
+		$this->m_loginError |= "No se ha podido crear tu cuenta, prueba de nuevo";
+		return false;
 	}
 
 	public function showNotify()
@@ -899,13 +1159,14 @@ class AccountManager_Component extends Component
 		if (!isset($p['oldPassword']) || !isset($p['newPassword']) || !isset($p['newPasswordVerify']))
 			return false;
 
-		$sha = sha1(strtoupper($this->user('username')) . ':' . strtoupper($p['oldPassword']));
+		$sha = sha1(strtoupper(stripslashes($this->user('username'))) . ':' . strtoupper(stripslashes($p['oldPassword'])));
+		
 		if ($this->user('sha_pass_hash') != $sha)
 		{
 			$this->m_lastErrorIdx = 'template_account_change_pass_error_pass';
 			$this->m_success = false;
 		}
-		elseif ($p['newPassword'] != $p['newPasswordVerify'])
+		elseif (stripslashes($p['newPassword']) != stripslashes($p['newPasswordVerify']))
 		{
 			$this->m_lastErrorIdx = 'template_account_change_pass_error_mismatch';
 			$this->m_success = false;
@@ -918,13 +1179,13 @@ class AccountManager_Component extends Component
 				->setId($this->user('id'))
 				->setType('update');
 
-			$edt->sha_pass_hash = sha1(strtoupper($this->user('username')) . ':' . strtoupper($p['newPassword']));
+			$edt->sha_pass_hash = sha1(strtoupper(stripslashes($this->user('username'))) . ':' . strtoupper(stripslashes($p['newPassword'])));
 			 // set session fields to null
 			$edt->v = '';
 			$edt->s = '';
 			$edt->save()->clearValues();
 			// Update user object to prevent login autoreject (auto-logout)
-			$this->m_user->sha_pass_hash = sha1(strtoupper($this->user('username')) . ':' . strtoupper($p['newPassword']));
+			$this->m_user->sha_pass_hash = sha1(strtoupper(stripslashes($this->user('username'))) . ':' . strtoupper(stripslashes($p['newPassword'])));
 			$this->saveUser($this->m_user);
 			$this->m_success = true;
 		}
@@ -1028,13 +1289,14 @@ class AccountManager_Component extends Component
 
 	public function sendPasswordEmail()
 	{
-		if (!isset($_POST['email']) || !isset($_POST['recaptcha_challenge_field']))
+		if (!isset($_POST['recaptcha_challenge_field']) or !isset($_POST['user']) or !isset($_POST['email']))
 			return $this;
-
-		$email = $_POST['email'];
+		
+		$user = strip_tags(stripslashes($_POST['user']));
+		$email = strip_tags(stripslashes($_POST['email']));
 		$captcha = $_POST['recaptcha_response_field'];
 
-		if (!$email && !$captcha)
+		if (!$user && !$email && !$captcha)
 			return $this->core->setDataVar('errors', (2 | 4));
 		elseif (!$email)
 			return $this->core->setDataVar('errors', 2);
@@ -1043,14 +1305,15 @@ class AccountManager_Component extends Component
 
 		require_once(SITE_CLASSES_DIR . 'recaptchalib.php');
 		$privatekey = "6LcZjsoSAAAAAHcliYKVqU5DI4naoEmsvc0UYA80";
-		$resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+		$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
 
 		if (!$resp->is_valid)
 			return $this->core->setDataVar('errors', 4);
 
 		$user = $this->c('QueryResult', 'Db')
 			->model('Account')
-			->fieldCondition('email', ' = \'' . $_POST['email'] . '\'')
+			->fieldCondition('username', ' = \'' . $user . '\'', 'AND')
+			->fieldCondition('email', ' = \'' . $email . '\'')
 			->loadItem();
 
 		if (!$user)
@@ -1067,28 +1330,8 @@ class AccountManager_Component extends Component
 		if (!$email)
 			return false;
 
-		$limit = rand(8, 16);
-
-		$password = '';
-
-		// 65-90
-		// 97-122
-
-		for ($i = 0; $i < $limit; ++$i)
-		{
-			switch (rand(1, 3))
-			{
-				case 1:
-					$password .= chr(rand(65, 90));
-					break;
-				case 2:
-					$password .= chr(rand(97, 122));
-					break;
-				default:
-					$password .= rand(0, 9);
-					break;
-			}
-		}
+		$password = substr(md5(rand()),0,12);
+		$sha_password = sha1(strtoupper($username).':'.strtoupper($password));
 		
 		$body = wordwrap($this->c('Locale')->extraFormat('template_password_recovery_email_body',
 			array(
@@ -1118,7 +1361,7 @@ class AccountManager_Component extends Component
 
 			$edt->v = '';
 			$edt->s = '';
-			$edt->sha_pass_hash = sha1(strtoupper($username) . ':' . strtoupper($password));
+			$edt->sha_pass_hash = $sha_password;
 
 			$edt->save()->clearValues();
 
@@ -1387,168 +1630,7 @@ class AccountManager_Component extends Component
 
 		return $msg;
 	}
-	
-	public function addFriend()
-	{
-		$char = $this->c('AccountManager')->getActiveCharacter();
-		
-		if (!$char)
-			return false;
 
-		if (!isset($_POST['csrftoken']))
-			return false;
-
-		$fields = array('friend' => 1, 'realmId' => 2);
-
-		foreach ($fields as $f => $v)
-		{
-			if (!isset($_POST[$f]) || !$_POST[$f])
-			{
-				$this->m_lastErrorIdx = 'template_add_friend_err' . $v;
-				$this->m_success = false;
-				return false;
-			}
-		}
-
-		$realmId = intval($_POST['realmId']);
-		if ($realmId != $this->c('Config')->getValue('realms.' . $realmId . '.id'))
-		{
-			$this->m_lastErrorIdx = 'template_add_friend_err9';
-			$this->m_success = false;
-			return false;
-		}
-
-		// try to find character guid and account ID
-		$this->c('Db')->switchTo('characters', $realmId);
-		if (!$this->c('Db')->isDatabaseAvailable('characters', $realmId))
-		{
-			// realm's characters DB is not available
-			$this->m_lastErrorIdx = 'template_add_friend_err10';
-			$this->m_success = false;
-			return false;
-		}
-
-		$rcv_name = addslashes($_POST['friend']);
-		$char = $this->c('QueryResult', 'Db')
-			->model('Characters')
-			->fields(array('Characters' => array('guid', 'name', 'account')))
-			->fieldCondition('name', ' = \'' . $rcv_name . '\'', true)
-			->loadItem();
-
-		if (!$char)
-		{
-			// realm's characters DB is not available
-			$this->m_lastErrorIdx = 'template_add_friend_err7';
-			$this->m_success = false;
-			return false;
-		}
-
-		if ($char['account'] == $this->user('id'))
-		{
-			$this->m_lastErrorIdx = 'template_add_friend_err6';
-			$this->m_success = false;
-			return false;
-		}
-
-		$this->c('Db')->wow()->setModel($this->c('WowUserFriends', 'Model'));
-
-		$check_ = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `user_acc` = '%d' AND `friend_acc` = '%d'", $this->user('id'), $char['account']);
-		if ($check_)
-		{
-			$this->m_lastErrorIdx = 'template_add_friend_err8';
-			$this->m_success = false;
-			return false;
-		}
-		
-		$mutual = substr(md5(rand()),0,20);
-		$mutual_encode = base64_encode($mutual);
-
-		$title = addslashes($this->charInfo('name')." Te ha agregado como amigo");
-		$msg = addslashes("Hola ".$char['name'].", \n".$this->charInfo('name')." Te ha agregado como amigo\n\n Puedes agregarlo tambien desde el siguiente link:\n <a href=//serverwow.com/account/management/addfriend/".$mutual_encode.">Agregar Amigo</a>\n\n Tambien puedes bloquearlo desde el siguiente link:\n <a href=//serverwow.com/account/management/blockfriends/".$mutual_encode.">Bloquear</a>");
-		$msg = str_replace(array("\n", "\n\r"), '<br />', $msg);
-
-		// by default, everybody can add friends
-		$edt = $this->c('Editing')
-			->clearValues()
-			->setModel('WowPrivateMessages')
-			->setType('insert');
-
-		$edt->sender_id = $this->user('id');
-		$edt->receiver_id = $char['account'];
-		$edt->send_date = time();
-		$edt->title = $title;
-		$edt->text = $msg;
-		$edt->read = '0';
-		$edt->sender_guid = $this->charInfo('guid');
-		$edt->sender_realmId = $this->charInfo('realmId');
-		$edt->receiver_guid = $char['guid'];
-		$edt->receiver_realmId = $realmId;
-		$edt->save()->clearValues();
-
-		unset($edt);
-			
-		$this->c('Db')->wow()->query("INSERT INTO `wow_user_friends` (user_acc,user_guid,user_realm,friend_acc,friend_guid,friend_realm,mutual_act) VALUES ('%d', '%d', '%d', '%d', '%d', '%d', '%s')", $this->user('id'), $this->charInfo('guid'), $this->charInfo('realmId'), $char['account'], $char['guid'], $realmId, $mutual);
-
-		return true;
-	}
-	
-	public function add2Friend()
-	{
-		$char = $this->c('AccountManager')->getActiveCharacter();
-		
-		if (!$char)
-			return false;
-
-		$mutual = 0;
-		$mutual_decode = base64_decode(addslashes($this->core->getUrlAction(3)));
-
-		$this->c('Db')->wow()->setModel($this->c('WowUserFriends', 'Model'));
-		$check_act = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `mutual_act` = '%s'", $mutual_decode);
-		if ($check_act)
-		{
-			$check_act2 = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `user_acc` = '%d' AND `friend_acc` = '%d'", $this->user('id'), $char['account']);
-
-			if (!$check_act2)
-			{
-				$this->c('Db')->wow()->query("INSERT INTO `wow_user_friends` (user_acc,user_guid,user_realm,friend_acc,friend_guid,friend_realm,mutual_act) VALUES ('%d', '%d', '%d', '%d', '%d', '%d', '%d')", $this->user('id'), $this->charInfo('guid'), $this->charInfo('realmId'), $check_act['user_acc'], $check_act['user_guid'], $check_act['user_realm'], $mutual);
-				$this->c('Db')->wow()->query("UPDATE `wow_user_friends` SET `mutual_act` = '0' WHERE `mutual_act` = '%s'", $mutual_decode);
-
-				return true;
-			}
-		}
-	}
-	
-	public function blockFriend()
-	{
-		$char = $this->c('AccountManager')->getActiveCharacter();
-		
-		if (!$char)
-			return false;
-
-		$block_decode = base64_decode(addslashes($this->core->getUrlAction(3)));
-
-		$this->c('Db')->wow()->setModel($this->c('WowUserFriends', 'Model'));
-		$block_act = $this->c('Db')->wow()->selectRow("SELECT * FROM `wow_user_friends` WHERE `mutual_act` = '%s'", $block_decode);
-		if ($block_act)
-		{
-				$this->c('Db')->wow()->query("INSERT INTO `cometchat_block` (fromid,toid) VALUES ('%d', '%d')", $this->user('id'), $block_act['user_acc']);
-				$this->c('Db')->wow()->query("UPDATE `wow_user_friends` SET `mutual_act` = '0' WHERE `mutual_act` = '%s'", $block_decode);
-
-				return true;
-		}
-	}
-	
-	public function getblockFriends()
-	{
-		$this->c('Db')->wow()->setModel($this->c('WowUsersAccounts', 'Model'));
-		$block_user = $this->c('Db')->wow()->select("select distinct(m.id) `id`, m.nickname `name` from cometchat_block, wow_users_accounts m where m.id = toid and fromid = '".$this->user('id')."'");
-
-		if ($block_user)
-		{
-			return $block_user;
-		}
-	}
-	
 	public function get_Realip()
 	{
     	if ($_SERVER)

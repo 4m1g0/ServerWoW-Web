@@ -32,42 +32,36 @@ class Layout_Component extends Component
 	public function setMenuTitle($title)
 	{
 		$this->m_menuTitle = $title;
-
 		return $this;
 	}
 
 	public function setPageTitle($title)
 	{
 		$this->m_pageTitle = $title;
-
 		return $this;
 	}
 
 	public function setMenuDescription($title)
 	{
 		$this->m_menuDescription = $title;
-
 		return $this;
 	}
 	
 	public function setPageDescription($title)
 	{
 		$this->m_pageDescription = $title;
-
 		return $this;
 	}
 
 	public function setMenuKeywords($title)
 	{
 		$this->m_menuKeywords = $title;
-
 		return $this;
 	}
 	
 	public function setPageKeywords($title)
 	{
 		$this->m_pageKeywords = $title;
-
 		return $this;
 	}
 

@@ -295,6 +295,13 @@ class Core_Component extends Component
 		header('Location: ' . $this->getWowUrl($path), true, $code);
 		exit;
 	}
+	
+	public function redirectUrl2($path = '', $code = 302)
+	{
+		//header('Location: ' . $this->getWowUrl($path), true, $code);
+		header('Location: http://' . $_SERVER['HTTP_HOST'] . $this->getWowUrl($path), true, $code);
+		exit;
+	}
 
 	public function redirectApp($path, $code = 302)
 	{

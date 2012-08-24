@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Server WoW : Inicia sesión con tu cuenta de WoW</title>
-<meta name="description" content="Server WoW Ingresa con tu Cuenta de World of Warcraft, y personaliza tu Cuenta">
+<title>Server WoW - Server de World of Warcraft : Iniciar sesión</title>
+<meta name="description" content="Ingresa con tu Cuenta de Server WoW, y personaliza tu Cuenta, Server de Warcraft">
 <meta name="keywords" content="wow, juegos, multijugador masivo, world of warcraft, blizzlike, cataclysm, wotlk, server, privado">
 <meta http-equiv="imagetoolbar" content="false"/>
 <link rel="stylesheet" type="text/css" href="<?php echo CLIENT_FILES_PATH; ?>/login/static/local-common/css/common.css?v22"/>
@@ -41,7 +41,7 @@ if ($loginError != ERROR_NONE) : ?>
 <div id="left">
 <h2>Iniciar sesión</h2>
 <form method="post" id="form" action="">
-<p><label for="accountName" class="label">Dirección de e-mail</label>
+<p><label for="accountName" class="label">Nombre de Usuario</label>
 <input id="accountName" value="<?php if (isset($_POST['accountName'])) echo $_POST['accountName']; ?>" name="accountName" maxlength="320" type="text" tabindex="1" class="input" /></p>
 <p><label for="password" class="label">Contraseña</label>
 <input id="password" name="password" maxlength="16" type="password" tabindex="2" autocomplete="off" class="input"/></p>
@@ -75,13 +75,13 @@ data-text="Procesando…"
 </form>
 <ul id="help-links">
 <li class="icon-pass">
-¿No puedes <a href="<?php echo $this->getCoreUrl('account/support/password-reset.html'); ?>">iniciar sesión</a>?
+¿No puedes <a href="http://serverwow.com/account/support/password-reset.html">iniciar sesión</a>?
 </li>
 <li class="icon-secure">
 Más información sobre cómo <a href="">proteger tu cuenta</a>.
 </li>
 <li class="icon-signup">
-¿Aún no tienes una cuenta? ¡<a href="<?php echo $this->getCoreUrl('account/creation/'); ?>">Regístrate ya</a>!
+¿Aún no tienes una cuenta? ¡<a href="http://serverwow.com/account/creation/">Regístrate ya</a>!
 </li>
 </ul>
 </div>
@@ -90,13 +90,12 @@ Más información sobre cómo <a href="">proteger tu cuenta</a>.
 <h3>Crear una cuenta de ServerWoW.com es rápido, sencillo y gratis.</h3>
 <a
 class="ui-button button1 "
-href="<?php echo $this->getCoreUrl('account/creation/'); ?>"
+href="http://serverwow.com/account/creation/"
 >
 <span>
 <span>Crear una cuenta</span>
 </span>
 </a>
-<br><br>
 </div>
 <span class="clear"><!-- --></span>
 <script type="text/javascript">
@@ -108,6 +107,9 @@ $('#accountName').focus();
 <div id="footer">
 <?php
 /*
+<div style="position:fixed;right:0;top:100px;width:137px;" id="tabfive">
+<!-- BEGIN PHP Live! code, (c) OSI Codes Inc. --><a href="https://live.serverwow.com/phplive.php?d=4" target="new"><img src="https://live.serverwow.com/ajax/image.php?d=4" border=0></a><!-- END PHP Live! code, (c) OSI Codes Inc. -->
+</div>	
 
 <div id="sitemap" class="promotions">
 <div class="column">
@@ -144,7 +146,7 @@ $('#accountName').focus();
 </div>
 <div class="column">
 <h3 class="support">
-<a href="http://eu.blizzard.com/support/" tabindex="100"><?php echo $l->getString('template_footer_support_title'); ?></a>
+<a href="" tabindex="100"><?php echo $l->getString('template_footer_support_title'); ?></a>
 </h3>
 <ul>
 <li><a href="<?php echo CLIENT_FILES_PATH; ?>/wow/forum/"><?php echo $l->getString('template_footer_support_link1'); ?></a></li>
@@ -172,6 +174,46 @@ $('#accountName').focus();
 <span id="cdSiteSeal2"><script type="text/javascript" src="//tracedseals.starfieldtech.com/siteseal/get?scriptId=cdSiteSeal2&amp;cdSealType=Seal2&amp;sealId=55e4ye7y7mb73baeb3016453fcaa57x90cy7mb7355e4ye7d39bdb92695749257"></script></span>
 </div>
 <span class="clear"><!-- --></span>
+</div>
+
+<div id="warnings-wrapper">
+<!--[if IE]>
+<div id="browser-warning" class="warning warning-red">
+<?php echo $l->getString('template_bn_browser_warning'); ?>
+</div>
+<![endif]-->
+<!--[if IE]>
+<script type="text/javascript" src="<?php echo CLIENT_FILES_PATH; ?>/wow/static/local-common/js/third-party/CFInstall.min.js?v27"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function() {
+var age = 365 * 24 * 60 * 60 * 1000;
+var src = 'https://www.google.com/chromeframe/?hl=es-ES';
+if ('http:' == document.location.protocol) {
+src = 'http://www.google.com/chromeframe/?hl=es-ES';
+}
+document.cookie = "disableGCFCheck=0;path=/;max-age="+age;
+$('#chrome-frame-link').bind({
+'click': function() {
+App.closeWarning('#browser-warning');
+CFInstall.check({
+mode: 'overlay',
+url: src
+});
+return false;
+}
+});
+});
+//]]>
+</script>
+<![endif]-->
+<noscript>
+<div id="javascript-warning" class="warning warning-red">
+<div class="warning-inner2">
+<?php echo $l->getString('template_bn_js_warning'); ?>
+</div>
+</div>
+</noscript>
 </div>
 
 </div>

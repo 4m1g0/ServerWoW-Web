@@ -1,3 +1,10 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+</head>
+<body>
 <script language="JavaScript" type="text/javascript">
 	$(document).ready(function() {
 		$('#amount_').blur(function() {
@@ -57,7 +64,22 @@
 <strong> Precio:
 </strong>
 </label>
+
 <input type="text" id="price" name="price" value="" class=" input border-5 glow-shadow-2 disabled" disabled="disabled" tabindex="1" />
+</div>
+<div>
+  <p>&nbsp;</p>
+  <p><strong><font color="#990000">ATENCION:</font></strong></p>
+  <p>* Para las compras mayores a 40 euros, enviaremos un formato de <strong>Recibido</strong>, que el o la comprador(a) debera:</p>
+  <p><em>1) Imprimir<br />
+    2) Diligenciar debidamente (Por favor, no olvidar escribir el ID de la transaccion. Este se encuentra en el correo que PayPal envia a su cuenta despues de efectuada la transaccion.)<br />
+3) Escanear y mandar debidamente firmado y diligenciado dicho formato a <a onclick="onClickUnsafeLink(event);" href="mailto:tienda@serverwow.com">tienda@serverwow.com</a>,<strong> junto</strong> con una fotocopia del documento de identidad de la o el comprador(a)<br />
+4) Solo cuando recibamos estos documentos, se desbloquearan los creditos para su uso en el ServerWow.com.</em></p>
+<p> </p>
+  <p>* Para las compras realizadas por el mismo comprador(a) o titular de PayPal que superen 40 Euros en un mismo mes (sin importar si es para diferentes cuentas del Server Wow):</p>
+  <p><em>1) Se aplicara el mismo procedimiento, en cuyo caso el o la comprador(a) tendra que firmar y diligenciar el formato aun despues de haber recibido los creditos. Por favor, escribir TODOS los IDs de las transacciones implicadas. <br />
+2) Si la o el comprador(a) o titular de la cuenta en PayPal se negara a llevar a cabo este requerimiento en un lapso de 36 horas, todas las cuentas asociadas a estas compras seran suspendidas temporalmente mientras se soluciona. </em></p>
+  <p>&nbsp;</p>
 </div>
 <div class="form-row" id="confirmation" style="display:none;">
 <input type="checkbox" id="confirmed" name="confirmed" value=""  tabindex="1" class="input"/>
@@ -81,3 +103,5 @@ foreach ($pp_form as $key => $val) :
 </fieldset>
 </form>
 </div>
+</body>
+</html>

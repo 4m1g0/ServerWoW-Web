@@ -32,6 +32,14 @@ class Sms_Component extends Component
 		switch ($type)
 		{
 			case 'allopass':
+				$auth = urlencode("273968/1116252/4973189");
+				$r = @file("http://payment.allopass.com/acte/access.apu?ids=273968&idd=1116252&code[]=".$code);
+				$r = @file("http://payment.allopass.com/api/checkcode.apu?code=$code&auth=$auth");
+
+				if (substr($r[0],0,2) != "OK")
+					return false;
+				break;
+			case 'allopass_tmp':
 				$auth = urlencode("251040/989132/4580667");
 				$r = @file("http://payment.allopass.com/acte/access.apu?ids=251040&idd=989132&code[]=".$code);
 				$r = @file("http://payment.allopass.com/api/checkcode.apu?code=$code&auth=$auth");

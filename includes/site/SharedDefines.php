@@ -920,6 +920,10 @@ define('ERORR_NEW_PASSWORD_FAIL', 512);
 define('ERROR_USERNAME_TAKEN', 1024);
 define('ERROR_RECAPTCHA_FAILED', 2048);
 define('ERROR_USERNAME_BANNED', 4096);
+define('ERROR_EMAIL_TAKEN', 8192);
+define('ERROR_IP_BANNED', 16384);
+define('ERROR_DOMAIN_NOT_VALID', 32768);
+define('ERROR_USER_SAME_PASS', 65536);
 
 /** Database Types **/
 define('DB_WORLD',      0);

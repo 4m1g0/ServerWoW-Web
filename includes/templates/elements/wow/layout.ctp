@@ -93,18 +93,13 @@ var s = document.getElementsByTagName("script")[0];
 s.parentNode.insertBefore(po, s);
 })();
 </script>
-<?php
-if ($this->c('AccountManager')->user('id') == "999999999999999999999")
-{
-?>
-<!-- stardevelop.com Live Help International Copyright - All Rights Reserved //-->
-<!-- BEGIN Live Help Code - NOT PERMITTED TO MODIFY IMAGE MAP/CODE/LINKS //-->
-<script type="text/javascript" src="http://serverwow.com/webroot/livehelp/scripts/jquery-1.4.1.js"></script>
-<script type="text/javascript" src="http://serverwow.com/webroot/livehelp/scripts/jquery.livehelp.js"></script>
-<!-- END Live Help HTML Code - NOT PERMITTED TO MODIFY IMAGE MAP/CODE/LINKS //-->
-<?php
-}
-?>
+<script type="text/javascript">
+var phplive_v = new Object;
+phplive_v["name"] = "<?php echo strtolower($this->c('AccountManager')->user('username')) ?>";
+phplive_v["email"] = "<?php echo $this->c('AccountManager')->user('email') ?>";
+phplive_v["Login"] = "<?php echo $this->c('AccountManager')->user('username') ?>";
+phplive_v["CID"] = "<?php echo $this->c('AccountManager')->user('id') ?>";
+</script>
 </head>
 <body class="<?php echo $l->getLocale(LOCALE_DOUBLE) . ' ' . (isset($body_class) ? $body_class : 'homepage'); if (isset($notify)) echo ' has-notify-bar'; ?>">
 <div id="fb-root"></div>
@@ -286,6 +281,7 @@ Login.embeddedUrl = '<?php echo CLIENT_FILES_PATH; ?>/login/login.frag';
 $('.png-fix').pngFix(); //]]>
 </script>
 <![endif]-->
+
 </body>
 </html>
 <?php //exit(0); ?>

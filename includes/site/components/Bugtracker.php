@@ -491,14 +491,8 @@ class Bugtracker_Component extends Component
 
 	public function addComment()
 	{
-		if (!$this->c('AccountManager')->isLoggedIn() || !isset($_POST['comment']['text']))
+		if (!$this->c('AccountManager')->isAllowedToGeneral() || !isset($_POST['comment']['text']))
 			return $this;
-
-		if ($this->c('AccountManager')->isBanned())
-		{
-			$this->c('Log')->writeDebug('%s : user %s tried to add a comment, but user is banned', __METHOD__, $this->c('AccountManager')->user('id'));
-			return $this->core->redirectUrl('account-status');
-		}
 
 		$text = str_replace(array('<', '>'), array('&lt;', '&gt;'), $_POST['comment']['text']);
 
@@ -702,15 +696,9 @@ class Bugtracker_Component extends Component
 
 	public function createReport()
 	{
-		if (!$this->c('AccountManager')->isLoggedIn())
+		if (!$this->c('AccountManager')->isAllowedToGeneral())
 			return $this;
 			
-		if ($this->c('AccountManager')->isBanned())
-		{
-			$this->c('Log')->writeDebug('%s : user %s tried to create a bug report, but user was banned', __METHOD__, $this->c('AccountManager')->user('id'));
-			return $this->core->redirectUrl('account-status');
-		}
-
 		$fields = array('type', 'priority', 'desc');
 
 		if (isset($_POST['type']))
@@ -733,6 +721,9 @@ class Bugtracker_Component extends Component
 		$char = $this->c('AccountManager')->getActiveCharacter();
 
 		if (!$char)
+			return $this;
+			
+		if ($char['level'] < 10)
 			return $this;
 
 		if (!in_array($_POST['type'], array(BT_WEB, BT_OTHER, BT_DEFAULT, BT_STORE)))
@@ -825,8 +816,8 @@ class Bugtracker_Component extends Component
 	{
 		return $this->c('QueryResult', 'Db')
 			->model('WowChangelog')
-			->limit(self::CHANGES_PER_PAGE, ($this->getPage(true) * self::CHANGES_PER_PAGE))
-			->order(array('WowChangelog' => array('post_date')), 'DESC')  // Date is order in format dd/mm/aaaa so it order first 1/2/2012 than 3/1/2012
+			->limit(30, ($this->getPage(true) * self::CHANGES_PER_PAGE))
+			->order(array('WowChangelog' => array('id')), 'DESC')  // Date is order in format dd/mm/aaaa so it order first 1/2/2012 than 3/1/2012
 			->loadItems();
 	}
 
